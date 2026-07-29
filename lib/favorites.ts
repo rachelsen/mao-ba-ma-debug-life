@@ -45,10 +45,14 @@ export async function toggleFavorite(
     .maybeSingle();
 
   if (existing) {
-    await supabase.from("favorites").delete().eq("id", existing.id);
+    const { error } = await supabase.from("favorites").delete().eq("id", existing.id);
+    if (error) throw error;
     return false;
   }
 
-  await supabase.from("favorites").insert({ user_email: userEmail, product_id: productId });
+  const { error } = await supabase
+    .from("favorites")
+    .insert({ user_email: userEmail, product_id: productId });
+  if (error) throw error;
   return true;
 }
