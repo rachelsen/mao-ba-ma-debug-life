@@ -41,8 +41,7 @@ export default async function HomePage() {
             status: debugging life 🐾
           </span>
           <h1 className="mt-5 text-3xl font-extrabold leading-tight text-stone-800 sm:text-4xl lg:text-5xl">
-            毛拔麻的生活開銷，讓工程師來
-            <span className="text-brand-orange">Debug</span>
+            毛拔麻 <span className="text-brand-orange">Debug</span> 生活
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-base text-stone-500 sm:text-lg">
             從毛孩飲食成分分析、信用卡刷卡回饋，到食衣住行旅遊優惠，數據化幫你挑選最高
