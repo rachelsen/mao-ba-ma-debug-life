@@ -22,6 +22,7 @@ const ALL_LITTER = "全部" as const;
 const TABS: (typeof ALL | PetProductCategory)[] = [
   ALL,
   "貓咪主食罐",
+  "貓咪乾糧",
   "貓砂/用品",
   "狗狗主食罐",
   "狗狗乾糧",
