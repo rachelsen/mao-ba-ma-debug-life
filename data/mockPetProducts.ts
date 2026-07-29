@@ -20,6 +20,37 @@ export interface CatRating {
   verdict: CatVerdict;
 }
 
+/** 完整保證分析對照表所需的原始數據，皆為包裝標示的「以現狀為準」數值 */
+export interface PetProductDetailedAnalysis {
+  /** 商品型態標籤，例如：肉泥、主食罐 */
+  productType?: string;
+  /** 成分表全文 */
+  ingredientsText: string;
+  /** 產地 */
+  originCountry: string;
+  /** 保證分析（以現狀為準，%） */
+  moisture: number;
+  protein: number;
+  fat: number;
+  fiber: number;
+  ash: number;
+  phosphorus: number;
+  /** 鈣（%），選填 */
+  calcium?: number;
+  /** 鈣磷比，包裝標示文字，例如 "1.2"，選填 */
+  caPhosRatio?: string;
+  /** 鈉（%），選填 */
+  sodium?: number;
+  /** 熱量 kcal/100g */
+  kcalPer100g: number;
+  /** 容量（g） */
+  weightGrams: number;
+  /** 定價（未折扣） */
+  listPrice: number;
+  /** 售價（實際販售價） */
+  salePrice: number;
+}
+
 export interface PetProduct {
   id: string;
   category: PetProductCategory;
@@ -27,6 +58,8 @@ export interface PetProduct {
   name: string;
   /** 商品圖片網址（示意圖，正式上線請替換為實拍圖） */
   image: string;
+  /** 完整保證分析對照表，選填，補齊後會在商品卡片顯示詳細表格 */
+  detailedAnalysis?: PetProductDetailedAnalysis;
   /** Engineering Debug 標籤，例如 [無膠/低敏]、[乾物質碳水 5.2%] */
   debugTags: string[];
   /** 特色標籤，例如 ['零澱粉', '零穀物', '單一肉源'] */
@@ -66,7 +99,26 @@ export const mockPetProducts: PetProduct[] = [
       "雞肉",
       "雞心",
     ],
-    dmbCarb: 4.17,
+    dmbCarb: 5.36,
+    detailedAnalysis: {
+      productType: "肉泥",
+      ingredientsText:
+        "雞肉、雞心、雞油、蛋黃粉、魚油、磷酸鈣、乾燥海帶、洋車前子、酵母維生素B群、綜合礦物質(鋅、鐵、銅、錳、碘)、綜合維生素(A、D3、E)、半乳寡糖、蒟蒻粉、蒲公英肽、水溶性纖維素、牛磺酸、酵母抽出物、碳酸鈣。",
+      originCountry: "台灣",
+      moisture: 83.2,
+      protein: 10.5,
+      fat: 4,
+      fiber: 0.5,
+      ash: 0.9,
+      phosphorus: 0.17,
+      calcium: 0.2,
+      caPhosRatio: "1.2",
+      sodium: 0.04,
+      kcalPer100g: 82,
+      weightGrams: 80,
+      listPrice: 46,
+      salePrice: 46,
+    },
     aafcoCertified: true,
     nrcCertified: true,
     ourCatsRating: [
@@ -89,7 +141,26 @@ export const mockPetProducts: PetProduct[] = [
     image: "/images/products/nu4pet-super-cat-chicken-turtle-barley.png",
     debugTags: ["無膠"],
     features: ["零澱粉", "零穀物", "低磷", "超低碳水", "雞肉", "甲魚", "雞心"],
-    dmbCarb: 4.58,
+    dmbCarb: 4.7,
+    detailedAnalysis: {
+      productType: "肉泥",
+      ingredientsText:
+        "雞肉、甲魚、雞心、雞油、魚油、洋車前子、磷酸鈣、酵母維生素B群、乾燥海帶、牛乳寡糖、綜合維生素(A、D3、E)、綜合礦物質(鋅、鐵、銅、錳、碘)、大麥草、蒟蒻粉、水溶性纖維素、牛磺酸、酵母抽出物。",
+      originCountry: "台灣",
+      moisture: 83,
+      protein: 10.7,
+      fat: 4,
+      fiber: 0.5,
+      ash: 1,
+      phosphorus: 0.15,
+      calcium: 0.17,
+      caPhosRatio: "1.1",
+      sodium: 0.04,
+      kcalPer100g: 82,
+      weightGrams: 80,
+      listPrice: 46,
+      salePrice: 46,
+    },
     aafcoCertified: true,
     nrcCertified: true,
     ourCatsRating: [
@@ -111,8 +182,26 @@ export const mockPetProducts: PetProduct[] = [
     name: "Super貓小白主食罐 (鮪魚 x 優格)",
     image: "/images/products/nu4pet-super-cat-tuna-yogurt.png",
     debugTags: ["無膠"],
-    features: ["零澱粉", "零穀物", "低磷", "超低碳水", "鮪魚"],
-    dmbCarb: 5.0,
+    features: ["零澱粉", "零穀物", "低磷", "鮪魚"],
+    dmbCarb: 11.5,
+    detailedAnalysis: {
+      productType: "肉泥",
+      ingredientsText:
+        "鮪魚、雞油、蛋黃粉、乾燥海帶、洋車前子、酵母維生素B群、綜合維生素(A、D3、E)、綜合礦物質(鋅、鐵、銅、錳、碘)、半乳寡糖、磷酸鈣、蒟蒻粉、碳酸鈣、水溶性纖維素、優格粉、牛磺酸、酵母抽出物。",
+      originCountry: "台灣",
+      moisture: 80,
+      protein: 11.4,
+      fat: 4.8,
+      fiber: 0.3,
+      ash: 1.2,
+      phosphorus: 0.18,
+      calcium: 0.2,
+      sodium: 0.14,
+      kcalPer100g: 98,
+      weightGrams: 80,
+      listPrice: 46,
+      salePrice: 46,
+    },
     aafcoCertified: true,
     nrcCertified: true,
     ourCatsRating: [
@@ -135,7 +224,25 @@ export const mockPetProducts: PetProduct[] = [
     image: "/images/products/nu4pet-super-cat-grouper-chiaseed.png",
     debugTags: ["無膠"],
     features: ["零澱粉", "零穀物", "低磷", "超低碳水", "石斑魚"],
-    dmbCarb: 5.42,
+    detailedAnalysis: {
+      productType: "肉泥",
+      ingredientsText:
+        "石斑魚、雞油、蛋黃粉、酵母維生素B群、洋車前子、乾燥海帶、綜合維生素(A、D3、E)、綜合礦物質(鋅、鐵、銅、錳、碘)、半乳寡糖、磷酸鈣、奇亞籽、蒟蒻粉、水溶性纖維素、牛磺酸、碳酸鈣、酵母抽出物。",
+      originCountry: "台灣",
+      moisture: 83.7,
+      protein: 9.6,
+      fat: 4.3,
+      fiber: 0.5,
+      ash: 1,
+      phosphorus: 0.16,
+      calcium: 0.18,
+      sodium: 0.04,
+      kcalPer100g: 81,
+      weightGrams: 80,
+      listPrice: 65,
+      salePrice: 65,
+    },
+    dmbCarb: 5.52,
     aafcoCertified: true,
     nrcCertified: true,
     ourCatsRating: [

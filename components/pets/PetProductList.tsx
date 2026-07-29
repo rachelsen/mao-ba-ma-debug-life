@@ -10,6 +10,7 @@ import {
   type LitterSubCategory,
   type PetProduct,
   type PetProductCategory,
+  type PetProductDetailedAnalysis,
 } from "@/data/mockPetProducts";
 import { useFavoriteQuantities } from "@/lib/useFavoriteQuantities";
 
@@ -36,7 +37,51 @@ function getDmbBadgeClass(carb: number, category: PetProductCategory) {
 }
 
 function getFilterTags(product: PetProduct): string[] {
-  return [...(product.features ?? []), ...product.debugTags];
+  return [
+    ...(product.features ?? []),
+    ...product.debugTags,
+    ...(product.detailedAnalysis?.productType
+      ? [product.detailedAnalysis.productType]
+      : []),
+  ];
+}
+
+/** 從保證分析（以現狀為準）數值，換算出乾物比與熱量佔比對照表所需的數字 */
+function computeAnalysisTable(analysis: PetProductDetailedAnalysis) {
+  const { moisture, protein, fat, fiber, ash, phosphorus, kcalPer100g } = analysis;
+  const dryMatter = 100 - moisture;
+  const carbAsFed = Math.max(
+    0,
+    100 - moisture - protein - fat - ash - fiber
+  );
+
+  const toDm = (value: number) => (value / dryMatter) * 100;
+
+  // 修正版 Atwater 熱量係數：蛋白質 3.5、脂肪 8.5、碳水 3.5 kcal/g
+  const proteinKcal = protein * 3.5;
+  const fatKcal = fat * 8.5;
+  const carbKcal = carbAsFed * 3.5;
+  const totalMacroKcal = proteinKcal + fatKcal + carbKcal;
+  const toMePercent = (kcal: number) =>
+    totalMacroKcal > 0 ? (kcal / totalMacroKcal) * 100 : 0;
+
+  return {
+    carbAsFed,
+    dm: {
+      protein: toDm(protein),
+      fat: toDm(fat),
+      carb: toDm(carbAsFed),
+      fiber: toDm(fiber),
+      ash: toDm(ash),
+    },
+    me: {
+      protein: toMePercent(proteinKcal),
+      fat: toMePercent(fatKcal),
+      carb: toMePercent(carbKcal),
+      phosphorusMgPer100kcal:
+        kcalPer100g > 0 ? ((phosphorus * 1000) / kcalPer100g) * 100 : 0,
+    },
+  };
 }
 
 function buildCatVerdictSummary(ratings?: CatRating[]): string | null {
@@ -520,6 +565,11 @@ function ProductCard({
                 {tag}
               </span>
             ))}
+            {product.detailedAnalysis?.productType && (
+              <span className="rounded-full border border-stone-300 bg-stone-100 px-3 py-1 text-xs font-semibold text-stone-600">
+                {product.detailedAnalysis.productType}
+              </span>
+            )}
           </div>
 
           <p className="text-sm text-stone-600">{product.review.comment}</p>
@@ -529,6 +579,11 @@ function ProductCard({
             </p>
           )}
 
+          {product.detailedAnalysis && (
+            <div className="mt-3">
+              <AnalysisTable analysis={product.detailedAnalysis} />
+            </div>
+          )}
         </div>
 
         <div className="flex flex-wrap items-end justify-between gap-3">
@@ -557,6 +612,112 @@ function ProductCard({
         </div>
       </div>
     </article>
+  );
+}
+
+function AnalysisTable({
+  analysis,
+}: {
+  analysis: PetProductDetailedAnalysis;
+}) {
+  const { carbAsFed, dm, me } = computeAnalysisTable(analysis);
+  const pricePerGram =
+    analysis.weightGrams > 0 ? analysis.salePrice / analysis.weightGrams : 0;
+
+  const otherInfoParts: string[] = [];
+  if (analysis.calcium !== undefined) otherInfoParts.push(`鈣${analysis.calcium}%`);
+  if (analysis.caPhosRatio) otherInfoParts.push(`鈣磷比${analysis.caPhosRatio}`);
+  if (analysis.sodium !== undefined) otherInfoParts.push(`鈉${analysis.sodium}%`);
+
+  return (
+    <div className="rounded-xl border border-cream-border bg-cream-bg-light/50 p-3 text-xs">
+      <p className="leading-relaxed text-stone-500">
+        {analysis.ingredientsText}
+      </p>
+      <p className="mt-2 flex flex-wrap justify-between gap-x-3 gap-y-1 text-stone-500">
+        <span>
+          其他：{otherInfoParts.length > 0 ? otherInfoParts.join("、") : "—"}
+        </span>
+        <span className="text-stone-400">產地：{analysis.originCountry}</span>
+      </p>
+
+      <div className="mt-3 overflow-x-auto">
+        <table className="w-full min-w-[640px] border-collapse text-center">
+          <thead>
+            <tr className="border-b border-cream-border text-stone-500">
+              <th className="px-2 py-1.5 text-left font-medium"> </th>
+              <th className="px-2 py-1.5 font-medium">蛋白質</th>
+              <th className="px-2 py-1.5 font-medium">脂肪</th>
+              <th className="px-2 py-1.5 font-medium">碳水</th>
+              <th className="px-2 py-1.5 font-medium">水份</th>
+              <th className="px-2 py-1.5 font-medium">磷</th>
+              <th className="px-2 py-1.5 font-medium">纖維</th>
+              <th className="px-2 py-1.5 font-medium">灰質</th>
+              <th className="px-2 py-1.5 font-medium">熱量</th>
+              <th className="px-2 py-1.5 font-medium">容量(g)</th>
+              <th className="px-2 py-1.5 font-medium">定價</th>
+              <th className="px-2 py-1.5 font-medium">售價</th>
+              <th className="px-2 py-1.5 font-medium">價格/g</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-cream-border">
+            <tr>
+              <td className="px-2 py-1.5 text-left font-semibold text-stone-600">
+                分析成分
+              </td>
+              <td className="px-2 py-1.5">{analysis.protein}%</td>
+              <td className="px-2 py-1.5">{analysis.fat}%</td>
+              <td className="px-2 py-1.5">{carbAsFed.toFixed(1)}%</td>
+              <td className="px-2 py-1.5">{analysis.moisture}%</td>
+              <td className="px-2 py-1.5">{analysis.phosphorus}%</td>
+              <td className="px-2 py-1.5">{analysis.fiber}%</td>
+              <td className="px-2 py-1.5">{analysis.ash}%</td>
+              <td className="px-2 py-1.5">{analysis.kcalPer100g} kcal/100g</td>
+              <td className="px-2 py-1.5">{analysis.weightGrams}</td>
+              <td className="px-2 py-1.5">{analysis.listPrice}</td>
+              <td className="px-2 py-1.5">{analysis.salePrice}</td>
+              <td className="px-2 py-1.5">{pricePerGram.toFixed(2)}</td>
+            </tr>
+            <tr className="text-stone-500">
+              <td className="px-2 py-1.5 text-left font-semibold text-stone-600">
+                乾物比(DM)
+              </td>
+              <td className="px-2 py-1.5">{dm.protein.toFixed(1)}%</td>
+              <td className="px-2 py-1.5">{dm.fat.toFixed(1)}%</td>
+              <td className="px-2 py-1.5">{dm.carb.toFixed(1)}%</td>
+              <td className="px-2 py-1.5">—</td>
+              <td className="px-2 py-1.5">—</td>
+              <td className="px-2 py-1.5">{dm.fiber.toFixed(1)}%</td>
+              <td className="px-2 py-1.5">{dm.ash.toFixed(1)}%</td>
+              <td className="px-2 py-1.5">—</td>
+              <td className="px-2 py-1.5">—</td>
+              <td className="px-2 py-1.5">—</td>
+              <td className="px-2 py-1.5">—</td>
+              <td className="px-2 py-1.5">—</td>
+            </tr>
+            <tr className="text-matcha">
+              <td className="px-2 py-1.5 text-left font-semibold text-stone-600">
+                熱量佔(ME)
+              </td>
+              <td className="px-2 py-1.5">{me.protein.toFixed(1)}%</td>
+              <td className="px-2 py-1.5">{me.fat.toFixed(1)}%</td>
+              <td className="px-2 py-1.5">{me.carb.toFixed(1)}%</td>
+              <td className="px-2 py-1.5">—</td>
+              <td className="px-2 py-1.5">
+                {me.phosphorusMgPer100kcal.toFixed(0)} mg/100kcal
+              </td>
+              <td className="px-2 py-1.5">—</td>
+              <td className="px-2 py-1.5">—</td>
+              <td className="px-2 py-1.5">—</td>
+              <td className="px-2 py-1.5">—</td>
+              <td className="px-2 py-1.5">—</td>
+              <td className="px-2 py-1.5">—</td>
+              <td className="px-2 py-1.5">—</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   );
 }
 
