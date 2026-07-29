@@ -36,6 +36,27 @@ function getDmbBadgeClass(carb: number, category: PetProductCategory) {
     : "border-slate-200 bg-slate-100 text-slate-500";
 }
 
+const COUNTRY_FLAG_EMOJI: Record<string, string> = {
+  台灣: "🇹🇼",
+  日本: "🇯🇵",
+  韓國: "🇰🇷",
+  中國: "🇨🇳",
+  美國: "🇺🇸",
+  加拿大: "🇨🇦",
+  紐西蘭: "🇳🇿",
+  澳洲: "🇦🇺",
+  泰國: "🇹🇭",
+  德國: "🇩🇪",
+  法國: "🇫🇷",
+  英國: "🇬🇧",
+  義大利: "🇮🇹",
+  荷蘭: "🇳🇱",
+};
+
+function getCountryFlagEmoji(country: string): string {
+  return COUNTRY_FLAG_EMOJI[country] ?? "";
+}
+
 function getFilterTags(product: PetProduct): string[] {
   return [
     ...(product.features ?? []),
@@ -607,7 +628,7 @@ function ProductCard({
             rel="nofollow sponsored noopener noreferrer"
             className="flex items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-orange-500 px-6 py-2.5 font-bold text-white transition-all hover:bg-orange-600 active:scale-[0.98]"
           >
-            🛒 前往官方購買 / 優惠連結
+            🛒 前往官方購買
           </a>
         </div>
       </div>
@@ -638,7 +659,10 @@ function AnalysisTable({
         <span>
           其他：{otherInfoParts.length > 0 ? otherInfoParts.join("、") : "—"}
         </span>
-        <span className="text-stone-400">產地：{analysis.originCountry}</span>
+        <span className="text-stone-400">
+          產地：{getCountryFlagEmoji(analysis.originCountry)}{" "}
+          {analysis.originCountry}
+        </span>
       </p>
 
       <div className="mt-3 overflow-x-auto">
