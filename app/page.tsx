@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { NaturalPhoto } from "@/components/home/NaturalPhoto";
+import { mockPetProducts } from "@/data/mockPetProducts";
+import { getFavoriteCounts } from "@/lib/favorites";
 
 export const metadata: Metadata = {
   title: "毛拔麻 Debug 生活",
@@ -8,13 +11,22 @@ export const metadata: Metadata = {
     "工程師毛拔麻打造的全方位導購網站，用數據與邏輯 Debug 毛孩養護與生活開銷。",
 };
 
+// 每小時重新計算一次「大家最愛的商品」，避免每次都要重新部署才能更新
+export const revalidate = 3600;
+
 const CATS = {
   shorthair: { src: "/images/cats/shorthair.png", name: "灰美短" },
   white: { src: "/images/cats/white.png", name: "白貓" },
   norwegianForest: { src: "/images/cats/norwegian-forest.png", name: "挪威森林貓" },
 };
 
-export default function HomePage() {
+export default async function HomePage() {
+  const counts = await getFavoriteCounts();
+  const topProduct = mockPetProducts
+    .map((product) => ({ product, count: counts[product.id] ?? 0 }))
+    .sort((a, b) => b.count - a.count)[0];
+  const hasFavorites = topProduct && topProduct.count > 0;
+
   return (
     <main className="min-h-screen bg-white">
       {/* Hero Banner */}
@@ -64,12 +76,9 @@ export default function HomePage() {
       <div className="mx-auto max-w-6xl space-y-16 px-4 py-14 sm:px-8">
         {/* 寵物 Debug 亮點引導區 */}
         <section className="overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-sm">
-          <div className="grid grid-cols-1 items-center gap-8 p-8 sm:p-10 lg:grid-cols-[1.2fr_1fr]">
+          <div className="flex items-center p-8 sm:p-10">
             <div>
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-brand-green/40 bg-brand-green/10 px-3 py-1 font-mono text-xs text-brand-green">
-                function checkCarbRatio()
-              </span>
-              <h2 className="mt-4 text-2xl font-extrabold leading-snug text-stone-800 sm:text-3xl">
+              <h2 className="text-2xl font-extrabold leading-snug text-stone-800 sm:text-3xl">
                 想知道毛孩吃的乾乾與罐罐有合格嗎？
                 <br />
                 立刻 <span className="text-brand-orange">Debug</span>
@@ -84,34 +93,45 @@ export default function HomePage() {
                 🐾 立即試算
               </Link>
             </div>
-
-            <div className="rounded-2xl border border-cream-border bg-cream-bg-light/60 p-6 font-mono text-xs text-stone-500 sm:text-sm">
-              <p className="text-stone-400"># dryMatterCarb.ts</p>
-              <p className="mt-2">
-                carb = <span className="text-brand-orange">(100 - 水分 - 蛋白質 - 脂肪 - 灰份 - 纖維)</span>
-              </p>
-              <p>&nbsp;&nbsp;&nbsp;&nbsp;/ (100 - 水分) * 100</p>
-              <p className="mt-3 flex items-center gap-2">
-                <span className="rounded border border-brand-green/40 bg-brand-green/10 px-2 py-0.5 text-brand-green">
-                  🎉 PASS
-                </span>
-                <span className="text-stone-400">&lt; 10%</span>
-              </p>
-              <p className="mt-1 flex items-center gap-2">
-                <span className="rounded border border-amber-500/40 bg-amber-400/20 px-2 py-0.5 text-amber-700">
-                  ⚠️ WARNING
-                </span>
-                <span className="text-stone-400">10% – 25%</span>
-              </p>
-              <p className="mt-1 flex items-center gap-2">
-                <span className="rounded border border-red-400/40 bg-red-400/15 px-2 py-0.5 text-red-600">
-                  ❌ FAIL
-                </span>
-                <span className="text-stone-400">&gt; 25%</span>
-              </p>
-            </div>
           </div>
         </section>
+
+        {/* 大家最愛的商品 */}
+        {hasFavorites && (
+          <section className="rounded-3xl border border-slate-100 bg-white p-8 shadow-sm sm:p-10">
+            <div className="mb-6 inline-flex items-center gap-1.5 rounded-full border border-rose-300/50 bg-rose-50 px-3 py-1 text-sm font-medium text-rose-500">
+              🏆 大家最愛的商品
+            </div>
+            <div className="flex flex-col items-center gap-6 sm:flex-row">
+              <div className="relative aspect-square w-32 shrink-0 overflow-hidden rounded-2xl border border-slate-100 bg-cream-bg-light sm:w-40">
+                <Image
+                  src={topProduct.product.image}
+                  alt={`${topProduct.product.brand} ${topProduct.product.name}`}
+                  fill
+                  sizes="160px"
+                  className="object-contain p-3"
+                />
+              </div>
+              <div className="text-center sm:text-left">
+                <p className="text-xs font-medium text-amber-800/60">
+                  {topProduct.product.brand}
+                </p>
+                <h3 className="mt-1 text-xl font-bold text-slate-800">
+                  {topProduct.product.name}
+                </h3>
+                <p className="mt-2 text-sm text-stone-500">
+                  ❤️ {topProduct.count} 人收藏
+                </p>
+                <Link
+                  href="/pets"
+                  className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand-orange hover:underline"
+                >
+                  前往查看 →
+                </Link>
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* 關於創作者 About Section */}
         <section className="rounded-3xl border border-slate-100 bg-white p-8 text-center shadow-sm sm:p-10">
@@ -121,7 +141,7 @@ export default function HomePage() {
             <NaturalPhoto src={CATS.norwegianForest.src} alt={CATS.norwegianForest.name} className="w-14" />
           </div>
           <p className="mx-auto max-w-2xl text-sm leading-relaxed text-stone-500 sm:text-base">
-            🌿 關於這裡：由生活在鹿角蕨、龜背芋與蘋果竹芋森林裡，擁有三隻貓咪（灰銀美短、粉耳白貓、蓬鬆挪威森林貓）的工程師毛拔麻打造。用理性數據幫大家找到最高
+            🌿 關於這裡：由生活在森林裡，擁有三隻貓咪的工程師毛拔麻打造。用理性數據幫大家找到最高
             CP 值的生活提案！
           </p>
         </section>

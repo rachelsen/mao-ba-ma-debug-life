@@ -215,9 +215,6 @@ export default function CarbCalculator() {
   return (
     <section className="rounded-2xl border border-cream-border bg-cream-card p-6 shadow-lg shadow-stone-300/40 sm:p-8">
       <div className="mb-6 flex items-center gap-2">
-        <span className="rounded-md border border-matcha/40 bg-matcha/10 px-2 py-0.5 font-mono text-xs text-matcha">
-          function
-        </span>
         <h2 className="text-xl font-bold text-stone-800 sm:text-2xl">
           碳水化合物 Debug 計算器
         </h2>

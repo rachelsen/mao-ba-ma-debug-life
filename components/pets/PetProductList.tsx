@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { signIn, useSession } from "next-auth/react";
 import { useEffect, useMemo, useState } from "react";
 import {
   mockPetProducts,
@@ -40,9 +41,68 @@ function buildCatVerdictSummary(ratings?: CatRating[]): string | null {
 }
 
 export default function PetProductList() {
+  const { status } = useSession();
   const [activeTab, setActiveTab] = useState<(typeof ALL) | PetProductCategory>(
     ALL
   );
+  const [counts, setCounts] = useState<Record<string, number>>({});
+  const [likedIds, setLikedIds] = useState<Set<string>>(new Set());
+
+  useEffect(() => {
+    fetch("/api/favorites/counts")
+      .then((res) => res.json())
+      .then((data) => setCounts(data.counts ?? {}))
+      .catch(() => {});
+  }, []);
+
+  useEffect(() => {
+    if (status !== "authenticated") {
+      setLikedIds(new Set());
+      return;
+    }
+    fetch("/api/favorites")
+      .then((res) => res.json())
+      .then((data) => setLikedIds(new Set<string>(data.favorites ?? [])))
+      .catch(() => {});
+  }, [status]);
+
+  const handleToggleLike = async (productId: string) => {
+    if (status !== "authenticated") {
+      signIn("google");
+      return;
+    }
+
+    const wasLiked = likedIds.has(productId);
+    setLikedIds((prev) => {
+      const next = new Set(prev);
+      if (wasLiked) next.delete(productId);
+      else next.add(productId);
+      return next;
+    });
+    setCounts((prev) => ({
+      ...prev,
+      [productId]: Math.max(0, (prev[productId] ?? 0) + (wasLiked ? -1 : 1)),
+    }));
+
+    try {
+      const res = await fetch("/api/favorites", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ productId }),
+      });
+      if (!res.ok) throw new Error("toggle failed");
+    } catch {
+      // 失敗時重新從伺服器同步正確狀態
+      fetch("/api/favorites/counts")
+        .then((res) => res.json())
+        .then((data) => setCounts(data.counts ?? {}))
+        .catch(() => {});
+      fetch("/api/favorites")
+        .then((res) => res.json())
+        .then((data) => setLikedIds(new Set<string>(data.favorites ?? [])))
+        .catch(() => {});
+    }
+  };
 
   const filteredProducts = useMemo(() => {
     if (activeTab === ALL) return mockPetProducts;
@@ -55,9 +115,6 @@ export default function PetProductList() {
         <h2 className="text-xl font-bold text-stone-800 sm:text-2xl">
           🐾 毛拔麻嚴選清單
         </h2>
-        <span className="rounded-md border border-milktea/40 bg-milktea/10 px-2 py-0.5 font-mono text-xs text-milktea-dark">
-          products.json
-        </span>
       </div>
 
       <div className="mb-6 flex gap-2 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
@@ -82,7 +139,13 @@ export default function PetProductList() {
 
       <div className="flex flex-col gap-6">
         {filteredProducts.map((product) => (
-          <ProductCard key={product.id} product={product} />
+          <ProductCard
+            key={product.id}
+            product={product}
+            liked={likedIds.has(product.id)}
+            count={counts[product.id] ?? 0}
+            onToggleLike={handleToggleLike}
+          />
         ))}
       </div>
 
@@ -95,7 +158,17 @@ export default function PetProductList() {
   );
 }
 
-function ProductCard({ product }: { product: PetProduct }) {
+function ProductCard({
+  product,
+  liked,
+  count,
+  onToggleLike,
+}: {
+  product: PetProduct;
+  liked: boolean;
+  count: number;
+  onToggleLike: (productId: string) => void;
+}) {
   const hasDiscount =
     product.originalPrice !== undefined &&
     product.originalPrice > product.price;
@@ -114,7 +187,11 @@ function ProductCard({ product }: { product: PetProduct }) {
             className="object-contain p-3"
           />
           <div className="absolute right-2 top-2">
-            <LikeButton productId={product.id} />
+            <LikeButton
+              liked={liked}
+              count={count}
+              onToggle={() => onToggleLike(product.id)}
+            />
           </div>
         </div>
         <MyCatLikes productId={product.id} ourCatsRating={product.ourCatsRating} />
@@ -223,30 +300,25 @@ function ProductCard({ product }: { product: PetProduct }) {
   );
 }
 
-function LikeButton({ productId }: { productId: string }) {
-  const SEED_LIKES = 12;
-  const storageKey = `petfood-like-${productId}`;
-  const [liked, setLiked] = useState(false);
-
-  useEffect(() => {
-    setLiked(window.localStorage.getItem(storageKey) === "1");
-  }, [storageKey]);
-
-  const toggleLike = () => {
-    const next = !liked;
-    setLiked(next);
-    window.localStorage.setItem(storageKey, next ? "1" : "0");
-  };
-
+function LikeButton({
+  liked,
+  count,
+  onToggle,
+}: {
+  liked: boolean;
+  count: number;
+  onToggle: () => void;
+}) {
   return (
     <button
       type="button"
-      onClick={toggleLike}
+      onClick={onToggle}
       aria-pressed={liked}
+      title={liked ? "取消收藏" : "登入後即可收藏"}
       className="inline-flex items-center gap-1 rounded-full border border-rose-200 bg-white/90 px-2.5 py-1 text-xs font-semibold text-rose-500 shadow-sm backdrop-blur transition active:scale-95"
     >
       <span>{liked ? "❤️" : "🤍"}</span>
-      <span>{SEED_LIKES + (liked ? 1 : 0)}</span>
+      <span>{count}</span>
     </button>
   );
 }

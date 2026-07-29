@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 const NAV_ITEMS = [
   { label: "首頁", href: "/", emoji: "🏠" },
@@ -42,6 +43,10 @@ export default function Sidebar() {
             );
           })}
         </nav>
+
+        <div className="mt-auto pt-4">
+          <AuthWidget />
+        </div>
       </aside>
 
       {/* 手機版：頂部橫向導覽列 */}
@@ -64,5 +69,48 @@ export default function Sidebar() {
         })}
       </nav>
     </>
+  );
+}
+
+function AuthWidget() {
+  const { data: session, status } = useSession();
+
+  if (status === "loading") return null;
+
+  if (session?.user) {
+    return (
+      <div className="flex items-center gap-2 border-t border-cream-border pt-4">
+        {session.user.image && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={session.user.image}
+            alt={session.user.name ?? "使用者頭像"}
+            className="h-8 w-8 shrink-0 rounded-full"
+          />
+        )}
+        <div className="min-w-0 flex-1">
+          <p className="truncate text-xs font-medium text-stone-700">
+            {session.user.name}
+          </p>
+          <button
+            type="button"
+            onClick={() => signOut()}
+            className="text-xs text-stone-400 hover:text-stone-600"
+          >
+            登出
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <button
+      type="button"
+      onClick={() => signIn("google")}
+      className="flex w-full items-center justify-center gap-2 rounded-lg border border-cream-border px-3 py-2.5 text-sm font-medium text-stone-600 transition hover:bg-cream-bg-light"
+    >
+      使用 Google 登入
+    </button>
   );
 }
