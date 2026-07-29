@@ -104,4 +104,27 @@ export const mockPetProducts: PetProduct[] = [
     price: 46,
     affiliateUrl: "https://s.shopee.tw/3Vj2SLnkCR",
   },
+  {
+    id: "cat-can-002",
+    category: "貓咪主食罐",
+    brand: "nu4PET 陪心寵糧",
+    name: "Super貓小白主食罐 (鮪魚 x 優格)",
+    image: "/images/products/nu4pet-super-cat-tuna-yogurt.png",
+    debugTags: ["無膠"],
+    features: ["零澱粉", "零穀物", "低磷", "超低碳水", "鮪魚"],
+    dmbCarb: 5.0,
+    aafcoCertified: true,
+    nrcCertified: true,
+    ourCatsRating: [
+      { cat: "本丸", verdict: "like" },
+      { cat: "海苔", verdict: "like" },
+      { cat: "麻糬", verdict: "like" },
+    ],
+    review: {
+      comment:
+        "鮪魚搭配優格，零澱粉零穀物、低磷配方，DMB 碳水控制在超低水平，本丸、海苔、麻糬三隻都捧場。",
+    },
+    price: 46,
+    affiliateUrl: "https://s.shopee.tw/3Vj2SLnkCR",
+  },
 ];
