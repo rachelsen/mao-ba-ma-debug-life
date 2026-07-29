@@ -67,7 +67,6 @@ export default function PetProductList() {
   const [featureFilters, setFeatureFilters] = useState<Set<string>>(
     new Set()
   );
-  const [counts, setCounts] = useState<Record<string, number>>({});
   const [likedIds, setLikedIds] = useState<Set<string>>(new Set());
 
   const { getQuantity, setQuantity } = useFavoriteQuantities();
@@ -99,13 +98,6 @@ export default function PetProductList() {
   };
 
   useEffect(() => {
-    fetch("/api/favorites/counts")
-      .then((res) => res.json())
-      .then((data) => setCounts(data.counts ?? {}))
-      .catch(() => {});
-  }, []);
-
-  useEffect(() => {
     if (status !== "authenticated") {
       setLikedIds(new Set());
       return;
@@ -129,10 +121,6 @@ export default function PetProductList() {
       else next.add(productId);
       return next;
     });
-    setCounts((prev) => ({
-      ...prev,
-      [productId]: Math.max(0, (prev[productId] ?? 0) + (wasLiked ? -1 : 1)),
-    }));
 
     try {
       const res = await fetch("/api/favorites", {
@@ -143,10 +131,6 @@ export default function PetProductList() {
       if (!res.ok) throw new Error("toggle failed");
     } catch {
       // 失敗時重新從伺服器同步正確狀態
-      fetch("/api/favorites/counts")
-        .then((res) => res.json())
-        .then((data) => setCounts(data.counts ?? {}))
-        .catch(() => {});
       fetch("/api/favorites")
         .then((res) => res.json())
         .then((data) => setLikedIds(new Set<string>(data.favorites ?? [])))
@@ -400,7 +384,6 @@ export default function PetProductList() {
             key={product.id}
             product={product}
             liked={likedIds.has(product.id)}
-            count={counts[product.id] ?? 0}
             onToggleLike={handleToggleLike}
           />
         ))}
@@ -443,12 +426,10 @@ function FilterChip({
 function ProductCard({
   product,
   liked,
-  count,
   onToggleLike,
 }: {
   product: PetProduct;
   liked: boolean;
-  count: number;
   onToggleLike: (productId: string) => void;
 }) {
   const hasDiscount =
@@ -471,7 +452,6 @@ function ProductCard({
           <div className="absolute right-2 top-2">
             <LikeButton
               liked={liked}
-              count={count}
               onToggle={() => onToggleLike(product.id)}
             />
           </div>
@@ -577,11 +557,9 @@ function ProductCard({
 
 function LikeButton({
   liked,
-  count,
   onToggle,
 }: {
   liked: boolean;
-  count: number;
   onToggle: () => void;
 }) {
   return (
@@ -590,10 +568,9 @@ function LikeButton({
       onClick={onToggle}
       aria-pressed={liked}
       title={liked ? "取消收藏" : "登入後即可收藏"}
-      className="inline-flex items-center gap-1 rounded-full border border-rose-200 bg-white/90 px-2.5 py-1 text-xs font-semibold text-rose-500 shadow-sm backdrop-blur transition active:scale-95"
+      className="inline-flex items-center justify-center rounded-full border border-rose-200 bg-white/90 p-1.5 text-sm shadow-sm backdrop-blur transition active:scale-95"
     >
-      <span>{liked ? "❤️" : "🤍"}</span>
-      <span>{count}</span>
+      {liked ? "❤️" : "🤍"}
     </button>
   );
 }
