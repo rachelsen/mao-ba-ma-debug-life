@@ -163,28 +163,34 @@ export default function CarbCalculator() {
     const moisture = parseFloat(inputs.moisture) || 0;
 
     if (moisture >= 100) {
-      return { error: "水分不可為 100% 或以上" as const };
+      return { status: "error" as const, error: "水分不可為 100% 或以上" };
     }
 
     const sumOthers = protein + fat + fiber + ash + moisture;
     if (sumOthers > 100) {
-      return { error: "各項數值加總已超過 100%，請檢查輸入是否正確" as const };
+      return {
+        status: "error" as const,
+        error: "各項數值加總已超過 100%，請檢查輸入是否正確",
+      };
     }
 
     const dryMatterCarb =
       ((100 - moisture - protein - fat - ash - fiber) / (100 - moisture)) * 100;
 
-    return { carb: dryMatterCarb };
+    return { status: "ok" as const, carb: dryMatterCarb };
   }, [inputs]);
 
   const result =
-    "carb" in calculation ? getDebugResult(calculation.carb, species) : null;
+    calculation.status === "ok"
+      ? getDebugResult(calculation.carb, species)
+      : null;
 
   const idealCarb =
-    "carb" in calculation && calculation.carb < SPECIES_STANDARDS[species].passMax;
+    calculation.status === "ok" &&
+    calculation.carb < SPECIES_STANDARDS[species].passMax;
 
   const compliance =
-    "carb" in calculation
+    calculation.status === "ok"
       ? !checklist.aafco
         ? {
             type: "warning" as const,
@@ -287,7 +293,7 @@ export default function CarbCalculator() {
       </div>
 
       <div className="mt-6">
-        {"error" in calculation ? (
+        {calculation.status === "error" ? (
           <div className="rounded-xl border border-red-400/50 bg-red-50 p-4 text-sm text-red-600">
             {calculation.error}
           </div>
