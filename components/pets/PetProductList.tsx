@@ -11,6 +11,7 @@ import {
   type PetProduct,
   type PetProductCategory,
   type PetProductDetailedAnalysis,
+  type PetProductPartialNutrition,
 } from "@/data/mockPetProducts";
 import { useFavoriteQuantities } from "@/lib/useFavoriteQuantities";
 
@@ -23,13 +24,14 @@ const TABS: (typeof ALL | PetProductCategory)[] = [
   "貓咪主食罐",
   "貓砂/用品",
   "狗狗主食罐",
+  "狗狗乾糧",
   "毛孩保健品",
 ];
 
 const LITTER_SUB_CATEGORIES: LitterSubCategory[] = ["礦砂", "豆腐砂", "用品"];
 
 function getDmbBadgeClass(carb: number, category: PetProductCategory) {
-  const isDog = category === "狗狗主食罐";
+  const isDog = category === "狗狗主食罐" || category === "狗狗乾糧";
   const passMax = isDog ? 25 : 10;
   return carb < passMax
     ? "border-matcha/40 bg-matcha/10 text-matcha"
@@ -596,13 +598,18 @@ function ProductCard({
           <p className="text-sm text-stone-600">{product.review.comment}</p>
           {catVerdictSummary && (
             <p className="mt-1.5 text-sm text-stone-500">
-              🐱 三貓評價：{catVerdictSummary}
+              🐾 毛孩評價：{catVerdictSummary}
             </p>
           )}
 
           {product.detailedAnalysis && (
             <div className="mt-3">
               <AnalysisTable analysis={product.detailedAnalysis} />
+            </div>
+          )}
+          {product.partialNutrition && (
+            <div className="mt-3">
+              <PartialNutritionBox nutrition={product.partialNutrition} />
             </div>
           )}
         </div>
@@ -633,6 +640,27 @@ function ProductCard({
         </div>
       </div>
     </article>
+  );
+}
+
+function PartialNutritionBox({
+  nutrition,
+}: {
+  nutrition: PetProductPartialNutrition;
+}) {
+  return (
+    <div className="rounded-xl border border-cream-border bg-cream-bg-light/50 p-3 text-xs">
+      <p className="font-semibold text-stone-600">📋 官方營養標示（部分揭露）</p>
+      <dl className="mt-2 grid grid-cols-2 gap-x-4 gap-y-1.5 sm:grid-cols-3">
+        {nutrition.items.map((item) => (
+          <div key={item.label} className="flex justify-between gap-2">
+            <dt className="text-stone-500">{item.label}</dt>
+            <dd className="font-semibold text-stone-700">{item.value}</dd>
+          </div>
+        ))}
+      </dl>
+      <p className="mt-2 text-stone-400">⚠️ {nutrition.note}</p>
+    </div>
   );
 }
 
@@ -810,7 +838,7 @@ function MyCatLikes({
   return (
     <div className="text-sm">
       {allNames.length > 0 && (
-        <p className="text-xs text-stone-500">推薦的貓咪：{allNames.join("、")}</p>
+        <p className="text-xs text-stone-500">推薦的毛孩：{allNames.join("、")}</p>
       )}
 
       {showForm ? (
@@ -820,7 +848,7 @@ function MyCatLikes({
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleAdd()}
-            placeholder="輸入你家貓咪的名字"
+            placeholder="輸入你家毛孩的名字"
             autoFocus
             className="w-full rounded-lg border border-cream-border bg-white px-3 py-1.5 text-sm text-stone-800 outline-none transition focus:border-milktea focus:ring-1 focus:ring-milktea"
           />
@@ -838,7 +866,7 @@ function MyCatLikes({
           onClick={() => setShowForm(true)}
           className="inline-flex w-full items-center justify-center gap-1 rounded-lg border border-rose-200 bg-rose-50 px-3 py-2 text-xs font-semibold text-rose-500 transition hover:bg-rose-100 active:scale-[0.98]"
         >
-          ❤️ 我家貓咪也喜歡 (+1)
+          ❤️ 我家毛孩也喜歡 (+1)
         </button>
       )}
     </div>

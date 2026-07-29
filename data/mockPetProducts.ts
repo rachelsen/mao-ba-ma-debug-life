@@ -2,6 +2,7 @@ export type PetProductCategory =
   | "貓咪主食罐"
   | "貓砂/用品"
   | "狗狗主食罐"
+  | "狗狗乾糧"
   | "毛孩保健品";
 
 /** 「貓砂/用品」分類專用的子分類，用於下拉篩選 */
@@ -51,6 +52,14 @@ export interface PetProductDetailedAnalysis {
   salePrice: number;
 }
 
+/** 官方僅部分揭露保證分析數值時使用，原樣列出已知數字，不做 DM/ME 換算 */
+export interface PetProductPartialNutrition {
+  /** 已知的官方標示項目，例如 { label: "蛋白質(min)", value: "9.0%" } */
+  items: { label: string; value: string }[];
+  /** 說明為何無法提供完整保證分析對照表 */
+  note: string;
+}
+
 export interface PetProduct {
   id: string;
   category: PetProductCategory;
@@ -60,6 +69,8 @@ export interface PetProduct {
   image: string;
   /** 完整保證分析對照表，選填，補齊後會在商品卡片顯示詳細表格 */
   detailedAnalysis?: PetProductDetailedAnalysis;
+  /** 官方僅部分揭露保證分析數值時使用，與 detailedAnalysis 互斥 */
+  partialNutrition?: PetProductPartialNutrition;
   /** Engineering Debug 標籤，例如 [無膠/低敏]、[乾物質碳水 5.2%] */
   debugTags: string[];
   /** 特色標籤，例如 ['零澱粉', '零穀物', '單一肉源'] */
@@ -297,5 +308,88 @@ export const mockPetProducts: PetProduct[] = [
     },
     price: 46,
     affiliateUrl: "https://s.shopee.tw/3Vj2SLnkCR",
+  },
+  {
+    id: "dog-can-000",
+    category: "狗狗主食罐",
+    brand: "Cesar 西莎",
+    name: "精緻風味餐盒 (牛肉) 24入",
+    image: "/images/products/cesar-gourmet-tray-beef.png",
+    debugTags: [],
+    features: ["肉餅"],
+    partialNutrition: {
+      items: [
+        { label: "蛋白質(min)", value: "9.0%" },
+        { label: "脂肪(min)", value: "4.5%" },
+        { label: "水分(max)", value: "89%" },
+        { label: "膳食纖維(max)", value: "0.4%–1.0%" },
+        { label: "熱量(代謝能)", value: "70–95 kcal/100g" },
+      ],
+      note: "官方包裝僅標示上述數值，未列出灰質、磷、鈣、鈉等具體百分比（統稱於「必需維生素及礦物質」），故無法提供完整乾物比／熱量佔對照表。",
+    },
+    aafcoCertified: true,
+    ourCatsRating: [{ cat: "露比", verdict: "like" }],
+    review: {
+      comment:
+        "西莎精緻風味餐盒牛肉口味，24入分裝方便，符合 AAFCO 標準，露比很捧場。官方包裝未完整揭露灰分、磷等數值，暫無法提供完整保證分析對照表。",
+    },
+    price: 759,
+    affiliateUrl: "https://s.shopee.tw/8V7ipIsIIM",
+  },
+  {
+    id: "dog-dry-000",
+    category: "狗狗乾糧",
+    brand: "Hill's 希爾思",
+    name: "雞肉 1-6歲小型及迷你成犬 (1.5公斤)",
+    image: "/images/products/hills-chicken-adult-small-mini-1-6y.png",
+    debugTags: [],
+    features: ["小型犬", "迷你犬", "雞肉"],
+    partialNutrition: {
+      items: [
+        { label: "粗蛋白質(min)", value: "20.5%" },
+        { label: "粗脂肪(min)", value: "11.5%" },
+        { label: "粗纖維(max)", value: "3%" },
+        { label: "水分(max)", value: "10%" },
+        { label: "維生素E(min)", value: "700 IU/kg" },
+        { label: "維生素C(min)", value: "125 mg/kg" },
+      ],
+      note: "官方保證成分分析未列出灰分、磷、熱量等數值，故無法提供完整乾物比／熱量佔對照表。",
+    },
+    aafcoCertified: true,
+    ourCatsRating: [{ cat: "露比", verdict: "like" }],
+    review: {
+      comment:
+        "希爾思雞肉配方，專為小型及迷你成犬設計，符合 AAFCO 標準，露比很喜歡。官方保證分析未列出灰分、磷等數值，暫無法提供完整保證分析對照表。",
+    },
+    price: 791,
+    affiliateUrl: "https://s.shopee.tw/3LPcgvJllu",
+  },
+  {
+    id: "dog-dry-001",
+    category: "狗狗乾糧",
+    brand: "Hill's 希爾思",
+    name: "雞肉 1-6歲小型及迷你成犬 (7.03公斤)",
+    image: "/images/products/hills-chicken-adult-small-mini-1-6y.png",
+    debugTags: [],
+    features: ["小型犬", "迷你犬", "雞肉"],
+    partialNutrition: {
+      items: [
+        { label: "粗蛋白質(min)", value: "20.5%" },
+        { label: "粗脂肪(min)", value: "11.5%" },
+        { label: "粗纖維(max)", value: "3%" },
+        { label: "水分(max)", value: "10%" },
+        { label: "維生素E(min)", value: "700 IU/kg" },
+        { label: "維生素C(min)", value: "125 mg/kg" },
+      ],
+      note: "官方保證成分分析未列出灰分、磷、熱量等數值，故無法提供完整乾物比／熱量佔對照表。",
+    },
+    aafcoCertified: true,
+    ourCatsRating: [{ cat: "露比", verdict: "like" }],
+    review: {
+      comment:
+        "希爾思雞肉配方，專為小型及迷你成犬設計，符合 AAFCO 標準，露比很喜歡。官方保證分析未列出灰分、磷等數值，暫無法提供完整保證分析對照表。",
+    },
+    price: 2499,
+    affiliateUrl: "https://s.shopee.tw/3LPcgvJllu",
   },
 ];
