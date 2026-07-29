@@ -366,34 +366,6 @@ export const mockPetProducts: PetProduct[] = [
     affiliateUrl: "https://s.shopee.tw/3LPcgvJllu",
   },
   {
-    id: "dog-dry-001",
-    category: "狗狗乾糧",
-    brand: "Hill's 希爾思",
-    name: "雞肉 1-6歲小型及迷你成犬 (7.03公斤)",
-    image: "/images/products/hills-chicken-adult-small-mini-1-6y.png",
-    debugTags: [],
-    features: ["小型犬", "迷你犬", "雞肉", "小顆粒"],
-    partialNutrition: {
-      items: [
-        { label: "粗蛋白質(min)", value: "20.5%" },
-        { label: "粗脂肪(min)", value: "11.5%" },
-        { label: "粗纖維(max)", value: "3%" },
-        { label: "水分(max)", value: "10%" },
-        { label: "維生素E(min)", value: "700 IU/kg" },
-        { label: "維生素C(min)", value: "125 mg/kg" },
-      ],
-      note: "官方保證成分分析未列出灰分、磷、熱量等數值，故無法提供完整乾物比／熱量佔對照表。",
-    },
-    aafcoCertified: true,
-    ourCatsRating: [{ cat: "露比", verdict: "like" }],
-    review: {
-      comment:
-        "希爾思雞肉配方，專為小型及迷你成犬設計，符合 AAFCO 標準，露比很喜歡。官方保證分析未列出灰分、磷等數值，暫無法提供完整保證分析對照表。",
-    },
-    price: 2499,
-    affiliateUrl: "https://s.shopee.tw/3LPcgvJllu",
-  },
-  {
     id: "cat-dry-000",
     category: "貓咪乾糧",
     brand: "Hill's 希爾思",
