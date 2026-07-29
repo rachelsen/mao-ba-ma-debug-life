@@ -22,10 +22,12 @@ const CATS = {
 
 export default async function HomePage() {
   const counts = await getFavoriteCounts();
-  const topProduct = mockPetProducts
+  const rankedProducts = mockPetProducts
     .map((product) => ({ product, count: counts[product.id] ?? 0 }))
-    .sort((a, b) => b.count - a.count)[0];
-  const hasFavorites = topProduct && topProduct.count > 0;
+    .sort((a, b) => b.count - a.count);
+  const maxCount = rankedProducts[0]?.count ?? 0;
+  const topProducts = rankedProducts.filter((entry) => entry.count === maxCount);
+  const hasFavorites = maxCount > 0;
 
   return (
     <main className="min-h-screen bg-white">
@@ -101,33 +103,42 @@ export default async function HomePage() {
             <div className="mb-6 inline-flex items-center gap-1.5 rounded-full border border-rose-300/50 bg-rose-50 px-3 py-1 text-sm font-medium text-rose-500">
               🏆 大家最愛的商品
             </div>
-            <div className="flex flex-col items-center gap-6 sm:flex-row">
-              <div className="relative aspect-square w-32 shrink-0 overflow-hidden rounded-2xl border border-slate-100 bg-cream-bg-light sm:w-40">
-                <Image
-                  src={topProduct.product.image}
-                  alt={`${topProduct.product.brand} ${topProduct.product.name}`}
-                  fill
-                  sizes="160px"
-                  className="object-contain p-3"
-                />
-              </div>
-              <div className="text-center sm:text-left">
-                <p className="text-xs font-medium text-amber-800/60">
-                  {topProduct.product.brand}
-                </p>
-                <h3 className="mt-1 text-xl font-bold text-slate-800">
-                  {topProduct.product.name}
-                </h3>
-                <p className="mt-2 text-sm text-stone-500">
-                  ❤️ {topProduct.count} 人收藏
-                </p>
-                <Link
-                  href="/pets"
-                  className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand-orange hover:underline"
+            <div
+              className={`grid gap-6 ${topProducts.length > 1 ? "sm:grid-cols-2 lg:grid-cols-3" : ""}`}
+            >
+              {topProducts.map(({ product, count }) => (
+                <div
+                  key={product.id}
+                  className="flex flex-col items-center gap-4 text-center sm:flex-row sm:text-left"
                 >
-                  前往查看 →
-                </Link>
-              </div>
+                  <div className="relative aspect-square w-32 shrink-0 overflow-hidden rounded-2xl border border-slate-100 bg-cream-bg-light sm:w-40">
+                    <Image
+                      src={product.image}
+                      alt={`${product.brand} ${product.name}`}
+                      fill
+                      sizes="160px"
+                      className="object-contain p-3"
+                    />
+                  </div>
+                  <div>
+                    <p className="text-xs font-medium text-amber-800/60">
+                      {product.brand}
+                    </p>
+                    <h3 className="mt-1 text-xl font-bold text-slate-800">
+                      {product.name}
+                    </h3>
+                    <p className="mt-2 text-sm text-stone-500">
+                      ❤️ {count} 人收藏
+                    </p>
+                    <Link
+                      href="/pets"
+                      className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand-orange hover:underline"
+                    >
+                      前往查看 →
+                    </Link>
+                  </div>
+                </div>
+              ))}
             </div>
           </section>
         )}
