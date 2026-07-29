@@ -11,6 +11,7 @@ import {
   type PetProduct,
   type PetProductCategory,
 } from "@/data/mockPetProducts";
+import { useFavoriteQuantities } from "@/lib/useFavoriteQuantities";
 
 const ALL = "全部分類" as const;
 const ALL_BRANDS = "全部品牌" as const;
@@ -34,6 +35,10 @@ function getDmbBadgeClass(carb: number, category: PetProductCategory) {
     : "border-slate-200 bg-slate-100 text-slate-500";
 }
 
+function getFilterTags(product: PetProduct): string[] {
+  return [...(product.features ?? []), ...product.debugTags];
+}
+
 function buildCatVerdictSummary(ratings?: CatRating[]): string | null {
   if (!ratings || ratings.length === 0) return null;
   const groups: Record<CatVerdict, string[]> = { like: [], neutral: [], dislike: [] };
@@ -55,13 +60,42 @@ export default function PetProductList() {
   const [litterFilter, setLitterFilter] = useState<
     typeof ALL_LITTER | LitterSubCategory
   >(ALL_LITTER);
+  const [showAdvanced, setShowAdvanced] = useState(false);
+  const [certFilters, setCertFilters] = useState<Set<"aafco" | "nrc">>(
+    new Set()
+  );
+  const [featureFilters, setFeatureFilters] = useState<Set<string>>(
+    new Set()
+  );
   const [counts, setCounts] = useState<Record<string, number>>({});
   const [likedIds, setLikedIds] = useState<Set<string>>(new Set());
+
+  const { getQuantity, setQuantity } = useFavoriteQuantities();
 
   const handleTabChange = (tab: (typeof ALL) | PetProductCategory) => {
     setActiveTab(tab);
     setBrandFilter(ALL_BRANDS);
     setLitterFilter(ALL_LITTER);
+    setCertFilters(new Set());
+    setFeatureFilters(new Set());
+  };
+
+  const toggleCertFilter = (cert: "aafco" | "nrc") => {
+    setCertFilters((prev) => {
+      const next = new Set(prev);
+      if (next.has(cert)) next.delete(cert);
+      else next.add(cert);
+      return next;
+    });
+  };
+
+  const toggleFeatureFilter = (feature: string) => {
+    setFeatureFilters((prev) => {
+      const next = new Set(prev);
+      if (next.has(feature)) next.delete(feature);
+      else next.add(feature);
+      return next;
+    });
   };
 
   useEffect(() => {
@@ -132,7 +166,7 @@ export default function PetProductList() {
     []
   );
 
-  const filteredProducts = useMemo(() => {
+  const baseFilteredProducts = useMemo(() => {
     let products =
       activeTab === ALL
         ? mockPetProducts
@@ -149,49 +183,108 @@ export default function PetProductList() {
     return products;
   }, [activeTab, brandFilter, litterFilter]);
 
+  const availableFeatures = useMemo(
+    () =>
+      Array.from(
+        new Set(baseFilteredProducts.flatMap((product) => getFilterTags(product)))
+      ),
+    [baseFilteredProducts]
+  );
+
+  const filteredProducts = useMemo(() => {
+    let products = baseFilteredProducts;
+    if (certFilters.has("aafco")) {
+      products = products.filter((product) => product.aafcoCertified);
+    }
+    if (certFilters.has("nrc")) {
+      products = products.filter((product) => product.nrcCertified);
+    }
+    if (featureFilters.size > 0) {
+      products = products.filter((product) =>
+        Array.from(featureFilters).every((feature) =>
+          getFilterTags(product).includes(feature)
+        )
+      );
+    }
+    return products;
+  }, [baseFilteredProducts, certFilters, featureFilters]);
+
   const favoriteProducts = useMemo(
     () => mockPetProducts.filter((product) => likedIds.has(product.id)),
     [likedIds]
+  );
+
+  const favoritesMonthlyTotal = favoriteProducts.reduce(
+    (sum, product) => sum + product.price * getQuantity(product.id),
+    0
   );
 
   return (
     <section>
       {status === "authenticated" && favoriteProducts.length > 0 && (
         <div className="mb-8 rounded-2xl border border-rose-200/60 bg-rose-50/40 p-4 sm:p-6">
-          <h3 className="mb-4 flex items-center gap-1.5 text-base font-bold text-stone-800">
-            ❤️ 我的收藏（{favoriteProducts.length}）
-          </h3>
+          <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+            <h3 className="flex items-center gap-1.5 text-base font-bold text-stone-800">
+              ❤️ 我的收藏（{favoriteProducts.length}）
+            </h3>
+            <p className="text-sm font-semibold text-brand-orange-dark">
+              🗓️ 這個月預計花費 NT$ {favoritesMonthlyTotal.toLocaleString()}
+            </p>
+          </div>
           <div className="flex gap-3 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            {favoriteProducts.map((product) => (
-              <div
-                key={product.id}
-                className="flex w-36 shrink-0 flex-col gap-2 rounded-xl border border-rose-100 bg-white p-3 sm:w-40"
-              >
-                <div className="relative aspect-square w-full overflow-hidden rounded-lg bg-cream-bg-light">
-                  <Image
-                    src={product.image}
-                    alt={`${product.brand} ${product.name}`}
-                    fill
-                    sizes="160px"
-                    className="object-contain p-2"
-                  />
-                </div>
-                <p className="line-clamp-2 text-xs font-medium text-stone-700">
-                  {product.name}
-                </p>
-                <p className="text-sm font-bold text-stone-800">
-                  NT$ {product.price}
-                </p>
-                <a
-                  href={product.affiliateUrl}
-                  target="_blank"
-                  rel="nofollow sponsored noopener noreferrer"
-                  className="mt-auto inline-flex items-center justify-center gap-1 rounded-lg bg-orange-500 px-2 py-1.5 text-xs font-bold text-white transition hover:bg-orange-600 active:scale-[0.98]"
+            {favoriteProducts.map((product) => {
+              const quantity = getQuantity(product.id);
+              return (
+                <div
+                  key={product.id}
+                  className="flex w-36 shrink-0 flex-col gap-2 rounded-xl border border-rose-100 bg-white p-3 sm:w-40"
                 >
-                  🛒 前往官方購買
-                </a>
-              </div>
-            ))}
+                  <div className="relative aspect-square w-full overflow-hidden rounded-lg bg-cream-bg-light">
+                    <Image
+                      src={product.image}
+                      alt={`${product.brand} ${product.name}`}
+                      fill
+                      sizes="160px"
+                      className="object-contain p-2"
+                    />
+                  </div>
+                  <p className="line-clamp-2 text-xs font-medium text-stone-700">
+                    {product.name}
+                  </p>
+                  <p className="text-sm font-bold text-stone-800">
+                    NT$ {product.price}
+                  </p>
+                  <div className="inline-flex items-center justify-center gap-2 self-center rounded-full border border-cream-border bg-cream-bg-light px-1 py-1">
+                    <button
+                      type="button"
+                      onClick={() => setQuantity(product.id, quantity - 1)}
+                      disabled={quantity <= 1}
+                      className="flex h-5 w-5 items-center justify-center rounded-full bg-white text-xs font-bold text-stone-600 shadow-sm transition disabled:cursor-not-allowed disabled:opacity-40 active:scale-95"
+                    >
+                      −
+                    </button>
+                    <span className="w-4 text-center text-xs font-semibold text-stone-700">
+                      {quantity}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setQuantity(product.id, quantity + 1)}
+                      className="flex h-5 w-5 items-center justify-center rounded-full bg-white text-xs font-bold text-stone-600 shadow-sm transition active:scale-95"
+                    >
+                      ＋
+                    </button>
+                  </div>
+                  <a
+                    href={product.affiliateUrl}
+                    target="_blank"
+                    rel="nofollow sponsored noopener noreferrer"
+                    className="mt-auto inline-flex items-center justify-center gap-1 rounded-lg bg-orange-500 px-2 py-1.5 text-xs font-bold text-white transition hover:bg-orange-600 active:scale-[0.98]"
+                  >
+                    🛒 前往官方購買
+                  </a>
+                </div>
+              );
+            })}
           </div>
         </div>
       )}
@@ -258,6 +351,49 @@ export default function PetProductList() {
         </div>
       )}
 
+      <div className="mb-6">
+        <button
+          type="button"
+          onClick={() => setShowAdvanced((prev) => !prev)}
+          className="inline-flex items-center gap-1.5 rounded-lg border border-cream-border bg-white px-3 py-2 text-sm font-medium text-stone-600 transition hover:border-milktea/60 hover:text-milktea-dark"
+        >
+          🔍 進階篩選
+          {certFilters.size + featureFilters.size > 0 && (
+            <span className="rounded-full bg-milktea/15 px-2 py-0.5 text-xs font-semibold text-milktea-dark">
+              {certFilters.size + featureFilters.size}
+            </span>
+          )}
+          <span
+            className={`text-xs transition-transform ${showAdvanced ? "rotate-180" : ""}`}
+          >
+            ▾
+          </span>
+        </button>
+
+        {showAdvanced && (
+          <div className="mt-3 flex flex-wrap gap-2 rounded-xl border border-cream-border bg-cream-bg-light/60 p-4">
+            <FilterChip
+              label="AAFCO 認證"
+              checked={certFilters.has("aafco")}
+              onToggle={() => toggleCertFilter("aafco")}
+            />
+            <FilterChip
+              label="NRC 認證"
+              checked={certFilters.has("nrc")}
+              onToggle={() => toggleCertFilter("nrc")}
+            />
+            {availableFeatures.map((feature) => (
+              <FilterChip
+                key={feature}
+                label={feature}
+                checked={featureFilters.has(feature)}
+                onToggle={() => toggleFeatureFilter(feature)}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+
       <div className="flex flex-col gap-6">
         {filteredProducts.map((product) => (
           <ProductCard
@@ -276,6 +412,31 @@ export default function PetProductList() {
         </p>
       )}
     </section>
+  );
+}
+
+function FilterChip({
+  label,
+  checked,
+  onToggle,
+}: {
+  label: string;
+  checked: boolean;
+  onToggle: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onToggle}
+      aria-pressed={checked}
+      className={`rounded-full border px-3 py-1.5 text-xs font-medium transition ${
+        checked
+          ? "border-milktea bg-milktea text-cream-card"
+          : "border-cream-border bg-white text-stone-600 hover:border-milktea/60 hover:text-milktea-dark"
+      }`}
+    >
+      {label}
+    </button>
   );
 }
 
@@ -347,6 +508,17 @@ function ProductCard({
                 {product.aafcoCertified ? "✅ AAFCO 認證" : "⚠️ 未標示 AAFCO"}
               </span>
             )}
+            {product.nrcCertified !== undefined && (
+              <span
+                className={`rounded-full border px-3 py-1 text-xs font-semibold ${
+                  product.nrcCertified
+                    ? "border-matcha/40 bg-matcha/10 text-matcha"
+                    : "border-amber-500/40 bg-amber-400/10 text-amber-700"
+                }`}
+              >
+                {product.nrcCertified ? "✅ NRC 認證" : "⚠️ 未標示 NRC"}
+              </span>
+            )}
             {product.features?.map((feature) => (
               <span
                 key={feature}
@@ -372,24 +544,6 @@ function ProductCard({
             </p>
           )}
 
-          <div className="mt-3 grid grid-cols-1 gap-3 rounded-xl bg-amber-50/40 p-3 sm:grid-cols-2">
-            <div>
-              <p className="text-xs font-semibold text-matcha">👍 優點</p>
-              <ul className="mt-1 space-y-0.5 text-xs text-stone-500">
-                {product.review.pros.map((pro) => (
-                  <li key={pro}>・{pro}</li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <p className="text-xs font-semibold text-red-500">👎 缺點</p>
-              <ul className="mt-1 space-y-0.5 text-xs text-stone-500">
-                {product.review.cons.map((con) => (
-                  <li key={con}>・{con}</li>
-                ))}
-              </ul>
-            </div>
-          </div>
         </div>
 
         <div className="flex flex-wrap items-end justify-between gap-3">

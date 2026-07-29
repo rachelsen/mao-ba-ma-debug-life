@@ -5,11 +5,13 @@ import Link from "next/link";
 import { signIn, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { mockPetProducts } from "@/data/mockPetProducts";
+import { useFavoriteQuantities } from "@/lib/useFavoriteQuantities";
 
 export default function FavoritesView() {
   const { status } = useSession();
   const [likedIds, setLikedIds] = useState<Set<string>>(new Set());
   const [loaded, setLoaded] = useState(false);
+  const { getQuantity, setQuantity } = useFavoriteQuantities();
 
   useEffect(() => {
     if (status !== "authenticated") {
@@ -58,45 +60,98 @@ export default function FavoritesView() {
     );
   }
 
+  const monthlyTotal = favoriteProducts.reduce(
+    (sum, product) => sum + product.price * getQuantity(product.id),
+    0
+  );
+
   return (
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-      {favoriteProducts.map((product) => (
-        <div
-          key={product.id}
-          className="flex gap-4 rounded-2xl border border-rose-100 bg-white p-4 shadow-sm"
-        >
-          <div className="relative aspect-square w-24 shrink-0 overflow-hidden rounded-xl bg-cream-bg-light">
-            <Image
-              src={product.image}
-              alt={`${product.brand} ${product.name}`}
-              fill
-              sizes="96px"
-              className="object-contain p-2"
-            />
-          </div>
-          <div className="flex flex-1 flex-col justify-between">
-            <div>
-              <p className="text-xs font-medium text-amber-800/60">
-                {product.brand}
-              </p>
-              <h3 className="text-sm font-bold text-slate-800">
-                {product.name}
-              </h3>
-              <p className="mt-1 text-sm font-bold text-stone-800">
-                NT$ {product.price}
-              </p>
-            </div>
-            <a
-              href={product.affiliateUrl}
-              target="_blank"
-              rel="nofollow sponsored noopener noreferrer"
-              className="mt-2 inline-flex w-fit items-center justify-center gap-1 rounded-lg bg-orange-500 px-3 py-1.5 text-xs font-bold text-white transition hover:bg-orange-600 active:scale-[0.98]"
+    <div className="flex flex-col gap-6">
+      <div className="rounded-2xl border border-brand-orange/30 bg-brand-orange/10 p-5 text-center sm:text-left">
+        <p className="text-sm font-medium text-brand-orange-dark">
+          🗓️ 這個月預計在寵物上花費
+        </p>
+        <p className="mt-1 text-3xl font-extrabold text-stone-800">
+          NT$ {monthlyTotal.toLocaleString()}
+        </p>
+        <p className="mt-1 text-xs text-stone-500">
+          依照下方每項商品調整的數量自動加總，僅供預估參考。
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        {favoriteProducts.map((product) => {
+          const quantity = getQuantity(product.id);
+          return (
+            <div
+              key={product.id}
+              className="flex gap-4 rounded-2xl border border-rose-100 bg-white p-4 shadow-sm"
             >
-              🛒 前往官方購買
-            </a>
-          </div>
-        </div>
-      ))}
+              <div className="relative aspect-square w-24 shrink-0 overflow-hidden rounded-xl bg-cream-bg-light">
+                <Image
+                  src={product.image}
+                  alt={`${product.brand} ${product.name}`}
+                  fill
+                  sizes="96px"
+                  className="object-contain p-2"
+                />
+              </div>
+              <div className="flex flex-1 flex-col justify-between">
+                <div>
+                  <p className="text-xs font-medium text-amber-800/60">
+                    {product.brand}
+                  </p>
+                  <h3 className="text-sm font-bold text-slate-800">
+                    {product.name}
+                  </h3>
+                  <p className="mt-1 text-sm font-bold text-stone-800">
+                    NT$ {product.price}
+                    <span className="ml-1 font-normal text-stone-400">
+                      × {quantity} = NT$ {product.price * quantity}
+                    </span>
+                  </p>
+                </div>
+
+                <div className="mt-2 flex items-center justify-between gap-2">
+                  <div className="inline-flex items-center gap-2 rounded-full border border-cream-border bg-cream-bg-light px-1 py-1">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setQuantity(product.id, quantity - 1)
+                      }
+                      disabled={quantity <= 1}
+                      className="flex h-6 w-6 items-center justify-center rounded-full bg-white text-sm font-bold text-stone-600 shadow-sm transition disabled:cursor-not-allowed disabled:opacity-40 active:scale-95"
+                    >
+                      −
+                    </button>
+                    <span className="w-5 text-center text-sm font-semibold text-stone-700">
+                      {quantity}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setQuantity(product.id, quantity + 1)
+                      }
+                      className="flex h-6 w-6 items-center justify-center rounded-full bg-white text-sm font-bold text-stone-600 shadow-sm transition active:scale-95"
+                    >
+                      ＋
+                    </button>
+                  </div>
+
+                  <a
+                    href={product.affiliateUrl}
+                    target="_blank"
+                    rel="nofollow sponsored noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-1 rounded-lg bg-orange-500 px-3 py-1.5 text-xs font-bold text-white transition hover:bg-orange-600 active:scale-[0.98]"
+                  >
+                    🛒 前往購買
+                  </a>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

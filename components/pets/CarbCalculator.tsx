@@ -30,7 +30,8 @@ const FOOD_TYPE_CONFIG: Record<FoodType, FoodTypeConfig> = {
     label: "主食罐/濕糧 Wet",
     emoji: "🥫",
     moistureHint: "主食罐／濕糧水分建議落在 75%–85%",
-    preset: { protein: "10", fat: "5", fiber: "1", ash: "2", moisture: "78" },
+    // 預設帶入 nu4PET 陪心寵糧 Super貓小白主食罐的保證分析值
+    preset: { protein: "14.5", fat: "6", fiber: "0.5", ash: "2", moisture: "76" },
   },
 };
 

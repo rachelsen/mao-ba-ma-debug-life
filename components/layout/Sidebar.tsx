@@ -5,10 +5,10 @@ import { usePathname } from "next/navigation";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 const NAV_ITEMS = [
-  { label: "首頁", href: "/", emoji: "🏠" },
-  { label: "寵物專區", href: "/pets", emoji: "🐾" },
-  { label: "旅遊專區", href: "/travel", emoji: "✈️" },
-  { label: "信用卡推薦", href: "/cards", emoji: "💳" },
+  { label: "首頁 Home", href: "/", emoji: "🏠" },
+  { label: "寵物 Pet", href: "/pets", emoji: "🐾" },
+  { label: "旅行 Travel", href: "/travel", emoji: "✈️" },
+  { label: "信用卡 Credit Card", href: "/cards", emoji: "💳" },
 ];
 
 export default function Sidebar() {
