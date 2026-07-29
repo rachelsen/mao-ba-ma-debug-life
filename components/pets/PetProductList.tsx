@@ -207,13 +207,18 @@ export default function PetProductList() {
     <section>
       {status === "authenticated" && favoriteProducts.length > 0 && (
         <div className="mb-8 rounded-2xl border border-rose-200/60 bg-rose-50/40 p-4 sm:p-6">
-          <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+          <div className="mb-4 flex flex-wrap items-start justify-between gap-2">
             <h3 className="flex items-center gap-1.5 text-base font-bold text-stone-800">
               ❤️ 我的收藏（{favoriteProducts.length}）
             </h3>
-            <p className="text-sm font-semibold text-brand-orange-dark">
-              🗓️ 這個月預計花費 NT$ {favoritesMonthlyTotal.toLocaleString()}
-            </p>
+            <div className="text-right">
+              <p className="text-sm font-semibold text-brand-orange-dark">
+                💡 本月伙食費估算：NT$ {favoritesMonthlyTotal.toLocaleString()}
+              </p>
+              <p className="mt-0.5 text-xs text-stone-400">
+                （依據您設定的預估數量計算，點擊卡片按鈕可直接跳轉至賣場複製下單數量）
+              </p>
+            </div>
           </div>
           <div className="flex gap-3 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {favoriteProducts.map((product) => {
@@ -264,7 +269,7 @@ export default function PetProductList() {
                     rel="nofollow sponsored noopener noreferrer"
                     className="mt-auto inline-flex items-center justify-center gap-1 rounded-lg bg-orange-500 px-2 py-1.5 text-xs font-bold text-white transition hover:bg-orange-600 active:scale-[0.98]"
                   >
-                    🛒 前往官方購買
+                    🛒 前往官方購買 ({quantity}罐)
                   </a>
                 </div>
               );

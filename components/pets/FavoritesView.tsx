@@ -69,13 +69,13 @@ export default function FavoritesView() {
     <div className="flex flex-col gap-6">
       <div className="rounded-2xl border border-brand-orange/30 bg-brand-orange/10 p-5 text-center sm:text-left">
         <p className="text-sm font-medium text-brand-orange-dark">
-          🗓️ 這個月預計在寵物上花費
+          💡 本月伙食費估算
         </p>
         <p className="mt-1 text-3xl font-extrabold text-stone-800">
           NT$ {monthlyTotal.toLocaleString()}
         </p>
         <p className="mt-1 text-xs text-stone-500">
-          依照下方每項商品調整的數量自動加總，僅供預估參考。
+          （依據您設定的預估數量計算，點擊卡片按鈕可直接跳轉至賣場複製下單數量）
         </p>
       </div>
 
@@ -144,7 +144,7 @@ export default function FavoritesView() {
                     rel="nofollow sponsored noopener noreferrer"
                     className="inline-flex items-center justify-center gap-1 rounded-lg bg-orange-500 px-3 py-1.5 text-xs font-bold text-white transition hover:bg-orange-600 active:scale-[0.98]"
                   >
-                    🛒 前往購買
+                    🛒 前往購買 ({quantity}罐)
                   </a>
                 </div>
               </div>
