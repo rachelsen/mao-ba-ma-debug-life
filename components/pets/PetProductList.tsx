@@ -109,8 +109,53 @@ export default function PetProductList() {
     return mockPetProducts.filter((product) => product.category === activeTab);
   }, [activeTab]);
 
+  const favoriteProducts = useMemo(
+    () => mockPetProducts.filter((product) => likedIds.has(product.id)),
+    [likedIds]
+  );
+
   return (
     <section>
+      {status === "authenticated" && favoriteProducts.length > 0 && (
+        <div className="mb-8 rounded-2xl border border-rose-200/60 bg-rose-50/40 p-4 sm:p-6">
+          <h3 className="mb-4 flex items-center gap-1.5 text-base font-bold text-stone-800">
+            ❤️ 我的收藏（{favoriteProducts.length}）
+          </h3>
+          <div className="flex gap-3 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            {favoriteProducts.map((product) => (
+              <div
+                key={product.id}
+                className="flex w-36 shrink-0 flex-col gap-2 rounded-xl border border-rose-100 bg-white p-3 sm:w-40"
+              >
+                <div className="relative aspect-square w-full overflow-hidden rounded-lg bg-cream-bg-light">
+                  <Image
+                    src={product.image}
+                    alt={`${product.brand} ${product.name}`}
+                    fill
+                    sizes="160px"
+                    className="object-contain p-2"
+                  />
+                </div>
+                <p className="line-clamp-2 text-xs font-medium text-stone-700">
+                  {product.name}
+                </p>
+                <p className="text-sm font-bold text-stone-800">
+                  NT$ {product.price}
+                </p>
+                <a
+                  href={product.affiliateUrl}
+                  target="_blank"
+                  rel="nofollow sponsored noopener noreferrer"
+                  className="mt-auto inline-flex items-center justify-center gap-1 rounded-lg bg-orange-500 px-2 py-1.5 text-xs font-bold text-white transition hover:bg-orange-600 active:scale-[0.98]"
+                >
+                  🛒 前往官方購買
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
       <div className="mb-6 flex items-center gap-2">
         <h2 className="text-xl font-bold text-stone-800 sm:text-2xl">
           🐾 毛拔麻嚴選清單
