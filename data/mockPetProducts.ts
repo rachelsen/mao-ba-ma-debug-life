@@ -1,8 +1,11 @@
 export type PetProductCategory =
   | "貓咪主食罐"
   | "貓砂/用品"
-  | "狗狗糧食/零食"
+  | "狗狗主食罐"
   | "毛孩保健品";
+
+/** 「貓砂/用品」分類專用的子分類，用於下拉篩選 */
+export type LitterSubCategory = "礦砂" | "豆腐砂" | "用品";
 
 export interface PetProductReview {
   /** 工程師毛拔麻的一句話短評 */
@@ -40,6 +43,8 @@ export interface PetProduct {
   price: number;
   originalPrice?: number;
   discountNote?: string;
+  /** 僅「貓砂/用品」分類使用：礦砂／豆腐砂／用品 */
+  litterSubCategory?: LitterSubCategory;
   /** 外站導購連結 */
   affiliateUrl: string;
 }

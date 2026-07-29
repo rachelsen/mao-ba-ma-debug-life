@@ -140,7 +140,6 @@ export default function CarbCalculator() {
     FOOD_TYPE_CONFIG.wet.preset
   );
   const [checklist, setChecklist] = useState<ChecklistState>(INITIAL_CHECKLIST);
-  const [saveMessage, setSaveMessage] = useState<string | null>(null);
 
   const handleChange = (key: keyof NutrientInputs, value: string) => {
     setInputs((prev) => ({ ...prev, [key]: value }));
@@ -206,11 +205,6 @@ export default function CarbCalculator() {
               text: "請完成以上檢核項目，確認鈣磷比與碳水標準是否皆符合，才能完整判斷是否適合當主食。",
             }
       : null;
-
-  const handleSave = () => {
-    setSaveMessage("尚未登入毛孩會員，請先登入以儲存算式紀錄");
-    window.setTimeout(() => setSaveMessage(null), 3000);
-  };
 
   return (
     <section className="rounded-2xl border border-cream-border bg-cream-card p-6 shadow-lg shadow-stone-300/40 sm:p-8">
@@ -434,18 +428,6 @@ export default function CarbCalculator() {
         )}
       </div>
 
-      <div className="mt-6 flex flex-col items-start gap-2 border-t border-cream-border pt-5 sm:flex-row sm:items-center sm:justify-between">
-        <button
-          type="button"
-          onClick={handleSave}
-          className="rounded-lg bg-milktea px-5 py-2.5 text-sm font-semibold text-cream-card transition hover:brightness-105 active:scale-[0.98]"
-        >
-          儲存算式至毛孩紀錄
-        </button>
-        {saveMessage && (
-          <p className="text-sm text-stone-500">{saveMessage}</p>
-        )}
-      </div>
     </section>
   );
 }

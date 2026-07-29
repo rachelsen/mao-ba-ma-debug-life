@@ -7,21 +7,27 @@ import {
   mockPetProducts,
   type CatRating,
   type CatVerdict,
+  type LitterSubCategory,
   type PetProduct,
   type PetProductCategory,
 } from "@/data/mockPetProducts";
 
 const ALL = "全部分類" as const;
+const ALL_BRANDS = "全部品牌" as const;
+const ALL_LITTER = "全部" as const;
+
 const TABS: (typeof ALL | PetProductCategory)[] = [
   ALL,
   "貓咪主食罐",
   "貓砂/用品",
-  "狗狗糧食/零食",
+  "狗狗主食罐",
   "毛孩保健品",
 ];
 
+const LITTER_SUB_CATEGORIES: LitterSubCategory[] = ["礦砂", "豆腐砂", "用品"];
+
 function getDmbBadgeClass(carb: number, category: PetProductCategory) {
-  const isDog = category === "狗狗糧食/零食";
+  const isDog = category === "狗狗主食罐";
   const passMax = isDog ? 25 : 10;
   return carb < passMax
     ? "border-matcha/40 bg-matcha/10 text-matcha"
@@ -45,8 +51,18 @@ export default function PetProductList() {
   const [activeTab, setActiveTab] = useState<(typeof ALL) | PetProductCategory>(
     ALL
   );
+  const [brandFilter, setBrandFilter] = useState<string>(ALL_BRANDS);
+  const [litterFilter, setLitterFilter] = useState<
+    typeof ALL_LITTER | LitterSubCategory
+  >(ALL_LITTER);
   const [counts, setCounts] = useState<Record<string, number>>({});
   const [likedIds, setLikedIds] = useState<Set<string>>(new Set());
+
+  const handleTabChange = (tab: (typeof ALL) | PetProductCategory) => {
+    setActiveTab(tab);
+    setBrandFilter(ALL_BRANDS);
+    setLitterFilter(ALL_LITTER);
+  };
 
   useEffect(() => {
     fetch("/api/favorites/counts")
@@ -104,10 +120,34 @@ export default function PetProductList() {
     }
   };
 
+  const catCanBrands = useMemo(
+    () =>
+      Array.from(
+        new Set(
+          mockPetProducts
+            .filter((product) => product.category === "貓咪主食罐")
+            .map((product) => product.brand)
+        )
+      ),
+    []
+  );
+
   const filteredProducts = useMemo(() => {
-    if (activeTab === ALL) return mockPetProducts;
-    return mockPetProducts.filter((product) => product.category === activeTab);
-  }, [activeTab]);
+    let products =
+      activeTab === ALL
+        ? mockPetProducts
+        : mockPetProducts.filter((product) => product.category === activeTab);
+
+    if (activeTab === "貓咪主食罐" && brandFilter !== ALL_BRANDS) {
+      products = products.filter((product) => product.brand === brandFilter);
+    }
+    if (activeTab === "貓砂/用品" && litterFilter !== ALL_LITTER) {
+      products = products.filter(
+        (product) => product.litterSubCategory === litterFilter
+      );
+    }
+    return products;
+  }, [activeTab, brandFilter, litterFilter]);
 
   const favoriteProducts = useMemo(
     () => mockPetProducts.filter((product) => likedIds.has(product.id)),
@@ -162,14 +202,14 @@ export default function PetProductList() {
         </h2>
       </div>
 
-      <div className="mb-6 flex gap-2 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <div className="mb-4 flex gap-2 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {TABS.map((tab) => {
           const isActive = tab === activeTab;
           return (
             <button
               key={tab}
               type="button"
-              onClick={() => setActiveTab(tab)}
+              onClick={() => handleTabChange(tab)}
               className={`shrink-0 whitespace-nowrap rounded-full border px-4 py-2 text-sm font-medium transition ${
                 isActive
                   ? "border-milktea bg-milktea text-cream-card"
@@ -181,6 +221,42 @@ export default function PetProductList() {
           );
         })}
       </div>
+
+      {activeTab === "貓咪主食罐" && catCanBrands.length > 0 && (
+        <div className="mb-6">
+          <select
+            value={brandFilter}
+            onChange={(e) => setBrandFilter(e.target.value)}
+            className="w-full max-w-xs rounded-lg border border-cream-border bg-white px-3 py-2 text-sm text-stone-700 outline-none transition focus:border-milktea focus:ring-1 focus:ring-milktea sm:w-auto"
+          >
+            <option value={ALL_BRANDS}>{ALL_BRANDS}</option>
+            {catCanBrands.map((brand) => (
+              <option key={brand} value={brand}>
+                {brand}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
+
+      {activeTab === "貓砂/用品" && (
+        <div className="mb-6">
+          <select
+            value={litterFilter}
+            onChange={(e) =>
+              setLitterFilter(e.target.value as typeof ALL_LITTER | LitterSubCategory)
+            }
+            className="w-full max-w-xs rounded-lg border border-cream-border bg-white px-3 py-2 text-sm text-stone-700 outline-none transition focus:border-milktea focus:ring-1 focus:ring-milktea sm:w-auto"
+          >
+            <option value={ALL_LITTER}>{ALL_LITTER}</option>
+            {LITTER_SUB_CATEGORIES.map((sub) => (
+              <option key={sub} value={sub}>
+                {sub}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
 
       <div className="flex flex-col gap-6">
         {filteredProducts.map((product) => (
