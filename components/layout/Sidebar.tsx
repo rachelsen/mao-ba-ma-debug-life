@@ -44,7 +44,18 @@ export default function Sidebar() {
           })}
         </nav>
 
-        <div className="mt-auto pt-4">
+        <div className="mt-auto flex flex-col gap-2 pt-4">
+          <Link
+            href="/favorites"
+            className={`flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm font-medium transition ${
+              pathname === "/favorites"
+                ? "bg-rose-50 text-rose-500"
+                : "text-stone-600 hover:bg-cream-bg-light hover:text-stone-800"
+            }`}
+          >
+            <span>❤️</span>
+            <span>我的收藏</span>
+          </Link>
           <AuthWidget />
         </div>
       </aside>
@@ -67,6 +78,16 @@ export default function Sidebar() {
             </Link>
           );
         })}
+        <Link
+          href="/favorites"
+          className={`shrink-0 whitespace-nowrap rounded-full border px-4 py-2 text-sm font-medium transition ${
+            pathname === "/favorites"
+              ? "border-rose-400 bg-rose-400 text-white"
+              : "border-cream-border bg-white text-stone-600"
+          }`}
+        >
+          ❤️ 我的收藏
+        </Link>
       </nav>
     </>
   );

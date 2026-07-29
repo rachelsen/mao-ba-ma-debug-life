@@ -66,7 +66,7 @@ export const mockPetProducts: PetProduct[] = [
       pros: ["零澱粉零穀物，配方單純", "AAFCO 認證，可安心當主食"],
       cons: ["單價偏高，長期餵食成本較高", "蒲公英風味較特殊，麻糬偶爾會挑嘴"],
     },
-    price: 65,
+    price: 46,
     affiliateUrl: "https://s.shopee.tw/2LX3cefdNR",
   },
 ];
