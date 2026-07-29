@@ -127,4 +127,27 @@ export const mockPetProducts: PetProduct[] = [
     price: 46,
     affiliateUrl: "https://s.shopee.tw/3Vj2SLnkCR",
   },
+  {
+    id: "cat-can-003",
+    category: "貓咪主食罐",
+    brand: "nu4PET 陪心寵糧",
+    name: "Super貓小白主食罐 (石斑魚 x 奇亞籽)",
+    image: "/images/products/nu4pet-super-cat-grouper-chiaseed.png",
+    debugTags: ["無膠"],
+    features: ["零澱粉", "零穀物", "低磷", "超低碳水", "石斑魚"],
+    dmbCarb: 5.42,
+    aafcoCertified: true,
+    nrcCertified: true,
+    ourCatsRating: [
+      { cat: "本丸", verdict: "like" },
+      { cat: "海苔", verdict: "like" },
+      { cat: "麻糬", verdict: "like" },
+    ],
+    review: {
+      comment:
+        "石斑魚搭配奇亞籽，零澱粉零穀物、低磷配方，DMB 碳水控制在超低水平，本丸、海苔、麻糬三隻都愛吃。",
+    },
+    price: 65,
+    affiliateUrl: "https://s.shopee.tw/3Vj2SLnkCR",
+  },
 ];
