@@ -25,9 +25,8 @@ export default async function HomePage() {
   const rankedProducts = mockPetProducts
     .map((product) => ({ product, count: counts[product.id] ?? 0 }))
     .sort((a, b) => b.count - a.count);
-  const maxCount = rankedProducts[0]?.count ?? 0;
-  const topProducts = rankedProducts.filter((entry) => entry.count === maxCount);
-  const hasFavorites = maxCount > 0;
+  const topProducts = rankedProducts.filter((entry) => entry.count > 0).slice(0, 10);
+  const hasFavorites = topProducts.length > 0;
 
   return (
     <main className="min-h-screen bg-white">
@@ -101,43 +100,39 @@ export default async function HomePage() {
         {hasFavorites && (
           <section className="rounded-3xl border border-slate-100 bg-white p-8 shadow-sm sm:p-10">
             <div className="mb-6 inline-flex items-center gap-1.5 rounded-full border border-rose-300/50 bg-rose-50 px-3 py-1 text-sm font-medium text-rose-500">
-              🏆 大家最愛的商品
+              🏆 大家最愛的商品 Top {topProducts.length}
             </div>
-            <div
-              className={`grid gap-6 ${topProducts.length > 1 ? "sm:grid-cols-2 lg:grid-cols-3" : ""}`}
-            >
-              {topProducts.map(({ product, count }) => (
-                <div
+            <div className="-mx-1 flex gap-4 overflow-x-auto px-1 pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              {topProducts.map(({ product, count }, index) => (
+                <Link
                   key={product.id}
-                  className="flex flex-col items-center gap-4 text-center sm:flex-row sm:text-left"
+                  href="/pets"
+                  className="group flex w-40 shrink-0 flex-col gap-3 sm:w-48"
                 >
-                  <div className="relative aspect-square w-32 shrink-0 overflow-hidden rounded-2xl border border-slate-100 bg-cream-bg-light sm:w-40">
+                  <div className="relative aspect-square w-full overflow-hidden rounded-2xl border border-slate-100 bg-cream-bg-light">
+                    <span className="absolute left-2 top-2 z-10 flex h-7 w-7 items-center justify-center rounded-full bg-slate-800/85 text-xs font-bold text-white">
+                      {index + 1}
+                    </span>
                     <Image
                       src={product.image}
                       alt={`${product.brand} ${product.name}`}
                       fill
-                      sizes="160px"
-                      className="object-contain p-3"
+                      sizes="192px"
+                      className="object-contain p-3 transition group-hover:scale-105"
                     />
                   </div>
                   <div>
                     <p className="text-xs font-medium text-amber-800/60">
                       {product.brand}
                     </p>
-                    <h3 className="mt-1 text-xl font-bold text-slate-800">
+                    <h3 className="mt-0.5 line-clamp-2 text-sm font-bold text-slate-800">
                       {product.name}
                     </h3>
-                    <p className="mt-2 text-sm text-stone-500">
+                    <p className="mt-1 text-xs text-stone-500">
                       ❤️ {count} 人收藏
                     </p>
-                    <Link
-                      href="/pets"
-                      className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand-orange hover:underline"
-                    >
-                      前往查看 →
-                    </Link>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </section>

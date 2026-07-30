@@ -12,6 +12,7 @@ import {
   type PetProductCategory,
   type PetProductDetailedAnalysis,
   type PetProductPartialNutrition,
+  type PetProductOfficialFiling,
 } from "@/data/mockPetProducts";
 import { useFavoriteQuantities } from "@/lib/useFavoriteQuantities";
 
@@ -105,6 +106,192 @@ function computeAnalysisTable(analysis: PetProductDetailedAnalysis) {
       phosphorusMgPer100kcal:
         kcalPer100g > 0 ? ((phosphorus * 1000) / kcalPer100g) * 100 : 0,
     },
+  };
+}
+
+function clamp(value: number, min: number, max: number) {
+  return Math.min(max, Math.max(min, value));
+}
+
+function isDogCategory(category: PetProductCategory) {
+  return category === "狗狗主食罐" || category === "狗狗乾糧";
+}
+
+function isDryCategory(category: PetProductCategory) {
+  return category === "貓咪乾糧" || category === "狗狗乾糧";
+}
+
+interface ProductScoreBreakdownItem {
+  label: string;
+  /** null 代表資料不足，無法計分 */
+  points: number | null;
+  max: number;
+  detail: string;
+}
+
+interface ProductScore {
+  total: number;
+  band: { label: string; className: string };
+  capped: boolean;
+  items: ProductScoreBreakdownItem[];
+  /** true 代表灰分/磷/熱量等資料不足，只用磷、鈣磷比以外的項目估算並按比例換算成 100 分制 */
+  isEstimate: boolean;
+}
+
+function getScoreBand(total: number) {
+  if (total >= 75)
+    return { label: "優質主食", className: "text-matcha border-matcha/40 bg-matcha/10" };
+  if (total >= 60)
+    return { label: "均衡日常", className: "text-sky-600 border-sky-400/40 bg-sky-50" };
+  if (total >= 45)
+    return { label: "基礎配方", className: "text-amber-600 border-amber-400/40 bg-amber-50" };
+  return { label: "建議搭配", className: "text-rose-600 border-rose-400/40 bg-rose-50" };
+}
+
+// 碳水（25分）：依犬貓、乾濕標準不同（乾糧需要澱粉塑形，門檻比主食罐寬鬆）
+function scoreCarb(dmCarb: number, isDog: boolean, isDry: boolean) {
+  const ceiling = isDry ? (isDog ? 55 : 50) : isDog ? 40 : 25;
+  return clamp((25 * (ceiling - dmCarb)) / ceiling, 0, 25);
+}
+
+// 蛋白質（15分）：以乾物比（DM）蛋白質，從犬貓 AAFCO 最低標準往上算
+function scoreProtein(dmProtein: number, isDog: boolean) {
+  const floor = isDog ? 18 : 26;
+  const ceiling = isDog ? 35 : 45;
+  return clamp((15 * (dmProtein - floor)) / (ceiling - floor), 0, 15);
+}
+
+/**
+ * 毛拔麻自訂的 0-100 分評分邏輯（非取自其他網站的黑箱演算法）。
+ * 資料完整（detailedAnalysis）時計算完整 5 項；只有部分揭露資料
+ * （partialNutrition.estimateInputs）時，磷與鈣磷比會標示「資料不足」，
+ * 剩下 3 項（碳水/AAFCO/蛋白質，滿分60）依比例換算成 100 分制估算分數。
+ * 兩者皆無資料時回傳 null，不硬算分數。
+ */
+function computeProductScore(product: PetProduct): ProductScore | null {
+  const isDog = isDogCategory(product.category);
+  const isDry = isDryCategory(product.category);
+  const analysis = product.detailedAnalysis;
+
+  if (analysis) {
+    const { dm, me } = computeAnalysisTable(analysis);
+
+    // 磷（25分）：以每 100kcal 磷含量計算，對齊 NRC 攝取上限 2.5–3.5g/1000kcal，≤250mg 滿分，≥400mg 0分
+    const phosphorusScore = clamp(
+      (25 * (400 - me.phosphorusMgPer100kcal)) / (400 - 250),
+      0,
+      25
+    );
+    const carbScore = scoreCarb(dm.carb, isDog, isDry);
+    const aafcoScore = product.aafcoCertified ? 20 : 0;
+
+    // 鈣磷比（15分）：落在理想範圍 1.1–1.4 才給分
+    const caPhosRatio = analysis.caPhosRatio
+      ? parseFloat(analysis.caPhosRatio)
+      : analysis.calcium !== undefined
+        ? analysis.calcium / analysis.phosphorus
+        : undefined;
+    const caPhosScore =
+      caPhosRatio !== undefined && caPhosRatio >= 1.1 && caPhosRatio <= 1.4 ? 15 : 0;
+
+    const proteinScore = scoreProtein(dm.protein, isDog);
+
+    const rawTotal =
+      phosphorusScore + carbScore + aafcoScore + caPhosScore + proteinScore;
+    const shouldCap =
+      me.phosphorusMgPer100kcal > 400 ||
+      (caPhosRatio !== undefined && caPhosRatio < 1.0);
+    const total = Math.round(shouldCap ? Math.min(rawTotal, 59) : rawTotal);
+
+    return {
+      total,
+      band: getScoreBand(total),
+      capped: shouldCap,
+      isEstimate: false,
+      items: [
+        {
+          label: "磷含量",
+          points: Math.round(phosphorusScore),
+          max: 25,
+          detail: `${me.phosphorusMgPer100kcal.toFixed(0)}mg/100kcal`,
+        },
+        {
+          label: "碳水化合物",
+          points: Math.round(carbScore),
+          max: 25,
+          detail: `DM ${dm.carb.toFixed(1)}%`,
+        },
+        {
+          label: "AAFCO／FEDIAF",
+          points: aafcoScore,
+          max: 20,
+          detail: product.aafcoCertified ? "已標示" : "未標示",
+        },
+        {
+          label: "鈣磷比",
+          points: caPhosScore,
+          max: 15,
+          detail: caPhosRatio !== undefined ? `${caPhosRatio.toFixed(2)}:1` : "未標示",
+        },
+        {
+          label: "蛋白質",
+          points: Math.round(proteinScore),
+          max: 15,
+          detail: `DM ${dm.protein.toFixed(1)}%`,
+        },
+      ],
+    };
+  }
+
+  // 資料不足時的估算模式：只用碳水／AAFCO／蛋白質（缺灰分、磷、熱量，故磷與鈣磷比無法計分）
+  const inputs = product.partialNutrition?.estimateInputs;
+  if (!inputs || inputs.protein === undefined || inputs.moisture === undefined) {
+    return null;
+  }
+  const { protein, moisture } = inputs;
+  const fat = inputs.fat ?? 0;
+  const fiber = inputs.fiber ?? 0;
+  const dryMatter = 100 - moisture;
+  const carbAsFed = Math.max(0, 100 - moisture - protein - fat - fiber);
+  const dmCarb = (carbAsFed / dryMatter) * 100;
+  const dmProtein = (protein / dryMatter) * 100;
+
+  const carbScore = scoreCarb(dmCarb, isDog, isDry);
+  const aafcoScore = product.aafcoCertified ? 20 : 0;
+  const proteinScore = scoreProtein(dmProtein, isDog);
+
+  const knownMax = 25 + 20 + 15;
+  const total = Math.round(
+    ((carbScore + aafcoScore + proteinScore) / knownMax) * 100
+  );
+
+  return {
+    total,
+    band: getScoreBand(total),
+    capped: false,
+    isEstimate: true,
+    items: [
+      { label: "磷含量", points: null, max: 25, detail: "資料不足" },
+      {
+        label: "碳水化合物",
+        points: Math.round(carbScore),
+        max: 25,
+        detail: `估算 DM ${dmCarb.toFixed(1)}%（未扣灰分，實際碳水可能更低）`,
+      },
+      {
+        label: "AAFCO／FEDIAF",
+        points: aafcoScore,
+        max: 20,
+        detail: product.aafcoCertified ? "已標示" : "未標示",
+      },
+      { label: "鈣磷比", points: null, max: 15, detail: "資料不足" },
+      {
+        label: "蛋白質",
+        points: Math.round(proteinScore),
+        max: 15,
+        detail: `估算 DM ${dmProtein.toFixed(1)}%`,
+      },
+    ],
   };
 }
 
@@ -510,6 +697,7 @@ function ProductCard({
     product.originalPrice !== undefined &&
     product.originalPrice > product.price;
   const catVerdictSummary = buildCatVerdictSummary(product.ourCatsRating);
+  const score = computeProductScore(product);
 
   return (
     <article className="flex flex-col gap-6 rounded-2xl border border-amber-100/60 bg-white p-4 shadow-sm transition-all hover:shadow-md md:flex-row md:p-6">
@@ -530,6 +718,7 @@ function ProductCard({
             />
           </div>
         </div>
+        {score && <ScoreBadge score={score} />}
         <MyCatLikes productId={product.id} ourCatsRating={product.ourCatsRating} />
       </div>
 
@@ -603,6 +792,12 @@ function ProductCard({
             </p>
           )}
 
+          {score && (
+            <div className="mt-3">
+              <ScoreBreakdown score={score} />
+            </div>
+          )}
+
           {product.detailedAnalysis && (
             <div className="mt-3">
               <AnalysisTable analysis={product.detailedAnalysis} />
@@ -611,6 +806,11 @@ function ProductCard({
           {product.partialNutrition && (
             <div className="mt-3">
               <PartialNutritionBox nutrition={product.partialNutrition} />
+            </div>
+          )}
+          {product.officialFiling && (
+            <div className="mt-3">
+              <OfficialFilingBox filing={product.officialFiling} />
             </div>
           )}
         </div>
@@ -644,6 +844,110 @@ function ProductCard({
   );
 }
 
+function ScoreBadge({ score }: { score: ProductScore }) {
+  return (
+    <div className="flex items-center gap-3 rounded-xl border border-cream-border bg-cream-bg-light/50 p-3">
+      <div
+        className={`flex h-14 w-14 shrink-0 flex-col items-center justify-center rounded-full text-center ${score.band.className} ${
+          score.isEstimate ? "border-2 border-dashed" : "border-2"
+        }`}
+      >
+        <span className="text-lg font-extrabold leading-none">{score.total}</span>
+        <span className="text-[9px] leading-none opacity-70">/100</span>
+      </div>
+      <div>
+        <span
+          className={`inline-block rounded-full border px-2 py-0.5 text-xs font-semibold ${score.band.className}`}
+        >
+          {score.isEstimate ? "約 " : ""}
+          {score.band.label}
+        </span>
+        {score.isEstimate && (
+          <p className="mt-1 text-[10px] text-stone-400">
+            資料不足，僅估算參考分數
+          </p>
+        )}
+        {score.capped && (
+          <p className="mt-1 text-[10px] text-rose-500">
+            磷過高或鈣磷比不足，分數已封頂
+          </p>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function ScoreBreakdown({ score }: { score: ProductScore }) {
+  return (
+    <div className="rounded-xl border border-cream-border bg-cream-bg-light/50 p-3 text-xs">
+      <p className="font-semibold text-stone-600">
+        📊 {score.isEstimate ? "評分明細（估算）" : "評分明細（滿分 100）"}
+      </p>
+      <div className="mt-2 flex flex-col gap-1.5">
+        {score.items.map((item) => (
+          <div key={item.label} className="flex items-center justify-between gap-2">
+            <span className="text-stone-500">
+              {item.label}
+              <span className="ml-1 text-stone-400">（{item.detail}）</span>
+            </span>
+            <span
+              className={`font-semibold ${item.points === null ? "text-stone-400" : "text-stone-700"}`}
+            >
+              {item.points === null ? "—" : item.points} / {item.max}
+            </span>
+          </div>
+        ))}
+      </div>
+      <p className="mt-2 text-stone-400">
+        ⓘ
+        這是毛拔麻自訂的評分邏輯（非取自其他網站），依磷含量、碳水、AAFCO／FEDIAF、鈣磷比、蛋白質五項計算，僅供參考，不是醫療建議。
+        {score.isEstimate &&
+          "此商品缺灰分／磷／熱量資料，磷與鈣磷比無法計分，總分是用其餘三項（碳水、AAFCO、蛋白質，滿分60）按比例換算成 100 分制，僅供粗略參考，不代表完整評分。"}
+      </p>
+    </div>
+  );
+}
+
+function OfficialFilingBox({ filing }: { filing: PetProductOfficialFiling }) {
+  return (
+    <div className="rounded-xl border border-cream-border bg-cream-bg-light/50 p-3 text-xs">
+      <p className="font-semibold text-stone-600">
+        📋 官方申報資訊
+        <span className="ml-2 font-normal text-stone-400">
+          資料來源：農業部寵物食品申報網（{filing.queryDate}）
+        </span>
+      </p>
+      <div className="mt-2 overflow-x-auto">
+        <table className="w-full min-w-[480px] border-collapse text-center">
+          <thead>
+            <tr className="border-b border-cream-border text-stone-500">
+              <th className="px-2 py-1.5 text-left font-medium">規格</th>
+              <th className="px-2 py-1.5 font-medium">申報方式</th>
+              <th className="px-2 py-1.5 font-medium">產地</th>
+              <th className="px-2 py-1.5 font-medium">業者</th>
+              <th className="px-2 py-1.5 font-medium">代工廠</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-cream-border">
+            {filing.records.map((record, index) => (
+              <tr key={index}>
+                <td className="px-2 py-1.5 text-left">{record.spec}</td>
+                <td className="px-2 py-1.5">{record.sourceType}</td>
+                <td className="px-2 py-1.5">{record.origin}</td>
+                <td className="px-2 py-1.5">{record.company}</td>
+                <td className="px-2 py-1.5">{record.subcontractor}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p className="mt-2 text-stone-400">
+        這是廠商自己向農業部申報、任何人都查得到的公開資料，僅供參考。
+      </p>
+    </div>
+  );
+}
+
 function PartialNutritionBox({
   nutrition,
 }: {
@@ -652,6 +956,11 @@ function PartialNutritionBox({
   return (
     <div className="rounded-xl border border-cream-border bg-cream-bg-light/50 p-3 text-xs">
       <p className="font-semibold text-stone-600">📋 官方營養標示（部分揭露）</p>
+      {nutrition.ingredientsText && (
+        <p className="mt-2 leading-relaxed text-stone-500">
+          {nutrition.ingredientsText}
+        </p>
+      )}
       <dl className="mt-2 grid grid-cols-2 gap-x-4 gap-y-1.5 sm:grid-cols-3">
         {nutrition.items.map((item) => (
           <div key={item.label} className="flex justify-between gap-2">

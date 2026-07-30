@@ -55,10 +55,40 @@ export interface PetProductDetailedAnalysis {
 
 /** 官方僅部分揭露保證分析數值時使用，原樣列出已知數字，不做 DM/ME 換算 */
 export interface PetProductPartialNutrition {
+  /** 成分表全文，選填 */
+  ingredientsText?: string;
   /** 已知的官方標示項目，例如 { label: "蛋白質(min)", value: "9.0%" } */
   items: { label: string; value: string }[];
   /** 說明為何無法提供完整保證分析對照表 */
   note: string;
+  /** 已知的概略數值（%，以現狀為準），有提供才會估算部分評分；缺灰分故用於估算的碳水會偏保守（略高） */
+  estimateInputs?: {
+    protein?: number;
+    fat?: number;
+    fiber?: number;
+    moisture?: number;
+  };
+}
+
+/** 農業部寵物食品申報網單筆申報紀錄 */
+export interface PetProductOfficialFilingRecord {
+  /** 規格，例如 "1.36 公斤" */
+  spec: string;
+  /** 申報方式：製造、加工／委託代工廠製造／輸入／分裝 */
+  sourceType: string;
+  /** 產地，未標示則為 "—" */
+  origin: string;
+  /** 業者名稱 */
+  company: string;
+  /** 代工廠，未標示則為 "—" */
+  subcontractor: string;
+}
+
+/** 農業部寵物食品申報網查詢結果快照（人工查詢後靜態記錄，非即時串接） */
+export interface PetProductOfficialFiling {
+  /** 查詢日期，例如 "2026-07-30" */
+  queryDate: string;
+  records: PetProductOfficialFilingRecord[];
 }
 
 export interface PetProduct {
@@ -72,6 +102,8 @@ export interface PetProduct {
   detailedAnalysis?: PetProductDetailedAnalysis;
   /** 官方僅部分揭露保證分析數值時使用，與 detailedAnalysis 互斥 */
   partialNutrition?: PetProductPartialNutrition;
+  /** 農業部寵物食品申報網查詢結果，人工核對後靜態記錄 */
+  officialFiling?: PetProductOfficialFiling;
   /** Engineering Debug 標籤，例如 [無膠/低敏]、[乾物質碳水 5.2%] */
   debugTags: string[];
   /** 特色標籤，例如 ['零澱粉', '零穀物', '單一肉源'] */
@@ -316,23 +348,37 @@ export const mockPetProducts: PetProduct[] = [
     brand: "Cesar 西莎",
     name: "精緻風味餐盒 (牛肉) 24入",
     image: "/images/products/cesar-gourmet-tray-beef.png",
-    debugTags: [],
+    debugTags: ["含膠類"],
     features: ["肉餅"],
     partialNutrition: {
+      ingredientsText:
+        "肉類及其副產品(雞，牛)，水，黏稠劑(關華豆膠，決明子膠，鹿角菜膠，三聚磷酸鈉)，礦物質，維生素，香料，乙烯二胺四醋酸二鈉鈣，亞硝酸鈉。",
       items: [
-        { label: "蛋白質(min)", value: "9.0%" },
-        { label: "脂肪(min)", value: "4.5%" },
+        { label: "粗蛋白質(min)", value: "5%" },
+        { label: "粗脂肪(min)", value: "2%" },
+        { label: "粗纖維(max)", value: "1%" },
         { label: "水分(max)", value: "89%" },
-        { label: "膳食纖維(max)", value: "0.4%–1.0%" },
-        { label: "熱量(代謝能)", value: "70–95 kcal/100g" },
       ],
-      note: "官方包裝僅標示上述數值，未列出灰質、磷、鈣、鈉等具體百分比（統稱於「必需維生素及礦物質」），故無法提供完整乾物比／熱量佔對照表。",
+      note: "官方保證成分分析未列出灰分、磷、熱量等數值，故無法提供完整乾物比／熱量佔對照表。（此數值已依農業部寵物食品申報網官方申報資料校正，與蝦皮賣場的 AI 摘要落差較大，以官方申報為準）",
+      estimateInputs: { protein: 5, fat: 2, fiber: 1, moisture: 89 },
+    },
+    officialFiling: {
+      queryDate: "2026-07-30",
+      records: [
+        {
+          spec: "0.6 公斤（100g x 6入）",
+          sourceType: "輸入",
+          origin: "—",
+          company: "台灣瑪氏股份有限公司",
+          subcontractor: "Mars Petcare Australia (WOD)",
+        },
+      ],
     },
     aafcoCertified: true,
     ourCatsRating: [{ cat: "露比", verdict: "like" }],
     review: {
       comment:
-        "西莎精緻風味餐盒牛肉口味，24入分裝方便，符合 AAFCO 標準，露比很捧場。官方包裝未完整揭露灰分、磷等數值，暫無法提供完整保證分析對照表。",
+        "西莎精緻風味餐盒牛肉口味，24入分裝方便，符合 AAFCO 標準，露比很捧場。官方申報顯示含關華豆膠等多種黏稠劑與亞硝酸鈉，保證分析（蛋白質5%、脂肪2%）也明顯低於賣場文案描述，選購前建議留意。",
     },
     price: 759,
     affiliateUrl: "https://s.shopee.tw/8V7ipIsIIM",
@@ -355,6 +401,7 @@ export const mockPetProducts: PetProduct[] = [
         { label: "維生素C(min)", value: "125 mg/kg" },
       ],
       note: "官方保證成分分析未列出灰分、磷、熱量等數值，故無法提供完整乾物比／熱量佔對照表。",
+      estimateInputs: { protein: 20.5, fat: 11.5, fiber: 3, moisture: 10 },
     },
     aafcoCertified: true,
     ourCatsRating: [{ cat: "露比", verdict: "like" }],
@@ -373,17 +420,35 @@ export const mockPetProducts: PetProduct[] = [
     image: "/images/products/hills-perfect-weight-chicken-adult-cat.png",
     debugTags: [],
     features: ["體重控制", "減重配方", "雞肉"],
-    partialNutrition: {
-      items: [
-        { label: "粗蛋白質(min)", value: "35.5%" },
-        { label: "粗脂肪(min)", value: "9%" },
-        { label: "粗纖維", value: "4%–12%" },
-        { label: "水分(max)", value: "8%" },
-        { label: "維生素E(min)", value: "450 IU/kg" },
-        { label: "維生素C(min)", value: "85 mg/kg" },
-        { label: "左旋肉鹼(min)", value: "300 ppm" },
+    dmbCarb: 35.39,
+    detailedAnalysis: {
+      productType: "乾飼糧",
+      ingredientsText:
+        "雞肉、釀造米、玉米蛋白粉、小麥筋質、燕麥纖維、雞肉粉、脫水番茄粕、脫水甜菜漿、亞麻仁籽、雞脂肪、雞肝香料、椰子油、乳酸、硫酸鈣、氯化鉀、左旋離胺酸、氯化膽鹼、胡蘿蔔、DL-蛋胺酸、牛磺酸、碘鹽、維生素(維生素E添加劑、抗壞血酸多聚磷酸酯(維生素C來源)、菸鹼酸添加劑、硝酸硫胺(維生素B1)、維生素A添加劑、泛酸鈣、核黃素添加劑、生物素、維生素B12添加劑、維生素B6、葉酸、維生素D3添加劑)、磷酸二鈣、礦物質(硫酸錳、硫酸亞鐵、氧化鋅、硫酸銅、碘酸鈣、亞硒酸鈉)、左旋肉鹼、添加綜合維生素E類以保鮮、天然香料、β-胡蘿蔔素。",
+      originCountry: "美國",
+      moisture: 8,
+      protein: 36.25,
+      fat: 10.95,
+      fiber: 5.52,
+      ash: 6.72,
+      phosphorus: 0.71,
+      calcium: 0.97,
+      kcalPer100g: 341.2,
+      weightGrams: 1360,
+      listPrice: 961,
+      salePrice: 961,
+    },
+    officialFiling: {
+      queryDate: "2026-07-30",
+      records: [
+        {
+          spec: "1.36 公斤",
+          sourceType: "輸入",
+          origin: "—",
+          company: "台灣希爾思寵物營養品有限公司",
+          subcontractor: "Hills Pet Nutrition Inc",
+        },
       ],
-      note: "官方保證成分分析未列出灰分、磷、熱量等數值，纖維也僅提供範圍非單一數值，故無法提供完整乾物比／熱量佔對照表。",
     },
     aafcoCertified: true,
     ourCatsRating: [
@@ -393,7 +458,7 @@ export const mockPetProducts: PetProduct[] = [
     ],
     review: {
       comment:
-        "希爾思完美體重雞肉配方，專為 1-6 歲成貓體重控制設計，高纖配方增加飽足感，符合 AAFCO 標準，本丸、海苔、麻糬都愛吃。官方保證分析未列出灰分、磷等數值，暫無法提供完整保證分析對照表。",
+        "希爾思完美體重雞肉配方，專為 1-6 歲成貓體重控制設計，高纖配方增加飽足感，符合 AAFCO 標準，本丸、海苔、麻糬都愛吃。完整保證分析取自希爾思美國官網公開資料，換算後鈣磷比約 1.37:1，磷含量約 208mg/100kcal，數值健康。",
     },
     price: 961,
     affiliateUrl: "https://s.shopee.tw/3Vj2uUQww5",
