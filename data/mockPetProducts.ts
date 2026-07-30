@@ -477,23 +477,35 @@ export const mockPetProducts: PetProduct[] = [
     image: "/images/products/parkcat-chicken-royaljelly.png",
     debugTags: [],
     features: ["蜂王乳"],
-    dmbCarb: 17.78,
+    dmbCarb: 20.88,
     detailedAnalysis: {
       productType: "乾飼糧",
       ingredientsText:
-        "去骨雞肉、雞肉水解蛋白、糖蜜酵母、木薯、低溫烘培黃金亞麻仁籽、雞油、深海魚油(Omega-3、Omega-6來源)、絲蘭萃取物、甜菜、苜蓿、蛋黃、水解植物蛋白、蜂王乳、豌豆、大麥若葉、台灣紅藜、腸道保健益生菌、蔓越莓萃取物、維生素(A、D、E、B1(硫胺素)、B2(核黃素)、B6(吡哆素)、B12(鈷胺素)、葉酸、泛酸、菸鹼酸、生物素)、礦物質(硫酸鋅、硫酸銅、硫酸錳、硫酸鐵、碳酸鈷、碘化鉀)、牛磺酸、氯化膽鹼、DL-蛋胺酸、離胺酸。",
+        "去骨雞肉及雞肉、樹薯澱粉、碗豆蛋白、雞油、水解雞肉小肽蛋白、碗豆、酵母粉、乳酪粉、甜菜、苜蓿、黑豆、紅藜麥、植物纖維、低溫烘焙黃金亞麻籽、深海魚油(Omega-3來源)、氯化鈉、膽鹼、磷酸氫二鉀、蛋黃、大麥若葉、離胺酸、葡聚糖、甘露寡糖、牛磺酸、蜂王乳、綜合維生素(維生素A、維生素D3、維生素C、維生素E、維生素B1、維生素B2、維生素B6、維生素B12、菸鹼酸、泛酸鈣、葉酸、生物素)、綜合礦物質(銅、鐵、錳、鋅)、絲蘭、益生菌(Lactobacillus plantarum, Lactobacillus acidophilus, Lactobacillus paracasei, Lactobacillus rhamnosus, Bifidobacterium longum, Bacillus subtilis, Bacillus licheniformis)、酵母硒、乾燥雞肝粉、酵母水解物、蔓越莓萃取物。",
       originCountry: "台灣",
-      moisture: 10,
+      moisture: 9,
       protein: 42,
       fat: 17,
-      fiber: 5,
-      ash: 10,
-      phosphorus: 1.2,
-      calcium: 2.0,
+      fiber: 4,
+      ash: 9,
+      phosphorus: 0.8,
+      calcium: 1.5,
       kcalPer100g: 358,
       weightGrams: 300,
       listPrice: 280,
       salePrice: 280,
+    },
+    officialFiling: {
+      queryDate: "2026-07-30",
+      records: [
+        {
+          spec: "0.3 公斤",
+          sourceType: "委託代工廠製造",
+          origin: "—",
+          company: "麗斯居股份有限公司",
+          subcontractor: "富崴飼料有限公司",
+        },
+      ],
     },
     aafcoCertified: true,
     ourCatsRating: [
@@ -503,7 +515,7 @@ export const mockPetProducts: PetProduct[] = [
     ],
     review: {
       comment:
-        "ParkCat 無敵貓糧鮮雞蜂王乳口味，蛋白質 42% 偏高，本丸、海苔、麻糬都愛吃，符合 AAFCO 標準。不過磷含量偏高（約335mg/100kcal）、鈣磷比約1.67:1，超出理想範圍 1.1-1.4，長期餵食建議留意。",
+        "ParkCat 無敵貓糧鮮雞蜂王乳口味，蛋白質 42% 偏高，本丸、海苔、麻糬都愛吃，符合 AAFCO 標準。保證分析已依農業部官方申報校正（與蝦皮賣場文案略有出入），磷含量約224mg/100kcal、鈣磷比約1.88:1，鈣磷比略超出理想範圍 1.1-1.4。",
     },
     price: 280,
     affiliateUrl: "https://s.shopee.tw/7fYcqer6bZ",
