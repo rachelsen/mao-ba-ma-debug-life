@@ -698,6 +698,9 @@ function ProductCard({
     product.originalPrice > product.price;
   const catVerdictSummary = buildCatVerdictSummary(product.ourCatsRating);
   const score = computeProductScore(product);
+  const [showDetails, setShowDetails] = useState(false);
+  const hasMoreDetails =
+    product.detailedAnalysis || product.partialNutrition || product.officialFiling;
 
   return (
     <article className="flex flex-col gap-6 rounded-2xl border border-amber-100/60 bg-white p-4 shadow-sm transition-all hover:shadow-md md:flex-row md:p-6">
@@ -798,19 +801,34 @@ function ProductCard({
             </div>
           )}
 
-          {product.detailedAnalysis && (
+          {hasMoreDetails && (
             <div className="mt-3">
-              <AnalysisTable analysis={product.detailedAnalysis} />
-            </div>
-          )}
-          {product.partialNutrition && (
-            <div className="mt-3">
-              <PartialNutritionBox nutrition={product.partialNutrition} />
-            </div>
-          )}
-          {product.officialFiling && (
-            <div className="mt-3">
-              <OfficialFilingBox filing={product.officialFiling} />
+              <button
+                type="button"
+                onClick={() => setShowDetails((prev) => !prev)}
+                className="inline-flex items-center gap-1 text-xs font-semibold text-milktea-dark hover:underline"
+              >
+                {showDetails ? "收合成分／申報資訊" : "查看更多（成分／官方申報資訊）"}
+                <span
+                  className={`text-[10px] transition-transform ${showDetails ? "rotate-180" : ""}`}
+                >
+                  ▾
+                </span>
+              </button>
+
+              {showDetails && (
+                <div className="mt-3 flex flex-col gap-3">
+                  {product.detailedAnalysis && (
+                    <AnalysisTable analysis={product.detailedAnalysis} />
+                  )}
+                  {product.partialNutrition && (
+                    <PartialNutritionBox nutrition={product.partialNutrition} />
+                  )}
+                  {product.officialFiling && (
+                    <OfficialFilingBox filing={product.officialFiling} />
+                  )}
+                </div>
+              )}
             </div>
           )}
         </div>

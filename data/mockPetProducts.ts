@@ -163,6 +163,18 @@ export const mockPetProducts: PetProduct[] = [
       listPrice: 46,
       salePrice: 46,
     },
+    officialFiling: {
+      queryDate: "2026-07-30",
+      records: [
+        {
+          spec: "80g（0.08±0.002公斤）",
+          sourceType: "製造、加工",
+          origin: "—",
+          company: "唯寵股份有限公司",
+          subcontractor: "—",
+        },
+      ],
+    },
     aafcoCertified: true,
     nrcCertified: true,
     ourCatsRating: [
@@ -205,6 +217,18 @@ export const mockPetProducts: PetProduct[] = [
       listPrice: 46,
       salePrice: 46,
     },
+    officialFiling: {
+      queryDate: "2026-07-30",
+      records: [
+        {
+          spec: "80g（0.08±0.002公斤）",
+          sourceType: "製造、加工",
+          origin: "—",
+          company: "唯寵股份有限公司",
+          subcontractor: "—",
+        },
+      ],
+    },
     aafcoCertified: true,
     nrcCertified: true,
     ourCatsRating: [
@@ -246,6 +270,18 @@ export const mockPetProducts: PetProduct[] = [
       listPrice: 46,
       salePrice: 46,
     },
+    officialFiling: {
+      queryDate: "2026-07-30",
+      records: [
+        {
+          spec: "80g（0.08±0.002公斤）",
+          sourceType: "製造、加工",
+          origin: "—",
+          company: "唯寵股份有限公司",
+          subcontractor: "—",
+        },
+      ],
+    },
     aafcoCertified: true,
     nrcCertified: true,
     ourCatsRating: [
@@ -285,6 +321,18 @@ export const mockPetProducts: PetProduct[] = [
       weightGrams: 80,
       listPrice: 65,
       salePrice: 65,
+    },
+    officialFiling: {
+      queryDate: "2026-07-30",
+      records: [
+        {
+          spec: "80g（0.08±0.002公斤）",
+          sourceType: "製造、加工",
+          origin: "—",
+          company: "唯寵股份有限公司",
+          subcontractor: "—",
+        },
+      ],
     },
     dmbCarb: 5.52,
     aafcoCertified: true,
@@ -327,6 +375,18 @@ export const mockPetProducts: PetProduct[] = [
       weightGrams: 80,
       listPrice: 46,
       salePrice: 46,
+    },
+    officialFiling: {
+      queryDate: "2026-07-30",
+      records: [
+        {
+          spec: "80g（0.08±0.002公斤）",
+          sourceType: "製造、加工",
+          origin: "—",
+          company: "唯寵股份有限公司",
+          subcontractor: "—",
+        },
+      ],
     },
     aafcoCertified: true,
     nrcCertified: true,
@@ -408,6 +468,18 @@ export const mockPetProducts: PetProduct[] = [
       weightGrams: 1500,
       listPrice: 791,
       salePrice: 791,
+    },
+    officialFiling: {
+      queryDate: "2026-07-30",
+      records: [
+        {
+          spec: "1.5 公斤",
+          sourceType: "輸入",
+          origin: "—",
+          company: "台灣希爾思寵物營養品有限公司",
+          subcontractor: "Hills Pet Nutrition Inc",
+        },
+      ],
     },
     aafcoCertified: true,
     ourCatsRating: [{ cat: "露比", verdict: "like" }],
