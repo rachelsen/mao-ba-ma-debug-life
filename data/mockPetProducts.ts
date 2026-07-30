@@ -587,9 +587,48 @@ export const mockPetProducts: PetProduct[] = [
     ],
     review: {
       comment:
-        "ParkCat 無敵貓糧鮮雞蜂王乳口味，蛋白質 42% 偏高，本丸、海苔、麻糬都愛吃，符合 AAFCO 標準。保證分析已依農業部官方申報校正（與蝦皮賣場文案略有出入），磷含量約224mg/100kcal、鈣磷比約1.88:1，鈣磷比略超出理想範圍 1.1-1.4。",
+        "ParkCat 無敵貓糧鮮雞蜂王乳口味，蛋白質 42% 偏高，本丸、海苔、麻糬都愛吃，符合 AAFCO 標準。磷含量約224mg/100kcal、鈣磷比約1.88:1，鈣磷比略超出理想範圍 1.1-1.4。",
     },
     price: 280,
     affiliateUrl: "https://s.shopee.tw/7fYcqer6bZ",
+  },
+  {
+    id: "cat-dry-002",
+    category: "貓咪乾糧",
+    brand: "ParkCat 無敵貓糧",
+    name: "無敵貓糧 大洋鮮極魚",
+    image: "/images/products/parkcat-ocean-fish.png",
+    debugTags: [],
+    features: ["魚"],
+    dmbCarb: 20.88,
+    detailedAnalysis: {
+      productType: "乾飼糧",
+      ingredientsText:
+        "去骨雞肉、魚肉(鱈魚、鯖魚、鯡魚、鮭魚)、樹薯澱粉、雞油脂、碗豆蛋白、水解雞肉蛋白、酵母粉、完整碗豆、完整黑豆、植物纖維、鮭魚油(天然omega-3來源)、水解雞肝蛋白、卵磷脂、酵母水解物、牛磺酸、膽鹼、綜合維生素(維生素A、維生素D3、維生素E、維生素B1、維生素B2、維生素B6、維生素B12、菸鹼酸、泛酸鈣、葉酸、生物素)、離胺酸、蛋胺酸、南瓜、海藻、氯化鉀、綜合礦物質(銅、鐵、錳、鋅、碘、硒)、完整蘋果果肉、枸杞、番茄、乳鐵蛋白、雞蛋粉、甘露寡醣、β-葡聚醣、絲蘭、葡萄糖胺、軟骨素、酵母硒、益生菌(Lactobacillus plantarum, Lactobacillus acidophilus, Lactobacillus paracasei, Lactobacillus rhamnosus, Bifidobacterium longum, Bacillus subtilis, Bacillus licheniformis)、輔酶Q10。",
+      originCountry: "台灣",
+      moisture: 9,
+      protein: 42,
+      fat: 16,
+      fiber: 5,
+      ash: 9,
+      phosphorus: 0.9,
+      calcium: 1.4,
+      kcalPer100g: 349.5,
+      weightGrams: 300,
+      listPrice: 340,
+      salePrice: 340,
+    },
+    aafcoCertified: true,
+    ourCatsRating: [
+      { cat: "本丸", verdict: "like" },
+      { cat: "海苔", verdict: "like" },
+      { cat: "麻糬", verdict: "like" },
+    ],
+    review: {
+      comment:
+        "ParkCat 無敵貓糧大洋鮮極魚口味，多種魚肉來源、蛋白質 42% 偏高，本丸、海苔、麻糬都愛吃，符合 AAFCO 標準。磷含量約258mg/100kcal、鈣磷比約1.56:1，鈣磷比略超出理想範圍 1.1-1.4。",
+    },
+    price: 340,
+    affiliateUrl: "https://s.shopee.tw/111j5y0WyS",
   },
 ];
