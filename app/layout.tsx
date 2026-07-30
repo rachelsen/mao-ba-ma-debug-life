@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Footer from "@/components/layout/Footer";
 import Sidebar from "@/components/layout/Sidebar";
 import AuthProvider from "@/components/providers/AuthProvider";
 import "./globals.css";
@@ -19,7 +20,10 @@ export default function RootLayout({
       <body className="min-h-screen bg-cream-bg font-sans text-stone-700 antialiased">
         <AuthProvider>
           <Sidebar />
-          <div className="md:pl-56">{children}</div>
+          <div className="flex min-h-screen flex-col md:pl-56">
+            <div className="flex-1">{children}</div>
+            <Footer />
+          </div>
         </AuthProvider>
       </body>
     </html>
