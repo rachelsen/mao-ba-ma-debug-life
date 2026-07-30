@@ -469,4 +469,43 @@ export const mockPetProducts: PetProduct[] = [
     price: 961,
     affiliateUrl: "https://s.shopee.tw/3Vj2uUQww5",
   },
+  {
+    id: "cat-dry-001",
+    category: "貓咪乾糧",
+    brand: "ParkCat 無敵貓糧",
+    name: "無敵貓糧 鮮雞蜂王乳",
+    image: "/images/products/parkcat-chicken-royaljelly.png",
+    debugTags: [],
+    features: ["蜂王乳"],
+    dmbCarb: 17.78,
+    detailedAnalysis: {
+      productType: "乾飼糧",
+      ingredientsText:
+        "去骨雞肉、雞肉水解蛋白、糖蜜酵母、木薯、低溫烘培黃金亞麻仁籽、雞油、深海魚油(Omega-3、Omega-6來源)、絲蘭萃取物、甜菜、苜蓿、蛋黃、水解植物蛋白、蜂王乳、豌豆、大麥若葉、台灣紅藜、腸道保健益生菌、蔓越莓萃取物、維生素(A、D、E、B1(硫胺素)、B2(核黃素)、B6(吡哆素)、B12(鈷胺素)、葉酸、泛酸、菸鹼酸、生物素)、礦物質(硫酸鋅、硫酸銅、硫酸錳、硫酸鐵、碳酸鈷、碘化鉀)、牛磺酸、氯化膽鹼、DL-蛋胺酸、離胺酸。",
+      originCountry: "台灣",
+      moisture: 10,
+      protein: 42,
+      fat: 17,
+      fiber: 5,
+      ash: 10,
+      phosphorus: 1.2,
+      calcium: 2.0,
+      kcalPer100g: 358,
+      weightGrams: 300,
+      listPrice: 280,
+      salePrice: 280,
+    },
+    aafcoCertified: true,
+    ourCatsRating: [
+      { cat: "本丸", verdict: "like" },
+      { cat: "海苔", verdict: "like" },
+      { cat: "麻糬", verdict: "like" },
+    ],
+    review: {
+      comment:
+        "ParkCat 無敵貓糧鮮雞蜂王乳口味，蛋白質 42% 偏高，本丸、海苔、麻糬都愛吃，符合 AAFCO 標準。不過磷含量偏高（約335mg/100kcal）、鈣磷比約1.67:1，超出理想範圍 1.1-1.4，長期餵食建議留意。",
+    },
+    price: 280,
+    affiliateUrl: "https://s.shopee.tw/7fYcqer6bZ",
+  },
 ];
