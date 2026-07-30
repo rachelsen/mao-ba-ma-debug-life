@@ -548,7 +548,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "無敵貓糧 鮮雞蜂王乳",
     image: "/images/products/parkcat-chicken-royaljelly.png",
     debugTags: [],
-    features: ["蜂王乳"],
+    features: ["蜂王乳", "雞肉"],
     dmbCarb: 20.88,
     detailedAnalysis: {
       productType: "乾飼糧",
