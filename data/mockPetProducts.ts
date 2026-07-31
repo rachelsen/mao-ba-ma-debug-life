@@ -558,6 +558,58 @@ export const mockPetProducts: PetProduct[] = [
     affiliateUrl: "https://s.shopee.tw/80BUfmaLOk",
   },
   {
+    id: "cat-can-008",
+    category: "貓咪主食罐",
+    brand: "沙發馬鈴薯",
+    name: "貓 Pure純粹主食罐 (溫體純雞肉)",
+    image: "/images/products/sofapotato-pure-cat-chicken.png",
+    debugTags: ["無膠"],
+    features: ["雞肉"],
+    dmbCarb: 4.21,
+    detailedAnalysis: {
+      ingredientsText:
+        "雞肉(台灣)、雞油、雞肝、魚油、磷酸鈣、離胺酸、蒟蒻粉、水溶性纖維素、酵母維生素B群、綜合維生素(A、D3、E)、綜合礦物質(鋅、鐵、銅、錳、鉀)、半乳寡糖、海藻鈣、酵母抽出物、牛磺酸。",
+      originCountry: "台灣",
+      moisture: 81,
+      protein: 12,
+      fat: 5,
+      fiber: 0.2,
+      ash: 1,
+      phosphorus: 0.21,
+      calcium: 0.26,
+      caPhosRatio: "1.24",
+      sodium: 0.06,
+      kcalPer100g: 95,
+      weightGrams: 80,
+      listPrice: 55,
+      salePrice: 55,
+    },
+    officialFiling: {
+      queryDate: "2026-07-31",
+      records: [
+        {
+          spec: "80g（0.08±0.002公斤）",
+          sourceType: "製造、加工",
+          origin: "—",
+          company: "唯寵股份有限公司",
+          subcontractor: "—",
+        },
+      ],
+    },
+    aafcoCertified: true,
+    ourCatsRating: [
+      { cat: "本丸", verdict: "like" },
+      { cat: "海苔", verdict: "like" },
+      { cat: "麻糬", verdict: "neutral" },
+    ],
+    review: {
+      comment:
+        "沙發馬鈴薯 Pure純粹主食罐溫體純雞肉口味，單一雞肉來源、成分乾淨，符合 AAFCO 標準，本丸、海苔都愛吃，麻糬看心情。賣場標示粗纖維0.5%，但官方申報實際為0.2%，DMB碳水以官方數據計算約4.21%。",
+    },
+    price: 55,
+    affiliateUrl: "https://s.shopee.tw/5LAjXLajSy",
+  },
+  {
     id: "dog-can-000",
     category: "狗狗主食罐",
     brand: "Cesar 西莎",
