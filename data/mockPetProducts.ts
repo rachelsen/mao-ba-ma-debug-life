@@ -1287,6 +1287,58 @@ export const mockPetProducts: PetProduct[] = [
     affiliateUrl: "https://s.shopee.tw/9zwZGcffVF",
   },
   {
+    id: "cat-can-023",
+    category: "貓咪主食罐",
+    brand: "魔力喵 迷幻喵 MjAMjAM",
+    name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (多汁雞肉 x 野生鮭魚)",
+    image: "/images/products/mjamjam-chicken-salmon.png",
+    debugTags: ["無膠"],
+    features: ["雞肉", "鮭魚"],
+    dmbCarb: 4.76,
+    detailedAnalysis: {
+      ingredientsText:
+        "62.5%肉類和內臟（62.5%雞肉、心、肝、胃）、35.5%鮭魚、1%礦物質營養素、1%乾燥蛋殼（鈣質來源）。",
+      originCountry: "德國",
+      moisture: 79,
+      protein: 11,
+      fat: 6.5,
+      fiber: 0.4,
+      ash: 2.1,
+      phosphorus: 0.25,
+      calcium: 0.3,
+      caPhosRatio: "1.2",
+      sodium: 0.12,
+      kcalPer100g: 97.3,
+      weightGrams: 400,
+      listPrice: 145,
+      salePrice: 145,
+    },
+    officialFiling: {
+      queryDate: "2026-07-31",
+      records: [
+        {
+          spec: "200g（0.2公斤）／400g（0.4公斤）",
+          sourceType: "輸入",
+          origin: "—",
+          company: "達飛國際有限公司",
+          subcontractor: "Mjamjam Petfood",
+        },
+      ],
+    },
+    aafcoCertified: true,
+    certStandard: "FEDIAF",
+    ourCatsRating: [
+      { cat: "三色蛋", verdict: "like" },
+      { cat: "烏克", verdict: "like" },
+    ],
+    review: {
+      comment:
+        "MjAMjAM 德國魔力喵鮮肉主食罐多汁雞肉x野生鮭魚口味，成分乾淨無爭議性膠類，符合 FEDIAF 標準，三色蛋、烏克都愛吃。官方申報未標示熱量，此處熱量（約97.3kcal/100g）為依蛋白質/脂肪/碳水回推的估算值，非官方標示數字，磷含量與評分結果僅供參考。鈣磷比約1.2，落在理想範圍內。",
+    },
+    price: 145,
+    affiliateUrl: "https://s.shopee.tw/9zwZGcffVF",
+  },
+  {
     id: "dog-can-000",
     category: "狗狗主食罐",
     brand: "Cesar 西莎",
