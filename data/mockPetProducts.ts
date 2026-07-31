@@ -710,6 +710,53 @@ export const mockPetProducts: PetProduct[] = [
     affiliateUrl: "https://s.shopee.tw/4AymAAtmJ3",
   },
   {
+    id: "cat-can-011",
+    category: "貓咪主食罐",
+    brand: "凱力女神",
+    name: "單一蛋白質主食罐 無膠罐 全肉主食罐 頂級貓罐 (有機雞肉)",
+    image: "/images/products/kailigoddess-organic-chicken.png",
+    debugTags: ["無膠"],
+    features: ["雞肉", "單一蛋白質"],
+    dmbCarb: 6.14,
+    detailedAnalysis: {
+      ingredientsText:
+        "98.50%雞（雞肉、身體、心、頸、肝，來自有機生態農場）、0.95%啤酒酵母、0.55%礦物質。每公斤額外添加維他命A 1000 IU、維他命D3 100 IU、鐵22mg、銅1.5mg、錳1.5mg、鋅25mg、硒0.10mg、牛磺酸1300mg。",
+      originCountry: "德國",
+      moisture: 79.16,
+      protein: 9.13,
+      fat: 7.31,
+      fiber: 0.45,
+      ash: 2.67,
+      phosphorus: 0.4,
+      calcium: 0.54,
+      caPhosRatio: "1.33",
+      kcalPer100g: 103.62,
+      weightGrams: 200,
+      listPrice: 72,
+      salePrice: 72,
+    },
+    officialFiling: {
+      queryDate: "2026-07-31",
+      records: [
+        {
+          spec: "200g（0.2公斤）",
+          sourceType: "輸入",
+          origin: "—",
+          company: "達飛國際有限公司",
+          subcontractor: "Canelis UG (haftungsbeschrankt)",
+        },
+      ],
+    },
+    aafcoCertified: true,
+    certStandard: "FEDIAF",
+    review: {
+      comment:
+        "凱力女神有機雞肉單一蛋白質主食罐，德國原裝進口，雞肉來自有機生態農場，成分乾淨無爭議性膠類，符合 FEDIAF 標準。磷含量偏高（約386mg/100kcal，接近上限），鈣磷比約1.33落在理想範圍內。",
+    },
+    price: 72,
+    affiliateUrl: "https://s.shopee.tw/4AymAAtmJ3",
+  },
+  {
     id: "dog-can-000",
     category: "狗狗主食罐",
     brand: "Cesar 西莎",
