@@ -1765,4 +1765,55 @@ export const mockPetProducts: PetProduct[] = [
     price: 340,
     affiliateUrl: "https://s.shopee.tw/111j5y0WyS",
   },
+  {
+    id: "cat-dry-003",
+    category: "貓咪乾糧",
+    brand: "TAPAZO特百滋",
+    name: "貓用凍乾填心糧-成幼貓低敏配方（有穀低敏鮮雞配方泌尿保健）",
+    image: "/images/products/tapazo-freeze-dried-hypoallergenic-cat.png",
+    debugTags: [],
+    features: ["低敏", "鮮雞"],
+    dmbCarb: 29.44,
+    detailedAnalysis: {
+      productType: "凍乾填心糧",
+      ingredientsText:
+        "乾燥肉（澳洲雞肉、南洋鮪魚、澳洲牛肉）、玉米、水解植物蛋白、凍乾雞肉粉、動物油脂（台灣豬油）、冷壓椰子粉、黃金亞麻籽、深海魚油、水解動物蛋白、糖蜜酵母粉、益生纖維質、燕麥、虱目魚萃取（HAP）、膠原蛋白、蒜蘭萃取物、綜合酵素、氧化牛磺酸、離胺酸、蛋胺酸、研磨綠茶、苜蓿、甜菜、蔓越莓、蕃茄、甘薯、南瓜、胡蘿蔔、蘋果、綜合維生素（A、D、E、B1、B2、B6、B12、葉酸、泛酸、菸鹼酸、生物素）、綜合礦物質（硫酸鋅、硫酸銅、硫酸錳、硫酸鐵、碳酸鈷、碘化鉀）。",
+      originCountry: "台灣",
+      moisture: 10,
+      protein: 32.5,
+      fat: 16,
+      fiber: 5,
+      ash: 10,
+      phosphorus: 1,
+      calcium: 1.8,
+      kcalPer100g: 364,
+      weightGrams: 907,
+      listPrice: 360,
+      salePrice: 360,
+    },
+    officialFiling: {
+      queryDate: "2026-07-31",
+      records: [
+        {
+          spec: "0.907 公斤",
+          sourceType: "委託代工廠製造",
+          origin: "—",
+          company: "艾澌克企業股份有限公司",
+          subcontractor: "—",
+        },
+      ],
+    },
+    aafcoCertified: true,
+    ourCatsRating: [
+      { cat: "志龍", verdict: "like" },
+      { cat: "豆豆龍", verdict: "like" },
+      { cat: "烏龍", verdict: "like" },
+    ],
+    review: {
+      comment:
+        "TAPAZO特百滋貓用凍乾填心糧成幼貓低敏鮮雞配方，符合 AAFCO 標準，志龍、豆豆龍、烏龍都愛吃。保證分析與熱量（代謝能3640kcal/kg）皆取自農業部申報網公開資料。鈣磷比約1.8，超出理想範圍 1.1-1.4，建議留意。",
+    },
+    price: 360,
+    affiliateUrl: "https://s.shopee.tw/20uHvCumTi",
+  },
 ];
