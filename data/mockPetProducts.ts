@@ -610,6 +610,56 @@ export const mockPetProducts: PetProduct[] = [
     affiliateUrl: "https://s.shopee.tw/5LAjXLajSy",
   },
   {
+    id: "cat-can-009",
+    category: "貓咪主食罐",
+    brand: "凱力女神",
+    name: "單一蛋白質主食罐 無膠罐 全肉主食罐 頂級貓罐 (有機好火雞)",
+    image: "/images/products/kailigoddess-organic-turkey.png",
+    debugTags: ["無膠"],
+    features: ["火雞肉", "單一蛋白質"],
+    dmbCarb: 6.81,
+    detailedAnalysis: {
+      ingredientsText:
+        "98.50%火雞（火雞肉、身體、心、頸、肝，來自有機生態農場）、0.95%啤酒酵母、0.55%礦物質。每公斤額外添加維他命A 1000 IU、維他命D3 100 IU、鐵22mg、銅1.5mg、錳1.5mg、鋅25mg、硒0.10mg、牛磺酸1300mg。",
+      originCountry: "德國",
+      moisture: 78.86,
+      protein: 9.27,
+      fat: 7.49,
+      fiber: 0.46,
+      ash: 2.48,
+      phosphorus: 0.34,
+      calcium: 0.57,
+      caPhosRatio: "1.69",
+      kcalPer100g: 105.84,
+      weightGrams: 200,
+      listPrice: 72,
+      salePrice: 72,
+    },
+    officialFiling: {
+      queryDate: "2026-07-31",
+      records: [
+        {
+          spec: "200g（0.2公斤）",
+          sourceType: "輸入",
+          origin: "—",
+          company: "達飛國際有限公司",
+          subcontractor: "Canelis UG (haftungsbeschrankt)",
+        },
+      ],
+    },
+    aafcoCertified: true,
+    ourCatsRating: [
+      { cat: "三色蛋", verdict: "like" },
+      { cat: "烏克", verdict: "like" },
+    ],
+    review: {
+      comment:
+        "凱力女神有機好火雞單一蛋白質主食罐，德國原裝進口，火雞肉來自有機生態農場，成分乾淨無爭議性膠類，符合 FEDIAF 標準，三色蛋、烏克都愛吃。磷含量偏高（約321mg/100kcal），鈣磷比約1.69，略超出理想範圍，建議留意。",
+    },
+    price: 72,
+    affiliateUrl: "https://s.shopee.tw/4AymAAtmJ3",
+  },
+  {
     id: "dog-can-000",
     category: "狗狗主食罐",
     brand: "Cesar 西莎",
