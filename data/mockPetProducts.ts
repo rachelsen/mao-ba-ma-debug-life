@@ -429,6 +429,18 @@ export const mockPetProducts: PetProduct[] = [
       listPrice: 46,
       salePrice: 46,
     },
+    officialFiling: {
+      queryDate: "2026-07-30",
+      records: [
+        {
+          spec: "80g（0.08±0.002公斤）",
+          sourceType: "製造、加工",
+          origin: "—",
+          company: "唯寵股份有限公司",
+          subcontractor: "—",
+        },
+      ],
+    },
     aafcoCertified: true,
     ourCatsRating: [
       { cat: "本丸", verdict: "like" },
@@ -441,6 +453,57 @@ export const mockPetProducts: PetProduct[] = [
     },
     price: 46,
     affiliateUrl: "https://s.shopee.tw/50XrvlsC3s",
+  },
+  {
+    id: "cat-can-006",
+    category: "貓咪主食罐",
+    brand: "沙發馬鈴薯",
+    name: "貓 POWER超能主食罐 (活力野鮭)",
+    image: "/images/products/sofapotato-power-cat-wildsalmon.png",
+    debugTags: ["無膠"],
+    features: ["鮭魚"],
+    dmbCarb: 1.7,
+    detailedAnalysis: {
+      ingredientsText:
+        "鮭魚、蛋黃粉、磷酸鈣、酵母維生素B群、綜合維生素(A、D3、E)、綜合礦物質(鋅、鐵、銅、錳、鉀)、半乳寡糖、水溶性纖維素、木鱉果粉、蒟蒻粉、酵母抽出物、牛磺酸。",
+      originCountry: "台灣",
+      moisture: 82.4,
+      protein: 9,
+      fat: 6.8,
+      fiber: 0.5,
+      ash: 1,
+      phosphorus: 0.2,
+      calcium: 0.2,
+      sodium: 0.07,
+      kcalPer100g: 98,
+      weightGrams: 80,
+      listPrice: 49,
+      salePrice: 49,
+    },
+    officialFiling: {
+      queryDate: "2026-07-30",
+      records: [
+        {
+          spec: "80g（0.08±0.002公斤）",
+          sourceType: "製造、加工",
+          origin: "—",
+          company: "唯寵股份有限公司",
+          subcontractor: "—",
+        },
+      ],
+    },
+    aafcoCertified: true,
+    ourCatsRating: [
+      { cat: "本丸", verdict: "like" },
+      { cat: "海苔", verdict: "like" },
+      { cat: "麻糬", verdict: "like" },
+    ],
+    review: {
+      comment:
+        "沙發馬鈴薯 POWER超能主食罐鮭魚口味，DMB 碳水極低（約1.7%），符合 AAFCO 標準，本丸、海苔、麻糬都愛吃。鈣磷比剛好1:1，略低於理想範圍 1.1-1.4，建議留意。",
+    },
+    price: 49,
+    affiliateUrl: "https://s.shopee.tw/40fKkljaXg",
   },
   {
     id: "dog-can-000",
