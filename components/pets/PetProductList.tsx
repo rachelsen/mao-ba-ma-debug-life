@@ -442,7 +442,11 @@ export default function PetProductList() {
         )
       );
     }
-    return products;
+    return [...products].sort((a, b) => {
+      const scoreA = computeProductScore(a)?.total ?? -1;
+      const scoreB = computeProductScore(b)?.total ?? -1;
+      return scoreB - scoreA;
+    });
   }, [baseFilteredProducts, certFilters, featureFilters]);
 
   const favoriteProducts = useMemo(
