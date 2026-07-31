@@ -2065,4 +2065,55 @@ export const mockPetProducts: PetProduct[] = [
     price: 451,
     affiliateUrl: "https://s.shopee.tw/qiKcDbcZU",
   },
+  {
+    id: "cat-dry-009",
+    category: "貓咪乾糧",
+    brand: "TAPAZO特百滋",
+    name: "貓用凍乾雙饗宴 2磅 (熟齡貓火雞)",
+    image: "/images/products/tapazo-freeze-dried-duo-turkey-senior-2lb.png",
+    debugTags: [],
+    features: ["熟齡貓", "火雞", "關節保健"],
+    dmbCarb: 35.67,
+    detailedAnalysis: {
+      productType: "凍乾雙饗宴",
+      ingredientsText:
+        "佐餐成份：雞肉凍乾粒、鮮蛋凍乾粒。乾糧成份：乾燥火雞、鮮火雞肉、乾燥豌豆、豌豆粉、乾燥扁豆、乾燥紅薯、啤酒酵母、天然調味料、雞脂（以混合生育酚保存）、乾燥甜菜根、研磨亞麻籽、乾燥番茄粕、鮭魚油（以混合生育酚保存）、牛磺酸、綜合礦物質（硫酸鋅、硫酸亞鐵、硫酸銅、氧化錳、亞硒酸鈉、碘酸鈣）、綜合維生素（E、B3、B1、B5、A、B6、B2、D3、B12、葉酸、B7）、氯化膽鹼、乾燥菊苣根、DL-甲硫氨酸、綠唇貝、食鹽、乾燥海藻、乾燥蔓越莓、乾燥菠菜、乾燥胡蘿蔔、乾燥蘋果、乾燥藍莓、蕬蘭萃取精華、綠茶提取物、維生素C活性來源、鹽酸鹽葡萄糖胺、軟骨素。",
+      originCountry: "台灣",
+      moisture: 10,
+      protein: 37,
+      fat: 10,
+      fiber: 3.3,
+      ash: 7.6,
+      phosphorus: 0.7,
+      calcium: 0.9,
+      kcalPer100g: 335.1,
+      weightGrams: 907,
+      listPrice: 451,
+      salePrice: 451,
+    },
+    officialFiling: {
+      queryDate: "2026-07-31",
+      records: [
+        {
+          spec: "0.907 公斤",
+          sourceType: "委託代工廠製造",
+          origin: "—",
+          company: "艾澌克企業股份有限公司",
+          subcontractor: "—",
+        },
+      ],
+    },
+    aafcoCertified: true,
+    ourCatsRating: [
+      { cat: "志龍", verdict: "like" },
+      { cat: "豆豆龍", verdict: "like" },
+      { cat: "烏龍", verdict: "like" },
+    ],
+    review: {
+      comment:
+        "TAPAZO特百滋貓用凍乾雙饗宴 2磅熟齡貓火雞配方，添加葡萄糖胺、軟骨素照護關節，符合 AAFCO 標準，志龍、豆豆龍、烏龍都愛吃。保證分析與熱量（代謝能3351kcal/kg）取自農業部申報網公開資料；官方申報未列鈣磷數據，此處鈣、磷依熟齡貓糧典型值估算（鈣0.9%、磷0.7%），非官方數字，鈣磷相關評分結果僅供參考。",
+    },
+    price: 451,
+    affiliateUrl: "https://s.shopee.tw/qiKcDbcZU",
+  },
 ];
