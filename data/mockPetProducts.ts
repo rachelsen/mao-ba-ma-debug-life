@@ -1531,6 +1531,53 @@ export const mockPetProducts: PetProduct[] = [
     affiliateUrl: "https://s.shopee.tw/3LPcgvJllu",
   },
   {
+    id: "dog-dry-001",
+    category: "狗狗乾糧",
+    brand: "科克蘭",
+    name: "雞肉&米&蔬菜配方 幼犬乾狗糧",
+    image: "/images/products/kirkland-chicken-rice-vegetable-puppy.png",
+    debugTags: [],
+    features: ["幼犬", "雞肉"],
+    dmbCarb: 38.89,
+    detailedAnalysis: {
+      productType: "乾飼糧",
+      ingredientsText:
+        "雞肉、雞肉粉、糙米、大麥、雞蛋、雞脂、乾菜渣、馬鈴薯、魚粉、亞麻籽、天然香料、乾酵母、鮭魚油（DHA來源）、小米、氯化鉀、食鹽、氯化膽鹼、胡蘿蔔、豌豆、乾海帶、蘋果、蔓越莓、迷迭香抽取物、香芹、菊苣根、益生菌群、維生素E、蛋白鐵、蛋白鋅、蛋白銅、硫酸亞鐵、硫酸鋅、硫酸銅、碘化鉀、維生素B1、蛋白錳、氧化錳、維生素A、生物素、菸鹼酸、活酵母、硫酸鈷、亞硒酸鈉、維生素B6、維生素B12、維生素B2、維生素D、葉酸。",
+      originCountry: "美國",
+      moisture: 10,
+      protein: 28,
+      fat: 17,
+      fiber: 3,
+      ash: 7,
+      phosphorus: 1,
+      calcium: 1.2,
+      kcalPer100g: 376.1,
+      weightGrams: 9070,
+      listPrice: 911,
+      salePrice: 911,
+    },
+    officialFiling: {
+      queryDate: "2026-07-31",
+      records: [
+        {
+          spec: "9.07 公斤",
+          sourceType: "輸入",
+          origin: "—",
+          company: "好市多股份有限公司",
+          subcontractor: "—",
+        },
+      ],
+    },
+    aafcoCertified: true,
+    ourCatsRating: [{ cat: "吉米", verdict: "like" }],
+    review: {
+      comment:
+        "科克蘭雞肉&米&蔬菜配方幼犬乾狗糧，符合 AAFCO 標準，吉米很喜歡。保證分析（蛋白質最少28%、脂肪最少17%、纖維最多3%、水分最多10%、鈣最少1.2%、磷最少1.0%）取自農業部申報網公開資料。官方未公布灰分與熱量，灰分依乾飼料典型值估算約7%，熱量參考網路資料約376kcal/100g（3761kcal/kg，非官方確認數字），僅供參考。鈣磷比約1.2，落在理想範圍內。",
+    },
+    price: 911,
+    affiliateUrl: "https://s.shopee.tw/8KoLPwVY36",
+  },
+  {
     id: "cat-dry-000",
     category: "貓咪乾糧",
     brand: "Hill's 希爾思",
