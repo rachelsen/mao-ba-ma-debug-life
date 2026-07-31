@@ -112,6 +112,8 @@ export interface PetProduct {
   dmbCarb?: number;
   /** 包裝是否標示符合 AAFCO / FEDIAF 營養標準 */
   aafcoCertified?: boolean;
+  /** 包裝標示的營養標準名稱，預設 "AAFCO" */
+  certStandard?: "AAFCO" | "FEDIAF";
   /** 包裝是否標示符合 NRC 營養標準 */
   nrcCertified?: boolean;
   /** 本站三貓（本丸／海苔／麻糬）試吃心得 */
@@ -648,6 +650,7 @@ export const mockPetProducts: PetProduct[] = [
       ],
     },
     aafcoCertified: true,
+    certStandard: "FEDIAF",
     ourCatsRating: [
       { cat: "三色蛋", verdict: "like" },
       { cat: "烏克", verdict: "like" },

@@ -694,6 +694,7 @@ function ProductCard({
     product.originalPrice > product.price;
   const catVerdictSummary = buildCatVerdictSummary(product.ourCatsRating);
   const score = computeProductScore(product);
+  const certStandard = product.certStandard ?? "AAFCO";
   const [showDetails, setShowDetails] = useState(false);
   const hasMoreDetails =
     product.detailedAnalysis || product.partialNutrition || product.officialFiling;
@@ -747,7 +748,9 @@ function ProductCard({
                     : "border-amber-500/40 bg-amber-400/10 text-amber-700"
                 }`}
               >
-                {product.aafcoCertified ? "✅ AAFCO 認證" : "⚠️ 未標示 AAFCO"}
+                {product.aafcoCertified
+                  ? `✅ ${certStandard} 認證`
+                  : `⚠️ 未標示 ${certStandard}`}
               </span>
             )}
             {product.nrcCertified !== undefined && (
