@@ -1578,6 +1578,53 @@ export const mockPetProducts: PetProduct[] = [
     affiliateUrl: "https://s.shopee.tw/8KoLPwVY36",
   },
   {
+    id: "dog-dry-002",
+    category: "狗狗乾糧",
+    brand: "福壽",
+    name: "機能乾狗糧-皮毛保健配方",
+    image: "/images/products/kirkland-fushou-skin-coat.png",
+    debugTags: [],
+    features: ["皮毛保健", "成犬", "羊肉", "雞肉"],
+    dmbCarb: 45.56,
+    detailedAnalysis: {
+      productType: "乾飼糧",
+      ingredientsText:
+        "雞肉粉、黃玉米、羊肉粉、全麥、發酵大豆蛋白、家禽脂肪（以維生素E保存）、樹薯、深海魚油、乳酪粉、乾燥酵母、乾甜菜、椰子油、乾燥海藻、膠原蛋白、卵磷脂、絲蘭萃取物、綜合維生素（維生素A、維生素D、維生素E、維生素B1、核黃素、維生素B6、維生素B12、菸鹼酸、氯化膽鹼、泛酸鈣、葉酸、生物素）、綜合礦物質（鈣、磷、鉀、鐵、銅、錳、鋅、硒、碘）。",
+      originCountry: "台灣",
+      moisture: 10,
+      protein: 24,
+      fat: 13,
+      fiber: 4,
+      ash: 8,
+      phosphorus: 0.8,
+      calcium: 1.3,
+      kcalPer100g: 361.5,
+      weightGrams: 13500,
+      listPrice: 1200,
+      salePrice: 1200,
+    },
+    officialFiling: {
+      queryDate: "2026-07-31",
+      records: [
+        {
+          spec: "13.5 公斤",
+          sourceType: "製造、加工",
+          origin: "—",
+          company: "福壽實業股份有限公司",
+          subcontractor: "—",
+        },
+      ],
+    },
+    aafcoCertified: true,
+    ourCatsRating: [{ cat: "吉米", verdict: "like" }],
+    review: {
+      comment:
+        "福壽機能乾狗糧皮毛保健配方，台灣製造、專為成犬設計，符合 AAFCO 標準，吉米很喜歡。保證分析與熱量（代謝能3615kcal/kg）皆取自農業部申報網公開資料。鈣磷比約1.63，略超出理想範圍，建議留意。",
+    },
+    price: 1200,
+    affiliateUrl: "https://s.shopee.tw/1Vy1JAU31c",
+  },
+  {
     id: "cat-dry-000",
     category: "貓咪乾糧",
     brand: "Hill's 希爾思",
