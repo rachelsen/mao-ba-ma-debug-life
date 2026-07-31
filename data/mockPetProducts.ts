@@ -1867,4 +1867,52 @@ export const mockPetProducts: PetProduct[] = [
     price: 399,
     affiliateUrl: "https://s.shopee.tw/20uHvCumTi",
   },
+  {
+    id: "cat-dry-005",
+    category: "貓咪乾糧",
+    brand: "Acana 愛肯拿",
+    name: "無穀貓飼料 低GI 室內開胃（雞 x 鯡魚 x 蔓越莓）",
+    image: "/images/products/acana-indoor-chicken-herring-cranberry.png",
+    debugTags: [],
+    features: ["室內貓", "雞肉", "鯡魚", "無穀"],
+    dmbCarb: 26.67,
+    detailedAnalysis: {
+      productType: "乾飼糧",
+      ingredientsText:
+        "新鮮雞肉（16%）、脫水雞肉（16%）、脫水鯡魚（16%）、完整燕麥、完整豌豆、雞脂肪（5%）、芒草粉、完整綠扁豆、新鮮火雞肉（4%）、生鮮完整鯡魚（4%）、完整鷹嘴豆、完整紅扁豆、扁豆纖維、生鮮完整兔肉（1%）、新鮮雞內臟（肝、心）（1%）、新鮮火雞內臟（肝、心）（1%）、雞軟骨（1%）、乾燥海帶、新鮮完整冬南瓜、新鮮完整南瓜、新鮮完整蔓越莓、新鮮完整藍莓。",
+      originCountry: "加拿大",
+      moisture: 10,
+      protein: 37,
+      fat: 14,
+      fiber: 6,
+      ash: 9,
+      phosphorus: 1,
+      calcium: 1.4,
+      caPhosRatio: "1.4",
+      kcalPer100g: 363,
+      weightGrams: 1800,
+      listPrice: 1060,
+      salePrice: 1060,
+    },
+    officialFiling: {
+      queryDate: "2026-07-31",
+      records: [
+        {
+          spec: "0.9 公斤（分裝包）",
+          sourceType: "分裝",
+          origin: "—",
+          company: "健康便國際行銷有限公司",
+          subcontractor: "—",
+        },
+      ],
+    },
+    aafcoCertified: true,
+    ourCatsRating: [{ cat: "烏克", verdict: "like" }],
+    review: {
+      comment:
+        "Acana 愛肯拿無穀貓飼料室內開胃雞x鯡魚x蔓越莓口味，符合 AAFCO 標準，烏克很喜歡。成分與基本保證分析取自農業部申報網（900g分裝包，與本品1.8kg規格保證分析相同），官方申報未列鈣磷與熱量，此處鈣、磷、熱量（3630kcal/kg）取自 Acana 加拿大原廠官網公開資料，確認與申報成分完全吻合。鈣磷比約1.4，落在理想範圍內。",
+    },
+    price: 1060,
+    affiliateUrl: "https://s.shopee.tw/2LX8MpPxrT",
+  },
 ];
