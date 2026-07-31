@@ -1235,6 +1235,58 @@ export const mockPetProducts: PetProduct[] = [
     affiliateUrl: "https://s.shopee.tw/9zwZGcffVF",
   },
   {
+    id: "cat-can-022",
+    category: "貓咪主食罐",
+    brand: "魔力喵 迷幻喵 MjAMjAM",
+    name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (馬肉 x 蒸南瓜)",
+    image: "/images/products/mjamjam-horse-pumpkin.png",
+    debugTags: ["無膠"],
+    features: ["馬肉", "南瓜"],
+    dmbCarb: 5.5,
+    detailedAnalysis: {
+      ingredientsText:
+        "62.5%馬肉（馬肉、心、肝、肺、胃）、28%鮮肉汁、8.5%南瓜、1%礦物質營養素。",
+      originCountry: "德國",
+      moisture: 80,
+      protein: 11,
+      fat: 5.5,
+      fiber: 0.4,
+      ash: 2,
+      phosphorus: 0.25,
+      calcium: 0.3,
+      caPhosRatio: "1.2",
+      sodium: 0.12,
+      kcalPer100g: 89.1,
+      weightGrams: 400,
+      listPrice: 145,
+      salePrice: 145,
+    },
+    officialFiling: {
+      queryDate: "2026-07-31",
+      records: [
+        {
+          spec: "200g（0.2公斤）",
+          sourceType: "輸入",
+          origin: "—",
+          company: "壹士達寵物有限公司",
+          subcontractor: "Mjamjam",
+        },
+      ],
+    },
+    aafcoCertified: true,
+    certStandard: "FEDIAF",
+    ourCatsRating: [
+      { cat: "三色蛋", verdict: "like" },
+      { cat: "烏克", verdict: "like" },
+    ],
+    review: {
+      comment:
+        "MjAMjAM 德國魔力喵鮮肉主食罐馬肉x蒸南瓜口味，成分乾淨無爭議性膠類，符合 FEDIAF 標準，三色蛋、烏克都愛吃。此款由壹士達寵物有限公司進口申報（代工廠同為 Mjamjam），官方申報未標示熱量，此處熱量（約89.1kcal/100g）為依蛋白質/脂肪/碳水回推的估算值，非官方標示數字。鈣磷比約1.2，落在理想範圍內。",
+    },
+    price: 145,
+    affiliateUrl: "https://s.shopee.tw/9zwZGcffVF",
+  },
+  {
     id: "dog-can-000",
     category: "狗狗主食罐",
     brand: "Cesar 西莎",
