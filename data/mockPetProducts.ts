@@ -1067,9 +1067,13 @@ export const mockPetProducts: PetProduct[] = [
     },
     aafcoCertified: true,
     certStandard: "FEDIAF",
+    ourCatsRating: [
+      { cat: "三色蛋", verdict: "like" },
+      { cat: "烏克", verdict: "like" },
+    ],
     review: {
       comment:
-        "MjAMjAM 德國魔力喵鮮肉主食罐多汁雞肉x胡蘿蔔x貓草口味，成分乾淨無爭議性膠類，符合 FEDIAF 標準。官方申報未標示熱量，此處熱量（約99.3kcal/100g）為依蛋白質/脂肪/碳水回推的估算值，非官方標示數字，磷含量與評分結果僅供參考。鈣磷比約1.2，落在理想範圍內。",
+        "MjAMjAM 德國魔力喵鮮肉主食罐多汁雞肉x胡蘿蔔x貓草口味，成分乾淨無爭議性膠類，符合 FEDIAF 標準，三色蛋、烏克都愛吃。官方申報未標示熱量，此處熱量（約99.3kcal/100g）為依蛋白質/脂肪/碳水回推的估算值，非官方標示數字，磷含量與評分結果僅供參考。鈣磷比約1.2，落在理想範圍內。",
     },
     price: 145,
     affiliateUrl: "https://s.shopee.tw/9zwZGcffVF",
