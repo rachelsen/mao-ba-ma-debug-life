@@ -506,6 +506,58 @@ export const mockPetProducts: PetProduct[] = [
     affiliateUrl: "https://s.shopee.tw/40fKkljaXg",
   },
   {
+    id: "cat-can-007",
+    category: "貓咪主食罐",
+    brand: "沙發馬鈴薯",
+    name: "貓 POWER超能主食罐 (海陸雞魚)",
+    image: "/images/products/sofapotato-power-cat-chickenfish.png",
+    debugTags: ["無膠"],
+    features: ["雞肉", "鮪魚"],
+    dmbCarb: 4.44,
+    detailedAnalysis: {
+      ingredientsText:
+        "鮪魚、雞肉、雞油、雞肝、蛋黃粉、魚油、酵母維生素B群、綜合維生素(A、D3、E)、綜合礦物質(鋅、鐵、銅、錳、鉀)、半乳寡糖、碳酸鈣磷酸鈣、水溶性纖維素、蒟蒻粉、松樹皮萃取物、酵母抽出物、牛磺酸。",
+      originCountry: "台灣",
+      moisture: 82,
+      protein: 10.2,
+      fat: 5.5,
+      fiber: 0.5,
+      ash: 1,
+      phosphorus: 0.18,
+      calcium: 0.19,
+      caPhosRatio: "1.06",
+      sodium: 0.1,
+      kcalPer100g: 94,
+      weightGrams: 80,
+      listPrice: 49,
+      salePrice: 49,
+    },
+    officialFiling: {
+      queryDate: "2026-07-31",
+      records: [
+        {
+          spec: "80g（0.08±0.002公斤）",
+          sourceType: "製造、加工",
+          origin: "—",
+          company: "唯寵股份有限公司",
+          subcontractor: "—",
+        },
+      ],
+    },
+    aafcoCertified: true,
+    ourCatsRating: [
+      { cat: "本丸", verdict: "like" },
+      { cat: "海苔", verdict: "like" },
+      { cat: "麻糬", verdict: "like" },
+    ],
+    review: {
+      comment:
+        "沙發馬鈴薯 POWER超能主食罐海陸雞魚口味，鮪魚+雞肉雙主料，DMB 碳水約 4.44%，符合 AAFCO 標準，本丸、海苔、麻糬都愛吃。鈣磷比約1.06，略低於理想範圍 1.1-1.4，建議留意。",
+    },
+    price: 49,
+    affiliateUrl: "https://s.shopee.tw/80BUfmaLOk",
+  },
+  {
     id: "dog-can-000",
     category: "狗狗主食罐",
     brand: "Cesar 西莎",
