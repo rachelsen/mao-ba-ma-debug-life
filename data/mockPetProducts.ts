@@ -1963,4 +1963,55 @@ export const mockPetProducts: PetProduct[] = [
     price: 1350,
     affiliateUrl: "https://s.shopee.tw/80BV8ZmfxY",
   },
+  {
+    id: "cat-dry-007",
+    category: "貓咪乾糧",
+    brand: "TAPAZO特百滋",
+    name: "貓用凍乾雙饗宴 2磅 (成幼貓低敏海魚 x 雞肉)",
+    image: "/images/products/tapazo-freeze-dried-duo-fish-chicken-2lb.png",
+    debugTags: [],
+    features: ["低敏", "海魚", "雞肉", "無穀"],
+    dmbCarb: 34.89,
+    detailedAnalysis: {
+      productType: "凍乾雙饗宴",
+      ingredientsText:
+        "佐餐成份：雞肉凍乾粒、鮮蛋凍乾粒。乾糧成份：乾燥鮭魚、乾鷹嘴豆、乾燥豌豆、豌豆粉、雞脂（以混合生育酚保存）、乾燥雞肉、乳化鱒魚、乾燥甜菜根、豌豆蛋白質、馬鈴薯蛋白質、纖維素粉、天然調味料、乾燥番茄粕、乾燥油鯡魚、乾燥白魚、乾燥鯡魚、食鹽、碳酸鈣、乾燥雞蛋、研磨亞麻籽、啤酒酵母萃取物、鮭魚油（以混合生育酚保存）、氯化膽鹼、乾燥菊苣根、綜合維生素（E、A、D3、B12、C、B2、B1、葉酸、B7、B6、B3、K、泛酸鈣）、綜合礦物質（硫酸銅、碘酸鈣、硫酸鐵、氧化錳、氧化鋅、亞硒酸鈉）、牛磺酸、益生菌（嗜酸乳桿菌、乾酪乳桿菌、比菲德氏菌、腸球菌）。",
+      originCountry: "台灣",
+      moisture: 10,
+      protein: 34,
+      fat: 12,
+      fiber: 6.2,
+      ash: 6.4,
+      phosphorus: 0.72,
+      calcium: 0.9,
+      kcalPer100g: 348.3,
+      weightGrams: 907,
+      listPrice: 451,
+      salePrice: 451,
+    },
+    officialFiling: {
+      queryDate: "2026-07-31",
+      records: [
+        {
+          spec: "0.907 公斤",
+          sourceType: "委託代工廠製造",
+          origin: "—",
+          company: "艾澌克企業股份有限公司",
+          subcontractor: "—",
+        },
+      ],
+    },
+    aafcoCertified: true,
+    ourCatsRating: [
+      { cat: "志龍", verdict: "like" },
+      { cat: "豆豆龍", verdict: "like" },
+      { cat: "烏龍", verdict: "like" },
+    ],
+    review: {
+      comment:
+        "TAPAZO特百滋貓用凍乾雙饗宴 2磅低敏海魚x雞肉配方，符合 AAFCO 標準，志龍、豆豆龍、烏龍都愛吃。保證分析與熱量（3483kcal/kg）取自農業部申報網公開資料；官方申報僅有台灣代工版記錄，未查到加拿大進口版申報，產地以申報資料為準標示為台灣。鈣磷比約1.25，落在理想範圍內。",
+    },
+    price: 451,
+    affiliateUrl: "https://s.shopee.tw/qiKcDbcZU",
+  },
 ];
