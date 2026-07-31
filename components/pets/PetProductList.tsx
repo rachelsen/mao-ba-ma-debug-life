@@ -525,7 +525,7 @@ export default function PetProductList() {
                     rel="nofollow sponsored noopener noreferrer"
                     className="mt-auto inline-flex items-center justify-center gap-1 rounded-lg bg-orange-500 px-2 py-1.5 text-xs font-bold text-white transition hover:bg-orange-600 active:scale-[0.98]"
                   >
-                    🛒 前往官方購買 ({quantity}罐)
+                    🛒 前往購買 ({quantity}罐)
                   </a>
                 </div>
               );
@@ -857,7 +857,7 @@ function ProductCard({
             rel="nofollow sponsored noopener noreferrer"
             className="flex items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-orange-500 px-6 py-2.5 font-bold text-white transition-all hover:bg-orange-600 active:scale-[0.98]"
           >
-            🛒 前往官方購買
+            🛒 前往購買
           </a>
         </div>
       </div>
