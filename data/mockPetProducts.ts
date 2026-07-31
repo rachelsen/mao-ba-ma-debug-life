@@ -804,6 +804,53 @@ export const mockPetProducts: PetProduct[] = [
     affiliateUrl: "https://s.shopee.tw/4AymAAtmJ3",
   },
   {
+    id: "cat-can-013",
+    category: "貓咪主食罐",
+    brand: "凱力女神",
+    name: "單一蛋白質主食罐 無膠罐 全肉主食罐 頂級貓罐 (純野兔)",
+    image: "/images/products/kailigoddess-rabbit.png",
+    debugTags: ["無膠"],
+    features: ["兔肉", "單一蛋白質"],
+    dmbCarb: 10.17,
+    detailedAnalysis: {
+      ingredientsText:
+        "98.5%兔子（兔肉、心、肺、肝）。每公斤額外添加維他命A 1000 IU、維他命D3 100 IU、鐵22mg、銅1.5mg、錳1.5mg、鋅25mg、硒0.10mg、牛磺酸1300mg。",
+      originCountry: "德國",
+      moisture: 82,
+      protein: 10.8,
+      fat: 3,
+      fiber: 0.7,
+      ash: 1.67,
+      phosphorus: 0.17,
+      calcium: 0.25,
+      caPhosRatio: "1.47",
+      kcalPer100g: 49.93,
+      weightGrams: 200,
+      listPrice: 72,
+      salePrice: 72,
+    },
+    officialFiling: {
+      queryDate: "2026-07-31",
+      records: [
+        {
+          spec: "200g（0.2公斤）",
+          sourceType: "輸入",
+          origin: "—",
+          company: "達飛國際有限公司",
+          subcontractor: "Canelis UG (haftungsbeschrankt)",
+        },
+      ],
+    },
+    aafcoCertified: true,
+    certStandard: "FEDIAF",
+    review: {
+      comment:
+        "凱力女神純野兔單一蛋白質主食罐，德國原裝進口，低脂配方（脂肪僅3%），成分乾淨無爭議性膠類，符合 FEDIAF 標準。鈣磷比約1.47，略超出理想範圍，建議留意。",
+    },
+    price: 72,
+    affiliateUrl: "https://s.shopee.tw/4AymAAtmJ3",
+  },
+  {
     id: "dog-can-000",
     category: "狗狗主食罐",
     brand: "Cesar 西莎",
