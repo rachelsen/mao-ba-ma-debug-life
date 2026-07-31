@@ -394,17 +394,13 @@ export default function PetProductList() {
     }
   };
 
-  const catCanBrands = useMemo(
-    () =>
-      Array.from(
-        new Set(
-          mockPetProducts
-            .filter((product) => product.category === "貓咪主食罐")
-            .map((product) => product.brand)
-        )
-      ),
-    []
-  );
+  const availableBrands = useMemo(() => {
+    const products =
+      activeTab === ALL
+        ? mockPetProducts
+        : mockPetProducts.filter((product) => product.category === activeTab);
+    return Array.from(new Set(products.map((product) => product.brand)));
+  }, [activeTab]);
 
   const baseFilteredProducts = useMemo(() => {
     let products =
@@ -412,7 +408,7 @@ export default function PetProductList() {
         ? mockPetProducts
         : mockPetProducts.filter((product) => product.category === activeTab);
 
-    if (activeTab === "貓咪主食罐" && brandFilter !== ALL_BRANDS) {
+    if (activeTab !== "貓砂/用品" && brandFilter !== ALL_BRANDS) {
       products = products.filter((product) => product.brand === brandFilter);
     }
     if (activeTab === "貓砂/用品" && litterFilter !== ALL_LITTER) {
@@ -560,7 +556,7 @@ export default function PetProductList() {
         })}
       </div>
 
-      {activeTab === "貓咪主食罐" && catCanBrands.length > 0 && (
+      {activeTab !== "貓砂/用品" && availableBrands.length > 0 && (
         <div className="mb-6">
           <select
             value={brandFilter}
@@ -568,7 +564,7 @@ export default function PetProductList() {
             className="w-full max-w-xs rounded-lg border border-cream-border bg-white px-3 py-2 text-sm text-stone-700 outline-none transition focus:border-milktea focus:ring-1 focus:ring-milktea sm:w-auto"
           >
             <option value={ALL_BRANDS}>{ALL_BRANDS}</option>
-            {catCanBrands.map((brand) => (
+            {availableBrands.map((brand) => (
               <option key={brand} value={brand}>
                 {brand}
               </option>
