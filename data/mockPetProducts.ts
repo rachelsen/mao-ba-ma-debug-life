@@ -1915,4 +1915,52 @@ export const mockPetProducts: PetProduct[] = [
     price: 1060,
     affiliateUrl: "https://s.shopee.tw/2LX8MpPxrT",
   },
+  {
+    id: "cat-dry-006",
+    category: "貓咪乾糧",
+    brand: "GO!",
+    name: "成貓配方 無穀貓糧（黑水虻）",
+    image: "/images/products/go-adult-grainfree-blacksoldierfly-cat.png",
+    debugTags: [],
+    features: ["黑水虻", "無穀", "低敏"],
+    dmbCarb: 35,
+    detailedAnalysis: {
+      productType: "乾飼糧",
+      ingredientsText:
+        "乾燥黑水虻幼蟲、豌豆、扁豆、乾燥全蛋、木薯粉、豌豆粉、鷹嘴豆、加拿大芥花油（由天然混合生育酚混合保存）、亞麻籽、天然香料、碳酸鈣、椰子油（由天然混合生育酚混合保存）、磷酸二氫鈣、鹽、乾燥菊苣根、磷酸、DL蛋胺酸、氯化膽鹼、綜合維生素（E、菸鹼酸、維生素C來源、B1、生物素、A、D-泛酸鈣、β-胡蘿蔔素、B2、B6、B12、D3、葉酸）、綜合礦物質（鋅蛋白、硫酸亞鐵、氧化鋅、鐵蛋白、硫酸銅、亞硒酸鈉、銅蛋白、錳蛋白、氧化錳、碘酸鈣）、牛磺酸、乾燥迷迭香。",
+      originCountry: "加拿大",
+      moisture: 10,
+      protein: 30,
+      fat: 15,
+      fiber: 4.5,
+      ash: 9,
+      phosphorus: 0.8,
+      calcium: 1,
+      caPhosRatio: "1.25",
+      kcalPer100g: 414,
+      weightGrams: 1360,
+      listPrice: 1350,
+      salePrice: 1350,
+    },
+    officialFiling: {
+      queryDate: "2026-07-31",
+      records: [
+        {
+          spec: "1.36 公斤",
+          sourceType: "輸入",
+          origin: "—",
+          company: "古迪寵物食品有限公司",
+          subcontractor: "PETCUREAN PET NUTRITION",
+        },
+      ],
+    },
+    aafcoCertified: true,
+    ourCatsRating: [{ cat: "三色蛋", verdict: "like" }],
+    review: {
+      comment:
+        "GO! 成貓配方無穀貓糧黑水虻口味，符合 AAFCO 標準，三色蛋很喜歡。保證分析與熱量（4140kcal/kg）皆取自農業部申報網公開資料，代工廠為加拿大原廠 PETCUREAN PET NUTRITION。官方（含原廠官網）皆未公布磷含量，此處磷含量依無穀貓糧典型值估算約0.8%，非官方數字，磷含量與鈣磷比評分結果僅供參考。",
+    },
+    price: 1350,
+    affiliateUrl: "https://s.shopee.tw/80BV8ZmfxY",
+  },
 ];
