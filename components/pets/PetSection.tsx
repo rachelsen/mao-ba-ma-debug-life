@@ -11,6 +11,8 @@ interface PetProfile {
   role: string;
   description: string;
   imageSrc: string;
+  /** CSS object-position，預設 "50% 14%"，用於裁切照片時對齊臉部位置 */
+  imagePosition?: string;
 }
 
 const pets: PetProfile[] = [
@@ -55,6 +57,14 @@ const pets: PetProfile[] = [
     role: "撒嬌大隊長",
     description: "擁有最可愛的笑容，每天笑嘻嘻迎接每一天。",
     imageSrc: "/images/cats/ruby.png",
+  },
+  {
+    id: "wulong",
+    name: "烏龍",
+    role: "短腿衝刺隊長",
+    description: "有著標誌性的短腿，最愛的日常就是陪小孩玩耍。",
+    imageSrc: "/images/cats/wulong.png",
+    imagePosition: "50% 45%",
   },
 ];
 
@@ -168,7 +178,7 @@ export default function PetSection() {
                     fill
                     sizes="(min-width: 768px) 33vw, 100vw"
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
-                    style={{ objectPosition: "50% 14%" }}
+                    style={{ objectPosition: pet.imagePosition ?? "50% 14%" }}
                   />
                 </div>
 
