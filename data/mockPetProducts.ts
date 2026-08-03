@@ -1648,6 +1648,58 @@ export const mockPetProducts: PetProduct[] = [
     affiliateUrl: "https://s.shopee.tw/111pJ4CVNr",
   },
   {
+    id: "cat-can-030",
+    category: "貓咪主食罐",
+    brand: "魔力喵 迷幻喵 MjAMjAM",
+    name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (馴鹿 x 雞肉 x 胡蘿蔔)",
+    image: "/images/products/mjamjam-reindeer-chicken-carrot.png",
+    debugTags: ["無膠"],
+    features: ["馴鹿", "雞肉", "胡蘿蔔"],
+    dmbCarb: 15.24,
+    detailedAnalysis: {
+      ingredientsText:
+        "42%雞肉（雞肉、心、肝、胗）、31.5%鮮肉汁、20.5%馴鹿肉、5%紅蘿蔔、0.5%礦物質營養素、0.5%乾燥蛋殼（鈣質來源）。",
+      originCountry: "德國",
+      moisture: 79,
+      protein: 10.5,
+      fat: 5,
+      fiber: 0.4,
+      ash: 1.9,
+      phosphorus: 0.18,
+      calcium: 0.26,
+      caPhosRatio: "1.44",
+      sodium: 0.12,
+      kcalPer100g: 90.5,
+      weightGrams: 400,
+      listPrice: 160,
+      salePrice: 160,
+    },
+    officialFiling: {
+      queryDate: "2026-07-31",
+      records: [
+        {
+          spec: "400g（0.4公斤）",
+          sourceType: "輸入",
+          origin: "—",
+          company: "壹士達寵物有限公司",
+          subcontractor: "Mjamjam",
+        },
+      ],
+    },
+    aafcoCertified: true,
+    certStandard: "FEDIAF",
+    ourCatsRating: [
+      { cat: "三色蛋", verdict: "like" },
+      { cat: "烏克", verdict: "like" },
+    ],
+    review: {
+      comment:
+        "MjAMjAM 德國魔力喵鮮肉主食罐馴鹿x雞肉x胡蘿蔔口味，成分乾淨無爭議性膠類，符合 FEDIAF 標準，三色蛋、烏克都愛吃。保證分析（含鈣磷）取自農業部申報網公開資料；官方申報未標示熱量，此處熱量（約90.5kcal/100g）依蛋白質/脂肪/碳水回推估算，非官方數字。鈣磷比約1.44，略超出理想範圍 1.1-1.4，建議留意。",
+    },
+    price: 160,
+    affiliateUrl: "https://s.shopee.tw/111pJ4CVNr",
+  },
+  {
     id: "dog-can-000",
     category: "狗狗主食罐",
     brand: "Cesar 西莎",
