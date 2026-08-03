@@ -167,7 +167,7 @@ export default function PetSection() {
             <div
               key={pet.id}
               data-pet-card
-              className="group flex w-[80%] shrink-0 snap-start flex-col justify-between rounded-2xl border border-slate-100 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md sm:w-[45%] md:w-[calc(33.333%-1.4rem)]"
+              className="group flex w-[80%] shrink-0 snap-start flex-col justify-between rounded-2xl border border-slate-100 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md sm:w-[45%] md:w-[calc(33.333%-1.4rem)] lg:w-[calc(20%-1.6rem)]"
             >
               <div>
                 {/* Image Container：固定 1:1 比例，裁切比例不受視窗寬度影響 */}
