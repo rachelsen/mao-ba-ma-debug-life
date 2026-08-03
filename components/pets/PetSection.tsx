@@ -1,6 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
-import { Home, Sparkles } from "lucide-react";
+import { useEffect, useRef } from "react";
+import { ChevronLeft, ChevronRight, Home, Sparkles } from "lucide-react";
 
 interface PetProfile {
   id: string;
@@ -32,9 +35,58 @@ const pets: PetProfile[] = [
     description: "擁有超級爆毛的粉紅小山竹，負責嚴格把關生活品質與肉乾 CP 值。",
     imageSrc: "/images/cats/norwegian-forest.png",
   },
+  {
+    id: "sansedan",
+    name: "三色蛋",
+    role: "高蛋白食品鑑定師",
+    description: "試吃各種高蛋白食品，幫助大家一起長肌肉。",
+    imageSrc: "/images/cats/calico.png",
+  },
+  {
+    id: "wuke",
+    name: "烏克",
+    role: "食品耐受性分析師",
+    description: "我很容易噴吐，所以拔麻幫我挑最適合我的！",
+    imageSrc: "/images/cats/wuke.png",
+  },
 ];
 
+const AUTOPLAY_INTERVAL_MS = 4000;
+
 export default function PetSection() {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const isPausedRef = useRef(false);
+
+  const scrollByCard = (direction: "prev" | "next") => {
+    const track = trackRef.current;
+    if (!track) return;
+    const card = track.querySelector<HTMLElement>("[data-pet-card]");
+    const cardWidth = card ? card.offsetWidth + 32 : track.clientWidth;
+
+    // 已滑到底時，往下一張會直接跳回開頭，做成循環輪播
+    if (
+      direction === "next" &&
+      track.scrollLeft + track.clientWidth >= track.scrollWidth - 4
+    ) {
+      track.scrollTo({ left: 0, behavior: "smooth" });
+      return;
+    }
+
+    track.scrollBy({
+      left: direction === "next" ? cardWidth : -cardWidth,
+      behavior: "smooth",
+    });
+  };
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      if (!isPausedRef.current) {
+        scrollByCard("next");
+      }
+    }, AUTOPLAY_INTERVAL_MS);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section id="pet-section" className="w-full rounded-3xl bg-white px-4 py-16 transition-colors duration-300 md:px-8">
       <div className="mx-auto max-w-6xl">
@@ -53,8 +105,28 @@ export default function PetSection() {
             </p>
           </div>
 
-          {/* 回到首頁按鈕 */}
-          <div className="flex items-center">
+          <div className="flex items-center gap-3">
+            {/* 輪播控制按鈕 */}
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => scrollByCard("prev")}
+                aria-label="上一位"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 text-slate-600 transition-colors hover:border-orange-300 hover:bg-orange-50 hover:text-orange-500 active:scale-95"
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </button>
+              <button
+                type="button"
+                onClick={() => scrollByCard("next")}
+                aria-label="下一位"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 text-slate-600 transition-colors hover:border-orange-300 hover:bg-orange-50 hover:text-orange-500 active:scale-95"
+              >
+                <ChevronRight className="h-5 w-5" />
+              </button>
+            </div>
+
+            {/* 回到首頁按鈕 */}
             <Link
               href="/"
               className="group inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-2.5 text-sm font-medium text-white shadow-sm transition-all duration-200 hover:bg-orange-500 hover:shadow-md active:scale-95"
@@ -65,12 +137,20 @@ export default function PetSection() {
           </div>
         </div>
 
-        {/* Pet Cards Grid */}
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+        {/* Pet Cards 輪播 */}
+        <div
+          ref={trackRef}
+          onMouseEnter={() => (isPausedRef.current = true)}
+          onMouseLeave={() => (isPausedRef.current = false)}
+          onTouchStart={() => (isPausedRef.current = true)}
+          onTouchEnd={() => (isPausedRef.current = false)}
+          className="flex snap-x snap-mandatory gap-8 overflow-x-auto scroll-smooth pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
           {pets.map((pet) => (
             <div
               key={pet.id}
-              className="group flex flex-col justify-between rounded-2xl border border-slate-100 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
+              data-pet-card
+              className="group flex w-[80%] shrink-0 snap-start flex-col justify-between rounded-2xl border border-slate-100 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md sm:w-[45%] md:w-[calc(33.333%-1.4rem)]"
             >
               <div>
                 {/* Image Container：固定 1:1 比例，裁切比例不受視窗寬度影響 */}
