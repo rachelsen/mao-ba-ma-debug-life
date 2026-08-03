@@ -5,7 +5,7 @@ export type PetProductCategory =
   | "狗狗主食罐"
   | "狗狗乾糧"
   | "毛孩保健品"
-  | "處方飼料";
+  | "貓咪處方乾糧";
 
 /** 「貓砂/用品」分類專用的子分類，用於下拉篩選 */
 export type LitterSubCategory = "礦砂" | "豆腐砂" | "用品";
@@ -93,9 +93,9 @@ export interface PetProductOfficialFiling {
 }
 
 /**
- * 「處方飼料」專用資訊。處方飼料是為特定病理狀況設計（例如腎臟病刻意降蛋白、
+ * 「貓咪處方乾糧」專用資訊。貓咪處方乾糧是為特定病理狀況設計（例如腎臟病刻意降蛋白、
  * 泌尿道刻意調整礦物質與誘導尿液 pH），套用一般保健飼料的評分邏輯會誤導，
- * 故處方飼料一律不計分，改用這裡的臨床向欄位做同分類內的比較。
+ * 故貓咪處方乾糧一律不計分，改用這裡的臨床向欄位做同分類內的比較。
  */
 export interface PetProductPrescriptionInfo {
   /** 適應症／設計目標，例如 "貓下泌尿道疾病（FLUTD）／結石溶解與預防" */
@@ -123,7 +123,7 @@ export interface PetProduct {
   partialNutrition?: PetProductPartialNutrition;
   /** 農業部寵物食品申報網查詢結果，人工核對後靜態記錄 */
   officialFiling?: PetProductOfficialFiling;
-  /** 「處方飼料」分類專用，有值時商品卡片不計分、改顯示處方資訊 */
+  /** 「貓咪處方乾糧」分類專用，有值時商品卡片不計分、改顯示處方資訊 */
   prescriptionInfo?: PetProductPrescriptionInfo;
   /** Engineering Debug 標籤，例如 [無膠/低敏]、[乾物質碳水 5.2%] */
   debugTags: string[];
@@ -2748,11 +2748,11 @@ export const mockPetProducts: PetProduct[] = [
   },
   {
     id: "cat-rx-001",
-    category: "處方飼料",
+    category: "貓咪處方乾糧",
     brand: "ROYAL CANIN 法國皇家 處方",
     name: "貓 泌尿道低卡路里配方 UMC34 (1.5kg)",
     image: "/images/products/royalcanin-urinary-umc34.png",
-    debugTags: ["處方飼料"],
+    debugTags: ["貓咪處方乾糧"],
     features: ["泌尿道保健", "低卡"],
     partialNutrition: {
       ingredientsText:
@@ -2767,7 +2767,7 @@ export const mockPetProducts: PetProduct[] = [
         { label: "EPA+DHA", value: "0.32%" },
       ],
       note:
-        "官方申報未列水分／灰分／鈣／磷數值。本品為處方飼料，屬特定病理狀況設計配方，不適用本站一般保健飼料評分邏輯，故不計分。",
+        "官方申報未列水分／灰分／鈣／磷數值。本品為貓咪處方乾糧，屬特定病理狀況設計配方，不適用本站一般保健飼料評分邏輯，故不計分。",
     },
     officialFiling: {
       queryDate: "2026-08-03",
@@ -2791,18 +2791,18 @@ export const mockPetProducts: PetProduct[] = [
     },
     review: {
       comment:
-        "ROYAL CANIN 法國皇家處方貓泌尿道低卡路里配方（UMC34），為特定病理狀況設計的處方飼料，非一般保健飼料，故不套用本站一般評分邏輯。官方申報標示為特殊配方、須遵照獸醫師指示使用，代謝能量僅351.6kcal/100g，明顯低於一般成貓飼料。官方僅揭露蛋白質／脂肪／纖維／熱量等基本數值，未列水分、灰分、鈣磷與尿液pH誘導範圍，完整臨床資訊建議洽詢獸醫。貓咪表示愛吃。",
+        "ROYAL CANIN 法國皇家處方貓泌尿道低卡路里配方（UMC34），為特定病理狀況設計的貓咪處方乾糧，非一般保健飼料，故不套用本站一般評分邏輯。官方申報標示為特殊配方、須遵照獸醫師指示使用，代謝能量僅351.6kcal/100g，明顯低於一般成貓飼料。官方僅揭露蛋白質／脂肪／纖維／熱量等基本數值，未列水分、灰分、鈣磷與尿液pH誘導範圍，完整臨床資訊建議洽詢獸醫。貓咪表示愛吃。",
     },
     price: 717,
     affiliateUrl: "https://s.shopee.tw/50XyITJl8R",
   },
   {
     id: "cat-rx-002",
-    category: "處方飼料",
+    category: "貓咪處方乾糧",
     brand: "ROYAL CANIN 法國皇家 處方",
     name: "貓 泌尿道配方 LP34 (1.5kg)",
     image: "/images/products/royalcanin-urinary-lp34.png",
-    debugTags: ["處方飼料"],
+    debugTags: ["貓咪處方乾糧"],
     features: ["泌尿道保健"],
     partialNutrition: {
       ingredientsText:
@@ -2817,7 +2817,7 @@ export const mockPetProducts: PetProduct[] = [
         { label: "EPA+DHA", value: "0.32%" },
       ],
       note:
-        "官方申報未列水分／灰分／鈣／磷數值。本品為處方飼料，屬特定病理狀況設計配方，不適用本站一般保健飼料評分邏輯，故不計分。⚠️ 此份申報的保證分析數值與同系列UMC34（低卡版）完全相同，疑似廠商申報時援用同一份制式資料，未反映兩者實際熱量差異，請以包裝實際標示為準。",
+        "官方申報未列水分／灰分／鈣／磷數值。本品為貓咪處方乾糧，屬特定病理狀況設計配方，不適用本站一般保健飼料評分邏輯，故不計分。⚠️ 此份申報的保證分析數值與同系列UMC34（低卡版）完全相同，疑似廠商申報時援用同一份制式資料，未反映兩者實際熱量差異，請以包裝實際標示為準。",
     },
     officialFiling: {
       queryDate: "2026-08-03",
@@ -2841,7 +2841,7 @@ export const mockPetProducts: PetProduct[] = [
     },
     review: {
       comment:
-        "ROYAL CANIN 法國皇家處方貓泌尿道配方（LP34，一般版），為特定病理狀況設計的處方飼料，非一般保健飼料，故不套用本站一般評分邏輯。官方申報標示為特殊配方、須遵照獸醫師指示使用。留意：官方申報的保證分析數值（蛋白質34%、脂肪11%、代謝能量351.6kcal/100g等）與同系列UMC34低卡版完全相同，可能是廠商申報時援用同一份制式資料、未反映兩者實際熱量差異，建議以包裝實際標示為準。貓咪表示愛吃。",
+        "ROYAL CANIN 法國皇家處方貓泌尿道配方（LP34，一般版），為特定病理狀況設計的貓咪處方乾糧，非一般保健飼料，故不套用本站一般評分邏輯。官方申報標示為特殊配方、須遵照獸醫師指示使用。留意：官方申報的保證分析數值（蛋白質34%、脂肪11%、代謝能量351.6kcal/100g等）與同系列UMC34低卡版完全相同，可能是廠商申報時援用同一份制式資料、未反映兩者實際熱量差異，建議以包裝實際標示為準。貓咪表示愛吃。",
     },
     price: 765,
     affiliateUrl: "https://s.shopee.tw/50XyITJl8R",

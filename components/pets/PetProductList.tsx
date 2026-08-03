@@ -29,7 +29,7 @@ const TABS: (typeof ALL | PetProductCategory)[] = [
   "狗狗主食罐",
   "狗狗乾糧",
   "毛孩保健品",
-  "處方飼料",
+  "貓咪處方乾糧",
 ];
 
 const LITTER_SUB_CATEGORIES: LitterSubCategory[] = ["礦砂", "豆腐砂", "用品"];
@@ -171,9 +171,9 @@ function scoreProtein(dmProtein: number, isDog: boolean) {
  * 兩者皆無資料時回傳 null，不硬算分數。
  */
 function computeProductScore(product: PetProduct): ProductScore | null {
-  // 處方飼料是為特定病理狀況設計（例如刻意降蛋白／調整礦物質），
+  // 貓咪處方乾糧是為特定病理狀況設計（例如刻意降蛋白／調整礦物質），
   // 套用一般保健飼料的評分邏輯會誤導使用者，故一律不計分。
-  if (product.category === "處方飼料") return null;
+  if (product.category === "貓咪處方乾糧") return null;
 
   const isDog = isDogCategory(product.category);
   const isDry = isDryCategory(product.category);
@@ -729,7 +729,7 @@ function ProductCard({
           </div>
         </div>
         {score && <ScoreBadge score={score} />}
-        {!score && product.category === "處方飼料" && (
+        {!score && product.category === "貓咪處方乾糧" && (
           <PrescriptionBadge info={product.prescriptionInfo} />
         )}
         <MyCatLikes productId={product.id} ourCatsRating={product.ourCatsRating} />
@@ -812,7 +812,7 @@ function ProductCard({
               <ScoreBreakdown score={score} />
             </div>
           )}
-          {!score && product.category === "處方飼料" && product.prescriptionInfo && (
+          {!score && product.category === "貓咪處方乾糧" && product.prescriptionInfo && (
             <div className="mt-3">
               <PrescriptionInfoBox info={product.prescriptionInfo} />
             </div>
@@ -951,7 +951,7 @@ function PrescriptionBadge({ info }: { info?: PetProductPrescriptionInfo }) {
       </div>
       <div>
         <span className="inline-block rounded-full border border-rose-300 bg-rose-100 px-2 py-0.5 text-xs font-semibold text-rose-600">
-          處方飼料
+          貓咪處方乾糧
         </span>
         <p className="mt-1 text-[10px] text-stone-400">
           {info?.requiresVetPrescription
@@ -966,7 +966,7 @@ function PrescriptionBadge({ info }: { info?: PetProductPrescriptionInfo }) {
 function PrescriptionInfoBox({ info }: { info: PetProductPrescriptionInfo }) {
   return (
     <div className="rounded-xl border border-rose-200 bg-rose-50/40 p-3 text-xs">
-      <p className="font-semibold text-rose-600">⚕️ 處方飼料資訊</p>
+      <p className="font-semibold text-rose-600">⚕️ 貓咪處方乾糧資訊</p>
       <dl className="mt-2 flex flex-col gap-1.5">
         <div className="flex justify-between gap-3">
           <dt className="shrink-0 text-stone-500">適應症／設計目標</dt>
@@ -993,7 +993,7 @@ function PrescriptionInfoBox({ info }: { info: PetProductPrescriptionInfo }) {
       </dl>
       {info.note && <p className="mt-2 text-stone-500">📌 {info.note}</p>}
       <p className="mt-2 text-stone-400">
-        ⓘ 處方飼料是為特定病理狀況設計，刻意調整蛋白質／礦物質等比例，套用一般保健飼料的評分邏輯會誤導，故不計分。請務必經獸醫診斷評估後使用，不要自行更換或長期餵食。
+        ⓘ 貓咪處方乾糧是為特定病理狀況設計，刻意調整蛋白質／礦物質等比例，套用一般保健飼料的評分邏輯會誤導，故不計分。請務必經獸醫診斷評估後使用，不要自行更換或長期餵食。
       </p>
     </div>
   );
