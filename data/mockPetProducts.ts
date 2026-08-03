@@ -1545,6 +1545,57 @@ export const mockPetProducts: PetProduct[] = [
     affiliateUrl: "https://s.shopee.tw/6L3LdD8AMZ",
   },
   {
+    id: "cat-can-028",
+    category: "貓咪主食罐",
+    brand: "魔力喵 迷幻喵 MjAMjAM",
+    name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (麵包蟲 x 多汁雞肉)",
+    image: "/images/products/mjamjam-mealworm-chicken.png",
+    debugTags: ["無膠"],
+    features: ["麵包蟲", "雞肉"],
+    dmbCarb: 1.67,
+    detailedAnalysis: {
+      ingredientsText:
+        "36.5%雞肉、32%麵包蟲、30.5%鮮肉汁、0.5%礦物質營養素、0.5%乾燥蛋殼（鈣質來源）。",
+      originCountry: "德國",
+      moisture: 82,
+      protein: 10,
+      fat: 5.5,
+      fiber: 0.4,
+      ash: 1.8,
+      phosphorus: 0.25,
+      calcium: 0.3,
+      caPhosRatio: "1.2",
+      kcalPer100g: 82.8,
+      weightGrams: 400,
+      listPrice: 160,
+      salePrice: 160,
+    },
+    officialFiling: {
+      queryDate: "2026-07-31",
+      records: [
+        {
+          spec: "400g（0.4公斤）",
+          sourceType: "輸入",
+          origin: "—",
+          company: "壹士達寵物有限公司",
+          subcontractor: "Mjamjam",
+        },
+      ],
+    },
+    aafcoCertified: true,
+    certStandard: "FEDIAF",
+    ourCatsRating: [
+      { cat: "三色蛋", verdict: "like" },
+      { cat: "烏克", verdict: "like" },
+    ],
+    review: {
+      comment:
+        "MjAMjAM 德國魔力喵鮮肉主食罐麵包蟲x多汁雞肉口味，成分乾淨無爭議性膠類，符合 FEDIAF 標準，三色蛋、烏克都愛吃。官方申報未標示鈣、磷與熱量，此處鈣、磷依同系列產品典型值估算（鈣0.3%、磷0.25%），熱量（約82.8kcal/100g）依蛋白質/脂肪/碳水回推估算，皆非官方數字，相關評分結果僅供參考。",
+    },
+    price: 160,
+    affiliateUrl: "https://s.shopee.tw/111pJ4CVNr",
+  },
+  {
     id: "dog-can-000",
     category: "狗狗主食罐",
     brand: "Cesar 西莎",
