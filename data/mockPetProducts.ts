@@ -1,6 +1,7 @@
 export type PetProductCategory =
   | "貓咪主食罐"
   | "貓咪乾糧"
+  | "貓咪零食"
   | "貓砂/用品"
   | "狗狗主食罐"
   | "狗狗乾糧"
@@ -2845,5 +2846,51 @@ export const mockPetProducts: PetProduct[] = [
     },
     price: 765,
     affiliateUrl: "https://s.shopee.tw/50XyITJl8R",
+  },
+  {
+    id: "cat-snack-000",
+    category: "貓咪零食",
+    brand: "TAPAZO特百滋",
+    name: "貓用老饕鮮味盤(霸王大草蝦)凍乾 (20g)",
+    image: "/images/products/tapazo-perfect-cuts-grass-shrimp.png",
+    debugTags: [],
+    features: ["草蝦", "凍乾", "單一肉源"],
+    partialNutrition: {
+      ingredientsText: "草蝦仁、殺菌液蛋、茶胺酸、木天蓼。",
+      items: [
+        { label: "粗蛋白質(min)", value: "79.5%" },
+        { label: "粗脂肪(min)", value: "6.0%" },
+        { label: "粗纖維(max)", value: "0.1%" },
+        { label: "粗灰分(max)", value: "13.0%" },
+        { label: "水分(max)", value: "5%" },
+        { label: "熱量", value: "361 kcal/100g" },
+      ],
+      note:
+        "官方保證分析未列出鈣、磷數值，故磷含量與鈣磷比無法計分，總分是用其餘三項（碳水、AAFCO、蛋白質，滿分60）按比例換算成 100 分制，僅供粗略參考。本品為零食非主食，官方申報用途為「零食，請依貓咪體型適量給予」，未標示 AAFCO／FEDIAF 完整均衡標準，不建議取代正餐。",
+      estimateInputs: { protein: 79.5, fat: 6, fiber: 0.1, moisture: 5 },
+    },
+    officialFiling: {
+      queryDate: "2026-08-03",
+      records: [
+        {
+          spec: "0.02 公斤",
+          sourceType: "委託代工廠製造",
+          origin: "台灣",
+          company: "艾澌克企業股份有限公司",
+          subcontractor: "—",
+        },
+      ],
+    },
+    ourCatsRating: [
+      { cat: "本丸", verdict: "like" },
+      { cat: "麻糬", verdict: "like" },
+      { cat: "海苔", verdict: "like" },
+    ],
+    review: {
+      comment:
+        "TAPAZO特百滋Perfect Cuts老饕鮮味盤霸王大草蝦凍乾，單一草蝦肉源、蛋白質高達79.5%，本丸、麻糬、海苔都超愛。保證分析與熱量（361kcal/100g）皆取自農業部申報網公開資料，官方申報明確定位為零食，未標示AAFCO／FEDIAF均衡標準，也未列出鈣磷數值，故僅能用碳水/蛋白質/AAFCO三項估算分數，僅供參考，不建議取代正餐。",
+    },
+    price: 149,
+    affiliateUrl: "https://s.shopee.tw/5ArOa2s95t",
   },
 ];

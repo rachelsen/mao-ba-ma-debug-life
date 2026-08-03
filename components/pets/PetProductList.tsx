@@ -25,6 +25,7 @@ const TABS: (typeof ALL | PetProductCategory)[] = [
   ALL,
   "貓咪主食罐",
   "貓咪乾糧",
+  "貓咪零食",
   "貓砂/用品",
   "狗狗主食罐",
   "狗狗乾糧",
