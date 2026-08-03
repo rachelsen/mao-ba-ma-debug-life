@@ -1804,7 +1804,7 @@ export const mockPetProducts: PetProduct[] = [
     id: "cat-can-033",
     category: "貓咪主食罐",
     brand: "魔力喵 迷幻喵 MjAMjAM",
-    name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (多汁雞)",
+    name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (多汁雞肉 x 花椰菜)",
     image: "/images/products/mjamjam-chicken-cauliflower.png",
     debugTags: ["無膠"],
     features: ["雞肉", "花椰菜"],
