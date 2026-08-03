@@ -13,6 +13,7 @@ import {
   type PetProductDetailedAnalysis,
   type PetProductPartialNutrition,
   type PetProductOfficialFiling,
+  type PetProductPrescriptionInfo,
 } from "@/data/mockPetProducts";
 import { useFavoriteQuantities } from "@/lib/useFavoriteQuantities";
 
@@ -28,6 +29,7 @@ const TABS: (typeof ALL | PetProductCategory)[] = [
   "狗狗主食罐",
   "狗狗乾糧",
   "毛孩保健品",
+  "處方飼料",
 ];
 
 const LITTER_SUB_CATEGORIES: LitterSubCategory[] = ["礦砂", "豆腐砂", "用品"];
@@ -169,6 +171,10 @@ function scoreProtein(dmProtein: number, isDog: boolean) {
  * 兩者皆無資料時回傳 null，不硬算分數。
  */
 function computeProductScore(product: PetProduct): ProductScore | null {
+  // 處方飼料是為特定病理狀況設計（例如刻意降蛋白／調整礦物質），
+  // 套用一般保健飼料的評分邏輯會誤導使用者，故一律不計分。
+  if (product.category === "處方飼料") return null;
+
   const isDog = isDogCategory(product.category);
   const isDry = isDryCategory(product.category);
   const analysis = product.detailedAnalysis;
@@ -723,6 +729,9 @@ function ProductCard({
           </div>
         </div>
         {score && <ScoreBadge score={score} />}
+        {!score && product.category === "處方飼料" && (
+          <PrescriptionBadge info={product.prescriptionInfo} />
+        )}
         <MyCatLikes productId={product.id} ourCatsRating={product.ourCatsRating} />
       </div>
 
@@ -801,6 +810,11 @@ function ProductCard({
           {score && (
             <div className="mt-3">
               <ScoreBreakdown score={score} />
+            </div>
+          )}
+          {!score && product.category === "處方飼料" && product.prescriptionInfo && (
+            <div className="mt-3">
+              <PrescriptionInfoBox info={product.prescriptionInfo} />
             </div>
           )}
 
@@ -924,6 +938,62 @@ function ScoreBreakdown({ score }: { score: ProductScore }) {
         這是毛拔麻自訂的評分邏輯（非取自其他網站），依磷含量、碳水、AAFCO／FEDIAF、鈣磷比、蛋白質五項計算，僅供參考，不是醫療建議。
         {score.isEstimate &&
           "此商品缺灰分／磷／熱量資料，磷與鈣磷比無法計分，總分是用其餘三項（碳水、AAFCO、蛋白質，滿分60）按比例換算成 100 分制，僅供粗略參考，不代表完整評分。"}
+      </p>
+    </div>
+  );
+}
+
+function PrescriptionBadge({ info }: { info?: PetProductPrescriptionInfo }) {
+  return (
+    <div className="flex items-center gap-3 rounded-xl border border-dashed border-rose-300 bg-rose-50/50 p-3">
+      <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border-2 border-dashed border-rose-300 bg-white text-2xl">
+        ⚕️
+      </div>
+      <div>
+        <span className="inline-block rounded-full border border-rose-300 bg-rose-100 px-2 py-0.5 text-xs font-semibold text-rose-600">
+          處方飼料
+        </span>
+        <p className="mt-1 text-[10px] text-stone-400">
+          {info?.requiresVetPrescription
+            ? "需憑獸醫處方使用，不適用一般評分"
+            : "特殊配方，不適用一般評分"}
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function PrescriptionInfoBox({ info }: { info: PetProductPrescriptionInfo }) {
+  return (
+    <div className="rounded-xl border border-rose-200 bg-rose-50/40 p-3 text-xs">
+      <p className="font-semibold text-rose-600">⚕️ 處方飼料資訊</p>
+      <dl className="mt-2 flex flex-col gap-1.5">
+        <div className="flex justify-between gap-3">
+          <dt className="shrink-0 text-stone-500">適應症／設計目標</dt>
+          <dd className="text-right font-semibold text-stone-700">{info.indication}</dd>
+        </div>
+        <div className="flex justify-between gap-3">
+          <dt className="shrink-0 text-stone-500">是否需獸醫處方</dt>
+          <dd className="text-right font-semibold text-stone-700">
+            {info.requiresVetPrescription ? "是" : "否，但建議獸醫評估後使用"}
+          </dd>
+        </div>
+        {info.targetUrinePh && (
+          <div className="flex justify-between gap-3">
+            <dt className="shrink-0 text-stone-500">目標尿液 pH 誘導範圍</dt>
+            <dd className="text-right font-semibold text-stone-700">{info.targetUrinePh}</dd>
+          </div>
+        )}
+        {info.keyMechanism && (
+          <div className="flex justify-between gap-3">
+            <dt className="shrink-0 text-stone-500">關鍵機制</dt>
+            <dd className="text-right font-semibold text-stone-700">{info.keyMechanism}</dd>
+          </div>
+        )}
+      </dl>
+      {info.note && <p className="mt-2 text-stone-500">📌 {info.note}</p>}
+      <p className="mt-2 text-stone-400">
+        ⓘ 處方飼料是為特定病理狀況設計，刻意調整蛋白質／礦物質等比例，套用一般保健飼料的評分邏輯會誤導，故不計分。請務必經獸醫診斷評估後使用，不要自行更換或長期餵食。
       </p>
     </div>
   );
