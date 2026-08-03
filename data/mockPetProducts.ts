@@ -1443,6 +1443,57 @@ export const mockPetProducts: PetProduct[] = [
     affiliateUrl: "https://s.shopee.tw/9zwZGcffVF",
   },
   {
+    id: "cat-can-026",
+    category: "貓咪主食罐",
+    brand: "TAPAZO特百滋",
+    name: "貓用主廚鮮肉派 (鵪鶉燉雞)",
+    image: "/images/products/tapazo-chef-pie-quail-chicken.png",
+    debugTags: ["無膠"],
+    features: ["雞肉", "鵪鶉"],
+    dmbCarb: 0.48,
+    detailedAnalysis: {
+      ingredientsText:
+        "雞肉、鵪鶉肉、雞心、雞肝、寒天、乾燥酵母、綜合胺基酸、複合維生素（A、B1、B2、菸鹼酸、泛酸、B6、葉酸、B12、C、D、E）、複合礦物質（鈣、磷、鎂、銅、鐵、鋅、鉻、錳、碘）、牛磺酸、甘露寡糖。",
+      originCountry: "台灣",
+      moisture: 79,
+      protein: 13,
+      fat: 6,
+      fiber: 0.2,
+      ash: 1.7,
+      phosphorus: 0.17,
+      calcium: 0.21,
+      caPhosRatio: "1.24",
+      kcalPer100g: 110,
+      weightGrams: 80,
+      listPrice: 38,
+      salePrice: 38,
+    },
+    officialFiling: {
+      queryDate: "2026-07-31",
+      records: [
+        {
+          spec: "80g（0.08公斤）",
+          sourceType: "委託代工廠製造",
+          origin: "—",
+          company: "艾澌克企業股份有限公司",
+          subcontractor: "—",
+        },
+      ],
+    },
+    aafcoCertified: true,
+    ourCatsRating: [
+      { cat: "志龍", verdict: "like" },
+      { cat: "豆豆龍", verdict: "like" },
+      { cat: "烏龍", verdict: "like" },
+    ],
+    review: {
+      comment:
+        "TAPAZO特百滋貓用主廚鮮肉派鵪鶉燉雞口味，全肉配方成分乾淨無爭議性膠類，符合 AAFCO 標準，志龍、豆豆龍、烏龍都愛吃。保證分析與熱量（110kcal/100g）皆取自農業部申報網公開資料；官方數值為邊界保證值（水分80%以下、蛋白質13%以上等）加總逼近100%，DMB碳水以接近邊界的合理值估算約0.48%，實際應更接近0%。鈣磷比約1.24，落在理想範圍內。",
+    },
+    price: 38,
+    affiliateUrl: "https://s.shopee.tw/6L3LdD8AMZ",
+  },
+  {
     id: "dog-can-000",
     category: "狗狗主食罐",
     brand: "Cesar 西莎",
