@@ -49,6 +49,13 @@ const pets: PetProfile[] = [
     description: "我很容易噴吐，所以拔麻幫我挑最適合我的！",
     imageSrc: "/images/cats/wuke.png",
   },
+  {
+    id: "ruby",
+    name: "露比",
+    role: "撒嬌大隊長",
+    description: "擁有最可愛的笑容，每天笑嘻嘻迎接每一天。",
+    imageSrc: "/images/cats/ruby.png",
+  },
 ];
 
 const AUTOPLAY_INTERVAL_MS = 4000;
