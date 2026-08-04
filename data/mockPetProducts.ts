@@ -3062,4 +3062,55 @@ export const mockPetProducts: PetProduct[] = [
     price: 379,
     affiliateUrl: "https://s.shopee.tw/qiQXqUFwA",
   },
+  {
+    id: "cat-dry-013",
+    category: "貓咪乾糧",
+    brand: "Mobby 莫比",
+    name: "無穀配方 (鹿肉 x 鮭魚) (1.5kg)",
+    image: "/images/products/mobby-choice-grainfree-venison-salmon.png",
+    debugTags: [],
+    features: ["鹿肉", "鮭魚", "無穀"],
+    dmbCarb: 21.11,
+    detailedAnalysis: {
+      productType: "乾飼糧",
+      ingredientsText:
+        "雞肉粉，海魚粉，豌豆，甜薯，雞脂(以混合生育酚-維生素E保鮮)，馬鈴薯蛋白質，鹿肉，燻鮭魚，蛋胺酸，牛磺酸，氯化膽鹼，乾菊苣根，番茄，藍莓，覆盆子，絲蘭萃取物，腸道益生菌群，維生素E，菸鹼酸，螯合錳，螯合銅，硫化鋅，硫化錳，硫化銅。",
+      originCountry: "美國",
+      moisture: 10,
+      protein: 43,
+      fat: 18,
+      fiber: 2,
+      ash: 8,
+      phosphorus: 1,
+      calcium: 1.5,
+      kcalPer100g: 374.5,
+      weightGrams: 1500,
+      listPrice: 489,
+      salePrice: 489,
+    },
+    officialFiling: {
+      queryDate: "2026-08-04",
+      records: [
+        {
+          spec: "1.5 公斤",
+          sourceType: "輸入",
+          origin: "—",
+          company: "博東客企業有限公司",
+          subcontractor: "原始風味寵物食品",
+        },
+      ],
+    },
+    aafcoCertified: true,
+    ourCatsRating: [
+      { cat: "本丸", verdict: "like" },
+      { cat: "麻糬", verdict: "like" },
+      { cat: "海苔", verdict: "like" },
+    ],
+    review: {
+      comment:
+        "Mobby莫比自然食無穀配方鹿肉x鮭魚，本丸、麻糬、海苔都愛吃。這款原料確實無穀（豌豆、甜薯、馬鈴薯蛋白質為主），符合無穀標示。保證分析（蛋白質43%、脂肪18%、灰分8%、纖維2%、鈣1.5%、磷1%）取自農業部申報網公開資料；官方未列出熱量，此處熱量（374.5kcal/100g，即3745kcal/kg）取自品牌授權經銷網站標示的營養標示表格，非官方申報數字，多家經銷網站數字一致，並標示產地為美國。鈣磷比約1.5，略高於理想範圍 1.1-1.4，建議留意。AAFCO標示依品牌官方文案與多家經銷網站說明認定，官方申報本身未附此項聲明。",
+    },
+    price: 489,
+    affiliateUrl: "https://s.shopee.tw/qiQXqUFwA",
+  },
 ];
