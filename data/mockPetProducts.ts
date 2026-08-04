@@ -3159,4 +3159,55 @@ export const mockPetProducts: PetProduct[] = [
     price: 489,
     affiliateUrl: "https://s.shopee.tw/qiQXqUFwA",
   },
+  {
+    id: "cat-dry-015",
+    category: "貓咪乾糧",
+    brand: "Mobby 莫比",
+    name: "挑嘴成貓饕客配方 (雞肉&米) (1.5kg)",
+    image: "/images/products/mobby-choice-fussy-adult.png",
+    debugTags: ["含穀（非無穀）"],
+    features: ["挑嘴", "雞肉", "鮭魚"],
+    dmbCarb: 31.11,
+    detailedAnalysis: {
+      productType: "乾飼糧",
+      ingredientsText:
+        "新鮮雞肉，新鮮鮭魚，雞肉粉，整粒白米，雞脂(以混合生育酚-維生素E保鮮)，燕麥片，馬鈴薯，大麥，亞麻籽，硫酸氫鈉，氯化鉀，DL-蛋氨酸，氯化膽鹼，雞蛋衍生物，胡蘿蔔，豌豆，蘋果，番茄，藍莓，菠菜，海帶，蔓越莓粉，迷迭香萃取物，洋香菜薄片，乾菊苣根，牛磺酸，絲蘭萃取物，乾腸球菌發酵物，嗜酸乳桿A菌，乾酪乳桿C菌和植物乳桿菌，乾木黴發酵萃取物，維生素與礦物質。",
+      originCountry: "美國",
+      moisture: 10,
+      protein: 34,
+      fat: 18,
+      fiber: 3,
+      ash: 7,
+      phosphorus: 1.2,
+      calcium: 1.5,
+      kcalPer100g: 384.4,
+      weightGrams: 1500,
+      listPrice: 379,
+      salePrice: 379,
+    },
+    officialFiling: {
+      queryDate: "2026-08-04",
+      records: [
+        {
+          spec: "1.5 公斤",
+          sourceType: "輸入",
+          origin: "—",
+          company: "博東客企業有限公司",
+          subcontractor: "鑽石寵物食品",
+        },
+      ],
+    },
+    aafcoCertified: true,
+    ourCatsRating: [
+      { cat: "本丸", verdict: "like" },
+      { cat: "麻糬", verdict: "like" },
+      { cat: "海苔", verdict: "like" },
+    ],
+    review: {
+      comment:
+        "Mobby莫比自然食挑嘴成貓饕客配方，新鮮雞肉搭配新鮮鮭魚，本丸、麻糬、海苔都愛吃。⚠️ 提醒：官方申報名稱含「米」，原料也有整粒白米、燕麥片、大麥，並非無穀配方。保證分析（蛋白質34%、脂肪18%、灰分7%、纖維3%、鈣1.5%、磷1.2%）取自農業部申報網公開資料，鈣磷比約1.25，落在理想範圍內。官方未列出熱量，此處熱量（384.4kcal/100g，即3844kcal/kg）取自品牌授權經銷網站標示的營養標示表格，非官方申報數字。AAFCO標示依品牌官方文案與多家經銷網站說明認定，官方申報本身未附此項聲明。",
+    },
+    price: 379,
+    affiliateUrl: "https://s.shopee.tw/qiQXqUFwA",
+  },
 ];
