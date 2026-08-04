@@ -3456,4 +3456,82 @@ export const mockPetProducts: PetProduct[] = [
     price: 140,
     affiliateUrl: "https://s.shopee.tw/1LehK9zSRX",
   },
+  {
+    id: "cat-dry-018",
+    category: "貓咪乾糧",
+    brand: "ROYAL CANIN 法國皇家",
+    name: "室內成貓專用飼料 IN27 (4kg)",
+    image: "/images/products/royalcanin-indoor-in27.png",
+    debugTags: ["含穀（非無穀）"],
+    features: ["室內貓", "化毛", "熱量管理", "降低便臭"],
+    dmbCarb: 44.13,
+    detailedAnalysis: {
+      productType: "乾飼糧",
+      ingredientsText:
+        "小麥、米、植物分離蛋白、脫水家禽蛋白、玉米、動物脂肪、水解動物蛋白、小麥麵粉、蔬菜纖維、礦物質、甜菜漿、大豆油、酵母及酵母提取物、魚油、果寡糖、洋車前子及殼(0.5%)。",
+      originCountry: "韓國",
+      moisture: 8,
+      protein: 27,
+      fat: 13,
+      fiber: 3.8,
+      ash: 7.6,
+      phosphorus: 0.85,
+      calcium: 1.1,
+      caPhosRatio: "1.29",
+      kcalPer100g: 353.4,
+      weightGrams: 4000,
+      listPrice: 1566,
+      salePrice: 1566,
+    },
+    officialFiling: {
+      queryDate: "2026-08-04",
+      records: [
+        {
+          spec: "4 公斤",
+          sourceType: "輸入",
+          origin: "—",
+          company: "台灣皇家寵物食品有限公司",
+          subcontractor: "RGY, Royal Canin Gimje Factory",
+        },
+      ],
+    },
+    aafcoCertified: true,
+    review: {
+      comment:
+        "ROYAL CANIN 法國皇家室內成貓專用飼料 IN27，主打降低便臭、化毛、熱量管理，適合室內活動量較低的成貓。⚠️ 提醒：原料含小麥、米、玉米，並非無穀配方。保證分析（蛋白質27%、脂肪13%、纖維3.8%、灰分7.6%、鈣1.1%、磷0.85%）取自農業部申報網公開資料；官方申報未列水分與熱量，此處水分（上限8%）與熱量（353.4kcal/100g，即3534kcal/kg）取自 Royal Canin 官方網站公開資料，符合 AAFCO 標準。鈣磷比約1.29，落在理想範圍內；碳水偏高（DM約44%），符合此類穀物基底配方的特性。毛孩評價待更新。",
+    },
+    price: 1566,
+    affiliateUrl: "https://s.shopee.tw/50Xzp2nOmC",
+  },
+  {
+    id: "supplement-000",
+    category: "毛孩保健品",
+    brand: "毛孩時代",
+    name: "95%頂級深海魚油 (30顆)",
+    image: "/images/products/maohaishidai-fish-oil.png",
+    debugTags: [],
+    features: ["Omega-3", "犬貓適用", "ISO22000/HACCP雙認證工廠"],
+    officialFiling: {
+      queryDate: "2026-08-04",
+      records: [
+        {
+          spec: "0.06 公斤（30顆 x 700mg）",
+          sourceType: "委託代工廠製造",
+          origin: "—",
+          company: "騰勢股份有限公司",
+          subcontractor: "中南生物科技股份有限公司",
+        },
+      ],
+    },
+    ourCatsRating: [
+      { cat: "本丸", verdict: "like" },
+      { cat: "海苔", verdict: "like" },
+    ],
+    review: {
+      comment:
+        "毛孩時代95%頂級深海魚油，犬貓適用保健品，本丸、海苔都願意吃。成分為深海魚油（Omega-3 95%、EPA 60%、DHA 20%）與維生素E抗氧化劑，官方申報標示每顆（700mg）含熱量5大卡、脂肪0.5g、蛋白質0.2g、碳水0.1g，資料取自農業部申報網公開資料。廠商文案標示具ISO22000／HACCP雙認證工廠、堅持使用專利及實驗證明有效原料，但此為廠商自述、非本站查核項目。⚠️ 本品為保健品膠囊，成分標示方式與一般主食的保證分析不同，不適用本站碳水/AAFCO評分邏輯，故不計分。",
+    },
+    price: 790,
+    affiliateUrl: "https://s.shopee.tw/2gA54ivfiZ",
+  },
 ];
