@@ -2907,4 +2907,58 @@ export const mockPetProducts: PetProduct[] = [
     price: 149,
     affiliateUrl: "https://s.shopee.tw/5ArOa2s95t",
   },
+  {
+    id: "cat-snack-001",
+    category: "貓咪零食",
+    brand: "TAPAZO特百滋",
+    name: "貓用老饕鮮味盤(整粒鮮雞心)凍乾 (40g)",
+    image: "/images/products/tapazo-perfect-cuts-chicken-heart.png",
+    debugTags: [],
+    features: ["雞心", "凍乾", "單一肉源", "無穀", "無防腐劑", "無誘食劑"],
+    partialNutrition: {
+      ingredientsText: "雞心、殺菌液蛋、茶胺酸、貓薄荷。",
+      items: [
+        { label: "粗蛋白質(min)", value: "58.9%" },
+        { label: "粗脂肪(min)", value: "31.2%" },
+        { label: "粗纖維(max)", value: "1.2%" },
+        { label: "粗灰分(max)", value: "7.4%" },
+        { label: "水分(max)", value: "3.5%" },
+        { label: "熱量", value: "474 kcal/100g" },
+      ],
+      note:
+        "官方保證分析未列出鈣、磷數值，廠商本身未公布。磷含量與鈣磷比這裡改用「雞心」的 USDA 生雞心典型值（每100g生雞心：鈣12mg、磷177mg，水分73.56g）換算乾物比後、依本品3.5%水分還原推估（鈣約0.04%、磷約0.65%），⚠️ 非官方數據、非本品實測值，且成分表另含蛋液等其他原料，實際數值可能有落差，僅供參考。品牌定位：老饕鮮味盤系列採100%天然原肉製成、無添加穀物／防腐劑／誘食劑，屬單一原型食物零食，官方未把它當完整均衡主食檢驗，故不適用 AAFCO／NRC 完整營養規範（該品牌僅「主廚海鮮燉」等主食系列才符合 AAFCO／NRC）。建議作為日常獎勵或拌入主食增加風味，不建議完全取代主食。",
+      estimateInputs: {
+        protein: 58.9,
+        fat: 31.2,
+        fiber: 1.2,
+        moisture: 3.5,
+        kcalPer100g: 474,
+        phosphorus: 0.65,
+        calcium: 0.04,
+      },
+    },
+    officialFiling: {
+      queryDate: "2026-08-04",
+      records: [
+        {
+          spec: "0.04 公斤",
+          sourceType: "委託代工廠製造",
+          origin: "台灣",
+          company: "艾澌克企業股份有限公司",
+          subcontractor: "—",
+        },
+      ],
+    },
+    ourCatsRating: [
+      { cat: "本丸", verdict: "like" },
+      { cat: "麻糬", verdict: "like" },
+      { cat: "海苔", verdict: "like" },
+    ],
+    review: {
+      comment:
+        "TAPAZO特百滋貓用老饕鮮味盤整粒鮮雞心凍乾，單一雞心肉源、蛋白質58.9%、脂肪31.2%，本丸、麻糬、海苔都超愛。保證分析與熱量（474kcal/100g）皆取自農業部申報網公開資料，官方未列出鈣磷數值（廠商未公布），這裡另外用USDA生雞心典型值換算推估（非官方，僅供參考）：磷約0.65%、鈣約0.04%，換算下來鈣磷比只有約0.07:1，比草蝦凍乾更懸殊——雞心是內臟肌肉，磷天然偏高、幾乎不含鈣，屬純肉零食常見情況，營養不均衡，加上官方申報明確定位為零食、未標示AAFCO／FEDIAF均衡標準，不建議取代正餐或長期大量餵食。",
+    },
+    price: 149,
+    affiliateUrl: "https://s.shopee.tw/4qEZGrd9w8",
+  },
 ];
