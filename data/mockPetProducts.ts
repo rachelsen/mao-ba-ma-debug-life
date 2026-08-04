@@ -1057,7 +1057,7 @@ export const mockPetProducts: PetProduct[] = [
   {
     id: "cat-can-018",
     category: "貓咪主食罐",
-    brand: "魔力喵 迷幻喵 MjAMjAM",
+    brand: "MjAMjAM 魔力喵 迷幻喵",
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (1號 多汁雞肉 x 胡蘿蔔 x 貓草)",
     image: "/images/products/mjamjam-juicychicken-carrot-catgrass.png",
     debugTags: ["無膠"],
@@ -1109,7 +1109,7 @@ export const mockPetProducts: PetProduct[] = [
   {
     id: "cat-can-019",
     category: "貓咪主食罐",
-    brand: "魔力喵 迷幻喵 MjAMjAM",
+    brand: "MjAMjAM 魔力喵 迷幻喵",
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (2號 鹿肉 x 兔肉 x 藍莓)",
     image: "/images/products/mjamjam-venison-rabbit-blueberry.png",
     debugTags: ["無膠"],
@@ -1161,7 +1161,7 @@ export const mockPetProducts: PetProduct[] = [
   {
     id: "cat-can-020",
     category: "貓咪主食罐",
-    brand: "魔力喵 迷幻喵 MjAMjAM",
+    brand: "MjAMjAM 魔力喵 迷幻喵",
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (3號 嫩鴨 x 胡蘿蔔)",
     image: "/images/products/mjamjam-duck-carrot.png",
     debugTags: ["無膠"],
@@ -1213,7 +1213,7 @@ export const mockPetProducts: PetProduct[] = [
   {
     id: "cat-can-021",
     category: "貓咪主食罐",
-    brand: "魔力喵 迷幻喵 MjAMjAM",
+    brand: "MjAMjAM 魔力喵 迷幻喵",
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (4號 火雞 x 蒸南瓜 x 貓草)",
     image: "/images/products/mjamjam-turkey-pumpkin-catgrass.png",
     debugTags: ["無膠"],
@@ -1265,7 +1265,7 @@ export const mockPetProducts: PetProduct[] = [
   {
     id: "cat-can-022",
     category: "貓咪主食罐",
-    brand: "魔力喵 迷幻喵 MjAMjAM",
+    brand: "MjAMjAM 魔力喵 迷幻喵",
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (5號 馬肉 x 蒸南瓜)",
     image: "/images/products/mjamjam-horse-pumpkin.png",
     debugTags: ["無膠"],
@@ -1317,7 +1317,7 @@ export const mockPetProducts: PetProduct[] = [
   {
     id: "cat-can-023",
     category: "貓咪主食罐",
-    brand: "魔力喵 迷幻喵 MjAMjAM",
+    brand: "MjAMjAM 魔力喵 迷幻喵",
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (6號 多汁雞肉 x 野生鮭魚)",
     image: "/images/products/mjamjam-chicken-salmon.png",
     debugTags: ["無膠"],
@@ -1369,7 +1369,7 @@ export const mockPetProducts: PetProduct[] = [
   {
     id: "cat-can-024",
     category: "貓咪主食罐",
-    brand: "魔力喵 迷幻喵 MjAMjAM",
+    brand: "MjAMjAM 魔力喵 迷幻喵",
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (7號 雞肉 x 鮭魚油)",
     image: "/images/products/mjamjam-chicken-salmonoil.png",
     debugTags: ["無膠"],
@@ -1421,7 +1421,7 @@ export const mockPetProducts: PetProduct[] = [
   {
     id: "cat-can-025",
     category: "貓咪主食罐",
-    brand: "魔力喵 迷幻喵 MjAMjAM",
+    brand: "MjAMjAM 魔力喵 迷幻喵",
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (8號 火雞 x 胡蘿蔔)",
     image: "/images/products/mjamjam-turkey-carrot.png",
     debugTags: ["無膠"],
@@ -1575,7 +1575,7 @@ export const mockPetProducts: PetProduct[] = [
   {
     id: "cat-can-028",
     category: "貓咪主食罐",
-    brand: "魔力喵 迷幻喵 MjAMjAM",
+    brand: "MjAMjAM 魔力喵 迷幻喵",
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (9號 麵包蟲 x 多汁雞肉)",
     image: "/images/products/mjamjam-mealworm-chicken.png",
     debugTags: ["無膠"],
@@ -1626,7 +1626,7 @@ export const mockPetProducts: PetProduct[] = [
   {
     id: "cat-can-029",
     category: "貓咪主食罐",
-    brand: "魔力喵 迷幻喵 MjAMjAM",
+    brand: "MjAMjAM 魔力喵 迷幻喵",
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (10號 野鹿 x 火雞 x 蔓越莓)",
     image: "/images/products/mjamjam-venison-turkey-cranberry.png",
     debugTags: ["無膠"],
@@ -1678,7 +1678,7 @@ export const mockPetProducts: PetProduct[] = [
   {
     id: "cat-can-030",
     category: "貓咪主食罐",
-    brand: "魔力喵 迷幻喵 MjAMjAM",
+    brand: "MjAMjAM 魔力喵 迷幻喵",
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (11號 馴鹿 x 雞肉 x 胡蘿蔔)",
     image: "/images/products/mjamjam-reindeer-chicken-carrot.png",
     debugTags: ["無膠"],
@@ -1730,7 +1730,7 @@ export const mockPetProducts: PetProduct[] = [
   {
     id: "cat-can-031",
     category: "貓咪主食罐",
-    brand: "魔力喵 迷幻喵 MjAMjAM",
+    brand: "MjAMjAM 魔力喵 迷幻喵",
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (12號 嫩羊 x 胡蘿蔔)",
     image: "/images/products/mjamjam-lamb-carrot.png",
     debugTags: ["無膠"],
@@ -1781,7 +1781,7 @@ export const mockPetProducts: PetProduct[] = [
   {
     id: "cat-can-032",
     category: "貓咪主食罐",
-    brand: "魔力喵 迷幻喵 MjAMjAM",
+    brand: "MjAMjAM 魔力喵 迷幻喵",
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (13號 多汁雞肉 x 明蝦)",
     image: "/images/products/mjamjam-chicken-shrimp.png",
     debugTags: ["無膠"],
@@ -1831,7 +1831,7 @@ export const mockPetProducts: PetProduct[] = [
   {
     id: "cat-can-033",
     category: "貓咪主食罐",
-    brand: "魔力喵 迷幻喵 MjAMjAM",
+    brand: "MjAMjAM 魔力喵 迷幻喵",
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (21號 多汁雞肉 x 花椰菜)",
     image: "/images/products/mjamjam-chicken-cauliflower.png",
     debugTags: ["無膠"],
@@ -1881,7 +1881,7 @@ export const mockPetProducts: PetProduct[] = [
   {
     id: "cat-can-034",
     category: "貓咪主食罐",
-    brand: "魔力喵 迷幻喵 MjAMjAM",
+    brand: "MjAMjAM 魔力喵 迷幻喵",
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (15號 純火雞)",
     image: "/images/products/mjamjam-turkey.png",
     debugTags: ["無膠"],
@@ -1931,7 +1931,7 @@ export const mockPetProducts: PetProduct[] = [
   {
     id: "cat-can-035",
     category: "貓咪主食罐",
-    brand: "魔力喵 迷幻喵 MjAMjAM",
+    brand: "MjAMjAM 魔力喵 迷幻喵",
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (16號 營養羊肉)",
     image: "/images/products/mjamjam-lamb.png",
     debugTags: ["無膠"],
@@ -1981,7 +1981,7 @@ export const mockPetProducts: PetProduct[] = [
   {
     id: "cat-can-036",
     category: "貓咪主食罐",
-    brand: "魔力喵 迷幻喵 MjAMjAM",
+    brand: "MjAMjAM 魔力喵 迷幻喵",
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (17號 低脂袋鼠肉)",
     image: "/images/products/mjamjam-kangaroo.png",
     debugTags: ["無膠"],
@@ -3309,7 +3309,7 @@ export const mockPetProducts: PetProduct[] = [
   {
     id: "cat-can-037",
     category: "貓咪主食罐",
-    brand: "魔力喵 迷幻喵 MjAMjAM",
+    brand: "MjAMjAM 魔力喵 迷幻喵",
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (19號 純嫩鴨)",
     image: "/images/products/mjamjam-duck.png",
     debugTags: ["無膠"],
