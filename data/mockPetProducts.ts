@@ -3011,4 +3011,55 @@ export const mockPetProducts: PetProduct[] = [
     price: 379,
     affiliateUrl: "https://s.shopee.tw/qiQXqUFwA",
   },
+  {
+    id: "cat-dry-012",
+    category: "貓咪乾糧",
+    brand: "Mobby 莫比",
+    name: "成貓化毛配方 (雞肉&米) (1.5kg)",
+    image: "/images/products/mobby-choice-adult-hairball.png",
+    debugTags: ["含穀（非無穀）"],
+    features: ["化毛", "雞肉"],
+    dmbCarb: 31.11,
+    detailedAnalysis: {
+      productType: "乾飼糧",
+      ingredientsText:
+        "雞肉，雞肉粉，大麥，雞蛋衍生物，米粉，纖維素，雞脂(以混合生育酚-維生素E保鮮)，鮭魚，馬鈴薯(2%)，小米，天然雞肉香料，亞麻籽，海魚粉，乾菊苣根，貝殼粉(葡萄糖胺來源)，家禽軟骨(軟骨素來源)，海帶，胡蘿蔔(0.1%)，豌豆(0.1%)，蘋果(0.1%)，番茄，藍莓，菠菜，蔓越莓粉，迷迭香萃取物，洋香菜薄片，絲蘭萃取物，腸道益生菌群，維生素與礦物質。",
+      originCountry: "美國",
+      moisture: 10,
+      protein: 33,
+      fat: 15,
+      fiber: 8,
+      ash: 6,
+      phosphorus: 0.9,
+      calcium: 1,
+      kcalPer100g: 345,
+      weightGrams: 1500,
+      listPrice: 379,
+      salePrice: 379,
+    },
+    officialFiling: {
+      queryDate: "2026-08-04",
+      records: [
+        {
+          spec: "1.5 公斤",
+          sourceType: "輸入",
+          origin: "—",
+          company: "博東客企業有限公司",
+          subcontractor: "鑽石寵物食品",
+        },
+      ],
+    },
+    aafcoCertified: true,
+    ourCatsRating: [
+      { cat: "本丸", verdict: "like" },
+      { cat: "麻糬", verdict: "like" },
+      { cat: "海苔", verdict: "like" },
+    ],
+    review: {
+      comment:
+        "Mobby莫比自然食成貓化毛配方（一般版，非低卡），本丸、麻糬、海苔都愛吃。⚠️ 提醒：官方申報名稱含「米」，原料也有大麥、米粉、小米，並非無穀配方。保證分析（蛋白質33%、脂肪15%、灰分6%、纖維8%、鈣1%、磷0.9%）取自農業部申報網公開資料，這款官方有公布鈣（低卡版沒有），鈣磷比約1.11，落在理想範圍內。官方未列出熱量，此處熱量（345kcal/100g，即3450kcal/kg）取自品牌授權經銷網站標示的營養標示表格，非官方申報數字。AAFCO標示依品牌官方文案與多家經銷網站說明認定，官方申報本身未附此項聲明。",
+    },
+    price: 379,
+    affiliateUrl: "https://s.shopee.tw/qiQXqUFwA",
+  },
 ];
