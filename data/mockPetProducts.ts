@@ -3113,4 +3113,50 @@ export const mockPetProducts: PetProduct[] = [
     price: 489,
     affiliateUrl: "https://s.shopee.tw/qiQXqUFwA",
   },
+  {
+    id: "cat-dry-014",
+    category: "貓咪乾糧",
+    brand: "Mobby 莫比",
+    name: "無穀配方 (鵪鶉 x 鴨肉) (1.5kg)",
+    image: "/images/products/mobby-choice-grainfree-quail-duck.png",
+    debugTags: [],
+    features: ["鵪鶉", "鴨肉", "無穀"],
+    partialNutrition: {
+      ingredientsText:
+        "烤鵪鶉，鴨肉，烤鴨，鴨肉粉，火雞肉粉，雞肉粉，地瓜，扁豆，豌豆，雞脂(以混合生育酚-維生素E保鮮)，鮭魚油，DL-蛋氨酸，鹽，氯化鉀，氯化膽鹼，牛磺酸，藍莓，覆盆子，番茄，天然香料，乾菊苣根，乾燥乳酸桿菌發酵物，乾燥枯草桿菌發酵物，乾燥嗜酸乳酸菌發酵物，乾燥植物乳桿菌發酵物，乾燥雙歧桿菌發酵物，鋅蛋白，維生素E補充劑，菸鹼酸，錳蛋白，銅蛋白，硫酸鋅，硫酸錳，硫酸銅，硝酸硫胺明(維生素B1)，維生素A補充劑，生物素，碘化鉀，泛酸鈣，核黃素(維生素B2)，鹽酸吡哆醇(維生素B6)，維生素B12補充劑，氧化錳，亞硒酸鈉，維生素D補充劑，葉酸。",
+      items: [
+        { label: "粗蛋白質", value: "36.0%" },
+        { label: "粗脂肪", value: "16.0%" },
+        { label: "粗纖維", value: "3.0%" },
+        { label: "水分", value: "10.0%" },
+      ],
+      note:
+        "官方保證分析只列出蛋白質／脂肪／纖維／水分，未列灰分、鈣、磷、熱量。灰分（約8%）與熱量（約355.8kcal/100g，即3558kcal/kg）在多家經銷網站標示一致，可作為參考，但非官方申報數字。鈣、磷完全查無資料——本品是強化礦物質的配方乾糧，不像純肉零食可用生肉典型值換算，故不做推估，磷含量與鈣磷比無法計分，總分是用其餘三項（碳水、AAFCO、蛋白質，滿分60）按比例換算成 100 分制，僅供粗略參考。原料確實無穀（地瓜、扁豆、豌豆為主），符合無穀標示。",
+      estimateInputs: { protein: 36, fat: 16, fiber: 3, moisture: 10 },
+    },
+    officialFiling: {
+      queryDate: "2026-08-04",
+      records: [
+        {
+          spec: "1.5 公斤",
+          sourceType: "輸入",
+          origin: "—",
+          company: "博東客企業有限公司",
+          subcontractor: "原始風味寵物食品",
+        },
+      ],
+    },
+    aafcoCertified: true,
+    ourCatsRating: [
+      { cat: "本丸", verdict: "like" },
+      { cat: "麻糬", verdict: "like" },
+      { cat: "海苔", verdict: "like" },
+    ],
+    review: {
+      comment:
+        "Mobby莫比自然食無穀配方鵪鶉x鴨肉，本丸、麻糬、海苔都愛吃。原料確實無穀（地瓜、扁豆、豌豆為主）。保證分析（蛋白質36%、脂肪16%、纖維3%）取自農業部申報網公開資料，但官方未列灰分、鈣、磷、熱量；灰分與熱量（355.8kcal/100g）多家經銷網站數字一致可參考，但鈣、磷完全查無資料，本品是強化礦物質的配方乾糧、不適合用生肉典型值推估，故磷與鈣磷比無法計分，總分僅用碳水/蛋白質/AAFCO三項估算，僅供參考。AAFCO標示依品牌官方文案與多家經銷網站說明認定，官方申報本身未附此項聲明。",
+    },
+    price: 489,
+    affiliateUrl: "https://s.shopee.tw/qiQXqUFwA",
+  },
 ];
