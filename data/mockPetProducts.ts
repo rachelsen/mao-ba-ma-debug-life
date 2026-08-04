@@ -3210,4 +3210,54 @@ export const mockPetProducts: PetProduct[] = [
     price: 379,
     affiliateUrl: "https://s.shopee.tw/qiQXqUFwA",
   },
+  {
+    id: "cat-dry-016",
+    category: "貓咪乾糧",
+    brand: "Mobby 莫比",
+    name: "幼貓/懷孕授乳貓配方 (雞肉&米) (1.5kg)",
+    image: "/images/products/mobby-choice-kitten.png",
+    debugTags: ["含穀（非無穀）"],
+    features: ["幼貓", "懷孕授乳貓", "雞肉", "鮭魚"],
+    dmbCarb: 26.67,
+    detailedAnalysis: {
+      productType: "乾飼糧",
+      ingredientsText:
+        "新鮮雞肉，新鮮鮭魚，整粒白米，雞肉粉，雞脂(以混合生育酚-維生素E保鮮)，豌豆蛋白，燕麥片，馬鈴薯蛋白，馬鈴薯，微晶纖維素，氯化鉀，氯化膽鹼，亞麻籽，雞蛋衍生物，胡蘿蔔，豌豆，蘋果，海帶，番茄，藍莓，菠菜，蔓越莓粉，迷迭香萃取物，洋香菜薄片，乾菊苣根，牛磺酸，絲蘭萃取物，乾腸球菌發酵物，嗜酸乳桿A菌，乾酪乳桿C菌和植物乳桿菌，乾木黴發酵萃取物，維生素與礦物質。",
+      originCountry: "美國",
+      moisture: 10,
+      protein: 34,
+      fat: 22,
+      fiber: 3,
+      ash: 7,
+      phosphorus: 1.2,
+      calcium: 1.5,
+      kcalPer100g: 399,
+      weightGrams: 1500,
+      listPrice: 379,
+      salePrice: 379,
+    },
+    officialFiling: {
+      queryDate: "2026-08-04",
+      records: [
+        {
+          spec: "1.5 公斤",
+          sourceType: "輸入",
+          origin: "—",
+          company: "博東客企業有限公司",
+          subcontractor: "鑽石寵物食品",
+        },
+      ],
+    },
+    aafcoCertified: true,
+    ourCatsRating: [
+      { cat: "本丸", verdict: "like" },
+      { cat: "麻糬", verdict: "like" },
+    ],
+    review: {
+      comment:
+        "Mobby莫比自然食幼貓/懷孕授乳貓配方，新鮮雞肉搭配新鮮鮭魚，本丸、麻糬小時候都愛吃。⚠️ 提醒：官方申報名稱含「米」，原料也有整粒白米、燕麥片，並非無穀配方。此為成長期配方，蛋白質34%、脂肪22%皆高於一般成貓配方，符合幼貓／懷孕授乳貓較高的營養需求。保證分析（灰分7%、纖維3%、鈣1.5%、磷1.2%）取自農業部申報網公開資料，鈣磷比約1.25，落在理想範圍內。官方未列出熱量，此處熱量（399kcal/100g，即3990kcal/kg）取自品牌授權經銷網站標示的營養標示表格，非官方申報數字。⚠️ 本站評分邏輯是以一般成貓／成犬標準設計，未特別校正幼貓成長期的營養需求門檻，分數僅供參考，幼貓飼料建議仍以「是否標示適用幼貓成長期」為優先考量。AAFCO標示依品牌官方文案與多家經銷網站說明認定，官方申報本身未附此項聲明。",
+    },
+    price: 379,
+    affiliateUrl: "https://s.shopee.tw/qiQXqUFwA",
+  },
 ];
