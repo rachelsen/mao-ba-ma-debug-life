@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { NaturalPhoto } from "@/components/home/NaturalPhoto";
+import { NewsSection } from "@/components/home/NewsSection";
 import { mockPetProducts } from "@/data/mockPetProducts";
 import { getFavoriteCounts } from "@/lib/favorites";
 
@@ -141,6 +142,9 @@ export default async function HomePage() {
             </div>
           </section>
         )}
+
+        {/* 最新新聞 */}
+        <NewsSection />
 
         {/* 關於創作者 About Section */}
         <section className="rounded-3xl border border-slate-100 bg-white p-8 text-center shadow-sm sm:p-10">
