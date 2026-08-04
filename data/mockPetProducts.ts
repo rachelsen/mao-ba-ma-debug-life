@@ -2217,7 +2217,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "完美體重 雞肉 1-6歲成貓 (1.36公斤)",
     image: "/images/products/hills-perfect-weight-chicken-adult-cat.png",
     debugTags: [],
-    features: ["體重控制", "減重配方", "雞肉"],
+    features: ["體重控制", "減重配方", "雞肉", "含穀"],
     dmbCarb: 35.39,
     detailedAnalysis: {
       productType: "乾飼糧",
@@ -2268,7 +2268,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "無敵貓糧 鮮雞蜂王乳",
     image: "/images/products/parkcat-chicken-royaljelly.png",
     debugTags: [],
-    features: ["蜂王乳", "雞肉"],
+    features: ["蜂王乳", "雞肉", "無穀"],
     dmbCarb: 20.88,
     detailedAnalysis: {
       productType: "乾飼糧",
@@ -2319,7 +2319,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "無敵貓糧 大洋鮮極魚",
     image: "/images/products/parkcat-ocean-fish.png",
     debugTags: [],
-    features: ["魚"],
+    features: ["魚", "無穀"],
     dmbCarb: 20.88,
     detailedAnalysis: {
       productType: "乾飼糧",
@@ -2358,7 +2358,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "貓用凍乾填心糧-成幼貓低敏配方（有穀低敏鮮雞配方泌尿保健）",
     image: "/images/products/tapazo-freeze-dried-hypoallergenic-cat.png",
     debugTags: [],
-    features: ["低敏", "鮮雞"],
+    features: ["低敏", "鮮雞", "含穀"],
     dmbCarb: 29.44,
     detailedAnalysis: {
       productType: "凍乾填心糧",
@@ -2457,10 +2457,10 @@ export const mockPetProducts: PetProduct[] = [
     id: "cat-dry-005",
     category: "貓咪乾糧",
     brand: "Acana 愛肯拿",
-    name: "無穀貓飼料 低GI 室內開胃（雞 x 鯡魚 x 蔓越莓）",
+    name: "低GI 室內開胃貓飼料（雞 x 鯡魚 x 蔓越莓）",
     image: "/images/products/acana-indoor-chicken-herring-cranberry.png",
-    debugTags: [],
-    features: ["室內貓", "雞肉", "鯡魚", "無穀"],
+    debugTags: ["名稱與成分不符：含燕麥非無穀"],
+    features: ["室內貓", "雞肉", "鯡魚", "含穀"],
     dmbCarb: 26.67,
     detailedAnalysis: {
       productType: "乾飼糧",
@@ -2496,7 +2496,7 @@ export const mockPetProducts: PetProduct[] = [
     ourCatsRating: [{ cat: "烏克", verdict: "like" }],
     review: {
       comment:
-        "Acana 愛肯拿無穀貓飼料室內開胃雞x鯡魚x蔓越莓口味，符合 AAFCO 標準，烏克很喜歡。成分與基本保證分析取自農業部申報網（900g分裝包，與本品1.8kg規格保證分析相同），官方申報未列鈣磷與熱量，此處鈣、磷、熱量（3630kcal/kg）取自 Acana 加拿大原廠官網公開資料，確認與申報成分完全吻合。鈣磷比約1.4，落在理想範圍內。",
+        "Acana 愛肯拿低GI室內開胃貓飼料雞x鯡魚x蔓越莓口味，符合 AAFCO 標準，烏克很喜歡。⚠️ 更正：本款先前誤標「無穀」，官方申報成分表明確列出「完整燕麥」，並非無穀配方；Acana 的「Indoor」系列本來就不屬於該品牌真正無穀的「Regionals」系列，此處已更正為含穀。成分與基本保證分析取自農業部申報網（900g分裝包，與本品1.8kg規格保證分析相同），官方申報未列鈣磷與熱量，此處鈣、磷、熱量（3630kcal/kg）取自 Acana 加拿大原廠官網公開資料，確認與申報成分完全吻合。鈣磷比約1.4，落在理想範圍內。",
     },
     price: 1060,
     affiliateUrl: "https://s.shopee.tw/2LX8MpPxrT",
@@ -2607,7 +2607,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "貓用凍乾雙饗宴 2磅 (成幼貓低敏鮭魚)",
     image: "/images/products/tapazo-freeze-dried-duo-salmon-2lb.png",
     debugTags: [],
-    features: ["低敏", "鮭魚"],
+    features: ["低敏", "鮭魚", "無穀"],
     dmbCarb: 35,
     detailedAnalysis: {
       productType: "凍乾雙饗宴",
@@ -2658,7 +2658,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "貓用凍乾雙饗宴 2磅 (熟齡貓火雞)",
     image: "/images/products/tapazo-freeze-dried-duo-turkey-senior-2lb.png",
     debugTags: [],
-    features: ["熟齡貓", "火雞", "關節保健"],
+    features: ["熟齡貓", "火雞", "關節保健", "無穀"],
     dmbCarb: 35.67,
     detailedAnalysis: {
       productType: "凍乾雙饗宴",
@@ -2709,7 +2709,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "貓用凍乾雙饗宴 2磅 (成貓低敏雞肉)",
     image: "/images/products/tapazo-freeze-dried-duo-chicken-2lb.png",
     debugTags: [],
-    features: ["低敏", "雞肉"],
+    features: ["低敏", "雞肉", "無穀"],
     dmbCarb: 33.33,
     detailedAnalysis: {
       productType: "凍乾雙饗宴",
@@ -2960,5 +2960,55 @@ export const mockPetProducts: PetProduct[] = [
     },
     price: 149,
     affiliateUrl: "https://s.shopee.tw/4qEZGrd9w8",
+  },
+  {
+    id: "cat-dry-011",
+    category: "貓咪乾糧",
+    brand: "Mobby 莫比",
+    name: "低卡成貓化毛配方 (雞肉&米) (1.5kg)",
+    image: "/images/products/mobby-choice-healthy-weight-hairball.png",
+    debugTags: ["含穀（非無穀）"],
+    features: ["低卡", "化毛", "雞肉"],
+    dmbCarb: 34.44,
+    detailedAnalysis: {
+      productType: "乾飼糧",
+      ingredientsText:
+        "新鮮雞肉，雞肉粉，玉米麩粉，整粒糙米，鮭魚，雞蛋萃取物，雞脂(以混合生育酚-維生素E保鮮)，微晶纖維素，亞麻籽粉，海帶，波菜，萵苣，番茄，迷迭香萃取物，洋香菜薄片，乾菊苣根，牛磺酸，貝殼粉(天然葡萄糖胺來源)，家禽軟骨(天然軟骨素來源)，左旋肉鹼，維生素與礦物質。",
+      originCountry: "美國",
+      moisture: 10,
+      protein: 35,
+      fat: 10,
+      fiber: 8,
+      ash: 6,
+      phosphorus: 0.7,
+      kcalPer100g: 333.4,
+      weightGrams: 1500,
+      listPrice: 379,
+      salePrice: 379,
+    },
+    officialFiling: {
+      queryDate: "2026-08-04",
+      records: [
+        {
+          spec: "1.5 公斤",
+          sourceType: "輸入",
+          origin: "—",
+          company: "博東客企業有限公司",
+          subcontractor: "鑽石寵物食品",
+        },
+      ],
+    },
+    aafcoCertified: true,
+    ourCatsRating: [
+      { cat: "本丸", verdict: "like" },
+      { cat: "麻糬", verdict: "like" },
+      { cat: "海苔", verdict: "like" },
+    ],
+    review: {
+      comment:
+        "Mobby莫比自然食低卡成貓化毛配方，本丸、麻糬、海苔都愛吃。⚠️ 提醒：官方申報名稱含「米」（玉米麩粉、整粒糙米），並非無穀配方，選購前請留意包裝標示。保證分析（蛋白質35%、脂肪10%、灰分6%、纖維8%、磷0.7%）取自農業部申報網公開資料；官方未列出鈣與熱量，此處熱量（333.4kcal/100g，即3334kcal/kg）取自品牌授權經銷網站標示的營養標示表格，非官方申報數字，鈣磷比因缺鈣資料無法計算。AAFCO標示依品牌官方文案與多家經銷網站說明認定，官方申報本身未附此項聲明。",
+    },
+    price: 379,
+    affiliateUrl: "https://s.shopee.tw/qiQXqUFwA",
   },
 ];
