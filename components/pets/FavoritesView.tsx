@@ -29,6 +29,29 @@ export default function FavoritesView() {
     likedIds.has(product.id)
   );
 
+  const handleRemove = async (productId: string) => {
+    setLikedIds((prev) => {
+      const next = new Set(prev);
+      next.delete(productId);
+      return next;
+    });
+
+    try {
+      const res = await fetch("/api/favorites", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ productId }),
+      });
+      if (!res.ok) throw new Error("remove failed");
+    } catch {
+      // 失敗時重新從伺服器同步正確狀態
+      fetch("/api/favorites")
+        .then((res) => res.json())
+        .then((data) => setLikedIds(new Set<string>(data.favorites ?? [])))
+        .catch(() => {});
+    }
+  };
+
   if (status !== "authenticated") {
     return (
       <div className="rounded-2xl border border-cream-border bg-white p-10 text-center">
@@ -85,8 +108,17 @@ export default function FavoritesView() {
           return (
             <div
               key={product.id}
-              className="flex gap-4 rounded-2xl border border-rose-100 bg-white p-4 shadow-sm"
+              className="relative flex gap-4 rounded-2xl border border-rose-100 bg-white p-4 shadow-sm"
             >
+              <button
+                type="button"
+                onClick={() => handleRemove(product.id)}
+                aria-label="取消收藏"
+                title="取消收藏"
+                className="absolute right-3 top-3 flex h-7 w-7 items-center justify-center rounded-full bg-white text-stone-400 shadow-sm transition hover:bg-rose-50 hover:text-rose-500 active:scale-95"
+              >
+                ✕
+              </button>
               <div className="relative aspect-square w-24 shrink-0 overflow-hidden rounded-xl bg-cream-bg-light">
                 <Image
                   src={product.image}
@@ -97,7 +129,7 @@ export default function FavoritesView() {
                 />
               </div>
               <div className="flex flex-1 flex-col justify-between">
-                <div>
+                <div className="pr-6">
                   <p className="text-xs font-medium text-amber-800/60">
                     {product.brand}
                   </p>
