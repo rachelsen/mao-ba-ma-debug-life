@@ -57,6 +57,9 @@ export default function Sidebar() {
             <span>我的收藏</span>
           </Link>
           <AuthWidget />
+          <p className="px-2 pt-1 text-[11px] leading-relaxed text-stone-400">
+            🔒 溫馨提醒：此網站由資安工程師維護，請大家安心使用。
+          </p>
         </div>
       </aside>
 

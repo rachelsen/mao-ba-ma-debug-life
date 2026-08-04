@@ -45,8 +45,12 @@ export default async function HomePage() {
             毛拔麻 <span className="text-brand-orange">Debug</span> 生活
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-base text-stone-500 sm:text-lg">
-            從毛孩飲食成分分析、信用卡刷卡回饋，到食衣住行旅遊優惠，數據化幫你挑選最高
-            CP 值生活提案。
+            從毛孩飲食成分分析、信用卡刷卡回饋，到食衣住行旅遊優惠，
+            <br />
+            數據化幫你挑選最高 CP 值生活提案。
+          </p>
+          <p className="mx-auto mt-2 max-w-2xl text-xs text-stone-400 sm:text-sm">
+            🔒 溫馨提醒：此網站由資安工程師維護，請大家安心使用。
           </p>
         </div>
 
@@ -146,8 +150,9 @@ export default async function HomePage() {
             <NaturalPhoto src={CATS.norwegianForest.src} alt={CATS.norwegianForest.name} className="w-14" />
           </div>
           <p className="mx-auto max-w-2xl text-sm leading-relaxed text-stone-500 sm:text-base">
-            🌿 關於這裡：由生活在森林裡，擁有三隻貓咪的工程師毛拔麻打造。用理性數據幫大家找到最高
-            CP 值的生活提案！
+            🌿 關於這裡：由生活在森林裡，擁有三隻貓咪的工程師毛拔麻打造。
+            <br />
+            用理性數據幫大家找到最高 CP 值的生活提案！
           </p>
         </section>
       </div>
