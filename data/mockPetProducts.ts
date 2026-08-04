@@ -3631,4 +3631,57 @@ export const mockPetProducts: PetProduct[] = [
     price: 790,
     affiliateUrl: "https://s.shopee.tw/3g2cKjEcTB",
   },
+  {
+    id: "cat-dry-021",
+    category: "貓咪乾糧",
+    brand: "HeroMama 英雄媽媽",
+    name: "益生菌晶球夾心糧－深海鱈魚 亮毛護膚 (1.5kg)",
+    image: "/images/products/heromama-probiotic-cod.png",
+    debugTags: [],
+    features: ["鱈魚", "益生菌", "全齡貓", "亮毛護膚"],
+    dmbCarb: 17.7,
+    detailedAnalysis: {
+      productType: "乾飼糧",
+      ingredientsText:
+        "乾燥藍鱈及鯡魚、新鮮雞肉、豌豆蛋白、雞脂肪、樹薯澱粉、小肽蛋白、酵母粉、乳酪粉、鮭魚油、碗豆、植物纖維、水解酵母、田園蔬菜（蔓越莓、南瓜、紅蘿蔔）、鱉蛋粉、卵磷脂、蛋黃粉、蛋白粉、牛磺酸、膽鹼、果寡醣、甘露寡醣、離胺酸、蛋胺酸、磷酸氫二鉀、磷酸鎂、焦磷酸鈉、綜合維生素（維生素A、維生素D3、維生素C、維生素E、維生素B1、維生素B2、維生素B6、維生素B12、菸鹼酸、泛酸鈣、葉酸、生物素H）、綜合礦物質（銅、鐵、錳、鋅）、膠原蛋白、絲蘭、酵母硒、β-葡聚醣，另添加副乾酪乳桿菌、嗜熱鏈球菌、鼠李糖乳桿菌等多株益生菌。",
+      originCountry: "台灣",
+      moisture: 8.5,
+      protein: 43.8,
+      fat: 17.7,
+      fiber: 5.4,
+      ash: 9,
+      phosphorus: 0.88,
+      calcium: 1.21,
+      caPhosRatio: "1.38",
+      kcalPer100g: 359.7,
+      weightGrams: 1500,
+      listPrice: 980,
+      salePrice: 980,
+    },
+    officialFiling: {
+      queryDate: "2026-08-04",
+      records: [
+        {
+          spec: "1.5 公斤",
+          sourceType: "委託代工廠製造",
+          origin: "—",
+          company: "飛輪寵物有限公司",
+          subcontractor: "自力耕生股份有限公司",
+        },
+      ],
+    },
+    aafcoCertified: true,
+    certStandard: "AAFCO",
+    ourCatsRating: [
+      { cat: "本丸", verdict: "like" },
+      { cat: "麻糬", verdict: "like" },
+      { cat: "海苔", verdict: "like" },
+    ],
+    review: {
+      comment:
+        "HeroMama益生菌晶球夾心糧－深海鱈魚口味，主原料為乾燥藍鱈及鯡魚、新鮮雞肉，並添加多株益生菌與魚油訴求亮毛護膚，本丸、麻糬、海苔都愛吃。保證分析（蛋白質43.8%、脂肪17.7%、纖維5.4%、灰分9%、水分8.5%、鈣1.21%、總磷0.88%、碳水化合物16.2%、熱量359.7kcal/100g）皆取自農業部申報網公開資料，與品牌官網數據一致。鈣磷比約1.38，在合理範圍。要注意的是配方含樹薯澱粉、豌豆蛋白，並非無穀配方，碳水化合物（DMB約17.7%）也略高於同類無穀產品。品牌官網聲明營養配分依據AAFCO／NRC標準設計，但未見有第三方認證或FEDIAF標準的相關聲明。",
+    },
+    price: 980,
+    affiliateUrl: "https://s.shopee.tw/111rBrrH74",
+  },
 ];
