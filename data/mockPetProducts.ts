@@ -69,6 +69,12 @@ export interface PetProductPartialNutrition {
     fat?: number;
     fiber?: number;
     moisture?: number;
+    /** 官方公布的熱量（kcal/100g），非估算值，有提供才能換算磷／100kcal評分 */
+    kcalPer100g?: number;
+    /** 非官方推估的磷（%，以現狀為準），僅在有可信參考來源時填寫，需在 note 註明推估依據與不確定性 */
+    phosphorus?: number;
+    /** 非官方推估的鈣（%，以現狀為準），需在 note 註明推估依據與不確定性 */
+    calcium?: number;
   };
 }
 
@@ -2854,7 +2860,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "貓用老饕鮮味盤(霸王大草蝦)凍乾 (20g)",
     image: "/images/products/tapazo-perfect-cuts-grass-shrimp.png",
     debugTags: [],
-    features: ["草蝦", "凍乾", "單一肉源"],
+    features: ["草蝦", "凍乾", "單一肉源", "無穀", "無防腐劑", "無誘食劑"],
     partialNutrition: {
       ingredientsText: "草蝦仁、殺菌液蛋、茶胺酸、木天蓼。",
       items: [
@@ -2866,8 +2872,16 @@ export const mockPetProducts: PetProduct[] = [
         { label: "熱量", value: "361 kcal/100g" },
       ],
       note:
-        "官方保證分析未列出鈣、磷數值，故磷含量與鈣磷比無法計分，總分是用其餘三項（碳水、AAFCO、蛋白質，滿分60）按比例換算成 100 分制，僅供粗略參考。本品為零食非主食，官方申報用途為「零食，請依貓咪體型適量給予」，未標示 AAFCO／FEDIAF 完整均衡標準，不建議取代正餐。",
-      estimateInputs: { protein: 79.5, fat: 6, fiber: 0.1, moisture: 5 },
+        "官方保證分析未列出鈣、磷數值（連包裝實拍照片也沒有標示），廠商本身未公布。磷含量與鈣磷比這裡改用「草蝦仁」的 USDA 生蝦典型值（每100g生蝦：鈣64mg、磷214mg，水分78.45g）換算乾物比後、依本品5%水分還原推估（鈣約0.28%、磷約0.94%），⚠️ 非官方數據、非本品實測值，且成分表另含蛋液等其他原料，實際數值可能有落差，僅供參考。品牌定位：老饕鮮味盤系列採100%天然原肉製成、無添加穀物／防腐劑／誘食劑，屬單一原型食物零食，官方未把它當完整均衡主食檢驗，故不適用 AAFCO／NRC 完整營養規範（該品牌僅「主廚海鮮燉」等主食系列才符合 AAFCO／NRC）。建議作為日常獎勵或拌入主食增加風味，不建議完全取代主食。",
+      estimateInputs: {
+        protein: 79.5,
+        fat: 6,
+        fiber: 0.1,
+        moisture: 5,
+        kcalPer100g: 361,
+        phosphorus: 0.94,
+        calcium: 0.28,
+      },
     },
     officialFiling: {
       queryDate: "2026-08-03",
@@ -2888,7 +2902,7 @@ export const mockPetProducts: PetProduct[] = [
     ],
     review: {
       comment:
-        "TAPAZO特百滋Perfect Cuts老饕鮮味盤霸王大草蝦凍乾，單一草蝦肉源、蛋白質高達79.5%，本丸、麻糬、海苔都超愛。保證分析與熱量（361kcal/100g）皆取自農業部申報網公開資料，官方申報明確定位為零食，未標示AAFCO／FEDIAF均衡標準，也未列出鈣磷數值，故僅能用碳水/蛋白質/AAFCO三項估算分數，僅供參考，不建議取代正餐。",
+        "TAPAZO特百滋貓用老饕鮮味盤霸王大草蝦凍乾，單一草蝦肉源、蛋白質高達79.5%，本丸、麻糬、海苔都超愛。保證分析與熱量（361kcal/100g）皆取自農業部申報網公開資料，官方未列出鈣磷數值（包裝也沒標），這裡另外用USDA生蝦典型值換算推估（非官方，僅供參考）：磷約0.94%、鈣約0.28%，換算下來鈣磷比只有約0.3:1，明顯偏低——這是純肉去殼零食常見的情況（沒有蝦殼或骨骼的鈣質），營養不均衡，加上官方申報明確定位為零食、未標示AAFCO／FEDIAF均衡標準，不建議取代正餐或長期大量餵食。",
     },
     price: 149,
     affiliateUrl: "https://s.shopee.tw/5ArOa2s95t",

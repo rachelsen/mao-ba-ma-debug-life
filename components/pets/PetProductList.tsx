@@ -267,18 +267,52 @@ function computeProductScore(product: PetProduct): ProductScore | null {
   const aafcoScore = product.aafcoCertified ? 20 : 0;
   const proteinScore = scoreProtein(dmProtein, isDog);
 
-  const knownMax = 25 + 20 + 15;
+  // 磷／鈣磷比：僅在有熱量與磷數值時才計分（磷可能是非官方推估值，來源需在 note 註明）
+  const hasPhosphorus = inputs.phosphorus !== undefined && inputs.kcalPer100g !== undefined;
+  const phosphorusMgPer100kcal = hasPhosphorus
+    ? ((inputs.phosphorus! * 1000) / inputs.kcalPer100g!) * 100
+    : undefined;
+  const phosphorusScore =
+    phosphorusMgPer100kcal !== undefined
+      ? clamp((25 * (400 - phosphorusMgPer100kcal)) / (400 - 250), 0, 25)
+      : undefined;
+  const caPhosRatio =
+    inputs.calcium !== undefined && inputs.phosphorus !== undefined
+      ? inputs.calcium / inputs.phosphorus
+      : undefined;
+  const caPhosScore =
+    caPhosRatio !== undefined ? (caPhosRatio >= 1.1 && caPhosRatio <= 1.4 ? 15 : 0) : undefined;
+
+  const knownMax =
+    25 + 20 + 15 + (phosphorusScore !== undefined ? 25 : 0) + (caPhosScore !== undefined ? 15 : 0);
+  const rawTotal =
+    carbScore +
+    aafcoScore +
+    proteinScore +
+    (phosphorusScore ?? 0) +
+    (caPhosScore ?? 0);
+  const shouldCap =
+    (phosphorusMgPer100kcal !== undefined && phosphorusMgPer100kcal > 400) ||
+    (caPhosRatio !== undefined && caPhosRatio < 1.0);
   const total = Math.round(
-    ((carbScore + aafcoScore + proteinScore) / knownMax) * 100
+    shouldCap ? Math.min((rawTotal / knownMax) * 100, 59) : (rawTotal / knownMax) * 100
   );
 
   return {
     total,
     band: getScoreBand(total),
-    capped: false,
+    capped: shouldCap,
     isEstimate: true,
     items: [
-      { label: "磷含量", points: null, max: 25, detail: "資料不足" },
+      {
+        label: "磷含量",
+        points: phosphorusScore !== undefined ? Math.round(phosphorusScore) : null,
+        max: 25,
+        detail:
+          phosphorusMgPer100kcal !== undefined
+            ? `推估 ${phosphorusMgPer100kcal.toFixed(0)}mg/100kcal（非官方）`
+            : "資料不足",
+      },
       {
         label: "碳水化合物",
         points: Math.round(carbScore),
@@ -291,7 +325,12 @@ function computeProductScore(product: PetProduct): ProductScore | null {
         max: 20,
         detail: product.aafcoCertified ? "已標示" : "未標示",
       },
-      { label: "鈣磷比", points: null, max: 15, detail: "資料不足" },
+      {
+        label: "鈣磷比",
+        points: caPhosScore ?? null,
+        max: 15,
+        detail: caPhosRatio !== undefined ? `推估 ${caPhosRatio.toFixed(2)}:1（非官方）` : "資料不足",
+      },
       {
         label: "蛋白質",
         points: Math.round(proteinScore),
@@ -938,7 +977,9 @@ function ScoreBreakdown({ score }: { score: ProductScore }) {
         ⓘ
         這是毛拔麻自訂的評分邏輯（非取自其他網站），依磷含量、碳水、AAFCO／FEDIAF、鈣磷比、蛋白質五項計算，僅供參考，不是醫療建議。
         {score.isEstimate &&
-          "此商品缺灰分／磷／熱量資料，磷與鈣磷比無法計分，總分是用其餘三項（碳水、AAFCO、蛋白質，滿分60）按比例換算成 100 分制，僅供粗略參考，不代表完整評分。"}
+          (score.items[0].points === null
+            ? "此商品缺灰分／磷／熱量資料，磷與鈣磷比無法計分，總分是用其餘三項（碳水、AAFCO、蛋白質，滿分60）按比例換算成 100 分制，僅供粗略參考，不代表完整評分。"
+            : "此商品官方未公布磷／鈣數值，磷含量與鈣磷比項目改用非官方推估值計分（詳見下方成分說明），總分為粗略估算，不代表完整評分。")}
       </p>
     </div>
   );
