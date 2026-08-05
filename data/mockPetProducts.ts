@@ -2326,6 +2326,53 @@ export const mockPetProducts: PetProduct[] = [
     affiliateUrl: "https://s.shopee.tw/AAG7Qg2iwq",
   },
   {
+    id: "dog-dry-005",
+    category: "狗狗乾糧",
+    brand: "TAPAZO特百滋",
+    name: "凍乾三重奏－成幼犬低敏海魚配方 (2磅/907公克)",
+    image: "/images/products/tapazo-freeze-dried-trio-ocean-fish-dog.png",
+    debugTags: [],
+    features: ["海魚", "低敏", "無穀", "凍乾"],
+    dmbCarb: 41.0,
+    detailedAnalysis: {
+      productType: "乾飼糧",
+      ingredientsText:
+        "佐餐成份：雞肉凍乾粒、鮮蛋凍乾粒、乾燥胡蘿蔔。乾糧成份：乾燥鮭魚、乾鷹嘴豆、乾豌豆、豌豆粉、雞脂（以混合生育酚保存）、乳化鱒魚、馬鈴薯粉、乾燥油鯡魚、乾燥甜菜根、天然調味料、磷酸氫鈣、乾燥白魚、乾燥番茄粕、乾燥鯡魚、食鹽、乾燥雞蛋、啤酒酵母萃取物、研磨亞麻籽、鮭魚油（以混合生育酚保存）、碳酸鈣、乾燥菊苣根（菊苣纖維與果寡糖之來源）、氯化膽鹼、維生素E、維生素A、維生素D3、維生素B12、維生素C、核黃素（維生素B2）、硫胺素（維生素B1）、葉酸、生物素（維生素B7）、鹽酸吡哆醇（維生素B6）、菸鹼酸（維生素B3）、維生素K、胡蘿蔔素、泛酸鈣（維生素B5）、硫酸銅、碘酸鈣、硫酸鐵、氧化錳、氧化鋅、亞硒酸鈉、蛋白質螯合銅、蛋白質螯合鐵、蛋白質螯合鋅、蛋白質螯合錳、牛磺酸、DL-甲硫氨酸、絲蘭萃取精華、L-抗壞血酸-2-聚磷酸鹽（維生素C活性來源）、鹽酸鹽葡萄糖胺、左旋肉鹼、軟骨素、肌醇（維生素B8）、嗜酸乳桿菌、乾酪乳桿菌、比菲德氏菌、腸球菌。",
+      originCountry: "加拿大",
+      moisture: 10,
+      protein: 30,
+      fat: 12,
+      fiber: 3.5,
+      ash: 7.6,
+      phosphorus: 0.9,
+      calcium: 1.08,
+      caPhosRatio: "1.20",
+      kcalPer100g: 369.7,
+      weightGrams: 907,
+      listPrice: 413,
+      salePrice: 413,
+    },
+    officialFiling: {
+      queryDate: "2026-08-05",
+      records: [
+        {
+          spec: "0.907 公斤",
+          sourceType: "委託代工廠製造",
+          origin: "—",
+          company: "艾澌克企業股份有限公司",
+          subcontractor: "—",
+        },
+      ],
+    },
+    aafcoCertified: true,
+    review: {
+      comment:
+        "TAPAZO特百滋凍乾三重奏－成幼犬低敏海魚配方，乾糧本身以鮭魚、鱒魚、白魚、油鯡魚等多種海魚為主原料，佐餐撒上雞肉凍乾粒、鮮蛋凍乾粒與胡蘿蔔乾燥粒。官方購物網站商品規格標示乾糧產地為加拿大、凍乾撒料產地為台灣，此處產地標籤以佔比較大的乾糧產地（加拿大）為準。保證分析與熱量（3697kcal/kg）皆取自農業部申報網公開資料；官方數值為邊界保證值（水份10%以下、蛋白質30%以上等），加總約63.1%，DMB碳水以此估算約41.0%，偏高，主要來自鷹嘴豆、豌豆與馬鈴薯粉。鈣磷比約1.20，落在理想範圍內。品牌官方購物網頁面商品特色明確標示「符合美國AAFCO的高營養無穀天然糧」。毛孩評價待更新。",
+    },
+    price: 413,
+    affiliateUrl: "https://s.shopee.tw/2LXGNOYZxa",
+  },
+  {
     id: "cat-dry-000",
     category: "貓咪乾糧",
     brand: "Hill's 希爾思",
