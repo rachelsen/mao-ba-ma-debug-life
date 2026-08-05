@@ -2260,6 +2260,53 @@ export const mockPetProducts: PetProduct[] = [
     affiliateUrl: "https://s.shopee.tw/4LIKQZzIJV",
   },
   {
+    id: "dog-dry-004",
+    category: "狗狗乾糧",
+    brand: "HeroMama 英雄媽媽",
+    name: "天然蔬果肉鬆糧－雞羊拌肉鬆餐 (0.9kg)",
+    image: "/images/products/heromama-meatfloss-chickenlamb.png",
+    debugTags: [],
+    features: ["雞肉", "羊肉", "全齡犬", "肉鬆"],
+    dmbCarb: 37.51,
+    detailedAnalysis: {
+      productType: "乾飼糧",
+      ingredientsText:
+        "乾燥雞肉、乾燥羊肉、乾燥魚肉、雞脂肪、豌豆、無調味豬肉鬆、蘋果、覆盆莓、樹薯、紅藜麥、小肽蛋白、水解酵母、乳酪粉、脫水雞肝、鮭魚油、藍莓、綠花椰菜、膳食纖維、甘露寡糖、牛磺酸、離胺酸、礦物質（鐵、鋅、銅、錳）、卵磷脂、軟骨素、蝦紅素、綜合維生素（維生素A、維生素D3、維生素C、維生素E、維生素K3、維生素B1、維生素B2、維生素B6、維生素B12、菸鹼酸、泛酸鈣、葉酸、生物素）、絲蘭、酵母硒、鱉蛋粉、益生菌、天然抗氧化劑。",
+      originCountry: "台灣",
+      moisture: 7.5,
+      protein: 30,
+      fat: 16.1,
+      fiber: 3.8,
+      ash: 7.8,
+      phosphorus: 1.0,
+      calcium: 1.2,
+      caPhosRatio: "1.20",
+      kcalPer100g: 362,
+      weightGrams: 900,
+      listPrice: 390,
+      salePrice: 390,
+    },
+    officialFiling: {
+      queryDate: "2026-08-05",
+      records: [
+        {
+          spec: "0.9 公斤",
+          sourceType: "委託代工廠製造",
+          origin: "—",
+          company: "飛輪寵物有限公司",
+          subcontractor: "自力耕生股份有限公司",
+        },
+      ],
+    },
+    haccpCertified: true,
+    review: {
+      comment:
+        "HeroMama天然蔬果肉鬆糧－雞羊拌肉鬆餐，飼料顆粒外層包裹0調味純豬肉鬆，搭配蘋果、覆盆莓、藍莓、綠花椰菜等天然蔬果凍乾，訴求不用另外拌鮮食就香。保證分析（蛋白質30%、脂肪16.1%、纖維3.8%、灰分7.8%、水分7.5%、鈣1.2%、總磷1.0%、碳水化合物34.7%、熱量362kcal/100g）皆取自農業部申報網公開資料，與品牌官網商品資訊數值一致，數值與同系列雞魚拌肉鬆餐相近。鈣磷比約1.20，落在理想範圍內。碳水化合物偏高（DMB約37.51%），主要來自樹薯、紅藜麥與豌豆。品牌官網頁面並未提及 AAFCO、NRC 或 FEDIAF 標準相關聲明。毛孩評價待更新。",
+    },
+    price: 390,
+    affiliateUrl: "https://s.shopee.tw/AAG7Qg2iwq",
+  },
+  {
     id: "cat-dry-000",
     category: "貓咪乾糧",
     brand: "Hill's 希爾思",
