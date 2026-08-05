@@ -3738,4 +3738,51 @@ export const mockPetProducts: PetProduct[] = [
     price: 980,
     affiliateUrl: "https://s.shopee.tw/W5bpCAaZt",
   },
+  {
+    id: "cat-dry-023",
+    category: "貓咪乾糧",
+    brand: "HeroMama 英雄媽媽",
+    name: "幼貓初乳晶球糧 6mm小顆粒飼料+初乳凍乾晶球+增量營養素+低敏腸胃友善 (營養嫩雞) (300g)",
+    image: "/images/products/heromama-kitten-colostrum-chicken.png",
+    debugTags: [],
+    features: ["雞肉", "無穀", "幼貓", "初乳"],
+    dmbCarb: 20.87,
+    detailedAnalysis: {
+      productType: "乾飼糧",
+      ingredientsText:
+        "乾燥去骨雞肉、乾燥雞肉、豌豆蛋白、雞油脂、樹薯澱粉、小肽蛋白、凍乾雞肉及雞肝、酵母粉、鮭魚油、豌豆、乳酪粉、植物纖維、水解酵母、田園蔬菜（蔓越莓、南瓜、紅蘿蔔）、卵磷脂、乾燥全蛋、牛磺酸、膽鹼、果寡醣、甘露寡醣、離胺酸、蛋胺酸、磷酸氫二鉀、專利水溶性膳食纖維、綜合維生素（維生素A、維生素D3、維生素C、維生素E、維生素B1、維生素B2、維生素B6、維生素B12、菸鹼酸、泛酸鈣、葉酸、維生素B7）、綜合礦物質（銅、鐵、錳、鋅）、絲蘭、後生元、APS初乳、酵母硒、β-葡聚醣、益生菌、半乳寡糖、天然生育酚、迷迭香萃取物。",
+      originCountry: "台灣",
+      moisture: 8,
+      protein: 43.2,
+      fat: 17.8,
+      fiber: 4,
+      ash: 7.8,
+      phosphorus: 0.82,
+      calcium: 1.15,
+      caPhosRatio: "1.40",
+      kcalPer100g: 370.8,
+      weightGrams: 300,
+      listPrice: 270,
+      salePrice: 270,
+    },
+    officialFiling: {
+      queryDate: "2026-08-05",
+      records: [
+        {
+          spec: "300 公克",
+          sourceType: "委託代工廠製造",
+          origin: "—",
+          company: "飛輪寵物有限公司",
+          subcontractor: "自力耕生股份有限公司",
+        },
+      ],
+    },
+    ourCatsRating: [{ cat: "麻糬", verdict: "like" }],
+    review: {
+      comment:
+        "HeroMama幼貓初乳晶球糧－營養嫩雞口味，主原料為乾燥去骨雞肉、乾燥雞肉，並添加初乳凍乾晶球（APS初乳）、益生菌與後生元，訴求低敏腸胃友善，6mm小顆粒適合幼貓與轉食階段，麻糬愛吃。保證分析（蛋白質43.2%、脂肪17.8%、纖維4%、灰分7.8%、水分8%、鈣1.15%、總磷0.82%、熱量370.8kcal/100g）皆取自農業部申報網公開資料；官方未直接列出碳水化合物數值，此處以100%扣除蛋白質/脂肪/灰分/纖維/水分回推估算約19.2%，DMB碳水約20.87%，非官方數字。鈣磷比約1.40，落在理想範圍上緣。品牌官網明確標示為「低敏無穀配方」，但頁面全文並未提及 AAFCO、NRC 或 FEDIAF 標準，與同品牌益生菌晶球夾心糧系列的標示不同，選購前建議留意。",
+    },
+    price: 270,
+    affiliateUrl: "https://s.shopee.tw/1qazQs10NV",
+  },
 ];
