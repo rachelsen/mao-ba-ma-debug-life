@@ -849,6 +849,14 @@ function ProductCard({
                 {product.detailedAnalysis.productType}
               </span>
             )}
+            {(product.detailedAnalysis?.originCountry ?? product.originCountry) && (
+              <span className="rounded-full border border-stone-300 bg-stone-100 px-3 py-1 text-xs font-semibold text-stone-600">
+                {getCountryFlagEmoji(
+                  product.detailedAnalysis?.originCountry ?? product.originCountry!
+                )}
+                {product.detailedAnalysis?.originCountry ?? product.originCountry}
+              </span>
+            )}
           </div>
 
           <p className="text-sm text-stone-600">{product.review.comment}</p>

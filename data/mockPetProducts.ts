@@ -150,6 +150,8 @@ export interface PetProduct {
   ourCatsRating?: CatRating[];
   /** 與品牌／代工廠相關的新聞連結，例如食安、環保裁罰等背景資訊，選填 */
   relatedNews?: { title: string; url: string; date?: string }[];
+  /** 產地備援欄位：僅在 detailedAnalysis 不存在（partialNutrition／保健品等）時使用 */
+  originCountry?: string;
   review: PetProductReview;
   price: number;
   originalPrice?: number;
@@ -2040,6 +2042,7 @@ export const mockPetProducts: PetProduct[] = [
     image: "/images/products/cesar-gourmet-tray-beef.png",
     debugTags: ["含膠類"],
     features: ["肉餅"],
+    originCountry: "澳洲",
     partialNutrition: {
       ingredientsText:
         "肉類及其副產品(雞，牛)，水，黏稠劑(關華豆膠，決明子膠，鹿角菜膠，三聚磷酸鈉)，礦物質，維生素，香料，乙烯二胺四醋酸二鈉鈣，亞硝酸鈉。",
@@ -2873,6 +2876,7 @@ export const mockPetProducts: PetProduct[] = [
     image: "/images/products/royalcanin-urinary-umc34.png",
     debugTags: ["貓咪處方乾糧"],
     features: ["泌尿道保健", "低卡"],
+    originCountry: "韓國",
     partialNutrition: {
       ingredientsText:
         "主原料：米、脫水禽肉蛋白、小麥麩質、玉米粉、植物纖維、玉米質、水解動物蛋白、礦物質、動物脂肪、魚油、大豆油、果寡糖、金盞花、小麥粉。營養添加劑：維生素A、維生素D3等（詳見包裝背面）。",
@@ -2923,6 +2927,7 @@ export const mockPetProducts: PetProduct[] = [
     image: "/images/products/royalcanin-urinary-lp34.png",
     debugTags: ["貓咪處方乾糧"],
     features: ["泌尿道保健"],
+    originCountry: "韓國",
     partialNutrition: {
       ingredientsText:
         "主原料：米、脫水禽肉蛋白、小麥麩質、玉米粉、植物纖維、玉米質、水解動物蛋白、礦物質、動物脂肪、魚油、大豆油、果寡糖、金盞花、小麥粉。營養添加劑：維生素A、維生素D3等（詳見包裝背面）。",
@@ -2973,6 +2978,7 @@ export const mockPetProducts: PetProduct[] = [
     image: "/images/products/tapazo-perfect-cuts-grass-shrimp.png",
     debugTags: [],
     features: ["草蝦", "凍乾", "單一肉源", "無穀", "無防腐劑", "無誘食劑"],
+    originCountry: "台灣",
     partialNutrition: {
       ingredientsText: "草蝦仁、殺菌液蛋、茶胺酸、木天蓼。",
       items: [
@@ -3027,6 +3033,7 @@ export const mockPetProducts: PetProduct[] = [
     image: "/images/products/tapazo-perfect-cuts-chicken-heart.png",
     debugTags: [],
     features: ["雞心", "凍乾", "單一肉源", "無穀", "無防腐劑", "無誘食劑"],
+    originCountry: "台灣",
     partialNutrition: {
       ingredientsText: "雞心、殺菌液蛋、茶胺酸、貓薄荷。",
       items: [
@@ -3683,6 +3690,7 @@ export const mockPetProducts: PetProduct[] = [
     image: "/images/products/maohaishidai-fish-oil.png",
     debugTags: [],
     features: ["Omega-3", "犬貓適用", "ISO22000/HACCP雙認證工廠"],
+    originCountry: "台灣",
     officialFiling: {
       queryDate: "2026-08-04",
       records: [
