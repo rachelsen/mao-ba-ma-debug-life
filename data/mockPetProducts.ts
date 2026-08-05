@@ -2217,7 +2217,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "天然蔬果肉鬆糧－雞魚拌肉鬆餐 (0.9kg)",
     image: "/images/products/heromama-meatfloss-chickenfish.png",
     debugTags: [],
-    features: ["雞肉", "魚肉", "全齡犬", "肉鬆"],
+    features: ["雞肉", "魚肉", "全齡犬", "肉鬆", "HACCP"],
     dmbCarb: 37.82,
     detailedAnalysis: {
       productType: "乾飼糧",
@@ -3684,7 +3684,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "益生菌晶球夾心糧－深海鱈魚 亮毛護膚 (1.5kg)",
     image: "/images/products/heromama-probiotic-cod.png",
     debugTags: [],
-    features: ["鱈魚", "益生菌", "全齡貓", "亮毛護膚"],
+    features: ["鱈魚", "益生菌", "全齡貓", "亮毛護膚", "HACCP"],
     dmbCarb: 17.7,
     detailedAnalysis: {
       productType: "乾飼糧",
@@ -3737,7 +3737,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "益生菌晶球夾心糧－曠野鮮雞 腸胃排毛 (1.5kg)",
     image: "/images/products/heromama-probiotic-chicken.png",
     debugTags: [],
-    features: ["雞肉", "益生菌", "全齡貓", "腸胃排毛"],
+    features: ["雞肉", "益生菌", "全齡貓", "腸胃排毛", "HACCP"],
     dmbCarb: 17.7,
     detailedAnalysis: {
       productType: "乾飼糧",
@@ -3791,7 +3791,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "幼貓初乳晶球糧 6mm小顆粒飼料+初乳凍乾晶球+增量營養素+低敏腸胃友善 (營養嫩雞) (300g)",
     image: "/images/products/heromama-kitten-colostrum-chicken.png",
     debugTags: [],
-    features: ["雞肉", "無穀", "幼貓", "初乳"],
+    features: ["雞肉", "無穀", "幼貓", "初乳", "HACCP"],
     dmbCarb: 20.87,
     detailedAnalysis: {
       productType: "乾飼糧",
