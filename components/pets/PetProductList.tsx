@@ -817,6 +817,17 @@ function ProductCard({
                 {product.nrcCertified ? "✅ NRC 認證" : "⚠️ 未標示 NRC"}
               </span>
             )}
+            {product.haccpCertified !== undefined && (
+              <span
+                className={`rounded-full border px-3 py-1 text-xs font-semibold ${
+                  product.haccpCertified
+                    ? "border-matcha/40 bg-matcha/10 text-matcha"
+                    : "border-amber-500/40 bg-amber-400/10 text-amber-700"
+                }`}
+              >
+                {product.haccpCertified ? "✅ HACCP 認證" : "⚠️ 未標示 HACCP"}
+              </span>
+            )}
             {product.features?.map((feature) => (
               <span
                 key={feature}

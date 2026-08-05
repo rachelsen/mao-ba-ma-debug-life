@@ -144,6 +144,8 @@ export interface PetProduct {
   certStandard?: "AAFCO" | "FEDIAF";
   /** 包裝是否標示符合 NRC 營養標準 */
   nrcCertified?: boolean;
+  /** 製造工廠是否具備 HACCP 食品安全管理認證 */
+  haccpCertified?: boolean;
   /** 本站三貓（本丸／海苔／麻糬）試吃心得 */
   ourCatsRating?: CatRating[];
   review: PetProductReview;
@@ -2217,7 +2219,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "天然蔬果肉鬆糧－雞魚拌肉鬆餐 (0.9kg)",
     image: "/images/products/heromama-meatfloss-chickenfish.png",
     debugTags: [],
-    features: ["雞肉", "魚肉", "全齡犬", "肉鬆", "HACCP"],
+    features: ["雞肉", "魚肉", "全齡犬", "肉鬆"],
     dmbCarb: 37.82,
     detailedAnalysis: {
       productType: "乾飼糧",
@@ -2249,6 +2251,7 @@ export const mockPetProducts: PetProduct[] = [
         },
       ],
     },
+    haccpCertified: true,
     review: {
       comment:
         "HeroMama天然蔬果肉鬆糧－雞魚拌肉鬆餐，飼料顆粒外層包裹0調味純豬肉鬆，搭配蘋果、覆盆莓、蔓越莓、綠花椰菜等天然蔬果凍乾，訴求不用另外拌鮮食就香。保證分析（蛋白質30%、脂肪15.8%、纖維3.8%、灰分7.8%、水分7.7%、鈣1.3%、總磷1.0%、碳水化合物34.9%、熱量360.8kcal/100g）皆取自農業部申報網公開資料，與品牌官網商品資訊數值一致。鈣磷比約1.30，落在理想範圍內。碳水化合物偏高（DMB約37.82%），主要來自樹薯澱粉、紅藜麥與豌豆。品牌官網頁面並未提及 AAFCO、NRC 或 FEDIAF 標準相關聲明。毛孩評價待更新。",
@@ -3684,7 +3687,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "益生菌晶球夾心糧－深海鱈魚 亮毛護膚 (1.5kg)",
     image: "/images/products/heromama-probiotic-cod.png",
     debugTags: [],
-    features: ["鱈魚", "益生菌", "全齡貓", "亮毛護膚", "HACCP"],
+    features: ["鱈魚", "益生菌", "全齡貓", "亮毛護膚"],
     dmbCarb: 17.7,
     detailedAnalysis: {
       productType: "乾飼糧",
@@ -3716,6 +3719,7 @@ export const mockPetProducts: PetProduct[] = [
         },
       ],
     },
+    haccpCertified: true,
     ourCatsRating: [
       { cat: "本丸", verdict: "like" },
       { cat: "麻糬", verdict: "like" },
@@ -3735,7 +3739,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "益生菌晶球夾心糧－曠野鮮雞 腸胃排毛 (1.5kg)",
     image: "/images/products/heromama-probiotic-chicken.png",
     debugTags: [],
-    features: ["雞肉", "益生菌", "全齡貓", "腸胃排毛", "HACCP"],
+    features: ["雞肉", "益生菌", "全齡貓", "腸胃排毛"],
     dmbCarb: 17.7,
     detailedAnalysis: {
       productType: "乾飼糧",
@@ -3767,6 +3771,7 @@ export const mockPetProducts: PetProduct[] = [
         },
       ],
     },
+    haccpCertified: true,
     ourCatsRating: [
       { cat: "本丸", verdict: "like" },
       { cat: "麻糬", verdict: "like" },
@@ -3787,7 +3792,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "幼貓初乳晶球糧 6mm小顆粒飼料+初乳凍乾晶球+增量營養素+低敏腸胃友善 (營養嫩雞) (300g)",
     image: "/images/products/heromama-kitten-colostrum-chicken.png",
     debugTags: [],
-    features: ["雞肉", "無穀", "幼貓", "初乳", "HACCP"],
+    features: ["雞肉", "無穀", "幼貓", "初乳"],
     dmbCarb: 20.87,
     detailedAnalysis: {
       productType: "乾飼糧",
@@ -3819,6 +3824,7 @@ export const mockPetProducts: PetProduct[] = [
         },
       ],
     },
+    haccpCertified: true,
     ourCatsRating: [{ cat: "麻糬", verdict: "like" }],
     review: {
       comment:
