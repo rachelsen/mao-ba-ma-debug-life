@@ -3636,6 +3636,65 @@ export const mockPetProducts: PetProduct[] = [
     affiliateUrl: "https://s.shopee.tw/5fni5ihqnF",
   },
   {
+    id: "cat-can-041",
+    category: "貓咪主食罐",
+    brand: "HeroMama 英雄媽媽",
+    name: "貓用無膠迷你主食罐 (鮭魚 奶糕肉泥) (55g)",
+    image: "/images/products/heromama-minican-salmon.png",
+    debugTags: ["無膠"],
+    features: ["鮭魚", "無穀", "全齡貓", "迷你罐"],
+    dmbCarb: 8.33,
+    detailedAnalysis: {
+      productType: "罐頭",
+      ingredientsText:
+        "水、鮭魚、雞肉、葵花籽油、樹薯澱粉、羊奶粉、營養胺基酸、魚油、益源質、蔓越莓提取物、牛磺酸、綜合礦物質、維生素（E、B群、A、D3、K）。",
+      originCountry: "泰國",
+      moisture: 82,
+      protein: 11.1,
+      fat: 4.4,
+      fiber: 0.03,
+      ash: 1.3,
+      phosphorus: 0.14,
+      calcium: 0.18,
+      caPhosRatio: "1.29",
+      kcalPer100g: 81.5,
+      weightGrams: 55,
+      listPrice: 33,
+      salePrice: 33,
+    },
+    officialFiling: {
+      queryDate: "2026-08-05",
+      records: [
+        {
+          spec: "0.055 公斤",
+          sourceType: "委託代工廠製造",
+          origin: "—",
+          company: "飛輪寵物有限公司",
+          subcontractor: "PREMIER CANNING INDUSTRY CO.,LTD",
+        },
+      ],
+    },
+    aafcoCertified: true,
+    certStandard: "AAFCO",
+    ourCatsRating: [
+      { cat: "本丸", verdict: "like" },
+      { cat: "麻糬", verdict: "like" },
+    ],
+    relatedNews: [
+      {
+        title: "汪喵星球再捲污染爭議 環境部駁回訴願維持裁罰（同集團代工廠背景新聞）",
+        url: "https://wuo-wuo.com/report/instantnews/2223-20250507news",
+        date: "2025-05-07",
+      },
+    ],
+    review: {
+      comment:
+        "HeroMama貓用無膠迷你主食罐－鮭魚奶糕肉泥口味，55g小罐一次吃完不浪費，質地綿密適合乾糧貓轉換或挑嘴貓，本丸、麻糬都愛吃。保證分析（蛋白質11.1%、脂肪4.4%、纖維0.03%、灰分1.3%、水分82%、碳水化合物1.5%、鈣0.18%、總磷0.14%、代謝能81.5kcal/100g）皆取自農業部申報網公開資料，數值與同系列雞肉口味相近。鈣磷比約1.29，落在理想範圍內。品牌官網明確標示「依據國際主食AAFCO營養標準設計」，且原料無穀、無添加膠類。產地為泰國生產（台灣團隊研發、監製），與同品牌乾糧系列的台灣代工廠不同；申報資料顯示檢驗仍由所屬牧羊人集團的希格瑪工廠負責。",
+    },
+    price: 33,
+    affiliateUrl: "https://s.shopee.tw/AAG7YjuL22",
+  },
+  {
     id: "cat-dry-018",
     category: "貓咪乾糧",
     brand: "ROYAL CANIN 法國皇家",
