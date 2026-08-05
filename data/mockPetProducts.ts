@@ -3684,4 +3684,58 @@ export const mockPetProducts: PetProduct[] = [
     price: 980,
     affiliateUrl: "https://s.shopee.tw/111rBrrH74",
   },
+  {
+    id: "cat-dry-022",
+    category: "貓咪乾糧",
+    brand: "HeroMama 英雄媽媽",
+    name: "益生菌晶球夾心糧－曠野鮮雞 腸胃排毛 (1.5kg)",
+    image: "/images/products/heromama-probiotic-chicken.png",
+    debugTags: [],
+    features: ["雞肉", "益生菌", "全齡貓", "腸胃排毛"],
+    dmbCarb: 17.7,
+    detailedAnalysis: {
+      productType: "乾飼糧",
+      ingredientsText:
+        "脫水雞肉、新鮮雞肉、豌豆蛋白、雞脂肪、樹薯澱粉、新鮮虱目魚、小肽蛋白、酵母粉、乳酪粉、鮭魚油、碗豆、植物纖維、水解酵母、田園蔬菜（蔓越莓、南瓜、紅蘿蔔）、小麥草、貓薄荷、蛋黃粉、蛋白粉、牛磺酸、膽鹼、果寡醣、甘露寡醣、離胺酸、蛋胺酸、磷酸氫二鉀、磷酸鎂、焦磷酸鈉、綜合維生素（維生素A、維生素D3、維生素C、維生素E、維生素B1、維生素B2、維生素B6、維生素B12、菸鹼酸、泛酸鈣、葉酸、生物素H）、綜合礦物質（銅、鐵、錳、鋅）、膠原蛋白、絲蘭、酵母硒、β-葡聚醣，另添加副乾酪乳桿菌、嗜熱鏈球菌、鼠李糖乳桿菌等多株益生菌。",
+      originCountry: "台灣",
+      moisture: 8.5,
+      protein: 43.7,
+      fat: 17.6,
+      fiber: 5.5,
+      ash: 9,
+      phosphorus: 0.88,
+      calcium: 1.21,
+      caPhosRatio: "1.38",
+      kcalPer100g: 359.7,
+      weightGrams: 1500,
+      listPrice: 980,
+      salePrice: 980,
+    },
+    officialFiling: {
+      queryDate: "2026-08-05",
+      records: [
+        {
+          spec: "1.5 公斤",
+          sourceType: "委託代工廠製造",
+          origin: "—",
+          company: "飛輪寵物有限公司",
+          subcontractor: "自力耕生股份有限公司",
+        },
+      ],
+    },
+    aafcoCertified: true,
+    certStandard: "AAFCO",
+    ourCatsRating: [
+      { cat: "本丸", verdict: "like" },
+      { cat: "麻糬", verdict: "like" },
+      { cat: "海苔", verdict: "like" },
+      { cat: "荳荳", verdict: "like" },
+    ],
+    review: {
+      comment:
+        "HeroMama益生菌晶球夾心糧－曠野鮮雞口味，主原料為脫水雞肉、新鮮雞肉，並添加新鮮虱目魚、小麥草、貓薄荷與多株益生菌，訴求腸胃排毛，本丸、麻糬、海苔、荳荳都愛吃。保證分析（蛋白質43.7%、脂肪17.6%、纖維5.5%、灰分9%、水分8.5%、鈣1.21%、總磷0.88%、碳水化合物16.2%、熱量359.7kcal/100g）皆取自農業部申報網公開資料，數值與同系列深海鱈魚口味幾乎相同。鈣磷比約1.38，在合理範圍。同樣要注意配方含樹薯澱粉、豌豆蛋白，並非無穀配方，碳水化合物（DMB約17.7%）偏高。品牌官網聲明營養配分依據AAFCO／NRC標準設計，但未見第三方認證或FEDIAF標準的相關聲明。",
+    },
+    price: 980,
+    affiliateUrl: "https://s.shopee.tw/W5bpCAaZt",
+  },
 ];
