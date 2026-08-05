@@ -363,6 +363,7 @@ export default function PetProductList() {
     typeof ALL_LITTER | LitterSubCategory
   >(ALL_LITTER);
   const [showAdvanced, setShowAdvanced] = useState(false);
+  const [viewMode, setViewMode] = useState<"list" | "grid">("list");
   const [certFilters, setCertFilters] = useState<Set<"aafco" | "nrc">>(
     new Set()
   );
@@ -685,13 +686,49 @@ export default function PetProductList() {
         )}
       </div>
 
-      <div className="flex flex-col gap-6">
+      <div className="mb-4 flex items-center justify-end gap-1 rounded-lg border border-cream-border bg-white p-1">
+        <button
+          type="button"
+          onClick={() => setViewMode("list")}
+          aria-label="橫式清單檢視"
+          title="橫式清單檢視"
+          className={`rounded-md px-3 py-1.5 text-sm font-medium transition ${
+            viewMode === "list"
+              ? "bg-milktea/15 text-milktea-dark"
+              : "text-stone-400 hover:text-stone-600"
+          }`}
+        >
+          ☰ 清單
+        </button>
+        <button
+          type="button"
+          onClick={() => setViewMode("grid")}
+          aria-label="格狀檢視"
+          title="格狀檢視"
+          className={`rounded-md px-3 py-1.5 text-sm font-medium transition ${
+            viewMode === "grid"
+              ? "bg-milktea/15 text-milktea-dark"
+              : "text-stone-400 hover:text-stone-600"
+          }`}
+        >
+          ⊞ 格狀
+        </button>
+      </div>
+
+      <div
+        className={
+          viewMode === "grid"
+            ? "grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
+            : "flex flex-col gap-6"
+        }
+      >
         {filteredProducts.map((product) => (
           <ProductCard
             key={product.id}
             product={product}
             liked={likedIds.has(product.id)}
             onToggleLike={handleToggleLike}
+            compact={viewMode === "grid"}
           />
         ))}
       </div>
@@ -734,10 +771,12 @@ function ProductCard({
   product,
   liked,
   onToggleLike,
+  compact = false,
 }: {
   product: PetProduct;
   liked: boolean;
   onToggleLike: (productId: string) => void;
+  compact?: boolean;
 }) {
   const hasDiscount =
     product.originalPrice !== undefined &&
@@ -748,6 +787,76 @@ function ProductCard({
   const [showDetails, setShowDetails] = useState(false);
   const hasMoreDetails =
     product.detailedAnalysis || product.partialNutrition || product.officialFiling;
+
+  if (compact) {
+    return (
+      <article className="flex flex-col gap-2 rounded-2xl border border-amber-100/60 bg-white p-3 shadow-sm transition-all hover:shadow-md">
+        <div className="relative aspect-square w-full overflow-hidden rounded-xl bg-white">
+          <Image
+            src={product.image}
+            alt={`${product.brand} ${product.name}`}
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="object-contain p-3"
+          />
+          <div className="absolute right-2 top-2">
+            <LikeButton liked={liked} onToggle={() => onToggleLike(product.id)} />
+          </div>
+        </div>
+
+        {score && <ScoreBadge score={score} />}
+        {!score && product.category === "貓咪處方乾糧" && (
+          <PrescriptionBadge info={product.prescriptionInfo} />
+        )}
+
+        <div>
+          <p className="text-xs font-medium text-amber-800/60">{product.brand}</p>
+          <h3 className="line-clamp-2 text-sm font-bold text-slate-800">
+            {product.name}
+          </h3>
+        </div>
+
+        <div className="flex flex-wrap gap-1.5">
+          {product.dmbCarb !== undefined && (
+            <span
+              className={`rounded-full border px-2 py-0.5 text-[11px] font-semibold ${getDmbBadgeClass(product.dmbCarb, product.category)}`}
+            >
+              DMB {product.dmbCarb.toFixed(1)}%
+            </span>
+          )}
+          {product.aafcoCertified !== undefined && (
+            <span
+              className={`rounded-full border px-2 py-0.5 text-[11px] font-semibold ${
+                product.aafcoCertified
+                  ? "border-matcha/40 bg-matcha/10 text-matcha"
+                  : "border-amber-500/40 bg-amber-400/10 text-amber-700"
+              }`}
+            >
+              {product.aafcoCertified ? `✅ ${certStandard}` : `⚠️ 未標示`}
+            </span>
+          )}
+        </div>
+
+        {catVerdictSummary && (
+          <p className="line-clamp-1 text-xs text-stone-500">
+            🐾 {catVerdictSummary}
+          </p>
+        )}
+
+        <div className="mt-auto flex items-center justify-between gap-2 pt-1">
+          <p className="text-base font-bold text-stone-800">NT$ {product.price}</p>
+          <a
+            href={product.affiliateUrl}
+            target="_blank"
+            rel="nofollow sponsored noopener noreferrer"
+            className="flex items-center justify-center gap-1 whitespace-nowrap rounded-lg bg-orange-500 px-3 py-1.5 text-sm font-bold text-white transition-all hover:bg-orange-600 active:scale-[0.98]"
+          >
+            🛒 購買
+          </a>
+        </div>
+      </article>
+    );
+  }
 
   return (
     <article className="flex flex-col gap-6 rounded-2xl border border-amber-100/60 bg-white p-4 shadow-sm transition-all hover:shadow-md md:flex-row md:p-6">
