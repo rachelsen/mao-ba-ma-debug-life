@@ -857,6 +857,22 @@ function ProductCard({
               🐾 毛孩評價：{catVerdictSummary}
             </p>
           )}
+          {product.relatedNews && product.relatedNews.length > 0 && (
+            <div className="mt-1.5 flex flex-col gap-0.5">
+              {product.relatedNews.map((news) => (
+                <a
+                  key={news.url}
+                  href={news.url}
+                  target="_blank"
+                  rel="noopener noreferrer nofollow"
+                  className="inline-flex items-center gap-1 text-xs text-stone-400 hover:text-brand-orange-dark hover:underline"
+                >
+                  📰 {news.date ? `${news.date}｜` : ""}
+                  {news.title} →
+                </a>
+              ))}
+            </div>
+          )}
 
           {score && (
             <div className="mt-3">
