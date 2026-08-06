@@ -1479,7 +1479,7 @@ export const mockPetProducts: PetProduct[] = [
   {
     id: "cat-can-026",
     category: "貓咪主食罐",
-    brand: "TAPAZO特百滋",
+    brand: "TAPAZO 特百滋",
     name: "貓用主廚鮮肉派 (鵪鶉燉雞)",
     image: "/images/products/tapazo-chef-pie-quail-chicken.png",
     debugTags: ["無膠"],
@@ -1522,7 +1522,7 @@ export const mockPetProducts: PetProduct[] = [
     ],
     review: {
       comment:
-        "TAPAZO特百滋貓用主廚鮮肉派鵪鶉燉雞口味，全肉配方成分乾淨無爭議性膠類，符合 AAFCO 標準，志龍、豆豆龍、烏龍都愛吃。保證分析與熱量（110kcal/100g）皆取自農業部申報網公開資料；官方數值為邊界保證值（水分80%以下、蛋白質13%以上等）加總逼近100%，DMB碳水以接近邊界的合理值估算約0.48%，實際應更接近0%。鈣磷比約1.24，落在理想範圍內。",
+        "TAPAZO 特百滋貓用主廚鮮肉派鵪鶉燉雞口味，全肉配方成分乾淨無爭議性膠類，符合 AAFCO 標準，志龍、豆豆龍、烏龍都愛吃。保證分析與熱量（110kcal/100g）皆取自農業部申報網公開資料；官方數值為邊界保證值（水分80%以下、蛋白質13%以上等）加總逼近100%，DMB碳水以接近邊界的合理值估算約0.48%，實際應更接近0%。鈣磷比約1.24，落在理想範圍內。",
     },
     price: 38,
     affiliateUrl: "https://s.shopee.tw/6L3LdD8AMZ",
@@ -1530,7 +1530,7 @@ export const mockPetProducts: PetProduct[] = [
   {
     id: "cat-can-027",
     category: "貓咪主食罐",
-    brand: "TAPAZO特百滋",
+    brand: "TAPAZO 特百滋",
     name: "貓用主廚鮮肉派 (鮮牛烤雞)",
     image: "/images/products/tapazo-chef-pie-beef-chicken.png",
     debugTags: ["無膠"],
@@ -1573,7 +1573,7 @@ export const mockPetProducts: PetProduct[] = [
     ],
     review: {
       comment:
-        "TAPAZO特百滋貓用主廚鮮肉派鮮牛烤雞口味，全肉配方成分乾淨無爭議性膠類，符合 AAFCO 標準，志龍、豆豆龍、烏龍都愛吃。保證分析與熱量（110kcal/100g）皆取自農業部申報網公開資料；官方數值為邊界保證值（水分80%以下、蛋白質13%以上等）加總逼近100%，DMB碳水以接近邊界的合理值估算約0.48%，實際應更接近0%。鈣磷比約1.24，落在理想範圍內。",
+        "TAPAZO 特百滋貓用主廚鮮肉派鮮牛烤雞口味，全肉配方成分乾淨無爭議性膠類，符合 AAFCO 標準，志龍、豆豆龍、烏龍都愛吃。保證分析與熱量（110kcal/100g）皆取自農業部申報網公開資料；官方數值為邊界保證值（水分80%以下、蛋白質13%以上等）加總逼近100%，DMB碳水以接近邊界的合理值估算約0.48%，實際應更接近0%。鈣磷比約1.24，落在理想範圍內。",
     },
     price: 38,
     affiliateUrl: "https://s.shopee.tw/6L3LdD8AMZ",
@@ -2328,7 +2328,7 @@ export const mockPetProducts: PetProduct[] = [
   {
     id: "dog-dry-005",
     category: "狗狗乾糧",
-    brand: "TAPAZO特百滋",
+    brand: "TAPAZO 特百滋",
     name: "凍乾三重奏－成幼犬低敏海魚配方 (2磅/907公克)",
     image: "/images/products/tapazo-freeze-dried-trio-ocean-fish-dog.png",
     debugTags: [],
@@ -2367,7 +2367,7 @@ export const mockPetProducts: PetProduct[] = [
     aafcoCertified: true,
     review: {
       comment:
-        "TAPAZO特百滋凍乾三重奏－成幼犬低敏海魚配方，乾糧本身以鮭魚、鱒魚、白魚、油鯡魚等多種海魚為主原料，佐餐撒上雞肉凍乾粒、鮮蛋凍乾粒與胡蘿蔔乾燥粒。官方購物網站商品規格標示乾糧產地為加拿大、凍乾撒料產地為台灣，此處產地標籤以佔比較大的乾糧產地（加拿大）為準。保證分析與熱量（3697kcal/kg）皆取自農業部申報網公開資料；官方數值為邊界保證值（水份10%以下、蛋白質30%以上等），加總約63.1%，DMB碳水以此估算約41.0%，偏高，主要來自鷹嘴豆、豌豆與馬鈴薯粉。鈣磷比約1.20，落在理想範圍內。品牌官方購物網頁面商品特色明確標示「符合美國AAFCO的高營養無穀天然糧」。毛孩評價待更新。",
+        "TAPAZO 特百滋凍乾三重奏－成幼犬低敏海魚配方，乾糧本身以鮭魚、鱒魚、白魚、油鯡魚等多種海魚為主原料，佐餐撒上雞肉凍乾粒、鮮蛋凍乾粒與胡蘿蔔乾燥粒。官方購物網站商品規格標示乾糧產地為加拿大、凍乾撒料產地為台灣，此處產地標籤以佔比較大的乾糧產地（加拿大）為準。保證分析與熱量（3697kcal/kg）皆取自農業部申報網公開資料；官方數值為邊界保證值（水份10%以下、蛋白質30%以上等），加總約63.1%，DMB碳水以此估算約41.0%，偏高，主要來自鷹嘴豆、豌豆與馬鈴薯粉。鈣磷比約1.20，落在理想範圍內。品牌官方購物網頁面商品特色明確標示「符合美國AAFCO的高營養無穀天然糧」。毛孩評價待更新。",
     },
     price: 413,
     affiliateUrl: "https://s.shopee.tw/2LXGNOYZxa",
@@ -2516,7 +2516,7 @@ export const mockPetProducts: PetProduct[] = [
   {
     id: "cat-dry-003",
     category: "貓咪乾糧",
-    brand: "TAPAZO特百滋",
+    brand: "TAPAZO 特百滋",
     name: "貓用凍乾填心糧-成幼貓低敏配方（有穀低敏鮮雞配方泌尿保健）",
     image: "/images/products/tapazo-freeze-dried-hypoallergenic-cat.png",
     debugTags: [],
@@ -2559,7 +2559,7 @@ export const mockPetProducts: PetProduct[] = [
     ],
     review: {
       comment:
-        "TAPAZO特百滋貓用凍乾填心糧成幼貓低敏鮮雞配方，符合 AAFCO 標準，志龍、豆豆龍、烏龍都愛吃。保證分析與熱量（代謝能3640kcal/kg）皆取自農業部申報網公開資料。鈣磷比約1.8，超出理想範圍 1.1-1.4，建議留意。",
+        "TAPAZO 特百滋貓用凍乾填心糧成幼貓低敏鮮雞配方，符合 AAFCO 標準，志龍、豆豆龍、烏龍都愛吃。保證分析與熱量（代謝能3640kcal/kg）皆取自農業部申報網公開資料。鈣磷比約1.8，超出理想範圍 1.1-1.4，建議留意。",
     },
     price: 360,
     affiliateUrl: "https://s.shopee.tw/20uHvCumTi",
@@ -2567,7 +2567,7 @@ export const mockPetProducts: PetProduct[] = [
   {
     id: "cat-dry-004",
     category: "貓咪乾糧",
-    brand: "TAPAZO特百滋",
+    brand: "TAPAZO 特百滋",
     name: "貓用凍乾填心糧-成幼貓低敏配方（無穀低敏海魚配方低碳水高蛋白）",
     image: "/images/products/tapazo-freeze-dried-grainfree-fish-cat.png",
     debugTags: [],
@@ -2610,7 +2610,7 @@ export const mockPetProducts: PetProduct[] = [
     ],
     review: {
       comment:
-        "TAPAZO特百滋成幼貓低敏配方，符合 AAFCO 標準，志龍、豆豆龍、烏龍都愛吃。官方申報顯示此款正式名稱為「凍乾雙饗宴 低敏海魚＋雞肉配方」（海魚與雞肉雙拼，非單一海魚），保證分析與熱量（3483kcal/kg）皆取自農業部申報網公開資料。鈣磷比約1.25，落在理想範圍內。",
+        "TAPAZO 特百滋成幼貓低敏配方，符合 AAFCO 標準，志龍、豆豆龍、烏龍都愛吃。官方申報顯示此款正式名稱為「凍乾雙饗宴 低敏海魚＋雞肉配方」（海魚與雞肉雙拼，非單一海魚），保證分析與熱量（3483kcal/kg）皆取自農業部申報網公開資料。鈣磷比約1.25，落在理想範圍內。",
     },
     price: 399,
     affiliateUrl: "https://s.shopee.tw/20uHvCumTi",
@@ -2714,7 +2714,7 @@ export const mockPetProducts: PetProduct[] = [
   {
     id: "cat-dry-007",
     category: "貓咪乾糧",
-    brand: "TAPAZO特百滋",
+    brand: "TAPAZO 特百滋",
     name: "貓用凍乾雙饗宴 2磅 (成幼貓低敏海魚 x 雞肉)",
     image: "/images/products/tapazo-freeze-dried-duo-fish-chicken-2lb.png",
     debugTags: [],
@@ -2757,7 +2757,7 @@ export const mockPetProducts: PetProduct[] = [
     ],
     review: {
       comment:
-        "TAPAZO特百滋貓用凍乾雙饗宴 2磅低敏海魚x雞肉配方，符合 AAFCO 標準，志龍、豆豆龍、烏龍都愛吃。保證分析與熱量（3483kcal/kg）取自農業部申報網公開資料；官方申報僅有台灣代工版記錄，未查到加拿大進口版申報，產地以申報資料為準標示為台灣。鈣磷比約1.25，落在理想範圍內。",
+        "TAPAZO 特百滋貓用凍乾雙饗宴 2磅低敏海魚x雞肉配方，符合 AAFCO 標準，志龍、豆豆龍、烏龍都愛吃。保證分析與熱量（3483kcal/kg）取自農業部申報網公開資料；官方申報僅有台灣代工版記錄，未查到加拿大進口版申報，產地以申報資料為準標示為台灣。鈣磷比約1.25，落在理想範圍內。",
     },
     price: 451,
     affiliateUrl: "https://s.shopee.tw/qiKcDbcZU",
@@ -2765,7 +2765,7 @@ export const mockPetProducts: PetProduct[] = [
   {
     id: "cat-dry-008",
     category: "貓咪乾糧",
-    brand: "TAPAZO特百滋",
+    brand: "TAPAZO 特百滋",
     name: "貓用凍乾雙饗宴 2磅 (成幼貓低敏鮭魚)",
     image: "/images/products/tapazo-freeze-dried-duo-salmon-2lb.png",
     debugTags: [],
@@ -2808,7 +2808,7 @@ export const mockPetProducts: PetProduct[] = [
     ],
     review: {
       comment:
-        "TAPAZO特百滋貓用凍乾雙饗宴 2磅低敏鮭魚配方，符合 AAFCO 標準，志龍、豆豆龍、烏龍都愛吃。保證分析與熱量（代謝能4204kcal/kg）皆取自農業部申報網公開資料。鈣磷比約1.22，落在理想範圍內。",
+        "TAPAZO 特百滋貓用凍乾雙饗宴 2磅低敏鮭魚配方，符合 AAFCO 標準，志龍、豆豆龍、烏龍都愛吃。保證分析與熱量（代謝能4204kcal/kg）皆取自農業部申報網公開資料。鈣磷比約1.22，落在理想範圍內。",
     },
     price: 451,
     affiliateUrl: "https://s.shopee.tw/qiKcDbcZU",
@@ -2816,7 +2816,7 @@ export const mockPetProducts: PetProduct[] = [
   {
     id: "cat-dry-009",
     category: "貓咪乾糧",
-    brand: "TAPAZO特百滋",
+    brand: "TAPAZO 特百滋",
     name: "貓用凍乾雙饗宴 2磅 (熟齡貓火雞)",
     image: "/images/products/tapazo-freeze-dried-duo-turkey-senior-2lb.png",
     debugTags: [],
@@ -2859,7 +2859,7 @@ export const mockPetProducts: PetProduct[] = [
     ],
     review: {
       comment:
-        "TAPAZO特百滋貓用凍乾雙饗宴 2磅熟齡貓火雞配方，添加葡萄糖胺、軟骨素照護關節，符合 AAFCO 標準，志龍、豆豆龍、烏龍都愛吃。保證分析與熱量（代謝能3351kcal/kg）取自農業部申報網公開資料；官方申報未列鈣磷數據，此處鈣、磷依熟齡貓糧典型值估算（鈣0.9%、磷0.7%），非官方數字，鈣磷相關評分結果僅供參考。",
+        "TAPAZO 特百滋貓用凍乾雙饗宴 2磅熟齡貓火雞配方，添加葡萄糖胺、軟骨素照護關節，符合 AAFCO 標準，志龍、豆豆龍、烏龍都愛吃。保證分析與熱量（代謝能3351kcal/kg）取自農業部申報網公開資料；官方申報未列鈣磷數據，此處鈣、磷依熟齡貓糧典型值估算（鈣0.9%、磷0.7%），非官方數字，鈣磷相關評分結果僅供參考。",
     },
     price: 451,
     affiliateUrl: "https://s.shopee.tw/qiKcDbcZU",
@@ -2867,7 +2867,7 @@ export const mockPetProducts: PetProduct[] = [
   {
     id: "cat-dry-010",
     category: "貓咪乾糧",
-    brand: "TAPAZO特百滋",
+    brand: "TAPAZO 特百滋",
     name: "貓用凍乾雙饗宴 2磅 (成貓低敏雞肉)",
     image: "/images/products/tapazo-freeze-dried-duo-chicken-2lb.png",
     debugTags: [],
@@ -2910,7 +2910,7 @@ export const mockPetProducts: PetProduct[] = [
     ],
     review: {
       comment:
-        "TAPAZO特百滋貓用凍乾雙饗宴 2磅成貓低敏雞肉配方，符合 AAFCO 標準，志龍、豆豆龍、烏龍都愛吃。保證分析與熱量（代謝能4185kcal/kg）皆取自農業部申報網公開資料。鈣磷比約1.2，落在理想範圍內。",
+        "TAPAZO 特百滋貓用凍乾雙饗宴 2磅成貓低敏雞肉配方，符合 AAFCO 標準，志龍、豆豆龍、烏龍都愛吃。保證分析與熱量（代謝能4185kcal/kg）皆取自農業部申報網公開資料。鈣磷比約1.2，落在理想範圍內。",
     },
     price: 451,
     affiliateUrl: "https://s.shopee.tw/qiKcDbcZU",
@@ -3020,7 +3020,7 @@ export const mockPetProducts: PetProduct[] = [
   {
     id: "cat-snack-000",
     category: "貓咪零食",
-    brand: "TAPAZO特百滋",
+    brand: "TAPAZO 特百滋",
     name: "貓用老饕鮮味盤(霸王大草蝦)凍乾 (20g)",
     image: "/images/products/tapazo-perfect-cuts-grass-shrimp.png",
     debugTags: [],
@@ -3067,7 +3067,7 @@ export const mockPetProducts: PetProduct[] = [
     ],
     review: {
       comment:
-        "TAPAZO特百滋貓用老饕鮮味盤霸王大草蝦凍乾，單一草蝦肉源、蛋白質高達79.5%，本丸、麻糬、海苔都超愛。保證分析與熱量（361kcal/100g）皆取自農業部申報網公開資料，官方未列出鈣磷數值（包裝也沒標），這裡另外用USDA生蝦典型值換算推估（非官方，僅供參考）：磷約0.94%、鈣約0.28%，換算下來鈣磷比只有約0.3:1，明顯偏低——這是純肉去殼零食常見的情況（沒有蝦殼或骨骼的鈣質），營養不均衡，加上官方申報明確定位為零食、未標示AAFCO／FEDIAF均衡標準，不建議取代正餐或長期大量餵食。",
+        "TAPAZO 特百滋貓用老饕鮮味盤霸王大草蝦凍乾，單一草蝦肉源、蛋白質高達79.5%，本丸、麻糬、海苔都超愛。保證分析與熱量（361kcal/100g）皆取自農業部申報網公開資料，官方未列出鈣磷數值（包裝也沒標），這裡另外用USDA生蝦典型值換算推估（非官方，僅供參考）：磷約0.94%、鈣約0.28%，換算下來鈣磷比只有約0.3:1，明顯偏低——這是純肉去殼零食常見的情況（沒有蝦殼或骨骼的鈣質），營養不均衡，加上官方申報明確定位為零食、未標示AAFCO／FEDIAF均衡標準，不建議取代正餐或長期大量餵食。",
     },
     price: 149,
     affiliateUrl: "https://s.shopee.tw/5ArOa2s95t",
@@ -3075,7 +3075,7 @@ export const mockPetProducts: PetProduct[] = [
   {
     id: "cat-snack-001",
     category: "貓咪零食",
-    brand: "TAPAZO特百滋",
+    brand: "TAPAZO 特百滋",
     name: "貓用老饕鮮味盤(整粒鮮雞心)凍乾 (40g)",
     image: "/images/products/tapazo-perfect-cuts-chicken-heart.png",
     debugTags: [],
@@ -3122,7 +3122,7 @@ export const mockPetProducts: PetProduct[] = [
     ],
     review: {
       comment:
-        "TAPAZO特百滋貓用老饕鮮味盤整粒鮮雞心凍乾，單一雞心肉源、蛋白質58.9%、脂肪31.2%，本丸、麻糬、海苔都超愛。保證分析與熱量（474kcal/100g）皆取自農業部申報網公開資料，官方未列出鈣磷數值（廠商未公布），這裡另外用USDA生雞心典型值換算推估（非官方，僅供參考）：磷約0.65%、鈣約0.04%，換算下來鈣磷比只有約0.07:1，比草蝦凍乾更懸殊——雞心是內臟肌肉，磷天然偏高、幾乎不含鈣，屬純肉零食常見情況，營養不均衡，加上官方申報明確定位為零食、未標示AAFCO／FEDIAF均衡標準，不建議取代正餐或長期大量餵食。",
+        "TAPAZO 特百滋貓用老饕鮮味盤整粒鮮雞心凍乾，單一雞心肉源、蛋白質58.9%、脂肪31.2%，本丸、麻糬、海苔都超愛。保證分析與熱量（474kcal/100g）皆取自農業部申報網公開資料，官方未列出鈣磷數值（廠商未公布），這裡另外用USDA生雞心典型值換算推估（非官方，僅供參考）：磷約0.65%、鈣約0.04%，換算下來鈣磷比只有約0.07:1，比草蝦凍乾更懸殊——雞心是內臟肌肉，磷天然偏高、幾乎不含鈣，屬純肉零食常見情況，營養不均衡，加上官方申報明確定位為零食、未標示AAFCO／FEDIAF均衡標準，不建議取代正餐或長期大量餵食。",
     },
     price: 149,
     affiliateUrl: "https://s.shopee.tw/4qEZGrd9w8",
