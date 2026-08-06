@@ -4390,4 +4390,52 @@ export const mockPetProducts: PetProduct[] = [
       { label: "🛒 前往購買", url: "https://coupa.ng/cozJb3", color: "#3DACDC" },
     ],
   },
+  {
+    id: "cat-dry-027",
+    category: "貓咪乾糧",
+    brand: "Acana 愛肯拿",
+    name: "豐盛漁獲低GI配方貓飼料（野生鮭魚 x 鯡魚 x 鱈魚 x 紅鱒魚）(4.5kg)",
+    image: "/images/products/acana-bountiful-catch-salmon-cat.png",
+    debugTags: [],
+    features: ["多種魚", "低GI", "全齡貓"],
+    dmbCarb: 30,
+    detailedAnalysis: {
+      productType: "乾飼糧",
+      ingredientsText:
+        "生鮮鮭魚（18%）、脫水鮭魚（15%）、脫水鯡魚（15%）、去殼燕麥、完整豌豆、魚油（6%）、完整綠扁豆、生鮮鱈魚（4%）、生鮮完整鯡魚（4%）、完整鷹嘴豆、完整紅扁豆、葵花油、生鮮虹鱒魚（3%）、扁豆纖維、碳酸鈣、乾燥海帶、新鮮完整冬南瓜、新鮮完整南瓜、完整蔓越莓、完整藍莓。添加維生素、礦物質、牛磺酸、屎腸球菌益生菌。",
+      originCountry: "加拿大",
+      moisture: 10,
+      protein: 34,
+      fat: 16,
+      fiber: 4,
+      ash: 9,
+      phosphorus: 1.2,
+      calcium: 1.6,
+      caPhosRatio: "1.33",
+      kcalPer100g: 380,
+      weightGrams: 4500,
+      listPrice: 1699,
+      salePrice: 1699,
+    },
+    officialFiling: {
+      queryDate: "2026-08-06",
+      records: [
+        {
+          spec: "4.5 公斤",
+          sourceType: "輸入",
+          origin: "加拿大",
+          company: "豪翼行銷有限公司",
+          subcontractor: "Champion Petfoods Holding Inc.",
+        },
+      ],
+    },
+    aafcoCertified: true,
+    certStandard: "FEDIAF",
+    review: {
+      comment:
+        "Acana 愛肯拿豐盛漁獲低GI配方貓飼料，官方英文品名為「ACANA BOUNTIFUL CATCH」，前三項食材為生鮮鮭魚、脫水鮭魚、脫水鯡魚，65%為豐富魚肉來源（野生鮭魚、鱈魚、虹鱒魚、鯡魚），含去殼燕麥，非無穀配方。保證分析、成分與熱量（3800kcal/kg）皆取自農業部申報網公開資料（官方登記規格即為4.5kg，與本品規格完全相符）；製造工廠為原廠 Champion Petfoods Holding Inc.（加拿大）。台灣官方代理商豪翼行銷網站明確標示「符合 FEDIAF 標準」，並非 AAFCO。鈣磷比約1.33，落在理想範圍內；碳水（DMB約30%）略高於愛肯拿其他無穀配方，但仍屬中低碳水範圍。毛孩評價待更新。",
+    },
+    price: 1699,
+    affiliateUrl: "https://coupa.ng/cozU6C",
+  },
 ];
