@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import CarbCalculator from "@/components/pets/CarbCalculator";
+import Link from "next/link";
 import PetProductList from "@/components/pets/PetProductList";
 import PetSection from "@/components/pets/PetSection";
 
@@ -34,7 +34,22 @@ export default function PetsPage() {
       <PetSection />
 
       <div className="mx-auto max-w-6xl space-y-14 px-4 py-12 sm:px-8">
-        <CarbCalculator />
+        <Link
+          href="/pets/carb-calculator"
+          className="group flex items-center justify-between gap-4 rounded-2xl border border-cream-border bg-white p-6 shadow-sm transition hover:border-milktea/60 hover:shadow-md sm:p-8"
+        >
+          <div>
+            <h2 className="text-lg font-bold text-stone-800 sm:text-xl">
+              🧮 碳水化合物 Debug 計算器
+            </h2>
+            <p className="mt-1.5 text-sm text-stone-500">
+              輸入飼料保證分析值，自動換算乾物質基礎碳水化合物比例，貓咪、狗狗的乾糧與罐頭皆適用。
+            </p>
+          </div>
+          <span className="shrink-0 text-sm font-semibold text-milktea-dark transition group-hover:translate-x-1">
+            前往計算 →
+          </span>
+        </Link>
         <PetProductList />
       </div>
     </main>
