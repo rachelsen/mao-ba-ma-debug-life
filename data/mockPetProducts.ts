@@ -2467,6 +2467,53 @@ export const mockPetProducts: PetProduct[] = [
     affiliateUrl: "https://s.shopee.tw/2qTYDUDjUm",
   },
   {
+    id: "dog-dry-008",
+    category: "狗狗乾糧",
+    brand: "TAPAZO 特百滋",
+    name: "凍乾三重奏－熟齡犬低敏雞肉配方 (2磅/907公克)",
+    image: "/images/products/tapazo-freeze-dried-trio-senior-chicken-dog.png",
+    debugTags: [],
+    features: ["雞肉", "低敏", "無穀", "凍乾", "熟齡犬"],
+    dmbCarb: 46.22,
+    detailedAnalysis: {
+      productType: "乾飼糧",
+      ingredientsText:
+        "佐餐成份：雞肉凍乾粒、鮮蛋凍乾粒、乾燥胡蘿蔔。乾糧成份：乾燥雞肉、乾鷹嘴豆、乾燥馬鈴薯、豌豆粉、乾燥甜菜根、天然調味料、雞脂（以混合生育酚保存）、纖維素粉、豌豆纖維、乾燥豌豆、乾燥火雞、乾燥鮭魚、乾燥番茄粕、鮭魚油（以混合生育酚保存）、食鹽、研磨亞麻籽、啤酒酵母萃取物、氯化膽鹼、乾燥菊苣根（菊苣纖維與果寡糖之來源）、乾燥雞蛋、維生素E、維生素A、維生素D3、維生素B12、維生素C、核黃素（維生素B2）、硫胺素（維生素B1）、葉酸、生物素（維生素B7）、鹽酸吡哆醇（維生素B6）、菸鹼酸（維生素B3）、維生素K、胡蘿蔔素、泛酸鈣（維生素B5）、硫酸銅、碘酸鈣、硫酸鐵、氧化錳、氧化鋅、亞硒酸鈉、蛋白質螯合銅、蛋白質螯合鐵、蛋白質螯合鋅、蛋白質螯合錳、DL-甲硫氨酸、牛磺酸、絲蘭萃取精華、L-抗壞血酸-2-聚磷酸鹽（維生素C活性來源）、鹽酸鹽葡萄糖胺、左旋肉鹼、肌醇（維生素B8）、軟骨素、嗜酸乳桿菌、乾酪乳桿菌、比菲德氏菌、腸球菌。",
+      originCountry: "加拿大",
+      moisture: 10,
+      protein: 27,
+      fat: 9,
+      fiber: 6.2,
+      ash: 6.2,
+      phosphorus: 0.36,
+      calcium: 0.45,
+      caPhosRatio: "1.25",
+      kcalPer100g: 355.8,
+      weightGrams: 907,
+      listPrice: 413,
+      salePrice: 413,
+    },
+    officialFiling: {
+      queryDate: "2026-08-06",
+      records: [
+        {
+          spec: "0.907 公斤",
+          sourceType: "委託代工廠製造",
+          origin: "—",
+          company: "艾澌克企業股份有限公司",
+          subcontractor: "—",
+        },
+      ],
+    },
+    aafcoCertified: true,
+    review: {
+      comment:
+        "TAPAZO 特百滋凍乾三重奏－熟齡犬低敏雞肉配方，乾糧本身以雞肉為主原料，搭配鷹嘴豆、馬鈴薯、豌豆提供澱粉來源，佐餐撒上雞肉凍乾粒、鮮蛋凍乾粒與胡蘿蔔乾燥粒，官方申報適用對象標示為「熟齡犬」，脂肪（最低9%）與鈣磷（最低0.45%／0.36%）皆明顯低於同系列其他口味，符合熟齡犬低脂、低磷的照護方向。官方購物網站商品規格標示乾糧產地為加拿大、凍乾產地為台灣，此處產地標籤以佔比較大的乾糧產地（加拿大）為準。保證分析與熱量（3558kcal/kg）皆取自農業部申報網公開資料；官方數值為邊界保證值（水份10%以下、蛋白質27%以上等），加總約58.4%，DMB碳水以此估算約46.22%，明顯偏高，主要來自鷹嘴豆與馬鈴薯。鈣磷比約1.25，落在理想範圍內。品牌官方購物網頁面商品特色明確標示「符合美國AAFCO的高營養無穀天然糧」。毛孩評價待更新。",
+    },
+    price: 413,
+    affiliateUrl: "https://s.shopee.tw/2qTYDUDjUm",
+  },
+  {
     id: "cat-dry-000",
     category: "貓咪乾糧",
     brand: "Hill's 希爾思",
