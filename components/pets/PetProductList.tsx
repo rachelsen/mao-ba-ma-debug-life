@@ -532,7 +532,6 @@ export default function PetProductList() {
   const [litterFilter, setLitterFilter] = useState<
     typeof ALL_LITTER | LitterSubCategory
   >(ALL_LITTER);
-  const [showAdvanced, setShowAdvanced] = useState(false);
   const [viewMode, setViewMode] = useState<"list" | "grid">("list");
   const [certFilters, setCertFilters] = useState<
     Set<"aafco" | "nrc" | "haccp" | "fediaf">
@@ -547,9 +546,6 @@ export default function PetProductList() {
   const [filingFilters, setFilingFilters] = useState<Set<string>>(new Set());
   const [manufacturerFactory, setManufacturerFactory] = useState<string>(ALL_FACTORY);
   const [subcontractorFactory, setSubcontractorFactory] = useState<string>(ALL_FACTORY);
-  const [scoreThreshold, setScoreThreshold] = useState<"all" | 60 | 75>(
-    "all"
-  );
   const [sortOrder, setSortOrder] = useState<"random" | "desc">("random");
   // 初始值固定，避免 SSR／CSR 洗牌結果不一致造成 hydration mismatch；掛載後才在 client 端重新洗牌
   const [shuffleSeed, setShuffleSeed] = useState(0);
@@ -557,7 +553,7 @@ export default function PetProductList() {
   const [showHealthSection, setShowHealthSection] = useState(false);
   const [showFilingSection, setShowFilingSection] = useState(false);
   const [likedIds, setLikedIds] = useState<Set<string>>(new Set());
-  const advancedPanelRef = useRef<HTMLDivElement>(null);
+  const moreFiltersRef = useRef<HTMLDivElement>(null);
 
   const { getQuantity, setQuantity } = useFavoriteQuantities();
 
@@ -613,7 +609,6 @@ export default function PetProductList() {
   };
 
   const handlePairingWizard = () => {
-    setShowAdvanced(true);
     const seniorTag = availableFeatures.includes("熟齡貓")
       ? "熟齡貓"
       : availableFeatures.includes("熟齡犬")
@@ -622,7 +617,7 @@ export default function PetProductList() {
     if (seniorTag) setFeatureFilters(new Set([seniorTag]));
     setQuickFilters(new Set(["kidney"]));
     requestAnimationFrame(() => {
-      advancedPanelRef.current?.scrollIntoView({
+      moreFiltersRef.current?.scrollIntoView({
         behavior: "smooth",
         block: "start",
       });
@@ -830,11 +825,6 @@ export default function PetProductList() {
         )
       );
     }
-    if (scoreThreshold !== "all") {
-      products = products.filter(
-        (product) => (computeProductScore(product)?.total ?? -1) >= scoreThreshold
-      );
-    }
     return [...products].sort((a, b) => {
       if (sortOrder === "random") {
         return hashSeed(a.id, shuffleSeed) - hashSeed(b.id, shuffleSeed);
@@ -853,7 +843,6 @@ export default function PetProductList() {
     filingFilters,
     manufacturerFactory,
     subcontractorFactory,
-    scoreThreshold,
     sortOrder,
     shuffleSeed,
   ]);
@@ -1083,7 +1072,9 @@ export default function PetProductList() {
         />
         <button
           type="button"
-          onClick={() => setShowAdvanced(true)}
+          onClick={() =>
+            moreFiltersRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
+          }
           className="rounded-full border border-cream-border bg-white px-3 py-1.5 text-xs font-medium text-stone-500 transition hover:border-milktea/60 hover:text-milktea-dark"
         >
           更多需求 →
@@ -1152,8 +1143,7 @@ export default function PetProductList() {
         certFilters.size > 0 ||
         featureFilters.size > 0 ||
         originFilter !== ALL_ORIGIN ||
-        filingFilters.size > 0 ||
-        scoreThreshold !== "all"
+        filingFilters.size > 0
           ? "已篩選"
           : sortOrder === "random"
             ? "隨機瀏覽"
@@ -1162,65 +1152,9 @@ export default function PetProductList() {
         {filteredProducts.length} 款
       </p>
 
-      <div className="mb-6" ref={advancedPanelRef}>
-        <button
-          type="button"
-          onClick={() => setShowAdvanced((prev) => !prev)}
-          className="inline-flex items-center gap-1.5 rounded-lg border border-cream-border bg-white px-3 py-2 text-sm font-medium text-stone-600 transition hover:border-milktea/60 hover:text-milktea-dark"
-        >
-          🔍 進階篩選
-          {certFilters.size -
-            (certFilters.has("aafco") ? 1 : 0) -
-            (certFilters.has("fediaf") ? 1 : 0) +
-            featureFilters.size -
-            lifeStageTags.filter((tag) => featureFilters.has(tag)).length +
-            filingFilters.size +
-            (manufacturerFactory !== ALL_FACTORY ? 1 : 0) +
-            (subcontractorFactory !== ALL_FACTORY ? 1 : 0) +
-            (scoreThreshold !== "all" ? 1 : 0) >
-            0 && (
-            <span className="rounded-full bg-milktea/15 px-2 py-0.5 text-xs font-semibold text-milktea-dark">
-              {certFilters.size -
-                (certFilters.has("aafco") ? 1 : 0) -
-                (certFilters.has("fediaf") ? 1 : 0) +
-                featureFilters.size -
-                lifeStageTags.filter((tag) => featureFilters.has(tag)).length +
-                filingFilters.size +
-                (manufacturerFactory !== ALL_FACTORY ? 1 : 0) +
-                (subcontractorFactory !== ALL_FACTORY ? 1 : 0) +
-                (scoreThreshold !== "all" ? 1 : 0)}
-            </span>
-          )}
-          <span
-            className={`text-xs transition-transform ${showAdvanced ? "rotate-180" : ""}`}
-          >
-            ▾
-          </span>
-        </button>
-
-        {showAdvanced && (
-          <div className="mt-3 flex flex-col gap-4 rounded-xl border border-cream-border bg-cream-bg-light/60 p-4">
-            <label className="flex items-center gap-2 text-sm text-stone-600">
-              分數至少
-              <select
-                value={scoreThreshold}
-                onChange={(e) =>
-                  setScoreThreshold(
-                    e.target.value === "all"
-                      ? "all"
-                      : (Number(e.target.value) as 60 | 75)
-                  )
-                }
-                className="rounded-lg border border-cream-border bg-white px-2 py-1.5 text-sm text-stone-700 outline-none transition focus:border-milktea focus:ring-1 focus:ring-milktea"
-              >
-                <option value="all">不限</option>
-                <option value={60}>60分以上</option>
-                <option value={75}>75分以上</option>
-              </select>
-            </label>
-
-            {(meatSpeciesTags.length > 0 || attributeTags.length > 0 || otherIngredientTags.length > 0) && (
-              <div className="border-t border-cream-border pt-4">
+      <div className="mb-6 flex flex-col gap-4" ref={moreFiltersRef}>
+        {(meatSpeciesTags.length > 0 || attributeTags.length > 0 || otherIngredientTags.length > 0) && (
+              <div>
                 <button
                   type="button"
                   onClick={() => setShowMeatSection((prev) => !prev)}
@@ -1390,10 +1324,8 @@ export default function PetProductList() {
                 )}
               </div>
             )}
-          </div>
-        )}
 
-        <p className="mt-3 text-[11px] leading-relaxed text-stone-400">
+        <p className="text-[11px] leading-relaxed text-stone-400">
           資料來自農業部寵物食品申報網。是廠商自己申報、任何人都查得到的公開紀錄。比對是程式自動跑的，偶爾會對錯。
         </p>
       </div>
