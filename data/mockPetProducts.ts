@@ -4332,4 +4332,52 @@ export const mockPetProducts: PetProduct[] = [
     price: 270,
     affiliateUrl: "https://s.shopee.tw/1qazQs10NV",
   },
+  {
+    id: "cat-dry-026",
+    category: "貓咪乾糧",
+    brand: "Acana 愛肯拿",
+    name: "海洋盛宴 無穀貓飼料（多種魚 x 玫瑰果）(340g)",
+    image: "/images/products/acana-pacifica-multifish-rosehip-cat.png",
+    debugTags: [],
+    features: ["多種魚", "無穀", "全齡貓"],
+    dmbCarb: 25.56,
+    detailedAnalysis: {
+      productType: "乾飼糧",
+      ingredientsText:
+        "生鮮完整鯡魚（16%）、生鮮完整鯖魚（12%）、生鮮鱈魚（9%）、脫水鯡魚（8%）、脫水藍鱈魚（8%）、脫水鯖魚（8%）、完整花豆、完整豌豆、生鮮比目魚（5%）、魚油（5%）、完整紅扁豆、完整鷹嘴豆、完整綠扁豆、生鮮岩魚（4%）、葵花油、扁豆纖維、乾燥海帶、新鮮完整南瓜、新鮮完整冬南瓜、新鮮完整紅蘿蔔、新鮮完整蘋果、新鮮完整梨子、新鮮完整櫛瓜、乾燥菊苣根、新鮮甘藍、新鮮菠菜、新鮮蘿蔔菜、新鮮甜菜葉、完整蔓越莓、完整藍莓、完整薩斯卡通莓、薑黃根、水飛薊、牛蒡根、薰衣草、蜀葵根、玫瑰果。添加維生素、礦物質、牛磺酸、屎腸球菌益生菌。",
+      originCountry: "加拿大",
+      moisture: 10,
+      protein: 37,
+      fat: 18,
+      fiber: 3,
+      ash: 9,
+      phosphorus: 1.1,
+      calcium: 1.4,
+      caPhosRatio: "1.27",
+      kcalPer100g: 393,
+      weightGrams: 340,
+      listPrice: 235,
+      salePrice: 235,
+    },
+    officialFiling: {
+      queryDate: "2026-08-06",
+      records: [
+        {
+          spec: "1.8 公斤",
+          sourceType: "輸入",
+          origin: "加拿大",
+          company: "豪翼行銷有限公司",
+          subcontractor: "Champion Petfoods Holding Inc.",
+        },
+      ],
+    },
+    aafcoCertified: true,
+    certStandard: "FEDIAF",
+    review: {
+      comment:
+        "Acana 愛肯拿海洋盛宴無穀貓飼料，官方英文品名為「ACANA PACIFICA」，前三項食材為生鮮鯡魚、鯖魚、鱈魚，動物性食材約75%來自新鮮或生鮮魚獲，不含穀物、木薯粉或馬鈴薯。保證分析與熱量（3930kcal/kg）皆取自農業部申報網公開資料（官方登記規格為1.8kg，與本品340g規格保證分析相同，MOA未見340g單獨申報紀錄）；製造工廠為原廠 Champion Petfoods Holding Inc.（加拿大）。台灣官方代理商豪翼行銷網站明確標示「符合 FEDIAF 標準」，並非 AAFCO。鈣磷比約1.27，落在理想範圍內。碳水偏低（DMB約25.56%），符合愛肯拿高蛋白低碳水的一貫配方風格。毛孩評價待更新。",
+    },
+    price: 235,
+    affiliateUrl: "https://s.shopee.tw/LmDI88BqN",
+  },
 ];
