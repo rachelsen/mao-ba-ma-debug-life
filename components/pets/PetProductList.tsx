@@ -20,6 +20,7 @@ import { useFavoriteQuantities } from "@/lib/useFavoriteQuantities";
 const ALL = "全部分類" as const;
 const ALL_BRANDS = "全部品牌" as const;
 const ALL_LITTER = "全部" as const;
+const ALL_ORIGIN = "全部產地" as const;
 
 const TABS: (typeof ALL | PetProductCategory)[] = [
   ALL,
@@ -72,6 +73,55 @@ function getFilterTags(product: PetProduct): string[] {
       ? [product.detailedAnalysis.productType]
       : []),
   ];
+}
+
+/** 生命階段／適用對象標籤，會顯示在進階篩選最上層（與 AAFCO/NRC/HACCP/FEDIAF 同排） */
+const LIFE_STAGE_TAGS = new Set([
+  "幼犬",
+  "成犬",
+  "全齡犬",
+  "熟齡犬",
+  "小型犬",
+  "迷你犬",
+  "幼貓",
+  "成貓",
+  "全齡貓",
+  "熟齡貓",
+  "懷孕授乳貓",
+  "室內貓",
+]);
+
+/** 保健功能類標籤，收合於「保健功能篩選」 */
+const HEALTH_PURPOSE_TAGS = new Set([
+  "體重控制",
+  "減重配方",
+  "低卡",
+  "熱量管理",
+  "泌尿道保健",
+  "化毛",
+  "關節保健",
+  "皮毛保健",
+  "腸胃排毛",
+  "亮毛護膚",
+  "降低便臭",
+  "挑嘴",
+]);
+
+/** 依標籤性質分類，其餘（肉類／成分／型態）歸入 meatAndIngredient */
+function classifyFeatureTags(tags: string[]) {
+  const lifeStage: string[] = [];
+  const healthPurpose: string[] = [];
+  const meatAndIngredient: string[] = [];
+  for (const tag of tags) {
+    if (LIFE_STAGE_TAGS.has(tag)) lifeStage.push(tag);
+    else if (HEALTH_PURPOSE_TAGS.has(tag)) healthPurpose.push(tag);
+    else meatAndIngredient.push(tag);
+  }
+  return { lifeStage, healthPurpose, meatAndIngredient };
+}
+
+function getProductOrigin(product: PetProduct): string | undefined {
+  return product.detailedAnalysis?.originCountry ?? product.originCountry;
 }
 
 /** 從保證分析（以現狀為準）數值，換算出乾物比與熱量佔比對照表所需的數字 */
@@ -364,12 +414,21 @@ export default function PetProductList() {
   >(ALL_LITTER);
   const [showAdvanced, setShowAdvanced] = useState(false);
   const [viewMode, setViewMode] = useState<"list" | "grid">("list");
-  const [certFilters, setCertFilters] = useState<Set<"aafco" | "nrc">>(
-    new Set()
-  );
+  const [certFilters, setCertFilters] = useState<
+    Set<"aafco" | "nrc" | "haccp" | "fediaf">
+  >(new Set());
   const [featureFilters, setFeatureFilters] = useState<Set<string>>(
     new Set()
   );
+  const [originFilter, setOriginFilter] = useState<string>(ALL_ORIGIN);
+  const [filingFilters, setFilingFilters] = useState<Set<string>>(new Set());
+  const [scoreThreshold, setScoreThreshold] = useState<"all" | 60 | 75>(
+    "all"
+  );
+  const [sortOrder, setSortOrder] = useState<"desc" | "asc">("desc");
+  const [showMeatSection, setShowMeatSection] = useState(false);
+  const [showHealthSection, setShowHealthSection] = useState(false);
+  const [showFilingSection, setShowFilingSection] = useState(false);
   const [likedIds, setLikedIds] = useState<Set<string>>(new Set());
 
   const { getQuantity, setQuantity } = useFavoriteQuantities();
@@ -380,9 +439,11 @@ export default function PetProductList() {
     setLitterFilter(ALL_LITTER);
     setCertFilters(new Set());
     setFeatureFilters(new Set());
+    setOriginFilter(ALL_ORIGIN);
+    setFilingFilters(new Set());
   };
 
-  const toggleCertFilter = (cert: "aafco" | "nrc") => {
+  const toggleCertFilter = (cert: "aafco" | "nrc" | "haccp" | "fediaf") => {
     setCertFilters((prev) => {
       const next = new Set(prev);
       if (next.has(cert)) next.delete(cert);
@@ -396,6 +457,15 @@ export default function PetProductList() {
       const next = new Set(prev);
       if (next.has(feature)) next.delete(feature);
       else next.add(feature);
+      return next;
+    });
+  };
+
+  const toggleFilingFilter = (sourceType: string) => {
+    setFilingFilters((prev) => {
+      const next = new Set(prev);
+      if (next.has(sourceType)) next.delete(sourceType);
+      else next.add(sourceType);
       return next;
     });
   };
@@ -474,13 +544,41 @@ export default function PetProductList() {
     [baseFilteredProducts]
   );
 
+  const { lifeStage: lifeStageTags, healthPurpose: healthPurposeTags, meatAndIngredient: meatIngredientTags } =
+    useMemo(() => classifyFeatureTags(availableFeatures), [availableFeatures]);
+
+  const availableOrigins = useMemo(() => {
+    const origins = baseFilteredProducts
+      .map((product) => getProductOrigin(product))
+      .filter((origin): origin is string => Boolean(origin));
+    return Array.from(new Set(origins));
+  }, [baseFilteredProducts]);
+
+  const availableFilingSourceTypes = useMemo(() => {
+    const types = baseFilteredProducts.flatMap(
+      (product) => product.officialFiling?.records.map((record) => record.sourceType) ?? []
+    );
+    return Array.from(new Set(types));
+  }, [baseFilteredProducts]);
+
   const filteredProducts = useMemo(() => {
     let products = baseFilteredProducts;
     if (certFilters.has("aafco")) {
-      products = products.filter((product) => product.aafcoCertified);
+      products = products.filter(
+        (product) =>
+          product.aafcoCertified && (product.certStandard ?? "AAFCO") === "AAFCO"
+      );
+    }
+    if (certFilters.has("fediaf")) {
+      products = products.filter(
+        (product) => product.aafcoCertified && product.certStandard === "FEDIAF"
+      );
     }
     if (certFilters.has("nrc")) {
       products = products.filter((product) => product.nrcCertified);
+    }
+    if (certFilters.has("haccp")) {
+      products = products.filter((product) => product.haccpCertified);
     }
     if (featureFilters.size > 0) {
       products = products.filter((product) =>
@@ -489,12 +587,37 @@ export default function PetProductList() {
         )
       );
     }
+    if (originFilter !== ALL_ORIGIN) {
+      products = products.filter(
+        (product) => getProductOrigin(product) === originFilter
+      );
+    }
+    if (filingFilters.size > 0) {
+      products = products.filter((product) =>
+        product.officialFiling?.records.some((record) =>
+          filingFilters.has(record.sourceType)
+        )
+      );
+    }
+    if (scoreThreshold !== "all") {
+      products = products.filter(
+        (product) => (computeProductScore(product)?.total ?? -1) >= scoreThreshold
+      );
+    }
     return [...products].sort((a, b) => {
       const scoreA = computeProductScore(a)?.total ?? -1;
       const scoreB = computeProductScore(b)?.total ?? -1;
-      return scoreB - scoreA;
+      return sortOrder === "desc" ? scoreB - scoreA : scoreA - scoreB;
     });
-  }, [baseFilteredProducts, certFilters, featureFilters]);
+  }, [
+    baseFilteredProducts,
+    certFilters,
+    featureFilters,
+    originFilter,
+    filingFilters,
+    scoreThreshold,
+    sortOrder,
+  ]);
 
   const favoriteProducts = useMemo(
     () => mockPetProducts.filter((product) => likedIds.has(product.id)),
@@ -650,9 +773,18 @@ export default function PetProductList() {
           className="inline-flex items-center gap-1.5 rounded-lg border border-cream-border bg-white px-3 py-2 text-sm font-medium text-stone-600 transition hover:border-milktea/60 hover:text-milktea-dark"
         >
           🔍 進階篩選
-          {certFilters.size + featureFilters.size > 0 && (
+          {certFilters.size +
+            featureFilters.size +
+            filingFilters.size +
+            (originFilter !== ALL_ORIGIN ? 1 : 0) +
+            (scoreThreshold !== "all" ? 1 : 0) >
+            0 && (
             <span className="rounded-full bg-milktea/15 px-2 py-0.5 text-xs font-semibold text-milktea-dark">
-              {certFilters.size + featureFilters.size}
+              {certFilters.size +
+                featureFilters.size +
+                filingFilters.size +
+                (originFilter !== ALL_ORIGIN ? 1 : 0) +
+                (scoreThreshold !== "all" ? 1 : 0)}
             </span>
           )}
           <span
@@ -663,25 +795,173 @@ export default function PetProductList() {
         </button>
 
         {showAdvanced && (
-          <div className="mt-3 flex flex-wrap gap-2 rounded-xl border border-cream-border bg-cream-bg-light/60 p-4">
-            <FilterChip
-              label="AAFCO 認證"
-              checked={certFilters.has("aafco")}
-              onToggle={() => toggleCertFilter("aafco")}
-            />
-            <FilterChip
-              label="NRC 認證"
-              checked={certFilters.has("nrc")}
-              onToggle={() => toggleCertFilter("nrc")}
-            />
-            {availableFeatures.map((feature) => (
+          <div className="mt-3 flex flex-col gap-4 rounded-xl border border-cream-border bg-cream-bg-light/60 p-4">
+            <div className="flex flex-wrap gap-4">
+              <label className="flex items-center gap-2 text-sm text-stone-600">
+                分數至少
+                <select
+                  value={scoreThreshold}
+                  onChange={(e) =>
+                    setScoreThreshold(
+                      e.target.value === "all"
+                        ? "all"
+                        : (Number(e.target.value) as 60 | 75)
+                    )
+                  }
+                  className="rounded-lg border border-cream-border bg-white px-2 py-1.5 text-sm text-stone-700 outline-none transition focus:border-milktea focus:ring-1 focus:ring-milktea"
+                >
+                  <option value="all">不限</option>
+                  <option value={60}>60分以上</option>
+                  <option value={75}>75分以上</option>
+                </select>
+              </label>
+              <label className="flex items-center gap-2 text-sm text-stone-600">
+                排序
+                <select
+                  value={sortOrder}
+                  onChange={(e) => setSortOrder(e.target.value as "desc" | "asc")}
+                  className="rounded-lg border border-cream-border bg-white px-2 py-1.5 text-sm text-stone-700 outline-none transition focus:border-milktea focus:ring-1 focus:ring-milktea"
+                >
+                  <option value="desc">分數高到低</option>
+                  <option value="asc">分數低到高</option>
+                </select>
+              </label>
+            </div>
+
+            <div className="flex flex-wrap gap-2 border-t border-cream-border pt-4">
+              {lifeStageTags.map((tag) => (
+                <FilterChip
+                  key={tag}
+                  label={tag}
+                  checked={featureFilters.has(tag)}
+                  onToggle={() => toggleFeatureFilter(tag)}
+                />
+              ))}
               <FilterChip
-                key={feature}
-                label={feature}
-                checked={featureFilters.has(feature)}
-                onToggle={() => toggleFeatureFilter(feature)}
+                label="AAFCO 認證"
+                checked={certFilters.has("aafco")}
+                onToggle={() => toggleCertFilter("aafco")}
               />
-            ))}
+              <FilterChip
+                label="NRC 認證"
+                checked={certFilters.has("nrc")}
+                onToggle={() => toggleCertFilter("nrc")}
+              />
+              <FilterChip
+                label="HACCP 認證"
+                checked={certFilters.has("haccp")}
+                onToggle={() => toggleCertFilter("haccp")}
+              />
+              <FilterChip
+                label="FEDIAF 認證"
+                checked={certFilters.has("fediaf")}
+                onToggle={() => toggleCertFilter("fediaf")}
+              />
+            </div>
+
+            {availableOrigins.length > 0 && (
+              <div className="border-t border-cream-border pt-4">
+                <select
+                  value={originFilter}
+                  onChange={(e) => setOriginFilter(e.target.value)}
+                  className="w-full max-w-xs rounded-lg border border-cream-border bg-white px-3 py-2 text-sm text-stone-700 outline-none transition focus:border-milktea focus:ring-1 focus:ring-milktea sm:w-auto"
+                >
+                  <option value={ALL_ORIGIN}>{ALL_ORIGIN}</option>
+                  {availableOrigins.map((origin) => (
+                    <option key={origin} value={origin}>
+                      {getCountryFlagEmoji(origin)} {origin}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
+
+            {meatIngredientTags.length > 0 && (
+              <div className="border-t border-cream-border pt-4">
+                <button
+                  type="button"
+                  onClick={() => setShowMeatSection((prev) => !prev)}
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-stone-600 hover:text-milktea-dark"
+                >
+                  肉類與成分篩選
+                  <span
+                    className={`text-xs transition-transform ${showMeatSection ? "rotate-180" : ""}`}
+                  >
+                    ▾
+                  </span>
+                </button>
+                {showMeatSection && (
+                  <div className="mt-2 flex flex-wrap gap-2">
+                    {meatIngredientTags.map((tag) => (
+                      <FilterChip
+                        key={tag}
+                        label={tag}
+                        checked={featureFilters.has(tag)}
+                        onToggle={() => toggleFeatureFilter(tag)}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {healthPurposeTags.length > 0 && (
+              <div className="border-t border-cream-border pt-4">
+                <button
+                  type="button"
+                  onClick={() => setShowHealthSection((prev) => !prev)}
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-stone-600 hover:text-milktea-dark"
+                >
+                  保健功能篩選
+                  <span
+                    className={`text-xs transition-transform ${showHealthSection ? "rotate-180" : ""}`}
+                  >
+                    ▾
+                  </span>
+                </button>
+                {showHealthSection && (
+                  <div className="mt-2 flex flex-wrap gap-2">
+                    {healthPurposeTags.map((tag) => (
+                      <FilterChip
+                        key={tag}
+                        label={tag}
+                        checked={featureFilters.has(tag)}
+                        onToggle={() => toggleFeatureFilter(tag)}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {availableFilingSourceTypes.length > 0 && (
+              <div className="border-t border-cream-border pt-4">
+                <button
+                  type="button"
+                  onClick={() => setShowFilingSection((prev) => !prev)}
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-stone-600 hover:text-milktea-dark"
+                >
+                  官方申報資料篩選
+                  <span
+                    className={`text-xs transition-transform ${showFilingSection ? "rotate-180" : ""}`}
+                  >
+                    ▾
+                  </span>
+                </button>
+                {showFilingSection && (
+                  <div className="mt-2 flex flex-wrap gap-2">
+                    {availableFilingSourceTypes.map((type) => (
+                      <FilterChip
+                        key={type}
+                        label={type}
+                        checked={filingFilters.has(type)}
+                        onToggle={() => toggleFilingFilter(type)}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         )}
       </div>
@@ -1049,14 +1329,28 @@ function ProductCard({
             )}
           </div>
 
-          <a
-            href={product.affiliateUrl}
-            target="_blank"
-            rel="nofollow sponsored noopener noreferrer"
-            className="flex items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-orange-500 px-6 py-2.5 font-bold text-white transition-all hover:bg-orange-600 active:scale-[0.98]"
-          >
-            🛒 前往購買
-          </a>
+          <div className="flex flex-wrap items-center gap-2">
+            <a
+              href={product.affiliateUrl}
+              target="_blank"
+              rel="nofollow sponsored noopener noreferrer"
+              className="flex items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-orange-500 px-6 py-2.5 font-bold text-white transition-all hover:bg-orange-600 active:scale-[0.98]"
+            >
+              🛒 前往購買
+            </a>
+            {product.additionalPurchaseLinks?.map((link) => (
+              <a
+                key={link.url}
+                href={link.url}
+                target="_blank"
+                rel="nofollow sponsored noopener noreferrer"
+                style={{ backgroundColor: link.color }}
+                className="flex items-center justify-center gap-2 whitespace-nowrap rounded-xl px-6 py-2.5 font-bold text-white transition-all hover:opacity-90 active:scale-[0.98]"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </article>

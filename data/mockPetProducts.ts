@@ -160,6 +160,8 @@ export interface PetProduct {
   litterSubCategory?: LitterSubCategory;
   /** 外站導購連結 */
   affiliateUrl: string;
+  /** 額外導購連結（例如同商品的其他平台購買連結），選填 */
+  additionalPurchaseLinks?: { label: string; url: string; color: string }[];
 }
 
 export const mockPetProducts: PetProduct[] = [
@@ -4380,5 +4382,8 @@ export const mockPetProducts: PetProduct[] = [
     },
     price: 235,
     affiliateUrl: "https://s.shopee.tw/LmDI88BqN",
+    additionalPurchaseLinks: [
+      { label: "🛒 前往購買", url: "https://coupa.ng/cozJb3", color: "#3DACDC" },
+    ],
   },
 ];
