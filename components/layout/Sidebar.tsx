@@ -5,8 +5,13 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
 
-const NAV_ITEMS = [
-  { label: "首頁 Home", href: "/", emoji: "🏠" },
+const NAV_ITEMS: {
+  label: string;
+  href: string;
+  emoji: string;
+  children: { label: string; href: string; emoji: string }[];
+}[] = [
+  { label: "首頁 Home", href: "/", emoji: "🏠", children: [] },
   {
     label: "寵物 Pet",
     href: "/pets",
@@ -19,8 +24,8 @@ const NAV_ITEMS = [
       },
     ],
   },
-  { label: "旅行 Travel", href: "/travel", emoji: "✈️" },
-  { label: "信用卡 Credit Card", href: "/cards", emoji: "💳" },
+  { label: "旅行 Travel", href: "/travel", emoji: "✈️", children: [] },
+  { label: "信用卡 Credit Card", href: "/cards", emoji: "💳", children: [] },
 ];
 
 export default function Sidebar() {
@@ -49,9 +54,10 @@ export default function Sidebar() {
         <nav className="flex flex-col gap-1.5">
           {NAV_ITEMS.map((item) => {
             const isActive = pathname === item.href;
-            const hasChildren = "children" in item && item.children.length > 0;
-            const isChildActive =
-              hasChildren && item.children.some((child) => pathname === child.href);
+            const hasChildren = item.children.length > 0;
+            const isChildActive = item.children.some(
+              (child) => pathname === child.href
+            );
             const isExpanded = hasChildren && (expanded.has(item.href) || isChildActive);
 
             return (
@@ -146,23 +152,21 @@ export default function Sidebar() {
               {item.emoji} {item.label}
             </Link>,
           ];
-          if ("children" in item) {
-            for (const child of item.children) {
-              const isChildActive = pathname === child.href;
-              links.push(
-                <Link
-                  key={child.href}
-                  href={child.href}
-                  className={`shrink-0 whitespace-nowrap rounded-full border px-4 py-2 text-sm font-medium transition ${
-                    isChildActive
-                      ? "border-brand-orange bg-brand-orange text-white"
-                      : "border-cream-border bg-white text-stone-600"
-                  }`}
-                >
-                  {child.emoji} {child.label}
-                </Link>
-              );
-            }
+          for (const child of item.children) {
+            const isChildActive = pathname === child.href;
+            links.push(
+              <Link
+                key={child.href}
+                href={child.href}
+                className={`shrink-0 whitespace-nowrap rounded-full border px-4 py-2 text-sm font-medium transition ${
+                  isChildActive
+                    ? "border-brand-orange bg-brand-orange text-white"
+                    : "border-cream-border bg-white text-stone-600"
+                }`}
+              >
+                {child.emoji} {child.label}
+              </Link>
+            );
           }
           return links;
         })}
