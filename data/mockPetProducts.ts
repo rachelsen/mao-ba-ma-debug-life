@@ -2085,7 +2085,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "雞肉 1-6歲小型及迷你成犬 (1.5公斤)",
     image: "/images/products/hills-chicken-adult-small-mini-1-6y.png",
     debugTags: [],
-    features: ["小型犬", "迷你犬", "雞肉", "小顆粒"],
+    features: ["成犬", "雞肉", "小顆粒"],
     dmbCarb: 52.8,
     detailedAnalysis: {
       productType: "乾飼糧",
@@ -2226,7 +2226,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "天然蔬果肉鬆糧－雞魚拌肉鬆餐 (0.9kg)",
     image: "/images/products/heromama-meatfloss-chickenfish.png",
     debugTags: [],
-    features: ["雞肉", "魚肉", "全齡犬", "肉鬆"],
+    features: ["雞肉", "魚肉", "成犬", "肉鬆"],
     dmbCarb: 37.82,
     detailedAnalysis: {
       productType: "乾飼糧",
@@ -2280,7 +2280,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "天然蔬果肉鬆糧－雞羊拌肉鬆餐 (0.9kg)",
     image: "/images/products/heromama-meatfloss-chickenlamb.png",
     debugTags: [],
-    features: ["雞肉", "羊肉", "全齡犬", "肉鬆"],
+    features: ["雞肉", "羊肉", "成犬", "肉鬆"],
     dmbCarb: 37.51,
     detailedAnalysis: {
       productType: "乾飼糧",

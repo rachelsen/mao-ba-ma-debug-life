@@ -80,10 +80,7 @@ function getFilterTags(product: PetProduct): string[] {
 const LIFE_STAGE_TAGS = new Set([
   "幼犬",
   "成犬",
-  "全齡犬",
   "熟齡犬",
-  "小型犬",
-  "迷你犬",
   "幼貓",
   "成貓",
   "熟齡貓",
