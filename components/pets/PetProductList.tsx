@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { signIn, useSession } from "next-auth/react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   mockPetProducts,
   type CatRating,
@@ -21,6 +21,7 @@ const ALL = "全部分類" as const;
 const ALL_BRANDS = "全部品牌" as const;
 const ALL_LITTER = "全部" as const;
 const ALL_ORIGIN = "全部產地" as const;
+const ALL_FACTORY = "全部" as const;
 
 const TABS: (typeof ALL | PetProductCategory)[] = [
   ALL,
@@ -85,10 +86,8 @@ const LIFE_STAGE_TAGS = new Set([
   "迷你犬",
   "幼貓",
   "成貓",
-  "全齡貓",
   "熟齡貓",
   "懷孕授乳貓",
-  "室內貓",
 ]);
 
 /** 保健功能類標籤，收合於「保健功能篩選」 */
@@ -107,17 +106,119 @@ const HEALTH_PURPOSE_TAGS = new Set([
   "挑嘴",
 ]);
 
-/** 依標籤性質分類，其餘（肉類／成分／型態）歸入 meatAndIngredient */
+/** 肉源種類分桶：原始標籤 → 統一顯示的物種分類（用於「肉類與成分篩選」） */
+const MEAT_SPECIES_GROUPS: Record<string, string[]> = {
+  雞: ["雞肉", "雞心", "鮮雞"],
+  魚海鮮: [
+    "鮭魚",
+    "鮭魚油",
+    "鮪魚",
+    "鱒魚",
+    "鱈魚",
+    "石斑魚",
+    "鯡魚",
+    "魚肉",
+    "魚",
+    "海魚",
+    "多種魚",
+    "明蝦",
+    "草蝦",
+    "甲魚",
+  ],
+  鴨: ["鴨肉"],
+  牛: ["牛肉"],
+  羊: ["羊肉"],
+  火雞: ["火雞肉", "火雞"],
+  鹿: ["鹿肉", "馴鹿"],
+  兔: ["兔肉"],
+  其他肉源: ["袋鼠肉", "馬肉", "豬肉", "鵪鶉", "麵包蟲", "黑水虻"],
+};
+
+/** 較少見的肉源分類（用於「少見肉源」快速篩選） */
+const EXOTIC_MEAT_SPECIES = new Set(["鹿", "兔", "火雞", "其他肉源"]);
+
+const RAW_TAG_TO_SPECIES: Record<string, string> = Object.fromEntries(
+  Object.entries(MEAT_SPECIES_GROUPS).flatMap(([bucket, rawTags]) =>
+    rawTags.map((rawTag) => [rawTag, bucket])
+  )
+);
+
+/** 屬性型標籤（非物種、非生命階段、非保健功能），會用不同顏色顯示在「肉類與成分篩選」 */
+const ATTRIBUTE_TAGS = new Set(["單一肉源", "單一蛋白質", "少見肉源", "低磷"]);
+
+function getMeatSpeciesBuckets(tags: string[]): Set<string> {
+  const buckets = new Set<string>();
+  for (const tag of tags) {
+    const bucket = RAW_TAG_TO_SPECIES[tag];
+    if (bucket) buckets.add(bucket);
+  }
+  return buckets;
+}
+
+/** 依標籤性質分類：生命階段／保健功能／肉源種類（分桶）／屬性／其餘成分 */
 function classifyFeatureTags(tags: string[]) {
   const lifeStage: string[] = [];
   const healthPurpose: string[] = [];
-  const meatAndIngredient: string[] = [];
+  const attribute: string[] = [];
+  const otherIngredient: string[] = [];
+  const speciesBuckets = new Set<string>();
+
   for (const tag of tags) {
     if (LIFE_STAGE_TAGS.has(tag)) lifeStage.push(tag);
     else if (HEALTH_PURPOSE_TAGS.has(tag)) healthPurpose.push(tag);
-    else meatAndIngredient.push(tag);
+    else if (ATTRIBUTE_TAGS.has(tag)) {
+      if (tag !== "單一蛋白質") attribute.push(tag);
+    } else if (RAW_TAG_TO_SPECIES[tag]) speciesBuckets.add(RAW_TAG_TO_SPECIES[tag]);
+    else otherIngredient.push(tag);
   }
-  return { lifeStage, healthPurpose, meatAndIngredient };
+
+  const meatSpecies = Array.from(speciesBuckets);
+  // 「少見肉源」不是資料裡的字面標籤，是依物種分桶推算出來的快速篩選項目
+  if (
+    meatSpecies.some((bucket) => EXOTIC_MEAT_SPECIES.has(bucket)) &&
+    !attribute.includes("少見肉源")
+  ) {
+    attribute.push("少見肉源");
+  }
+
+  return {
+    lifeStage,
+    healthPurpose,
+    meatSpecies,
+    attribute,
+    otherIngredient,
+    meatAndIngredient: [...meatSpecies, ...otherIngredient],
+  };
+}
+
+function isSingleMeatSource(tags: string[]): boolean {
+  const buckets = getMeatSpeciesBuckets(tags);
+  if (buckets.size === 1) return true;
+  return tags.includes("單一肉源") || tags.includes("單一蛋白質");
+}
+
+/** 「肉類與成分篩選」chip 判斷邏輯：肉源分桶／少見肉源／單一肉源用推算的，其餘用字面比對 */
+function productMatchesFeatureFilter(product: PetProduct, filter: string): boolean {
+  const tags = getFilterTags(product);
+  if (filter === "單一肉源") return isSingleMeatSource(tags);
+  if (filter === "少見肉源") {
+    const buckets = getMeatSpeciesBuckets(tags);
+    return Array.from(buckets).some((bucket) => EXOTIC_MEAT_SPECIES.has(bucket));
+  }
+  if (MEAT_SPECIES_GROUPS[filter]) {
+    return getMeatSpeciesBuckets(tags).has(filter);
+  }
+  return tags.includes(filter);
+}
+
+/** 依字串與亂數種子產生穩定的排序權重，用來實作「隨機看看」（同一次種子下排序固定，重點是可重新洗牌） */
+function hashSeed(id: string, seed: number): number {
+  const str = `${seed}-${id}`;
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = (hash * 31 + str.charCodeAt(i)) | 0;
+  }
+  return hash;
 }
 
 function getProductOrigin(product: PetProduct): string | undefined {
@@ -172,6 +273,27 @@ function isDogCategory(category: PetProductCategory) {
 
 function isDryCategory(category: PetProductCategory) {
   return category === "貓咪乾糧" || category === "狗狗乾糧";
+}
+
+/** 快速需求篩選：腎臟友善（低磷或泌尿道保健標籤） */
+function isKidneyFriendly(product: PetProduct): boolean {
+  const tags = getFilterTags(product);
+  return tags.includes("低磷") || tags.includes("泌尿道保健");
+}
+
+/** 快速需求篩選：低碳水（沿用與 DMB 徽章相同的門檻） */
+function isLowCarbProduct(product: PetProduct): boolean {
+  if (product.dmbCarb === undefined) return false;
+  const passMax = isDogCategory(product.category) ? 25 : 10;
+  return product.dmbCarb < passMax;
+}
+
+/** 快速需求篩選：高蛋白（依乾物比蛋白質門檻，犬 ≥30%／貓 ≥40%） */
+function isHighProteinProduct(product: PetProduct): boolean {
+  if (!product.detailedAnalysis) return false;
+  const { dm } = computeAnalysisTable(product.detailedAnalysis);
+  const floor = isDogCategory(product.category) ? 30 : 40;
+  return dm.protein >= floor;
 }
 
 interface ProductScoreBreakdownItem {
@@ -408,6 +530,7 @@ export default function PetProductList() {
   const [activeTab, setActiveTab] = useState<(typeof ALL) | PetProductCategory>(
     ALL
   );
+  const [searchQuery, setSearchQuery] = useState("");
   const [brandFilter, setBrandFilter] = useState<string>(ALL_BRANDS);
   const [litterFilter, setLitterFilter] = useState<
     typeof ALL_LITTER | LitterSubCategory
@@ -420,16 +543,24 @@ export default function PetProductList() {
   const [featureFilters, setFeatureFilters] = useState<Set<string>>(
     new Set()
   );
+  const [quickFilters, setQuickFilters] = useState<
+    Set<"kidney" | "highProtein" | "lowCarb" | "singleMeat">
+  >(new Set());
   const [originFilter, setOriginFilter] = useState<string>(ALL_ORIGIN);
   const [filingFilters, setFilingFilters] = useState<Set<string>>(new Set());
+  const [manufacturerFactory, setManufacturerFactory] = useState<string>(ALL_FACTORY);
+  const [subcontractorFactory, setSubcontractorFactory] = useState<string>(ALL_FACTORY);
   const [scoreThreshold, setScoreThreshold] = useState<"all" | 60 | 75>(
     "all"
   );
-  const [sortOrder, setSortOrder] = useState<"desc" | "asc">("desc");
+  const [sortOrder, setSortOrder] = useState<"random" | "desc">("random");
+  // 初始值固定，避免 SSR／CSR 洗牌結果不一致造成 hydration mismatch；掛載後才在 client 端重新洗牌
+  const [shuffleSeed, setShuffleSeed] = useState(0);
   const [showMeatSection, setShowMeatSection] = useState(false);
   const [showHealthSection, setShowHealthSection] = useState(false);
   const [showFilingSection, setShowFilingSection] = useState(false);
   const [likedIds, setLikedIds] = useState<Set<string>>(new Set());
+  const advancedPanelRef = useRef<HTMLDivElement>(null);
 
   const { getQuantity, setQuantity } = useFavoriteQuantities();
 
@@ -439,8 +570,11 @@ export default function PetProductList() {
     setLitterFilter(ALL_LITTER);
     setCertFilters(new Set());
     setFeatureFilters(new Set());
+    setQuickFilters(new Set());
     setOriginFilter(ALL_ORIGIN);
     setFilingFilters(new Set());
+    setManufacturerFactory(ALL_FACTORY);
+    setSubcontractorFactory(ALL_FACTORY);
   };
 
   const toggleCertFilter = (cert: "aafco" | "nrc" | "haccp" | "fediaf") => {
@@ -461,6 +595,17 @@ export default function PetProductList() {
     });
   };
 
+  const toggleQuickFilter = (
+    key: "kidney" | "highProtein" | "lowCarb" | "singleMeat"
+  ) => {
+    setQuickFilters((prev) => {
+      const next = new Set(prev);
+      if (next.has(key)) next.delete(key);
+      else next.add(key);
+      return next;
+    });
+  };
+
   const toggleFilingFilter = (sourceType: string) => {
     setFilingFilters((prev) => {
       const next = new Set(prev);
@@ -469,6 +614,28 @@ export default function PetProductList() {
       return next;
     });
   };
+
+  const handlePairingWizard = () => {
+    setShowAdvanced(true);
+    const seniorTag = availableFeatures.includes("熟齡貓")
+      ? "熟齡貓"
+      : availableFeatures.includes("熟齡犬")
+        ? "熟齡犬"
+        : undefined;
+    if (seniorTag) setFeatureFilters(new Set([seniorTag]));
+    setQuickFilters(new Set(["kidney"]));
+    requestAnimationFrame(() => {
+      advancedPanelRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    });
+  };
+
+  // 掛載後才在 client 端重新洗牌一次，避免 SSR 輸出的固定順序一直維持不變
+  useEffect(() => {
+    setShuffleSeed(Math.random());
+  }, []);
 
   useEffect(() => {
     if (status !== "authenticated") {
@@ -544,8 +711,13 @@ export default function PetProductList() {
     [baseFilteredProducts]
   );
 
-  const { lifeStage: lifeStageTags, healthPurpose: healthPurposeTags, meatAndIngredient: meatIngredientTags } =
-    useMemo(() => classifyFeatureTags(availableFeatures), [availableFeatures]);
+  const {
+    lifeStage: lifeStageTags,
+    healthPurpose: healthPurposeTags,
+    meatSpecies: meatSpeciesTags,
+    attribute: attributeTags,
+    otherIngredient: otherIngredientTags,
+  } = useMemo(() => classifyFeatureTags(availableFeatures), [availableFeatures]);
 
   const availableOrigins = useMemo(() => {
     const origins = baseFilteredProducts
@@ -561,8 +733,53 @@ export default function PetProductList() {
     return Array.from(new Set(types));
   }, [baseFilteredProducts]);
 
+  const availableManufacturerFactories = useMemo(() => {
+    const names = baseFilteredProducts.flatMap(
+      (product) =>
+        product.officialFiling?.records
+          .filter((record) => record.sourceType === "製造、加工")
+          .map((record) => record.company) ?? []
+    );
+    return Array.from(new Set(names));
+  }, [baseFilteredProducts]);
+
+  const availableSubcontractorFactories = useMemo(() => {
+    const names = baseFilteredProducts.flatMap(
+      (product) =>
+        product.officialFiling?.records
+          .filter(
+            (record) =>
+              (record.sourceType === "委託代工廠製造" || record.sourceType === "輸入") &&
+              record.subcontractor &&
+              record.subcontractor !== "—"
+          )
+          .map((record) => record.subcontractor) ?? []
+    );
+    return Array.from(new Set(names));
+  }, [baseFilteredProducts]);
+
   const filteredProducts = useMemo(() => {
     let products = baseFilteredProducts;
+    if (searchQuery.trim()) {
+      const query = searchQuery.trim().toLowerCase();
+      products = products.filter(
+        (product) =>
+          product.name.toLowerCase().includes(query) ||
+          product.brand.toLowerCase().includes(query)
+      );
+    }
+    if (quickFilters.has("kidney")) {
+      products = products.filter(isKidneyFriendly);
+    }
+    if (quickFilters.has("highProtein")) {
+      products = products.filter(isHighProteinProduct);
+    }
+    if (quickFilters.has("lowCarb")) {
+      products = products.filter(isLowCarbProduct);
+    }
+    if (quickFilters.has("singleMeat")) {
+      products = products.filter((product) => isSingleMeatSource(getFilterTags(product)));
+    }
     if (certFilters.has("aafco")) {
       products = products.filter(
         (product) =>
@@ -583,7 +800,7 @@ export default function PetProductList() {
     if (featureFilters.size > 0) {
       products = products.filter((product) =>
         Array.from(featureFilters).every((feature) =>
-          getFilterTags(product).includes(feature)
+          productMatchesFeatureFilter(product, feature)
         )
       );
     }
@@ -599,24 +816,49 @@ export default function PetProductList() {
         )
       );
     }
+    if (manufacturerFactory !== ALL_FACTORY) {
+      products = products.filter((product) =>
+        product.officialFiling?.records.some(
+          (record) =>
+            record.sourceType === "製造、加工" && record.company === manufacturerFactory
+        )
+      );
+    }
+    if (subcontractorFactory !== ALL_FACTORY) {
+      products = products.filter((product) =>
+        product.officialFiling?.records.some(
+          (record) =>
+            (record.sourceType === "委託代工廠製造" || record.sourceType === "輸入") &&
+            record.subcontractor === subcontractorFactory
+        )
+      );
+    }
     if (scoreThreshold !== "all") {
       products = products.filter(
         (product) => (computeProductScore(product)?.total ?? -1) >= scoreThreshold
       );
     }
     return [...products].sort((a, b) => {
+      if (sortOrder === "random") {
+        return hashSeed(a.id, shuffleSeed) - hashSeed(b.id, shuffleSeed);
+      }
       const scoreA = computeProductScore(a)?.total ?? -1;
       const scoreB = computeProductScore(b)?.total ?? -1;
-      return sortOrder === "desc" ? scoreB - scoreA : scoreA - scoreB;
+      return scoreB - scoreA;
     });
   }, [
     baseFilteredProducts,
+    searchQuery,
+    quickFilters,
     certFilters,
     featureFilters,
     originFilter,
     filingFilters,
+    manufacturerFactory,
+    subcontractorFactory,
     scoreThreshold,
     sortOrder,
+    shuffleSeed,
   ]);
 
   const favoriteProducts = useMemo(
@@ -710,6 +952,21 @@ export default function PetProductList() {
         </h2>
       </div>
 
+      <div className="mb-4">
+        <div className="relative">
+          <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-stone-400">
+            🔍
+          </span>
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="搜尋品牌或飼料、主食罐名稱..."
+            className="w-full rounded-full border border-cream-border bg-white py-2.5 pl-10 pr-4 text-sm text-stone-700 outline-none transition focus:border-milktea focus:ring-1 focus:ring-milktea"
+          />
+        </div>
+      </div>
+
       <div className="mb-4 flex gap-2 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {TABS.map((tab) => {
           const isActive = tab === activeTab;
@@ -766,24 +1023,174 @@ export default function PetProductList() {
         </div>
       )}
 
-      <div className="mb-6">
+      <div className="mb-4 flex flex-wrap items-center gap-2">
+        <span className="text-xs font-medium text-stone-400">排序</span>
+        <button
+          type="button"
+          onClick={() => {
+            setSortOrder("random");
+            setShuffleSeed(Math.random());
+          }}
+          className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition ${
+            sortOrder === "random"
+              ? "border-stone-800 bg-stone-800 text-white"
+              : "border-cream-border bg-white text-stone-600 hover:border-milktea/60 hover:text-milktea-dark"
+          }`}
+        >
+          隨機看看
+        </button>
+        <button
+          type="button"
+          onClick={() => setSortOrder("desc")}
+          className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition ${
+            sortOrder === "desc"
+              ? "border-stone-800 bg-stone-800 text-white"
+              : "border-cream-border bg-white text-stone-600 hover:border-milktea/60 hover:text-milktea-dark"
+          }`}
+        >
+          分數高到低
+        </button>
+      </div>
+
+      <button
+        type="button"
+        onClick={handlePairingWizard}
+        className="mb-4 w-full rounded-2xl bg-gradient-to-r from-stone-800 to-stone-700 px-5 py-4 text-center text-white transition hover:brightness-110 active:scale-[0.99]"
+      >
+        <p className="font-bold">✨ 30 秒配對精靈</p>
+        <p className="mt-0.5 text-xs text-white/70">
+          告訴我毛孩狀況，幫你篩出適合又高分的主食
+        </p>
+      </button>
+
+      <div className="mb-4 flex flex-wrap gap-2">
+        <FilterChip
+          label="🩺 腎臟友善"
+          checked={quickFilters.has("kidney")}
+          onToggle={() => toggleQuickFilter("kidney")}
+        />
+        <FilterChip
+          label="💪 高蛋白"
+          checked={quickFilters.has("highProtein")}
+          onToggle={() => toggleQuickFilter("highProtein")}
+        />
+        <FilterChip
+          label="🌾 低碳水"
+          checked={quickFilters.has("lowCarb")}
+          onToggle={() => toggleQuickFilter("lowCarb")}
+        />
+        <FilterChip
+          label="🥩 單一肉源"
+          checked={quickFilters.has("singleMeat")}
+          onToggle={() => toggleQuickFilter("singleMeat")}
+        />
+        <button
+          type="button"
+          onClick={() => setShowAdvanced(true)}
+          className="rounded-full border border-cream-border bg-white px-3 py-1.5 text-xs font-medium text-stone-500 transition hover:border-milktea/60 hover:text-milktea-dark"
+        >
+          更多需求 →
+        </button>
+      </div>
+
+      <div className="mb-4">
+        <p className="mb-2 text-xs font-medium text-stone-400">基本篩選</p>
+          <div className="flex flex-wrap gap-2">
+            <FilterChip
+              label="全部"
+              checked={featureFilters.size === 0 && !certFilters.has("aafco") && !certFilters.has("fediaf")}
+              onToggle={() => {
+                setFeatureFilters((prev) => {
+                  const next = new Set(prev);
+                  lifeStageTags.forEach((tag) => next.delete(tag));
+                  return next;
+                });
+                setCertFilters((prev) => {
+                  const next = new Set(prev);
+                  next.delete("aafco");
+                  next.delete("fediaf");
+                  return next;
+                });
+              }}
+            />
+            {lifeStageTags.map((tag) => (
+              <FilterChip
+                key={tag}
+                label={tag}
+                checked={featureFilters.has(tag)}
+                onToggle={() => toggleFeatureFilter(tag)}
+              />
+            ))}
+            <FilterChip
+              label="AAFCO"
+              checked={certFilters.has("aafco")}
+              onToggle={() => toggleCertFilter("aafco")}
+            />
+            <FilterChip
+              label="FEDIAF"
+              checked={certFilters.has("fediaf")}
+              onToggle={() => toggleCertFilter("fediaf")}
+            />
+            {availableOrigins.length > 0 && (
+              <select
+                value={originFilter}
+                onChange={(e) => setOriginFilter(e.target.value)}
+                className="rounded-full border border-cream-border bg-white px-3 py-1.5 text-xs font-medium text-stone-600 outline-none transition focus:border-milktea focus:ring-1 focus:ring-milktea"
+              >
+                <option value={ALL_ORIGIN}>🌏 {ALL_ORIGIN}</option>
+                {availableOrigins.map((origin) => (
+                  <option key={origin} value={origin}>
+                    {getCountryFlagEmoji(origin)} {origin}
+                  </option>
+                ))}
+              </select>
+            )}
+        </div>
+      </div>
+
+      <p className="mb-4 text-xs text-stone-400">
+        {activeTab === ALL ? "全部分類" : activeTab}
+        {searchQuery.trim() ||
+        quickFilters.size > 0 ||
+        certFilters.size > 0 ||
+        featureFilters.size > 0 ||
+        originFilter !== ALL_ORIGIN ||
+        filingFilters.size > 0 ||
+        scoreThreshold !== "all"
+          ? "已篩選"
+          : sortOrder === "random"
+            ? "隨機瀏覽"
+            : "全部"}
+        {" · "}
+        {filteredProducts.length} 款
+      </p>
+
+      <div className="mb-6" ref={advancedPanelRef}>
         <button
           type="button"
           onClick={() => setShowAdvanced((prev) => !prev)}
           className="inline-flex items-center gap-1.5 rounded-lg border border-cream-border bg-white px-3 py-2 text-sm font-medium text-stone-600 transition hover:border-milktea/60 hover:text-milktea-dark"
         >
           🔍 進階篩選
-          {certFilters.size +
-            featureFilters.size +
+          {certFilters.size -
+            (certFilters.has("aafco") ? 1 : 0) -
+            (certFilters.has("fediaf") ? 1 : 0) +
+            featureFilters.size -
+            lifeStageTags.filter((tag) => featureFilters.has(tag)).length +
             filingFilters.size +
-            (originFilter !== ALL_ORIGIN ? 1 : 0) +
+            (manufacturerFactory !== ALL_FACTORY ? 1 : 0) +
+            (subcontractorFactory !== ALL_FACTORY ? 1 : 0) +
             (scoreThreshold !== "all" ? 1 : 0) >
             0 && (
             <span className="rounded-full bg-milktea/15 px-2 py-0.5 text-xs font-semibold text-milktea-dark">
-              {certFilters.size +
-                featureFilters.size +
+              {certFilters.size -
+                (certFilters.has("aafco") ? 1 : 0) -
+                (certFilters.has("fediaf") ? 1 : 0) +
+                featureFilters.size -
+                lifeStageTags.filter((tag) => featureFilters.has(tag)).length +
                 filingFilters.size +
-                (originFilter !== ALL_ORIGIN ? 1 : 0) +
+                (manufacturerFactory !== ALL_FACTORY ? 1 : 0) +
+                (subcontractorFactory !== ALL_FACTORY ? 1 : 0) +
                 (scoreThreshold !== "all" ? 1 : 0)}
             </span>
           )}
@@ -796,87 +1203,26 @@ export default function PetProductList() {
 
         {showAdvanced && (
           <div className="mt-3 flex flex-col gap-4 rounded-xl border border-cream-border bg-cream-bg-light/60 p-4">
-            <div className="flex flex-wrap gap-4">
-              <label className="flex items-center gap-2 text-sm text-stone-600">
-                分數至少
-                <select
-                  value={scoreThreshold}
-                  onChange={(e) =>
-                    setScoreThreshold(
-                      e.target.value === "all"
-                        ? "all"
-                        : (Number(e.target.value) as 60 | 75)
-                    )
-                  }
-                  className="rounded-lg border border-cream-border bg-white px-2 py-1.5 text-sm text-stone-700 outline-none transition focus:border-milktea focus:ring-1 focus:ring-milktea"
-                >
-                  <option value="all">不限</option>
-                  <option value={60}>60分以上</option>
-                  <option value={75}>75分以上</option>
-                </select>
-              </label>
-              <label className="flex items-center gap-2 text-sm text-stone-600">
-                排序
-                <select
-                  value={sortOrder}
-                  onChange={(e) => setSortOrder(e.target.value as "desc" | "asc")}
-                  className="rounded-lg border border-cream-border bg-white px-2 py-1.5 text-sm text-stone-700 outline-none transition focus:border-milktea focus:ring-1 focus:ring-milktea"
-                >
-                  <option value="desc">分數高到低</option>
-                  <option value="asc">分數低到高</option>
-                </select>
-              </label>
-            </div>
+            <label className="flex items-center gap-2 text-sm text-stone-600">
+              分數至少
+              <select
+                value={scoreThreshold}
+                onChange={(e) =>
+                  setScoreThreshold(
+                    e.target.value === "all"
+                      ? "all"
+                      : (Number(e.target.value) as 60 | 75)
+                  )
+                }
+                className="rounded-lg border border-cream-border bg-white px-2 py-1.5 text-sm text-stone-700 outline-none transition focus:border-milktea focus:ring-1 focus:ring-milktea"
+              >
+                <option value="all">不限</option>
+                <option value={60}>60分以上</option>
+                <option value={75}>75分以上</option>
+              </select>
+            </label>
 
-            <div className="flex flex-wrap gap-2 border-t border-cream-border pt-4">
-              {lifeStageTags.map((tag) => (
-                <FilterChip
-                  key={tag}
-                  label={tag}
-                  checked={featureFilters.has(tag)}
-                  onToggle={() => toggleFeatureFilter(tag)}
-                />
-              ))}
-              <FilterChip
-                label="AAFCO 認證"
-                checked={certFilters.has("aafco")}
-                onToggle={() => toggleCertFilter("aafco")}
-              />
-              <FilterChip
-                label="NRC 認證"
-                checked={certFilters.has("nrc")}
-                onToggle={() => toggleCertFilter("nrc")}
-              />
-              <FilterChip
-                label="HACCP 認證"
-                checked={certFilters.has("haccp")}
-                onToggle={() => toggleCertFilter("haccp")}
-              />
-              <FilterChip
-                label="FEDIAF 認證"
-                checked={certFilters.has("fediaf")}
-                onToggle={() => toggleCertFilter("fediaf")}
-              />
-            </div>
-
-            {availableOrigins.length > 0 && (
-              <div className="border-t border-cream-border pt-4">
-                <select
-                  value={originFilter}
-                  onChange={(e) => setOriginFilter(e.target.value)}
-                  className="w-full max-w-xs rounded-lg border border-cream-border bg-white px-3 py-2 text-sm text-stone-700 outline-none transition focus:border-milktea focus:ring-1 focus:ring-milktea sm:w-auto"
-                >
-                  <option value={ALL_ORIGIN}>{ALL_ORIGIN}</option>
-                  {availableOrigins.map((origin) => (
-                    <option key={origin} value={origin}>
-                      {getCountryFlagEmoji(origin)} {origin}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            )}
-
-            {meatIngredientTags.length > 0 && (
+            {(meatSpeciesTags.length > 0 || attributeTags.length > 0 || otherIngredientTags.length > 0) && (
               <div className="border-t border-cream-border pt-4">
                 <button
                   type="button"
@@ -891,15 +1237,44 @@ export default function PetProductList() {
                   </span>
                 </button>
                 {showMeatSection && (
-                  <div className="mt-2 flex flex-wrap gap-2">
-                    {meatIngredientTags.map((tag) => (
-                      <FilterChip
-                        key={tag}
-                        label={tag}
-                        checked={featureFilters.has(tag)}
-                        onToggle={() => toggleFeatureFilter(tag)}
-                      />
-                    ))}
+                  <div className="mt-2 flex flex-col gap-2">
+                    {meatSpeciesTags.length > 0 && (
+                      <div className="flex flex-wrap gap-2">
+                        {meatSpeciesTags.map((tag) => (
+                          <FilterChip
+                            key={tag}
+                            label={tag}
+                            checked={featureFilters.has(tag)}
+                            onToggle={() => toggleFeatureFilter(tag)}
+                          />
+                        ))}
+                      </div>
+                    )}
+                    {attributeTags.length > 0 && (
+                      <div className="flex flex-wrap gap-2">
+                        {attributeTags.map((tag) => (
+                          <FilterChip
+                            key={tag}
+                            label={tag}
+                            checked={featureFilters.has(tag)}
+                            onToggle={() => toggleFeatureFilter(tag)}
+                            variant="attribute"
+                          />
+                        ))}
+                      </div>
+                    )}
+                    {otherIngredientTags.length > 0 && (
+                      <div className="flex flex-wrap gap-2">
+                        {otherIngredientTags.map((tag) => (
+                          <FilterChip
+                            key={tag}
+                            label={tag}
+                            checked={featureFilters.has(tag)}
+                            onToggle={() => toggleFeatureFilter(tag)}
+                          />
+                        ))}
+                      </div>
+                    )}
                   </div>
                 )}
               </div>
@@ -934,7 +1309,9 @@ export default function PetProductList() {
               </div>
             )}
 
-            {availableFilingSourceTypes.length > 0 && (
+            {(availableFilingSourceTypes.length > 0 ||
+              certFilters.has("nrc") ||
+              certFilters.has("haccp")) && (
               <div className="border-t border-cream-border pt-4">
                 <button
                   type="button"
@@ -949,21 +1326,79 @@ export default function PetProductList() {
                   </span>
                 </button>
                 {showFilingSection && (
-                  <div className="mt-2 flex flex-wrap gap-2">
-                    {availableFilingSourceTypes.map((type) => (
+                  <div className="mt-2 flex flex-col gap-3">
+                    <div className="flex flex-wrap gap-2">
                       <FilterChip
-                        key={type}
-                        label={type}
-                        checked={filingFilters.has(type)}
-                        onToggle={() => toggleFilingFilter(type)}
+                        label="NRC 認證"
+                        checked={certFilters.has("nrc")}
+                        onToggle={() => toggleCertFilter("nrc")}
                       />
-                    ))}
+                      <FilterChip
+                        label="HACCP 認證"
+                        checked={certFilters.has("haccp")}
+                        onToggle={() => toggleCertFilter("haccp")}
+                      />
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {availableFilingSourceTypes.map((type) => (
+                        <FilterChip
+                          key={type}
+                          label={type}
+                          checked={filingFilters.has(type)}
+                          onToggle={() => toggleFilingFilter(type)}
+                        />
+                      ))}
+                    </div>
+                    {(availableManufacturerFactories.length > 0 ||
+                      availableSubcontractorFactories.length > 0) && (
+                      <div>
+                        <p className="mb-1.5 text-stone-500">
+                          代工／製造廠（要先選上面的來源類型）
+                        </p>
+                        <div className="flex flex-wrap gap-2">
+                          {filingFilters.has("製造、加工") &&
+                            availableManufacturerFactories.length > 0 && (
+                              <select
+                                value={manufacturerFactory}
+                                onChange={(e) => setManufacturerFactory(e.target.value)}
+                                className="rounded-lg border border-cream-border bg-white px-2 py-1.5 text-xs text-stone-700 outline-none transition focus:border-milktea focus:ring-1 focus:ring-milktea"
+                              >
+                                <option value={ALL_FACTORY}>🏭 製造加工廠</option>
+                                {availableManufacturerFactories.map((name) => (
+                                  <option key={name} value={name}>
+                                    {name}
+                                  </option>
+                                ))}
+                              </select>
+                            )}
+                          {(filingFilters.has("委託代工廠製造") || filingFilters.has("輸入")) &&
+                            availableSubcontractorFactories.length > 0 && (
+                              <select
+                                value={subcontractorFactory}
+                                onChange={(e) => setSubcontractorFactory(e.target.value)}
+                                className="rounded-lg border border-cream-border bg-white px-2 py-1.5 text-xs text-stone-700 outline-none transition focus:border-milktea focus:ring-1 focus:ring-milktea"
+                              >
+                                <option value={ALL_FACTORY}>🏭 委託代工廠</option>
+                                {availableSubcontractorFactories.map((name) => (
+                                  <option key={name} value={name}>
+                                    {name}
+                                  </option>
+                                ))}
+                              </select>
+                            )}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 )}
               </div>
             )}
           </div>
         )}
+
+        <p className="mt-3 text-[11px] leading-relaxed text-stone-400">
+          資料來自農業部寵物食品申報網。是廠商自己申報、任何人都查得到的公開紀錄。比對是程式自動跑的，偶爾會對錯。
+        </p>
       </div>
 
       <div className="mb-4 flex items-center justify-end gap-1 rounded-lg border border-cream-border bg-white p-1">
@@ -1026,20 +1461,24 @@ function FilterChip({
   label,
   checked,
   onToggle,
+  variant = "default",
 }: {
   label: string;
   checked: boolean;
   onToggle: () => void;
+  variant?: "default" | "attribute";
 }) {
+  const uncheckedClass =
+    variant === "attribute"
+      ? "border-milktea/50 bg-milktea/5 text-milktea-dark hover:border-milktea"
+      : "border-cream-border bg-white text-stone-600 hover:border-milktea/60 hover:text-milktea-dark";
   return (
     <button
       type="button"
       onClick={onToggle}
       aria-pressed={checked}
       className={`rounded-full border px-3 py-1.5 text-xs font-medium transition ${
-        checked
-          ? "border-milktea bg-milktea text-cream-card"
-          : "border-cream-border bg-white text-stone-600 hover:border-milktea/60 hover:text-milktea-dark"
+        checked ? "border-milktea bg-milktea text-cream-card" : uncheckedClass
       }`}
     >
       {label}

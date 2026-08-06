@@ -2765,7 +2765,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "低GI 室內開胃貓飼料（雞 x 鯡魚 x 蔓越莓）",
     image: "/images/products/acana-indoor-chicken-herring-cranberry.png",
     debugTags: ["名稱與成分不符：含燕麥非無穀"],
-    features: ["室內貓", "雞肉", "鯡魚", "含穀"],
+    features: ["成貓", "雞肉", "鯡魚", "含穀"],
     dmbCarb: 26.67,
     detailedAnalysis: {
       productType: "乾飼糧",
@@ -3773,7 +3773,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "貓用無膠迷你主食罐 (雞肉 奶糕肉泥) (55g)",
     image: "/images/products/heromama-minican-chicken.png",
     debugTags: ["無膠"],
-    features: ["雞肉", "無穀", "全齡貓", "迷你罐"],
+    features: ["雞肉", "無穀", "成貓", "迷你罐"],
     dmbCarb: 7.89,
     detailedAnalysis: {
       productType: "罐頭",
@@ -3833,7 +3833,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "貓用無膠迷你主食罐 (鮭魚 奶糕肉泥) (55g)",
     image: "/images/products/heromama-minican-salmon.png",
     debugTags: ["無膠"],
-    features: ["鮭魚", "無穀", "全齡貓", "迷你罐"],
+    features: ["鮭魚", "無穀", "成貓", "迷你罐"],
     dmbCarb: 8.33,
     detailedAnalysis: {
       productType: "罐頭",
@@ -3892,7 +3892,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "室內成貓專用飼料 IN27 (4kg)",
     image: "/images/products/royalcanin-indoor-in27.png",
     debugTags: ["含穀（非無穀）"],
-    features: ["室內貓", "化毛", "熱量管理", "降低便臭"],
+    features: ["成貓", "化毛", "熱量管理", "降低便臭"],
     dmbCarb: 44.13,
     detailedAnalysis: {
       productType: "乾飼糧",
@@ -3971,7 +3971,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "80%鮮魚肉無穀全貓糧 (1.5kg)",
     image: "/images/products/maohaishidai-fish-grainfree.png",
     debugTags: [],
-    features: ["魚肉", "無穀", "全齡貓"],
+    features: ["魚肉", "無穀", "成貓"],
     dmbCarb: 22.22,
     detailedAnalysis: {
       productType: "乾飼糧",
@@ -4020,7 +4020,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "85%鮮雞肉無穀全貓糧 (1.5kg)",
     image: "/images/products/maohaishidai-chicken-grainfree.png",
     debugTags: [],
-    features: ["雞肉", "無穀", "全齡貓"],
+    features: ["雞肉", "無穀", "成貓"],
     dmbCarb: 13.04,
     detailedAnalysis: {
       productType: "乾飼糧",
@@ -4168,7 +4168,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "益生菌晶球夾心糧－深海鱈魚 亮毛護膚 (1.5kg)",
     image: "/images/products/heromama-probiotic-cod.png",
     debugTags: [],
-    features: ["鱈魚", "益生菌", "全齡貓", "亮毛護膚"],
+    features: ["鱈魚", "益生菌", "成貓", "亮毛護膚"],
     dmbCarb: 17.7,
     detailedAnalysis: {
       productType: "乾飼糧",
@@ -4229,7 +4229,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "益生菌晶球夾心糧－曠野鮮雞 腸胃排毛 (1.5kg)",
     image: "/images/products/heromama-probiotic-chicken.png",
     debugTags: [],
-    features: ["雞肉", "益生菌", "全齡貓", "腸胃排毛"],
+    features: ["雞肉", "益生菌", "成貓", "腸胃排毛"],
     dmbCarb: 17.7,
     detailedAnalysis: {
       productType: "乾飼糧",
@@ -4346,7 +4346,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "海洋盛宴 無穀貓飼料（多種魚 x 玫瑰果）(340g)",
     image: "/images/products/acana-pacifica-multifish-rosehip-cat.png",
     debugTags: [],
-    features: ["多種魚", "無穀", "全齡貓"],
+    features: ["多種魚", "無穀", "成貓"],
     dmbCarb: 25.56,
     detailedAnalysis: {
       productType: "乾飼糧",
@@ -4397,7 +4397,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "豐盛漁獲低GI配方貓飼料（野生鮭魚 x 鯡魚 x 鱈魚 x 紅鱒魚）(4.5kg)",
     image: "/images/products/acana-bountiful-catch-salmon-cat.png",
     debugTags: [],
-    features: ["多種魚", "低GI", "全齡貓"],
+    features: ["多種魚", "低GI", "成貓"],
     dmbCarb: 30,
     detailedAnalysis: {
       productType: "乾飼糧",
