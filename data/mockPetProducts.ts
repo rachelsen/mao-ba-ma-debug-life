@@ -2796,10 +2796,11 @@ export const mockPetProducts: PetProduct[] = [
       ],
     },
     aafcoCertified: true,
+    certStandard: "FEDIAF",
     ourCatsRating: [{ cat: "烏克", verdict: "like" }],
     review: {
       comment:
-        "Acana 愛肯拿低GI室內開胃貓飼料雞x鯡魚x蔓越莓口味，符合 AAFCO 標準，烏克很喜歡。⚠️ 更正：本款先前誤標「無穀」，官方申報成分表明確列出「完整燕麥」，並非無穀配方；Acana 的「Indoor」系列本來就不屬於該品牌真正無穀的「Regionals」系列，此處已更正為含穀。成分與基本保證分析取自農業部申報網（900g分裝包，與本品1.8kg規格保證分析相同），官方申報未列鈣磷與熱量，此處鈣、磷、熱量（3630kcal/kg）取自 Acana 加拿大原廠官網公開資料，確認與申報成分完全吻合。鈣磷比約1.4，落在理想範圍內。",
+        "Acana 愛肯拿低GI室內開胃貓飼料雞x鯡魚x蔓越莓口味，烏克很喜歡。⚠️ 更正：本款先前誤標「無穀」，官方申報成分表明確列出「完整燕麥」，並非無穀配方；Acana 的「Indoor」系列本來就不屬於該品牌真正無穀的「Regionals」系列，此處已更正為含穀。⚠️ 再次更正：先前誤標認證標準為 AAFCO，台灣官方代理商豪翼行銷網站（同款室內開胃系列）明確標示「符合 FEDIAF 標準」，已更正。成分與基本保證分析取自農業部申報網（900g分裝包，與本品1.8kg規格保證分析相同），官方申報未列鈣磷與熱量，此處鈣、磷、熱量（3630kcal/kg）取自 Acana 加拿大原廠官網公開資料，確認與申報成分完全吻合。鈣磷比約1.4，落在理想範圍內。",
     },
     price: 1060,
     affiliateUrl: "https://s.shopee.tw/2LX8MpPxrT",
