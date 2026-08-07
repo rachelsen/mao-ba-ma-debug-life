@@ -3272,6 +3272,53 @@ export const mockPetProducts: PetProduct[] = [
     affiliateUrl: "https://s.shopee.tw/4qEZGrd9w8",
   },
   {
+    id: "cat-snack-002",
+    category: "貓咪零食",
+    brand: "YAMI 亞米",
+    name: "白金大餐貓罐－鮮鮪 (170g)",
+    image: "/images/products/yami-platinum-feast-tuna-cat.jpg",
+    debugTags: [],
+    features: ["鮪魚"],
+    originCountry: "泰國",
+    partialNutrition: {
+      ingredientsText: "鮪魚白肉、天然膠凍、Oligo寡糖、牛磺酸、維生素E。",
+      items: [
+        { label: "粗蛋白質", value: "13.54%" },
+        { label: "粗脂肪", value: "0.31%" },
+        { label: "粗纖維", value: "0.01%" },
+        { label: "粗灰分", value: "1.06%" },
+        { label: "水分", value: "84.73%" },
+        { label: "碳水化合物", value: "0.36%" },
+      ],
+      note:
+        "官方保證分析未列出鈣、磷與熱量數值，廠商本身未公布，此處無可靠推估依據故不填列，磷含量與鈣磷比項目資料不足無法計分。⚠️ 品牌定位：YAMI 亞米官網把「白金大餐系列」與「白金主食餐系列」列為兩個不同分類，只有後者才叫「主食餐」；本品成分只有鮪魚白肉、天然膠凍、Oligo寡糖、牛磺酸、維生素E，缺乏鈣、磷與完整綜合維生素／礦物質強化配方，並非 AAFCO／FEDIAF 完整均衡主食，比較接近佐餐／點心罐，官方申報適用對象也僅寫「貓咪寵物食用」而非明確生命階段。建議作為偶爾獎勵或拌飯提升適口性，不建議長期單獨取代正餐。",
+      estimateInputs: {
+        protein: 13.54,
+        fat: 0.31,
+        fiber: 0.01,
+        moisture: 84.73,
+      },
+    },
+    officialFiling: {
+      queryDate: "2026-08-07",
+      records: [
+        {
+          spec: "0.17 公斤",
+          sourceType: "輸入",
+          origin: "泰國",
+          company: "沛特國際股份有限公司",
+          subcontractor: "Hi-Q Food Products Co. Ltd.",
+        },
+      ],
+    },
+    review: {
+      comment:
+        "YAMI 亞米白金大餐貓罐鮮鮪口味，成分單純（鮪魚白肉、天然膠凍、Oligo寡糖、牛磺酸、維生素E），保證分析取自農業部申報網公開資料，官方未公布鈣、磷與熱量數值。⚠️ 需注意：品牌官網把「白金大餐系列」與「白金主食餐系列」列為兩個不同商品分類，只有「白金主食餐」才是官方定位的主食產品；本品缺乏鈣、磷與完整維生素礦物質強化，並未標示符合 AAFCO／FEDIAF 完整均衡營養標準，性質上比較接近佐餐罐或點心罐，不建議當作貓咪唯一主食長期餵食。毛孩評價待更新。",
+    },
+    price: 37,
+    affiliateUrl: "https://s.shopee.tw/9pdKRs9TDn",
+  },
+  {
     id: "cat-dry-011",
     category: "貓咪乾糧",
     brand: "Mobby 莫比",
