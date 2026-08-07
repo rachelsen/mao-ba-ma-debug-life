@@ -169,14 +169,15 @@ function classifyFeatureTags(tags: string[]) {
     else otherIngredient.push(tag);
   }
 
-  const meatSpecies = Array.from(speciesBuckets);
-  // 「少見肉源」不是資料裡的字面標籤，是依物種分桶推算出來的快速篩選項目
+  // 「少見肉源」不是資料裡的字面標籤，是依物種分桶推算出來的快速篩選項目；
+  // 「其他肉源」桶本身不單獨顯示成 chip，直接併入少見肉源
   if (
-    meatSpecies.some((bucket) => EXOTIC_MEAT_SPECIES.has(bucket)) &&
+    Array.from(speciesBuckets).some((bucket) => EXOTIC_MEAT_SPECIES.has(bucket)) &&
     !attribute.includes("少見肉源")
   ) {
     attribute.push("少見肉源");
   }
+  const meatSpecies = Array.from(speciesBuckets).filter((bucket) => bucket !== "其他肉源");
 
   return {
     lifeStage,
