@@ -175,7 +175,6 @@ export const mockPetProducts: PetProduct[] = [
     features: [
       "零澱粉",
       "零穀物",
-      "無添加爭議性膠類",
       "低磷",
       "超低碳水",
       "雞肉",
@@ -447,7 +446,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "Super貓小白主食罐 (雞魚 x 野莓)",
     image: "/images/products/nu4pet-super-cat-chicken-fish-wildberry.png",
     debugTags: ["無膠"],
-    features: ["野莓"],
+    features: [],
     dmbCarb: 10.47,
     detailedAnalysis: {
       productType: "肉泥",
@@ -1069,7 +1068,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (1號 多汁雞肉 x 胡蘿蔔 x 貓草)",
     image: "/images/products/mjamjam-juicychicken-carrot-catgrass.png",
     debugTags: ["無膠"],
-    features: ["雞肉", "胡蘿蔔", "貓草"],
+    features: ["雞肉", "貓草"],
     dmbCarb: 8.18,
     detailedAnalysis: {
       ingredientsText:
@@ -1121,7 +1120,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (2號 鹿肉 x 兔肉 x 藍莓)",
     image: "/images/products/mjamjam-venison-rabbit-blueberry.png",
     debugTags: ["無膠"],
-    features: ["鹿肉", "兔肉", "藍莓"],
+    features: ["鹿肉", "兔肉"],
     dmbCarb: 5.24,
     detailedAnalysis: {
       ingredientsText:
@@ -1173,7 +1172,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (3號 嫩鴨 x 胡蘿蔔)",
     image: "/images/products/mjamjam-duck-carrot.png",
     debugTags: ["無膠"],
-    features: ["鴨肉", "雞肉", "火雞肉", "胡蘿蔔"],
+    features: ["鴨肉", "雞肉", "火雞肉"],
     dmbCarb: 5.24,
     detailedAnalysis: {
       ingredientsText:
@@ -1225,7 +1224,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (4號 火雞 x 蒸南瓜 x 貓草)",
     image: "/images/products/mjamjam-turkey-pumpkin-catgrass.png",
     debugTags: ["無膠"],
-    features: ["火雞肉", "南瓜", "貓草"],
+    features: ["火雞肉", "貓草"],
     dmbCarb: 10.45,
     detailedAnalysis: {
       ingredientsText:
@@ -1277,7 +1276,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (5號 馬肉 x 蒸南瓜)",
     image: "/images/products/mjamjam-horse-pumpkin.png",
     debugTags: ["無膠"],
-    features: ["馬肉", "南瓜"],
+    features: ["馬肉"],
     dmbCarb: 5.5,
     detailedAnalysis: {
       ingredientsText:
@@ -1433,7 +1432,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (8號 火雞 x 胡蘿蔔)",
     image: "/images/products/mjamjam-turkey-carrot.png",
     debugTags: ["無膠"],
-    features: ["火雞肉", "胡蘿蔔"],
+    features: ["火雞肉"],
     dmbCarb: 7.14,
     detailedAnalysis: {
       ingredientsText:
@@ -1638,7 +1637,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (10號 野鹿 x 火雞 x 蔓越莓)",
     image: "/images/products/mjamjam-venison-turkey-cranberry.png",
     debugTags: ["無膠"],
-    features: ["鹿肉", "火雞肉", "蔓越莓"],
+    features: ["鹿肉", "火雞肉"],
     dmbCarb: 15.24,
     detailedAnalysis: {
       ingredientsText:
@@ -1690,7 +1689,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (11號 馴鹿 x 雞肉 x 胡蘿蔔)",
     image: "/images/products/mjamjam-reindeer-chicken-carrot.png",
     debugTags: ["無膠"],
-    features: ["馴鹿", "雞肉", "胡蘿蔔"],
+    features: ["馴鹿", "雞肉"],
     dmbCarb: 15.24,
     detailedAnalysis: {
       ingredientsText:
@@ -1742,7 +1741,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (12號 嫩羊 x 胡蘿蔔)",
     image: "/images/products/mjamjam-lamb-carrot.png",
     debugTags: ["無膠"],
-    features: ["羊肉", "胡蘿蔔"],
+    features: ["羊肉"],
     dmbCarb: 12.38,
     detailedAnalysis: {
       ingredientsText: "65%山羊肉、29%鮮肉汁、5%紅蘿蔔、1%礦物質營養素。",
@@ -1843,7 +1842,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (21號 多汁雞肉 x 花椰菜)",
     image: "/images/products/mjamjam-chicken-cauliflower.png",
     debugTags: ["無膠"],
-    features: ["雞肉", "花椰菜"],
+    features: ["雞肉"],
     dmbCarb: 9.09,
     detailedAnalysis: {
       ingredientsText: "70%雞肉（雞肉、胃、肝、脖子）、鮮肉汁、4%花椰菜、礦物質營養素、亞麻仁油、海藻。",
@@ -2042,8 +2041,8 @@ export const mockPetProducts: PetProduct[] = [
     brand: "Cesar 西莎",
     name: "精緻風味餐盒 (牛肉) 24入",
     image: "/images/products/cesar-gourmet-tray-beef.png",
-    debugTags: ["含膠類"],
-    features: ["肉餅"],
+    debugTags: [],
+    features: [],
     originCountry: "澳洲",
     partialNutrition: {
       ingredientsText:
@@ -2085,7 +2084,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "雞肉 1-6歲小型及迷你成犬 (1.5公斤)",
     image: "/images/products/hills-chicken-adult-small-mini-1-6y.png",
     debugTags: [],
-    features: ["成犬", "雞肉", "小顆粒"],
+    features: ["成犬", "雞肉"],
     dmbCarb: 52.8,
     detailedAnalysis: {
       productType: "乾飼糧",
@@ -2226,7 +2225,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "天然蔬果肉鬆糧－雞魚拌肉鬆餐 (0.9kg)",
     image: "/images/products/heromama-meatfloss-chickenfish.png",
     debugTags: [],
-    features: ["雞肉", "魚肉", "成犬", "肉鬆"],
+    features: ["雞肉", "魚肉", "成犬"],
     dmbCarb: 37.82,
     detailedAnalysis: {
       productType: "乾飼糧",
@@ -2280,7 +2279,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "天然蔬果肉鬆糧－雞羊拌肉鬆餐 (0.9kg)",
     image: "/images/products/heromama-meatfloss-chickenlamb.png",
     debugTags: [],
-    features: ["雞肉", "羊肉", "成犬", "肉鬆"],
+    features: ["雞肉", "羊肉", "成犬"],
     dmbCarb: 37.51,
     detailedAnalysis: {
       productType: "乾飼糧",
@@ -2522,7 +2521,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "完美體重 雞肉 1-6歲成貓 (1.36公斤)",
     image: "/images/products/hills-perfect-weight-chicken-adult-cat.png",
     debugTags: [],
-    features: ["體重控制", "減重配方", "雞肉", "含穀"],
+    features: ["體重控制", "減重配方", "雞肉"],
     dmbCarb: 35.39,
     detailedAnalysis: {
       productType: "乾飼糧",
@@ -2573,7 +2572,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "無敵貓糧 鮮雞蜂王乳",
     image: "/images/products/parkcat-chicken-royaljelly.png",
     debugTags: [],
-    features: ["蜂王乳", "雞肉", "無穀"],
+    features: ["雞肉", "無穀"],
     dmbCarb: 20.88,
     detailedAnalysis: {
       productType: "乾飼糧",
@@ -2663,7 +2662,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "貓用凍乾填心糧-成幼貓低敏配方（有穀低敏鮮雞配方泌尿保健）",
     image: "/images/products/tapazo-freeze-dried-hypoallergenic-cat.png",
     debugTags: [],
-    features: ["低敏", "鮮雞", "含穀"],
+    features: ["低敏", "鮮雞"],
     dmbCarb: 29.44,
     detailedAnalysis: {
       productType: "凍乾填心糧",
@@ -2764,8 +2763,8 @@ export const mockPetProducts: PetProduct[] = [
     brand: "Acana 愛肯拿",
     name: "低GI 室內開胃貓飼料（雞 x 鯡魚 x 蔓越莓）",
     image: "/images/products/acana-indoor-chicken-herring-cranberry.png",
-    debugTags: ["名稱與成分不符：含燕麥非無穀"],
-    features: ["成貓", "雞肉", "鯡魚", "含穀"],
+    debugTags: [],
+    features: ["成貓", "雞肉", "鯡魚"],
     dmbCarb: 26.67,
     detailedAnalysis: {
       productType: "乾飼糧",
@@ -3168,7 +3167,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "貓用老饕鮮味盤(霸王大草蝦)凍乾 (20g)",
     image: "/images/products/tapazo-perfect-cuts-grass-shrimp.png",
     debugTags: [],
-    features: ["草蝦", "凍乾", "單一肉源", "無穀", "無防腐劑", "無誘食劑"],
+    features: ["草蝦", "凍乾", "單一肉源", "無穀", "無防腐劑"],
     originCountry: "台灣",
     partialNutrition: {
       ingredientsText: "草蝦仁、殺菌液蛋、茶胺酸、木天蓼。",
@@ -3223,7 +3222,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "貓用老饕鮮味盤(整粒鮮雞心)凍乾 (40g)",
     image: "/images/products/tapazo-perfect-cuts-chicken-heart.png",
     debugTags: [],
-    features: ["雞心", "凍乾", "單一肉源", "無穀", "無防腐劑", "無誘食劑"],
+    features: ["雞心", "凍乾", "單一肉源", "無穀", "無防腐劑"],
     originCountry: "台灣",
     partialNutrition: {
       ingredientsText: "雞心、殺菌液蛋、茶胺酸、貓薄荷。",
@@ -3277,7 +3276,7 @@ export const mockPetProducts: PetProduct[] = [
     brand: "Mobby 莫比",
     name: "低卡成貓化毛配方 (雞肉&米) (1.5kg)",
     image: "/images/products/mobby-choice-healthy-weight-hairball.png",
-    debugTags: ["含穀（非無穀）"],
+    debugTags: [],
     features: ["低卡", "化毛", "雞肉"],
     dmbCarb: 34.44,
     detailedAnalysis: {
@@ -3327,7 +3326,7 @@ export const mockPetProducts: PetProduct[] = [
     brand: "Mobby 莫比",
     name: "成貓化毛配方 (雞肉&米) (1.5kg)",
     image: "/images/products/mobby-choice-adult-hairball.png",
-    debugTags: ["含穀（非無穀）"],
+    debugTags: [],
     features: ["化毛", "雞肉"],
     dmbCarb: 31.11,
     detailedAnalysis: {
@@ -3475,7 +3474,7 @@ export const mockPetProducts: PetProduct[] = [
     brand: "Mobby 莫比",
     name: "挑嘴成貓饕客配方 (雞肉&米) (1.5kg)",
     image: "/images/products/mobby-choice-fussy-adult.png",
-    debugTags: ["含穀（非無穀）"],
+    debugTags: [],
     features: ["挑嘴", "雞肉", "鮭魚"],
     dmbCarb: 31.11,
     detailedAnalysis: {
@@ -3526,7 +3525,7 @@ export const mockPetProducts: PetProduct[] = [
     brand: "Mobby 莫比",
     name: "幼貓/懷孕授乳貓配方 (雞肉&米) (1.5kg)",
     image: "/images/products/mobby-choice-kitten.png",
-    debugTags: ["含穀（非無穀）"],
+    debugTags: [],
     features: ["幼貓", "懷孕授乳貓", "雞肉", "鮭魚"],
     dmbCarb: 26.67,
     detailedAnalysis: {
@@ -3673,7 +3672,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (22號 鮮嫩豬肉 x 胡蘿蔔)",
     image: "/images/products/mjamjam-pork-carrot.png",
     debugTags: ["無膠"],
-    features: ["豬肉", "胡蘿蔔"],
+    features: ["豬肉"],
     dmbCarb: 5.45,
     detailedAnalysis: {
       ingredientsText: "70%鮮嫩豬肉（豬肉、心、肺、肝）、鮮肉汁、4%胡蘿蔔、礦物質營養素、亞麻仁油、海藻。",
@@ -3723,7 +3722,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (23號 火雞 x 嫩鴨 x 蒸南瓜)",
     image: "/images/products/mjamjam-turkey-duck-pumpkin.png",
     debugTags: ["無膠"],
-    features: ["火雞肉", "鴨肉", "南瓜"],
+    features: ["火雞肉", "鴨肉"],
     dmbCarb: 3.33,
     detailedAnalysis: {
       ingredientsText: "56%火雞（火雞肉、胃、肝）、鮮肉汁、鴨肉、4%南瓜、礦物質營養素、亞麻仁油、海藻。",
@@ -3773,7 +3772,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "貓用無膠迷你主食罐 (雞肉 奶糕肉泥) (55g)",
     image: "/images/products/heromama-minican-chicken.png",
     debugTags: ["無膠"],
-    features: ["雞肉", "無穀", "成貓", "迷你罐"],
+    features: ["雞肉", "無穀", "成貓"],
     dmbCarb: 7.89,
     detailedAnalysis: {
       productType: "罐頭",
@@ -3833,7 +3832,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "貓用無膠迷你主食罐 (鮭魚 奶糕肉泥) (55g)",
     image: "/images/products/heromama-minican-salmon.png",
     debugTags: ["無膠"],
-    features: ["鮭魚", "無穀", "成貓", "迷你罐"],
+    features: ["鮭魚", "無穀", "成貓"],
     dmbCarb: 8.33,
     detailedAnalysis: {
       productType: "罐頭",
@@ -3939,7 +3938,7 @@ export const mockPetProducts: PetProduct[] = [
     brand: "ROYAL CANIN 法國皇家",
     name: "室內成貓專用飼料 IN27 (4kg)",
     image: "/images/products/royalcanin-indoor-in27.png",
-    debugTags: ["含穀（非無穀）"],
+    debugTags: [],
     features: ["成貓", "化毛", "熱量管理", "降低便臭"],
     dmbCarb: 44.13,
     detailedAnalysis: {

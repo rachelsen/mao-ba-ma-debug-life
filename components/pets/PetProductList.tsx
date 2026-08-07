@@ -67,13 +67,7 @@ function getCountryFlagEmoji(country: string): string {
 }
 
 function getFilterTags(product: PetProduct): string[] {
-  return [
-    ...(product.features ?? []),
-    ...product.debugTags,
-    ...(product.detailedAnalysis?.productType
-      ? [product.detailedAnalysis.productType]
-      : []),
-  ];
+  return [...(product.features ?? []), ...product.debugTags];
 }
 
 /** 生命階段／適用對象標籤，會顯示在進階篩選最上層（與 AAFCO/NRC/HACCP/FEDIAF 同排） */
@@ -125,6 +119,7 @@ const MEAT_SPECIES_GROUPS: Record<string, string[]> = {
     "海瓜子",
   ],
   鴨: ["鴨肉"],
+  鵝: ["鵝肉"],
   牛: ["牛肉"],
   羊: ["羊肉"],
   火雞: ["火雞肉", "火雞"],
@@ -135,6 +130,9 @@ const MEAT_SPECIES_GROUPS: Record<string, string[]> = {
 
 /** 較少見的肉源分類（用於「少見肉源」快速篩選） */
 const EXOTIC_MEAT_SPECIES = new Set(["鹿", "兔", "火雞", "其他肉源"]);
+
+/** 肉源 chip 固定顯示順序，與 MEAT_SPECIES_GROUPS 的 key 順序一致 */
+const MEAT_SPECIES_ORDER = Object.keys(MEAT_SPECIES_GROUPS);
 
 const RAW_TAG_TO_SPECIES: Record<string, string> = Object.fromEntries(
   Object.entries(MEAT_SPECIES_GROUPS).flatMap(([bucket, rawTags]) =>
@@ -179,7 +177,9 @@ function classifyFeatureTags(tags: string[]) {
   ) {
     attribute.push("少見肉源");
   }
-  const meatSpecies = Array.from(speciesBuckets).filter((bucket) => bucket !== "其他肉源");
+  const meatSpecies = Array.from(speciesBuckets)
+    .filter((bucket) => bucket !== "其他肉源")
+    .sort((a, b) => MEAT_SPECIES_ORDER.indexOf(a) - MEAT_SPECIES_ORDER.indexOf(b));
 
   return {
     lifeStage,
