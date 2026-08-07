@@ -4686,4 +4686,55 @@ export const mockPetProducts: PetProduct[] = [
       { label: "🛒 前往購買", url: "https://coupa.ng/coCfPV", color: "#3DACDC" },
     ],
   },
+  {
+    id: "cat-dry-029",
+    category: "貓咪乾糧",
+    brand: "nu4PET 陪心寵糧",
+    name: "Pawful陪飽糧 低穀貓糧 雞魚肉口味 (2磅)",
+    image: "/images/products/nu4pet-pawful-chicken-fish-cat.jpg",
+    debugTags: [],
+    features: ["雞肉", "鮪魚", "含穀", "成貓"],
+    dmbCarb: 30.22,
+    detailedAnalysis: {
+      productType: "乾飼糧",
+      ingredientsText:
+        "雞肉、鮪魚、燕麥、冷壓椰子粉、鮭魚油、水解蛋白、酵母粉、氯化膽鹼、黃金亞麻籽、甜菜、苜蓿、絲蘭萃取物、蘋果、紫地瓜、番茄、胡蘿蔔、綠茶、蜂王乳、蔓越莓、藍莓、覆盆莓、巴西莓、西印度櫻桃、綜合維生素(A、D、E、B1、B2、B6、B12、葉酸、泛酸鈣、菸鹼酸、生物素)、綜合礦物質(硫酸鋅、硫酸銅、硫酸錳、硫酸亞鐵、酵母硒、碳酸鈷、碘化鉀)、DL-蛋胺酸、牛磺酸、L-離胺酸。",
+      originCountry: "澳洲",
+      moisture: 10,
+      protein: 36.8,
+      fat: 11,
+      fiber: 5,
+      ash: 10,
+      phosphorus: 1,
+      calcium: 1,
+      caPhosRatio: "1.00",
+      kcalPer100g: 317.5,
+      weightGrams: 910,
+      listPrice: 335,
+      salePrice: 335,
+    },
+    officialFiling: {
+      queryDate: "2026-08-07",
+      records: [
+        {
+          spec: "0.91 公斤（2Ibs）",
+          sourceType: "輸入",
+          origin: "澳洲",
+          company: "唯寵股份有限公司",
+          subcontractor: "唯寵股份有限公司",
+        },
+      ],
+    },
+    aafcoCertified: true,
+    nrcCertified: true,
+    review: {
+      comment:
+        "nu4PET陪心寵糧全新副牌Pawful陪飽糧低穀貓糧雞魚肉口味，前二項食材為雞肉、鮪魚，官方訴求96%動物性蛋白來源、雙動物蛋白均衡配方，添加鮭魚油、亞麻籽顧毛髮，蔓越莓、藍莓顧泌尿道，含燕麥非無穀配方。保證分析、成分與熱量（3175kcal/kg）皆取自農業部申報網公開資料（官方登記規格為2Ibs/0.91kg，與本品規格相符），官方申報產地為輸入，經比對官方商品包裝圖確認印有「Made in Australia」澳洲原產標示。包裝下方印有「營養規格符合 AAFCO 和 NRC 標準」字樣（經實品包裝照片確認），故標示 AAFCO／NRC 認證；官方網站的公開說明頁面則是用 AAFCO／NRC 的熱量需求計算式來抓每日餵食份量，屬於另一種用途的引用。鈣磷比官方標示皆為最低1.0%，換算後鈣磷比僅約1.0:1，略低於理想範圍（1.1-1.4），建議留意。毛孩評價待更新。",
+    },
+    price: 335,
+    affiliateUrl: "https://s.shopee.tw/111vzVHAK6",
+    additionalPurchaseLinks: [
+      { label: "🛒 前往購買", url: "https://coupa.ng/coChMX", color: "#3DACDC" },
+    ],
+  },
 ];
