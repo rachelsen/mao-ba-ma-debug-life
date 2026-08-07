@@ -114,7 +114,7 @@ export default async function HomePage() {
               {topProducts.map(({ product, count }, index) => (
                 <Link
                   key={product.id}
-                  href="/pets"
+                  href={`/pets#${product.id}`}
                   className="group flex w-40 shrink-0 flex-col gap-3 sm:w-48"
                 >
                   <div className="relative aspect-square w-full overflow-hidden rounded-2xl border border-slate-100 bg-cream-bg-light">

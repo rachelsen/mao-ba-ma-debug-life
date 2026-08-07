@@ -1446,7 +1446,10 @@ function ProductCard({
 
   if (compact) {
     return (
-      <article className="flex flex-col gap-2 rounded-2xl border border-amber-100/60 bg-white p-3 shadow-sm transition-all hover:shadow-md">
+      <article
+        id={product.id}
+        className="flex scroll-mt-24 flex-col gap-2 rounded-2xl border border-amber-100/60 bg-white p-3 shadow-sm transition-all hover:shadow-md"
+      >
         <div className="relative aspect-square w-full overflow-hidden rounded-xl bg-white">
           <Image
             src={product.image}
@@ -1515,7 +1518,10 @@ function ProductCard({
   }
 
   return (
-    <article className="flex flex-col gap-6 rounded-2xl border border-amber-100/60 bg-white p-4 shadow-sm transition-all hover:shadow-md md:flex-row md:p-6">
+    <article
+      id={product.id}
+      className="flex scroll-mt-24 flex-col gap-6 rounded-2xl border border-amber-100/60 bg-white p-4 shadow-sm transition-all hover:shadow-md md:flex-row md:p-6"
+    >
       {/* 左側：圖片與互動 */}
       <div className="flex flex-shrink-0 flex-col gap-3 md:w-1/3 lg:w-1/4">
         <div className="relative aspect-square w-full overflow-hidden rounded-xl bg-white">
