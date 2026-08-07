@@ -680,7 +680,9 @@ export default function PetProductList() {
       activeTab === ALL
         ? mockPetProducts
         : mockPetProducts.filter((product) => product.category === activeTab);
-    return Array.from(new Set(products.map((product) => product.brand)));
+    return Array.from(new Set(products.map((product) => product.brand))).sort((a, b) =>
+      a.localeCompare(b, "en")
+    );
   }, [activeTab]);
 
   const baseFilteredProducts = useMemo(() => {
