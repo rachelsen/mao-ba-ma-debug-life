@@ -3985,6 +3985,57 @@ export const mockPetProducts: PetProduct[] = [
     ],
   },
   {
+    id: "cat-can-044",
+    category: "貓咪主食罐",
+    brand: "T.N.A. 悠遊 厚肉肉",
+    name: "厚肉肉主食罐－鮮燉雞拼嫩鮭魚 (80g)",
+    image: "/images/products/hoorooroo-chicken-salmon-cat-can.jpg",
+    debugTags: ["無膠"],
+    features: ["雞肉", "鮭魚", "無穀", "成貓"],
+    dmbCarb: 5.02,
+    detailedAnalysis: {
+      productType: "罐頭",
+      ingredientsText:
+        "雞肉、熬煮雞湯、鮭魚、雞油、雞肝、雞心、滴雞精、綜合維生素、海藻鈣、蛋黃粉、紅蘿蔔、柴魚粉、洋車前子、綜合胺基酸、酵母粉、蒟蒻粉、牛磺酸、β-聚葡萄糖、啤酒酵母發酵物。",
+      originCountry: "台灣",
+      moisture: 78.1,
+      protein: 12.5,
+      fat: 6.5,
+      fiber: 0.1,
+      ash: 1.7,
+      phosphorus: 0.17,
+      calcium: 0.22,
+      caPhosRatio: "1.29",
+      kcalPer100g: 104.9,
+      weightGrams: 80,
+      listPrice: 46,
+      salePrice: 46,
+    },
+    officialFiling: {
+      queryDate: "2026-08-07",
+      records: [
+        {
+          spec: "0.08 公斤",
+          sourceType: "委託代工廠製造",
+          origin: "台灣",
+          company: "悠遊國際實業股份有限公司",
+          subcontractor: "興濠有限公司",
+        },
+      ],
+    },
+    aafcoCertified: true,
+    certStandard: "AAFCO",
+    review: {
+      comment:
+        "T.N.A.悠遊厚肉肉主食罐鮮燉雞拼嫩鮭魚口味，前二項食材為雞肉與熬煮雞湯，官方訴求98%高含肉量、無穀無膠無防腐劑無K3，並添加滴雞精、β-聚葡萄糖與啤酒酵母發酵物，屬「陽光黃罐」腸胃益生配方。保證分析與熱量皆取自農業部申報網公開資料（官方登記規格為0.08kg，與本品80g規格相符），且與授權經銷商網站複製的包裝標示數字一致（鈣0.22%、磷0.17%）；製造工廠為興濠有限公司（台灣）。官方品牌網站tnayoyochic.com明確標示「符合AAFCO，全齡貓安心食用」。鈣磷比約1.29，落在理想範圍內。毛孩評價待更新。",
+    },
+    price: 46,
+    affiliateUrl: "https://s.shopee.tw/AAGAepacFs",
+    additionalPurchaseLinks: [
+      { label: "🛒 前往購買", url: "https://coupa.ng/coBSZZ", color: "#3DACDC" },
+    ],
+  },
+  {
     id: "cat-dry-018",
     category: "貓咪乾糧",
     brand: "ROYAL CANIN 法國皇家",
