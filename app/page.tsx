@@ -9,7 +9,7 @@ import { getFavoriteCounts } from "@/lib/favorites";
 export const metadata: Metadata = {
   title: "毛拔麻 Debug 生活",
   description:
-    "工程師毛拔麻打造的全方位導購網站，用數據與邏輯 Debug 毛孩養護與生活開銷。",
+    "工程師毛拔麻打造的全方位導購網站，用數據與邏輯 Debug 毛孩養護與生活開銷。找貓食、狗食，可依成分、產地、類型、主食評分、碳水化合物快速篩選，幫毛孩挑選最適合的飼料與罐頭。",
 };
 
 // 每小時重新計算一次「大家最愛的商品」，避免每次都要重新部署才能更新
@@ -90,6 +90,9 @@ export default async function HomePage() {
               </h2>
               <p className="mt-4 text-sm leading-relaxed text-stone-500 sm:text-base">
                 輸入保證分析值，一鍵換算乾物質基礎碳水化合物比例，三秒揪出高碳水地雷罐頭，用數據幫毛孩把關飲食品質。
+              </p>
+              <p className="mt-3 text-sm leading-relaxed text-stone-500 sm:text-base">
+                找貓食、狗食不用再爬文比較，直接依成分、產地、類型、主食評分、碳水化合物條件篩選，快速找到適合毛孩的乾糧與罐頭。
               </p>
               <Link
                 href="/pets"

@@ -117,6 +117,8 @@ const MEAT_SPECIES_GROUPS: Record<string, string[]> = {
     "甲魚",
     "旗魚",
     "海瓜子",
+    "鰹魚",
+    "魩仔魚",
   ],
   鴨: ["鴨肉"],
   鵝: ["鵝肉"],

@@ -179,6 +179,7 @@ export const mockPetProducts: PetProduct[] = [
       "超低碳水",
       "雞肉",
       "雞心",
+      "成貓",
     ],
     dmbCarb: 5.36,
     detailedAnalysis: {
@@ -233,7 +234,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "Super貓小白主食罐 (雞甲魚 x 大麥草)",
     image: "/images/products/nu4pet-super-cat-chicken-turtle-barley.png",
     debugTags: ["無膠"],
-    features: ["零澱粉", "零穀物", "低磷", "超低碳水", "雞肉", "甲魚", "雞心"],
+    features: ["零澱粉", "零穀物", "低磷", "超低碳水", "雞肉", "甲魚", "雞心", "成貓"],
     dmbCarb: 4.7,
     detailedAnalysis: {
       productType: "肉泥",
@@ -287,7 +288,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "Super貓小白主食罐 (鮪魚 x 優格)",
     image: "/images/products/nu4pet-super-cat-tuna-yogurt.png",
     debugTags: ["無膠"],
-    features: ["零澱粉", "零穀物", "低磷", "鮪魚"],
+    features: ["零澱粉", "零穀物", "低磷", "鮪魚", "成貓"],
     dmbCarb: 11.5,
     detailedAnalysis: {
       productType: "肉泥",
@@ -340,7 +341,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "Super貓小白主食罐 (石斑魚 x 奇亞籽)",
     image: "/images/products/nu4pet-super-cat-grouper-chiaseed.png",
     debugTags: ["無膠"],
-    features: ["零澱粉", "零穀物", "低磷", "超低碳水", "石斑魚"],
+    features: ["零澱粉", "零穀物", "低磷", "超低碳水", "石斑魚", "成貓"],
     detailedAnalysis: {
       productType: "肉泥",
       ingredientsText:
@@ -393,7 +394,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "Super貓小白主食罐 (鵝肉 x 紅藜)",
     image: "/images/products/nu4pet-super-cat-goose-redquinoa.png",
     debugTags: ["無膠"],
-    features: ["零澱粉", "零穀物", "低磷", "超低碳水", "鵝肉"],
+    features: ["零澱粉", "零穀物", "低磷", "超低碳水", "鵝肉", "成貓"],
     dmbCarb: 5.45,
     detailedAnalysis: {
       productType: "肉泥",
@@ -446,7 +447,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "Super貓小白主食罐 (雞魚 x 野莓)",
     image: "/images/products/nu4pet-super-cat-chicken-fish-wildberry.png",
     debugTags: ["無膠"],
-    features: [],
+    features: ["成貓"],
     dmbCarb: 10.47,
     detailedAnalysis: {
       productType: "肉泥",
@@ -498,7 +499,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "貓 POWER超能主食罐 (活力野鮭)",
     image: "/images/products/sofapotato-power-cat-wildsalmon.png",
     debugTags: ["無膠"],
-    features: ["鮭魚"],
+    features: ["鮭魚", "成貓"],
     dmbCarb: 1.7,
     detailedAnalysis: {
       ingredientsText:
@@ -549,7 +550,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "貓 POWER超能主食罐 (海陸雞魚)",
     image: "/images/products/sofapotato-power-cat-chickenfish.png",
     debugTags: ["無膠"],
-    features: ["雞肉", "鮪魚"],
+    features: ["雞肉", "鮪魚", "成貓"],
     dmbCarb: 4.44,
     detailedAnalysis: {
       ingredientsText:
@@ -601,7 +602,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "貓 Pure純粹主食罐 (溫體純雞肉)",
     image: "/images/products/sofapotato-pure-cat-chicken.png",
     debugTags: ["無膠"],
-    features: ["雞肉"],
+    features: ["雞肉", "成貓"],
     dmbCarb: 4.21,
     detailedAnalysis: {
       ingredientsText:
@@ -653,7 +654,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "單一蛋白質主食罐 無膠罐 全肉主食罐 頂級貓罐 (有機好火雞)",
     image: "/images/products/kailigoddess-organic-turkey.png",
     debugTags: ["無膠"],
-    features: ["火雞肉", "單一蛋白質"],
+    features: ["火雞肉", "單一蛋白質", "成貓"],
     dmbCarb: 6.81,
     detailedAnalysis: {
       ingredientsText:
@@ -704,7 +705,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "單一蛋白質主食罐 無膠罐 全肉主食罐 頂級貓罐 (有機家禽)",
     image: "/images/products/kailigoddess-organic-poultry.png",
     debugTags: ["無膠"],
-    features: ["單一蛋白質"],
+    features: ["單一蛋白質", "成貓"],
     dmbCarb: 6.89,
     detailedAnalysis: {
       ingredientsText:
@@ -751,7 +752,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "單一蛋白質主食罐 無膠罐 全肉主食罐 頂級貓罐 (有機雞肉)",
     image: "/images/products/kailigoddess-organic-chicken.png",
     debugTags: ["無膠"],
-    features: ["雞肉", "單一蛋白質"],
+    features: ["雞肉", "單一蛋白質", "成貓"],
     dmbCarb: 6.14,
     detailedAnalysis: {
       ingredientsText:
@@ -798,7 +799,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "單一蛋白質主食罐 無膠罐 全肉主食罐 頂級貓罐 (雞 x 雞心)",
     image: "/images/products/kailigoddess-chicken-heart.png",
     debugTags: ["無膠"],
-    features: ["雞肉", "雞心", "單一蛋白質"],
+    features: ["雞肉", "雞心", "單一蛋白質", "成貓"],
     dmbCarb: 5.72,
     detailedAnalysis: {
       ingredientsText:
@@ -845,7 +846,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "單一蛋白質主食罐 無膠罐 全肉主食罐 頂級貓罐 (純野兔)",
     image: "/images/products/kailigoddess-rabbit.png",
     debugTags: ["無膠"],
-    features: ["兔肉", "單一蛋白質"],
+    features: ["兔肉", "單一蛋白質", "成貓"],
     dmbCarb: 10.17,
     detailedAnalysis: {
       ingredientsText:
@@ -892,7 +893,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "單一蛋白質主食罐 無膠罐 全肉主食罐 頂級貓罐 (純袋鼠肉)",
     image: "/images/products/kailigoddess-kangaroo.png",
     debugTags: ["無膠"],
-    features: ["袋鼠肉", "單一蛋白質"],
+    features: ["袋鼠肉", "單一蛋白質", "成貓"],
     dmbCarb: 15.06,
     detailedAnalysis: {
       ingredientsText:
@@ -927,7 +928,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "單一蛋白質主食罐 無膠罐 全肉主食罐 頂級貓罐 (有機純鴨)",
     image: "/images/products/kailigoddess-organic-duck.png",
     debugTags: ["無膠"],
-    features: ["鴨肉", "單一蛋白質"],
+    features: ["鴨肉", "單一蛋白質", "成貓"],
     dmbCarb: 3.7,
     detailedAnalysis: {
       ingredientsText:
@@ -974,7 +975,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "單一蛋白質主食罐 無膠罐 全肉主食罐 頂級貓罐 (有機雞 x 鴨)",
     image: "/images/products/kailigoddess-organic-chicken-duck.png",
     debugTags: ["無膠"],
-    features: ["雞肉", "鴨肉"],
+    features: ["雞肉", "鴨肉", "成貓"],
     dmbCarb: 6.98,
     detailedAnalysis: {
       ingredientsText:
@@ -1021,7 +1022,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "單一蛋白質主食罐 無膠罐 全肉主食罐 頂級貓罐 (火雞 x 羊肉)",
     image: "/images/products/kailigoddess-turkey-lamb.png",
     debugTags: ["無膠"],
-    features: ["火雞肉", "羊肉"],
+    features: ["火雞肉", "羊肉", "成貓"],
     dmbCarb: 10.45,
     detailedAnalysis: {
       ingredientsText:
@@ -1068,7 +1069,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (1號 多汁雞肉 x 胡蘿蔔 x 貓草)",
     image: "/images/products/mjamjam-juicychicken-carrot-catgrass.png",
     debugTags: ["無膠"],
-    features: ["雞肉", "貓草"],
+    features: ["雞肉", "貓草", "成貓"],
     dmbCarb: 8.18,
     detailedAnalysis: {
       ingredientsText:
@@ -1120,7 +1121,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (2號 鹿肉 x 兔肉 x 藍莓)",
     image: "/images/products/mjamjam-venison-rabbit-blueberry.png",
     debugTags: ["無膠"],
-    features: ["鹿肉", "兔肉"],
+    features: ["鹿肉", "兔肉", "成貓"],
     dmbCarb: 5.24,
     detailedAnalysis: {
       ingredientsText:
@@ -1172,7 +1173,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (3號 嫩鴨 x 胡蘿蔔)",
     image: "/images/products/mjamjam-duck-carrot.png",
     debugTags: ["無膠"],
-    features: ["鴨肉", "雞肉", "火雞肉"],
+    features: ["鴨肉", "雞肉", "火雞肉", "成貓"],
     dmbCarb: 5.24,
     detailedAnalysis: {
       ingredientsText:
@@ -1224,7 +1225,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (4號 火雞 x 蒸南瓜 x 貓草)",
     image: "/images/products/mjamjam-turkey-pumpkin-catgrass.png",
     debugTags: ["無膠"],
-    features: ["火雞肉", "貓草"],
+    features: ["火雞肉", "貓草", "成貓"],
     dmbCarb: 10.45,
     detailedAnalysis: {
       ingredientsText:
@@ -1276,7 +1277,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (5號 馬肉 x 蒸南瓜)",
     image: "/images/products/mjamjam-horse-pumpkin.png",
     debugTags: ["無膠"],
-    features: ["馬肉"],
+    features: ["馬肉", "成貓"],
     dmbCarb: 5.5,
     detailedAnalysis: {
       ingredientsText:
@@ -1328,7 +1329,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (6號 多汁雞肉 x 野生鮭魚)",
     image: "/images/products/mjamjam-chicken-salmon.png",
     debugTags: ["無膠"],
-    features: ["雞肉", "鮭魚"],
+    features: ["雞肉", "鮭魚", "成貓"],
     dmbCarb: 4.76,
     detailedAnalysis: {
       ingredientsText:
@@ -1380,7 +1381,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (7號 雞肉 x 鮭魚油)",
     image: "/images/products/mjamjam-chicken-salmonoil.png",
     debugTags: ["無膠"],
-    features: ["雞肉", "鮭魚油"],
+    features: ["雞肉", "鮭魚油", "成貓"],
     dmbCarb: 1.5,
     detailedAnalysis: {
       ingredientsText:
@@ -1432,7 +1433,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (8號 火雞 x 胡蘿蔔)",
     image: "/images/products/mjamjam-turkey-carrot.png",
     debugTags: ["無膠"],
-    features: ["火雞肉"],
+    features: ["火雞肉", "成貓"],
     dmbCarb: 7.14,
     detailedAnalysis: {
       ingredientsText:
@@ -1484,7 +1485,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "貓用主廚鮮肉派 (鵪鶉燉雞)",
     image: "/images/products/tapazo-chef-pie-quail-chicken.png",
     debugTags: ["無膠"],
-    features: ["雞肉", "鵪鶉"],
+    features: ["雞肉", "鵪鶉", "成貓"],
     dmbCarb: 0.48,
     detailedAnalysis: {
       ingredientsText:
@@ -1535,7 +1536,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "貓用主廚鮮肉派 (鮮牛烤雞)",
     image: "/images/products/tapazo-chef-pie-beef-chicken.png",
     debugTags: ["無膠"],
-    features: ["雞肉", "牛肉"],
+    features: ["雞肉", "牛肉", "成貓"],
     dmbCarb: 0.48,
     detailedAnalysis: {
       ingredientsText:
@@ -1586,7 +1587,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (9號 麵包蟲 x 多汁雞肉)",
     image: "/images/products/mjamjam-mealworm-chicken.png",
     debugTags: ["無膠"],
-    features: ["麵包蟲", "雞肉"],
+    features: ["麵包蟲", "雞肉", "成貓"],
     dmbCarb: 1.67,
     detailedAnalysis: {
       ingredientsText:
@@ -1637,7 +1638,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (10號 野鹿 x 火雞 x 蔓越莓)",
     image: "/images/products/mjamjam-venison-turkey-cranberry.png",
     debugTags: ["無膠"],
-    features: ["鹿肉", "火雞肉"],
+    features: ["鹿肉", "火雞肉", "成貓"],
     dmbCarb: 15.24,
     detailedAnalysis: {
       ingredientsText:
@@ -1689,7 +1690,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (11號 馴鹿 x 雞肉 x 胡蘿蔔)",
     image: "/images/products/mjamjam-reindeer-chicken-carrot.png",
     debugTags: ["無膠"],
-    features: ["馴鹿", "雞肉"],
+    features: ["馴鹿", "雞肉", "成貓"],
     dmbCarb: 15.24,
     detailedAnalysis: {
       ingredientsText:
@@ -1741,7 +1742,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (12號 嫩羊 x 胡蘿蔔)",
     image: "/images/products/mjamjam-lamb-carrot.png",
     debugTags: ["無膠"],
-    features: ["羊肉"],
+    features: ["羊肉", "成貓"],
     dmbCarb: 12.38,
     detailedAnalysis: {
       ingredientsText: "65%山羊肉、29%鮮肉汁、5%紅蘿蔔、1%礦物質營養素。",
@@ -1792,7 +1793,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (13號 多汁雞肉 x 明蝦)",
     image: "/images/products/mjamjam-chicken-shrimp.png",
     debugTags: ["無膠"],
-    features: ["雞肉", "明蝦"],
+    features: ["雞肉", "明蝦", "成貓"],
     dmbCarb: 6.5,
     detailedAnalysis: {
       ingredientsText: "56%雞肉（雞肉、心、肝、胗）、28.5%鮮肉汁、14.5%明蝦、1%礦物質營養素。",
@@ -1842,7 +1843,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (21號 多汁雞肉 x 花椰菜)",
     image: "/images/products/mjamjam-chicken-cauliflower.png",
     debugTags: ["無膠"],
-    features: ["雞肉"],
+    features: ["雞肉", "成貓"],
     dmbCarb: 9.09,
     detailedAnalysis: {
       ingredientsText: "70%雞肉（雞肉、胃、肝、脖子）、鮮肉汁、4%花椰菜、礦物質營養素、亞麻仁油、海藻。",
@@ -1892,7 +1893,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (15號 純火雞)",
     image: "/images/products/mjamjam-turkey.png",
     debugTags: ["無膠"],
-    features: ["火雞肉"],
+    features: ["火雞肉", "成貓"],
     dmbCarb: 6.67,
     detailedAnalysis: {
       ingredientsText: "71%火雞（火雞肉、心、肝、胃）、28%鮮肉汁、0.5%礦物質營養素、0.5%乾燥蛋殼（鈣質來源）。",
@@ -1942,7 +1943,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (16號 營養羊肉)",
     image: "/images/products/mjamjam-lamb.png",
     debugTags: ["無膠"],
-    features: ["羊肉"],
+    features: ["羊肉", "成貓"],
     dmbCarb: 7.62,
     detailedAnalysis: {
       ingredientsText: "71%新鮮羊肉（羊肉、心、肺、肝、腎、羊肚）、28%鮮肉汁、0.5%礦物質營養素、0.5%乾燥蛋殼。",
@@ -1992,7 +1993,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (17號 低脂袋鼠肉)",
     image: "/images/products/mjamjam-kangaroo.png",
     debugTags: ["無膠"],
-    features: ["袋鼠肉"],
+    features: ["袋鼠肉", "成貓"],
     dmbCarb: 12.38,
     detailedAnalysis: {
       ingredientsText: "71%新鮮袋鼠肉（袋鼠肉、心、肺、肝、腎）、28%鮮肉汁、0.5%礦物質營養素、0.5%乾燥蛋殼。",
@@ -3622,7 +3623,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (19號 純嫩鴨)",
     image: "/images/products/mjamjam-duck.png",
     debugTags: ["無膠"],
-    features: ["鴨肉", "單一蛋白質"],
+    features: ["鴨肉", "單一蛋白質", "成貓"],
     dmbCarb: 7.62,
     detailedAnalysis: {
       ingredientsText: "70%鮮嫩鴨肉（鴨肉、心、肝）、29%鮮肉汁、0.5%礦物質營養素、0.5%乾燥蛋殼（鈣質來源）。",
@@ -3672,7 +3673,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (22號 鮮嫩豬肉 x 胡蘿蔔)",
     image: "/images/products/mjamjam-pork-carrot.png",
     debugTags: ["無膠"],
-    features: ["豬肉"],
+    features: ["豬肉", "成貓"],
     dmbCarb: 5.45,
     detailedAnalysis: {
       ingredientsText: "70%鮮嫩豬肉（豬肉、心、肺、肝）、鮮肉汁、4%胡蘿蔔、礦物質營養素、亞麻仁油、海藻。",
@@ -3722,7 +3723,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "魔法喵 奇幻妙喵 貓主食罐 貓罐 德國貓罐 (23號 火雞 x 嫩鴨 x 蒸南瓜)",
     image: "/images/products/mjamjam-turkey-duck-pumpkin.png",
     debugTags: ["無膠"],
-    features: ["火雞肉", "鴨肉"],
+    features: ["火雞肉", "鴨肉", "成貓"],
     dmbCarb: 3.33,
     detailedAnalysis: {
       ingredientsText: "56%火雞（火雞肉、胃、肝）、鮮肉汁、鴨肉、4%南瓜、礦物質營養素、亞麻仁油、海藻。",
@@ -3933,6 +3934,57 @@ export const mockPetProducts: PetProduct[] = [
     affiliateUrl: "https://s.shopee.tw/8AV69h6KYP",
   },
   {
+    id: "cat-can-043",
+    category: "貓咪主食罐",
+    brand: "T.N.A. 悠遊 厚肉肉",
+    name: "厚肉肉主食罐－至尊鰹魚拼魩仔魚 (80g)",
+    image: "/images/products/hoorooroo-bonito-anchovy-cat-can.jpg",
+    debugTags: ["無膠"],
+    features: ["鰹魚", "魩仔魚", "無穀", "成貓"],
+    dmbCarb: 4.57,
+    detailedAnalysis: {
+      productType: "罐頭",
+      ingredientsText:
+        "鰹魚、熬煮魚湯、魩仔魚、雞肝、雞油、雞心、滴雞精、海藻鈣、綜合維生素、蛋黃粉、紅蘿蔔、柴魚粉、洋車前子、綜合胺基酸、酵母粉、蒟蒻粉、牛磺酸、β-聚葡萄糖。",
+      originCountry: "台灣",
+      moisture: 78.1,
+      protein: 11.6,
+      fat: 6.1,
+      fiber: 1.1,
+      ash: 2.1,
+      phosphorus: 0.26,
+      calcium: 0.35,
+      caPhosRatio: "1.35",
+      kcalPer100g: 113.5,
+      weightGrams: 80,
+      listPrice: 46,
+      salePrice: 46,
+    },
+    officialFiling: {
+      queryDate: "2026-08-07",
+      records: [
+        {
+          spec: "0.08 公斤",
+          sourceType: "委託代工廠製造",
+          origin: "台灣",
+          company: "悠遊國際實業股份有限公司",
+          subcontractor: "興濠有限公司",
+        },
+      ],
+    },
+    aafcoCertified: true,
+    certStandard: "AAFCO",
+    review: {
+      comment:
+        "T.N.A.悠遊厚肉肉主食罐至尊鰹魚拼魩仔魚口味，前二項食材為鰹魚與熬煮魚湯，官方訴求98%高含肉量、無穀無膠無防腐劑無K3，並添加滴雞精與β-聚葡萄糖，屬「戀愛粉罐」高鈣配方。保證分析與熱量皆取自農業部申報網公開資料（官方登記規格為0.08kg，與本品80g規格相符），且與授權經銷商網站複製的包裝標示數字一致（鈣0.35%、磷0.26%）；製造工廠為興濠有限公司（台灣）。官方品牌網站tnayoyochic.com明確標示「符合AAFCO，全齡貓安心食用」。鈣磷比約1.35，落在理想範圍內。毛孩評價待更新。",
+    },
+    price: 46,
+    affiliateUrl: "https://s.shopee.tw/AAGAepacFs",
+    additionalPurchaseLinks: [
+      { label: "🛒 前往購買", url: "https://coupa.ng/coBGnH", color: "#3DACDC" },
+    ],
+  },
+  {
     id: "cat-dry-018",
     category: "貓咪乾糧",
     brand: "ROYAL CANIN 法國皇家",
@@ -3986,7 +4038,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "95%頂級深海魚油 (30顆)",
     image: "/images/products/maohaishidai-fish-oil.png",
     debugTags: [],
-    features: ["Omega-3", "犬貓適用", "ISO22000/HACCP雙認證工廠"],
+    features: ["Omega-3"],
     originCountry: "台灣",
     officialFiling: {
       queryDate: "2026-08-04",
@@ -4338,7 +4390,7 @@ export const mockPetProducts: PetProduct[] = [
     name: "幼貓初乳晶球糧 6mm小顆粒飼料+初乳凍乾晶球+增量營養素+低敏腸胃友善 (營養嫩雞) (300g)",
     image: "/images/products/heromama-kitten-colostrum-chicken.png",
     debugTags: [],
-    features: ["雞肉", "無穀", "幼貓", "初乳"],
+    features: ["雞肉", "無穀", "幼貓"],
     dmbCarb: 20.87,
     detailedAnalysis: {
       productType: "乾飼糧",
