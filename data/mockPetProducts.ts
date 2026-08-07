@@ -4636,4 +4636,54 @@ export const mockPetProducts: PetProduct[] = [
     price: 1699,
     affiliateUrl: "https://coupa.ng/cozU6C",
   },
+  {
+    id: "cat-dry-028",
+    category: "貓咪乾糧",
+    brand: "Hill's 希爾思",
+    name: "泌尿道毛球控制 雞肉與米特調食譜 (1.58公斤)",
+    image: "/images/products/hills-urinary-hairball-chicken-rice-cat.jpg",
+    debugTags: [],
+    features: ["泌尿道保健", "化毛", "雞肉", "成貓"],
+    dmbCarb: 31.2,
+    detailedAnalysis: {
+      productType: "乾飼糧",
+      ingredientsText:
+        "雞肉、全穀粒小麥、玉米蛋白粉、纖維素粉、雞脂肪、小麥筋質、釀造米、雞肝香料、蛋製品、雞肉粉、脫水甜菜漿、黃豆油、乳酸、硫酸鈣、魚油、氯化膽鹼、氯化鉀、左旋離胺酸、亞麻仁籽、牛磺酸、DL-蛋胺酸、維生素(維生素E添加劑、抗壞血酸多聚磷酸酯(維生素C來源)、菸鹼酸添加劑、硝酸硫胺(維生素B1)、維生素A添加劑、泛酸鈣、核黃素添加劑、生物素、維生素B12添加劑、維生素B6、葉酸、維生素D3添加劑)、檸檬酸鉀、碘鹽、碳酸鈣、礦物質(硫酸亞鐵、氧化鋅、硫酸銅、氧化錳、碘酸鈣、亞硒酸鈉)、左旋肉鹼、左旋色胺酸、添加綜合維生素E類以保鮮、天然香料、β-胡蘿蔔素。",
+      originCountry: "美國",
+      moisture: 8,
+      protein: 31.83,
+      fat: 17.57,
+      fiber: 8.37,
+      ash: 5.52,
+      phosphorus: 0.65,
+      calcium: 0.75,
+      caPhosRatio: "1.15",
+      kcalPer100g: 368.9,
+      weightGrams: 1580,
+      listPrice: 710,
+      salePrice: 710,
+    },
+    officialFiling: {
+      queryDate: "2026-08-07",
+      records: [
+        {
+          spec: "1.58 公斤",
+          sourceType: "輸入",
+          origin: "—",
+          company: "台灣希爾思寵物營養品有限公司",
+          subcontractor: "Hills Pet Nutrition Inc",
+        },
+      ],
+    },
+    aafcoCertified: true,
+    review: {
+      comment:
+        "希爾思泌尿道毛球控制雞肉與米特調食譜，鎖定尿液pH值與低鎂配方支持泌尿道健康，並用天然纖維幫助化毛，符合 AAFCO 標準。農業部申報網僅公開部分保證分析（蛋白質≥29.5%、脂肪≥15.5%、粗纖維6.5-11%、水分≤8%等），未列出灰分、鈣、磷與熱量；完整保證分析取自希爾思美國官網「Average Nutrient & Caloric Content」乾物比數據（蛋白質34.6%、脂肪19.1%、碳水／NFE 31.2%、粗纖維9.1%、鈣0.81%、磷0.71%、熱量3689kcal/kg），灰分（DM約6.0%）依蛋白質+脂肪+纖維+碳水回推所得，再以8%水分還原成以現狀為準（As-Fed）數值。鈣磷比約1.15，落在理想範圍內。",
+    },
+    price: 710,
+    affiliateUrl: "https://s.shopee.tw/qiVlcUe0M",
+    additionalPurchaseLinks: [
+      { label: "🛒 前往購買", url: "https://coupa.ng/coCfPV", color: "#3DACDC" },
+    ],
+  },
 ];
