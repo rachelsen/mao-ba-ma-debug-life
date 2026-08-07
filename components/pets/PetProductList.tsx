@@ -551,7 +551,7 @@ export default function PetProductList() {
   const [filingFilters, setFilingFilters] = useState<Set<string>>(new Set());
   const [manufacturerFactory, setManufacturerFactory] = useState<string>(ALL_FACTORY);
   const [subcontractorFactory, setSubcontractorFactory] = useState<string>(ALL_FACTORY);
-  const [sortOrder, setSortOrder] = useState<"random" | "desc">("random");
+  const [sortOrder, setSortOrder] = useState<"random" | "desc">("desc");
   // 初始值固定，避免 SSR／CSR 洗牌結果不一致造成 hydration mismatch；掛載後才在 client 端重新洗牌
   const [shuffleSeed, setShuffleSeed] = useState(0);
   const [showMeatSection, setShowMeatSection] = useState(false);
