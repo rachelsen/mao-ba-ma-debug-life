@@ -1,5 +1,6 @@
 export type PetProductCategory =
   | "貓咪主食罐"
+  | "貓咪副食罐"
   | "貓咪乾糧"
   | "貓咪零食"
   | "貓砂/用品"
@@ -3272,8 +3273,8 @@ export const mockPetProducts: PetProduct[] = [
     affiliateUrl: "https://s.shopee.tw/4qEZGrd9w8",
   },
   {
-    id: "cat-snack-002",
-    category: "貓咪零食",
+    id: "cat-side-000",
+    category: "貓咪副食罐",
     brand: "YAMI 亞米",
     name: "白金大餐貓罐－鮮鮪 (170g)",
     image: "/images/products/yami-platinum-feast-tuna-cat.jpg",

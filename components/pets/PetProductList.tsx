@@ -26,6 +26,7 @@ const ALL_FACTORY = "全部" as const;
 const TABS: (typeof ALL | PetProductCategory)[] = [
   ALL,
   "貓咪主食罐",
+  "貓咪副食罐",
   "貓咪乾糧",
   "貓咪零食",
   "貓砂/用品",
