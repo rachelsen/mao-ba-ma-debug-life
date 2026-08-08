@@ -539,7 +539,7 @@ export const mockPetProducts: PetProduct[] = [
     ],
     review: {
       comment:
-        "沙發馬鈴薯 POWER超能主食罐鮭魚口味，DMB 碳水極低（約1.7%），符合 AAFCO 標準，本丸、海苔、麻糬都愛吃。鈣磷比剛好1:1，略低於理想範圍 1.1-1.4，建議留意。",
+        "沙發馬鈴薯 POWER超能主食罐鮭魚口味，DMB 碳水極低（約1.7%），符合 AAFCO 標準，本丸、海苔、麻糬都愛吃。鈣磷比剛好1:1，落在理想範圍內。",
     },
     price: 49,
     affiliateUrl: "https://s.shopee.tw/40fKkljaXg",
