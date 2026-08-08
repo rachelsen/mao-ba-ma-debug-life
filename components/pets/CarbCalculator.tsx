@@ -396,7 +396,7 @@ export default function CarbCalculator() {
               }
               className="mt-0.5 h-4 w-4 shrink-0 rounded border-cream-border text-milktea focus:ring-milktea"
             />
-            <span>鈣磷比符合標準（理想範圍約 1.1:1 ~ 1.4:1）</span>
+            <span>鈣磷比符合標準（理想範圍約 1.0:1 ~ 1.4:1）</span>
           </label>
           <div className="flex items-start gap-2.5 text-sm text-stone-500">
             <input
