@@ -560,8 +560,19 @@ export default function PetProductList() {
   const [showFilingSection, setShowFilingSection] = useState(false);
   const [likedIds, setLikedIds] = useState<Set<string>>(new Set());
   const moreFiltersRef = useRef<HTMLDivElement>(null);
+  const curatedListHeadingRef = useRef<HTMLHeadingElement>(null);
+  const [showBackToTop, setShowBackToTop] = useState(false);
 
   const { getQuantity, setQuantity } = useFavoriteQuantities();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 400);
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handleTabChange = (tab: (typeof ALL) | PetProductCategory) => {
     setActiveTab(tab);
@@ -941,7 +952,10 @@ export default function PetProductList() {
       )}
 
       <div className="mb-6 flex items-center gap-2">
-        <h2 className="text-xl font-bold text-stone-800 sm:text-2xl">
+        <h2
+          ref={curatedListHeadingRef}
+          className="scroll-mt-24 text-xl font-bold text-stone-800 sm:text-2xl"
+        >
           🐾 毛拔麻嚴選清單
         </h2>
       </div>
@@ -1389,6 +1403,25 @@ export default function PetProductList() {
         <p className="rounded-xl border border-dashed border-cream-border p-8 text-center text-stone-400">
           此分類目前尚無商品，敬請期待。
         </p>
+      )}
+
+      {showBackToTop && (
+        <button
+          type="button"
+          onClick={() =>
+            curatedListHeadingRef.current?.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            })
+          }
+          aria-label="回到毛拔麻嚴選清單"
+          className="fixed bottom-24 right-4 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-milktea text-white shadow-lg transition hover:bg-milktea-dark active:scale-95 sm:bottom-8 sm:right-8"
+        >
+          <span className="flex flex-col items-center leading-none">
+            <span className="text-base">↑</span>
+            <span className="text-[10px] font-semibold">Top</span>
+          </span>
+        </button>
       )}
     </section>
   );
