@@ -367,14 +367,14 @@ function computeProductScore(product: PetProduct): ProductScore | null {
     const carbScore = scoreCarb(dm.carb, isDog, isDry);
     const aafcoScore = product.aafcoCertified ? 20 : 0;
 
-    // 鈣磷比（15分）：落在理想範圍 1.1–1.4 才給分
+    // 鈣磷比（15分）：落在理想範圍 1.0–1.4 才給分
     const caPhosRatio = analysis.caPhosRatio
       ? parseFloat(analysis.caPhosRatio)
       : analysis.calcium !== undefined
         ? analysis.calcium / analysis.phosphorus
         : undefined;
     const caPhosScore =
-      caPhosRatio !== undefined && caPhosRatio >= 1.1 && caPhosRatio <= 1.4 ? 15 : 0;
+      caPhosRatio !== undefined && caPhosRatio >= 1.0 && caPhosRatio <= 1.4 ? 15 : 0;
 
     const proteinScore = scoreProtein(dm.protein, isDog);
 
@@ -456,7 +456,7 @@ function computeProductScore(product: PetProduct): ProductScore | null {
       ? inputs.calcium / inputs.phosphorus
       : undefined;
   const caPhosScore =
-    caPhosRatio !== undefined ? (caPhosRatio >= 1.1 && caPhosRatio <= 1.4 ? 15 : 0) : undefined;
+    caPhosRatio !== undefined ? (caPhosRatio >= 1.0 && caPhosRatio <= 1.4 ? 15 : 0) : undefined;
 
   const knownMax =
     25 + 20 + 15 + (phosphorusScore !== undefined ? 25 : 0) + (caPhosScore !== undefined ? 15 : 0);
